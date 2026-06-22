@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Warung Jakarta — Mobile Preview</title>
+<style>
+  :root{ --red:#E24A34; --brown:#3B241B; --cream:#FFF8F6; --line:rgba(59,36,27,.16); --ok:#16a34a; --bad:#c0392b; }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:"DM Sans",system-ui,Segoe UI,Roboto,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%, #ffe9e4 0%, transparent 60%), var(--cream);
+    color:var(--brown); min-height:100%;
+    display:flex; flex-direction:column; align-items:center; padding:20px 14px 40px;
+  }
+  header{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  header .dot{width:10px;height:10px;border-radius:99px;background:var(--red)}
+  header h1{font-size:18px;margin:0;font-weight:700}
+  .sub{font-size:12.5px;color:#7c6358;margin:0 0 16px;text-align:center;max-width:560px;line-height:1.5}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 10px;margin-bottom:14px;
+    box-shadow:0 8px 30px rgba(59,36,27,.08)}
+  .toolbar label{font-size:11px;font-weight:600;color:#7c6358}
+  select,input{height:34px;border:1px solid var(--line);border-radius:9px;padding:0 9px;background:#fff;color:var(--brown);font-size:13px;outline:none}
+  input.port{width:70px;text-align:center}
+  button{height:34px;padding:0 12px;border:0;border-radius:9px;cursor:pointer;background:var(--red);color:#fff;font-size:13px;font-weight:700}
+  button.ghost{background:#fff;color:var(--brown);border:1px solid var(--line)}
+  .status{font-size:12.5px;font-weight:600;margin-bottom:14px;min-height:18px;text-align:center}
+  .status.ok{color:var(--ok)} .status.bad{color:var(--bad)} .status.scan{color:#7c6358}
+  .phone{position:relative;background:#1c1310;border-radius:46px;padding:14px;
+    box-shadow:0 30px 70px rgba(40,20,14,.35);transition:width .25s ease,height .25s ease}
+  .phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:120px;height:7px;border-radius:99px;background:#000;opacity:.55;z-index:3}
+  .screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:#fff}
+  iframe{width:100%;height:100%;border:0;display:block;background:#fff}
+  .empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px;color:#7c6358}
+  .empty b{color:var(--brown)} code{background:#fff5f2;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12px}
+  .empty.hidden{display:none}
+</style>
+</head>
+<body>
+  <header><span class="dot"></span><h1>Warung Jakarta — Mobile Preview</h1></header>
+  <p class="sub">Start the dev server first (double-click <strong>start-warung.bat</strong>), then this page finds it automatically and shows it in a phone frame.</p>
+
+  <div class="toolbar">
+    <button id="rescan">⟳ Re-scan for server</button>
+    <label>Port</label>
+    <input class="port" id="port" value="3000" inputmode="numeric" />
+    <label>Page</label>
+    <select id="page">
+      <option value="/">Home</option>
+      <option value="/menu" selected>Menu &amp; Planner</option>
+      <option value="/our-story">Our Story</option>
+      <option value="/contact">About &amp; Locations</option>
+    </select>
+    <label>Device</label>
+    <select id="device">
+      <option value="390x844" selected>iPhone 12/13/14</option>
+      <option value="375x812">iPhone X/11</option>
+      <option value="360x800">Android</option>
+      <option value="414x896">iPhone Max</option>
+    </select>
+    <button class="ghost" id="reload">Reload</button>
+  </div>
+
+  <div class="status scan" id="status">Scanning for the dev server…</div>
+
+  <div class="phone" id="phone">
+    <div class="screen">
+      <iframe id="frame" title="Warung Jakarta mobile preview"></iframe>
+      <div class="empty" id="empty">
+        <p>No running dev server found yet.</p>
+        <p style="font-size:12.5px;line-height:1.6">1. Double-click <b>start-warung.bat</b><br/>2. Wait for <code>Local: http://localhost:XXXX</code><br/>3. Click <b>Re-scan</b> above (or type the port).</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+  var PORTS=[3000,3001,3002,3003,3004,3005,3007,3008,3009,5173,8080];
+  var portEl=document.getElementById('port'), pageEl=document.getElementById('page'),
+      deviceEl=document.getElementById('device'), frame=document.getElementById('frame'),
+      phone=document.getElementById('phone'), statusEl=document.getElementById('status'),
+      empty=document.getElementById('empty');
+  var activePort=null;
+
+  function dims(){var p=deviceEl.value.split('x');return [parseInt(p[0],10),parseInt(p[1],10)];}
+  function applySize(){var d=dims();phone.style.width=(d[0]+28)+'px';phone.style.height=(d[1]+28)+'px';}
+  function setStatus(t,cls){statusEl.textContent=t;statusEl.className='status '+(cls||'');}
+
+  // Ping a port by loading the site's logo (cross-origin <img> needs no CORS).
+  function ping(port){
+    return new Promise(function(res){
+      var img=new Image(), done=false;
+      var t=setTimeout(function(){if(!done){done=true;res(false);}},1500);
+      img.onload=function(){if(!done){done=true;clearTimeout(t);res(true);}};
+      img.onerror=function(){if(!done){done=true;clearTimeout(t);res(false);}};
+      img.src='http://localhost:'+port+'/images/logo.png?t='+Date.now();
+    });
+  }
+  function show(port){
+    activePort=port; portEl.value=port; empty.classList.add('hidden');
+    frame.src='http://localhost:'+port+pageEl.value;
+    setStatus('Connected on localhost:'+port,'ok');
+  }
+  function showEmpty(){ frame.removeAttribute('src'); empty.classList.remove('hidden'); setStatus('No dev server found — start start-warung.bat, then Re-scan.','bad'); }
+
+  async function scan(){
+    setStatus('Scanning for the dev server…','scan');
+    for(var i=0;i<PORTS.length;i++){ if(await ping(PORTS[i])){ show(PORTS[i]); return; } }
+    showEmpty();
+  }
+
+  document.getElementById('rescan').onclick=scan;
+  document.getElementById('reload').onclick=function(){ if(activePort) show(activePort); else scan(); };
+  pageEl.onchange=function(){ if(activePort) show(activePort); };
+  portEl.onchange=function(){ var p=(portEl.value||'').replace(/[^0-9]/g,''); if(p) show(p); };
+  deviceEl.onchange=applySize;
+
+  applySize();
+  scan();
+</script>
+</body>
+</html>

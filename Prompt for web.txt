@@ -1,0 +1,5007 @@
+# WARUNG JAKARTA WEBSITE — COMPLETE COMBINED MASTER PROMPT
+
+**Latest merged revision:** Existing-site update with a warm Jakarta marketing palette built around Burnt Terracotta, deep cocoa-brown text, muted warm body copy, an alabaster-cream page base and a soft coral hero glow. The transparent header shell, neutral fluid-glass navigation capsule, verified KL Central Walk map marker and premium light-green Meal Planner system remain unchanged. No redesign or structural rebuild.
+
+You are a senior UI/UX designer and frontend developer specialising in premium hospitality websites, interactive restaurant experiences and high-conversion mobile interfaces.
+
+Design and build a polished, production-ready website for **Warung Jakarta**, a local Indonesian restaurant with two locations in Malaysia.
+
+Do not only provide suggestions, wireframes or explanations. Implement the complete responsive website and all required interactions.
+
+---
+
+# 1. PROJECT OVERVIEW
+
+## Brand
+
+Warung Jakarta
+
+## Website type
+
+A modern, interactive, responsive three-page restaurant website:
+
+1. Home
+2. Menu
+3. Contact Us
+
+## Commercial scope
+
+This is an **RM500 lightweight restaurant website package**.
+
+The finished website should look custom and premium, but the technical implementation must remain practical and easy to maintain.
+
+## Main business goals
+
+The website should help customers:
+
+1. Discover Warung Jakarta
+2. Understand that there are two branches
+3. Choose the correct branch
+4. Check business hours
+5. View the correct branch menu
+6. Plan food choices with friends and family before arriving
+7. Generate a clear Meal Planning List
+8. Get directions
+9. Call or WhatsApp the correct branch
+10. Spend less time choosing food after reaching the restaurant
+
+## Important positioning
+
+The Meal Planner is not an online ordering system.
+
+It helps customers decide what to eat before arriving and prepare a list to show restaurant staff.
+
+Do not describe it as:
+
+* Online ordering
+* Pre-ordering
+* Confirmed order
+* Kitchen order
+* Reservation
+* Food reservation
+* Table booking
+* Checkout
+* Payment
+
+Use:
+
+* Plan Your Meal Together
+* Group Meal Planner
+* Meal Planning List
+* Choose Before You Arrive
+
+---
+
+# 2. PROJECT SOURCE-OF-TRUTH RULE
+
+Treat this document as the current master prompt and the single source of truth.
+
+Whenever the user later supplies:
+
+* New ideas
+* Corrections
+* New menu PDFs
+* New prices
+* New photographs
+* Videos
+* Logos
+* Branch details
+* Business hours
+* Closed days
+* Holiday hours
+* Reviews
+* Design references
+* New functionality
+
+The new information must be incorporated into the relevant section of this master prompt.
+
+Rules:
+
+1. Preserve previously confirmed requirements unless they are explicitly replaced by newer confirmed information.
+2. Newer confirmed information overrides older conflicting information.
+3. Do not treat a new requirement as an isolated request; update every affected component, token, state, page and acceptance test.
+4. Never invent missing restaurant information, branch coordinates, prices, hours, map URLs or contact details.
+5. Keep unresolved information internally editable and present a professional customer-facing fallback where necessary.
+6. Keep the project within the RM500 lightweight scope unless expanded scope is explicitly approved.
+7. Preserve the existing branch, menu, price, operating-status and Meal Planner data model and all working functionality.
+8. The website is a Meal Planner, not an ordering, checkout, reservation or account system. Translate commerce references into approved Meal Planner language.
+9. Preserve the current page structure, layout, section dimensions, spacing, typography hierarchy, imagery, responsive architecture, routes and animations unless a later instruction explicitly changes one of them.
+10. The latest header instruction removes the large external cream/white header capsule. The header shell must be transparent while retaining its current alignment, width, safe spacing and sticky behaviour.
+11. Apply advanced gradual blur and fluid glass only inside the existing central navigation capsule. Never apply it to the logo, complete header shell, page, map or content cards.
+12. The central navigation capsule is now fully neutral glass. Remove terracotta, green, sage and other coloured navigation backgrounds.
+13. The active navigation item is now a brighter raised glass pill with dark charcoal text. This replaces every older solid terracotta active-navigation requirement.
+14. Use `--logo-red` (`#D13827`) for the visible “Warung Jakarta” brand name and use `--color-body-warm` (`#6B5E5A`) for the smaller “RASA ORIGINAL” sub-headline. Do not recolour or alter the original logo image.
+15. The latest Meal Planner palette replaces dark-green summary surfaces and red planner controls with white/light-neutral surfaces and accessible green actions, selections, quantities, prices and totals.
+16. Within the Meal Planner interface, do not use red for primary actions, prices, selected options or active indicators. Red is reserved only for a destructive confirmation state where genuinely necessary.
+17. The desktop hamburger remains completely absent above 768px. Preserve the current mobile-menu behaviour at 768px and below.
+18. Menu category capsules remain section shortcuts, not filters. Every category and item remains rendered in normal vertical flow.
+19. The KL Central Walk map must display a real marker using one canonical branch-data record for address, coordinates, Place ID and Google Maps URL. Never fake the pin or duplicate coordinates.
+20. WebGL is progressive enhancement only. Semantic HTML navigation, routing, keyboard access, active-route logic and mobile behaviour must work fully without it.
+21. Remove any promotional website-link line from generated, copied, shared and restaurant-display Meal Planning Lists. Do not append a website URL beneath the closing message.
+22. Every generated or shared list must end with exactly: “Present this list to our waitstaff upon arrival. This is a digital meal-planning summary and does not require an account or login.”
+23. The latest public-facing marketing palette uses `#D13827` for controlled brand accents and primary marketing CTAs, `#3A1E1A` for major headings, `#6B5E5A` for body copy, `#FBF5EE` for the main marketing background, `#F3C5BA` for the soft top-right coral glow and `#FAF2EA` for secondary marketing controls. These colours do not replace neutral navigation glass or the Meal Planner’s functional green system.
+
+## LATEST IMPLEMENTATION SCOPE — UPDATE IN PLACE
+
+The website already exists. Inspect the current components, CSS, route logic, branch data, map implementation, navigation markup, Meal Planner states, asset paths, dependencies and console output before editing. Modify the current implementation in place.
+
+The newest permitted work is limited to the following controlled updates:
+
+1. Preserve and verify the real KL Central Walk Google Maps marker implementation.
+2. Remove the large external cream/white rounded header shell while preserving the header’s current alignment, width, safe edge spacing and sticky behaviour.
+3. Keep the logo and brand directly on the page background.
+4. Retain the existing central navigation capsule, gradual blur and optional React Three Fiber fluid-glass backdrop, but make every navigation surface neutral glass.
+5. Replace the solid terracotta active-navigation pill with a brighter raised glass pill using dark charcoal text.
+6. Set the visible “Warung Jakarta” brand name to `--logo-red` and the smaller “RASA ORIGINAL” sub-headline to `--color-body-warm`.
+7. Update only Meal Planner colours and contrast: white/light-neutral surfaces, green selected states, green quantities, green prices/totals and green planner actions.
+8. Replace the generated-list ending with the approved waitstaff/account statement and remove any website URL beneath it.
+9. Preserve all existing page layouts, dimensions, typography, content, images, responsive structure and functionality.
+10. Standardise the Home page and other public-facing marketing sections with the approved warm Jakarta palette without changing their geometry, copy or content hierarchy.
+
+Allowed implementation changes:
+
+* Reuse the current header and navigation components; do not duplicate them.
+* Remove background, border and shadow styling from the outer header shell only.
+* Retain balanced left/right viewport spacing and prevent desktop/mobile overflow.
+* Keep the neutral fluid-glass effect clipped to the existing central navigation capsule.
+* Recolour WebGL transmission/refraction materials to white and neutral grey only.
+* Preserve semantic HTML links above all decorative layers.
+* Keep CSS-only and generated-mesh fallbacks for WebGL, GLB, reduced-motion and low-power failures.
+* Recolour existing Meal Planner components without changing their sizes, placement, radius, spacing or behaviour.
+* Change the customisation modal’s former red accents to green.
+* Change the desktop Meal Plan card and mobile Meal Plan bar to white/light-neutral surfaces with dark text.
+* Change Review List and Generate Meal Planning List actions to green.
+* Add the approved closing statement to generated, copied, shared and display-mode lists.
+* Apply the warm alabaster background, cocoa-brown heading text, muted warm body text, controlled terracotta accents, coral hero glow and pale warm secondary-button surface to existing marketing components only.
+* Keep all existing hero copy, button labels, dimensions, image placement and responsive behaviour unchanged while recolouring them.
+
+Not allowed:
+
+* Redesigning the website or rebuilding the header.
+* Moving the logo, brand, navigation or right-side controls into a new structure.
+* Changing navigation wording or destinations.
+* Applying coloured backgrounds to the navigation capsule or active navigation item.
+* Applying fluid glass to the full header, logo, page, map or content cards.
+* Changing card dimensions, modal structure, section sizes, typography hierarchy or responsive breakpoints.
+* Reintroducing a dark-green Meal Plan summary card.
+* Using red for Meal Planner primary actions, selected choices, prices or totals.
+* Displaying any promotional website URL beneath a Meal Planning List.
+* Guessing map coordinates or placing a fake CSS marker over the map.
+* Applying the coral glow, warm cream background or terracotta marketing accents to the neutral navigation capsule.
+* Replacing Meal Planner green actions, prices or totals with terracotta.
+
+Priority order when older instructions conflict:
+
+1. Preserve the existing working website and structure.
+2. Keep the verified map-marker implementation.
+3. Make the outer header shell transparent.
+4. Keep the central capsule as neutral fluid glass only.
+5. Use raised neutral glass for the active navigation item.
+6. Apply the approved warm Jakarta palette to public-facing marketing sections.
+7. Use the premium light green-and-neutral system inside the Meal Planner.
+8. Use the approved final-list closing statement with no URL beneath it.
+9. Retain accessible, semantic and fully functional fallbacks.
+
+---
+
+# 3. CONFIRMED RESTAURANT INFORMATION
+
+## Brand-level details
+
+Restaurant name:
+
+Warung Jakarta
+
+Cuisine:
+
+Indonesian
+
+Google information last supplied:
+
+* Rating: 4.6
+* Review count: 376
+* Price range: RM20–40 per person
+
+These Google figures may change.
+
+Store them in one editable configuration file and confirm them again before launch.
+
+Facilities shown for SS4:
+
+* Outdoor seating
+* Vegetarian options
+* Dine-in
+* Lunch
+* Dinner
+
+Do not automatically apply these facilities to KL Central Walk unless confirmed.
+
+---
+
+# 4. CONFIRMED LOCATIONS
+
+The website represents two Warung Jakarta locations.
+
+## Branch 1: Warung Jakarta SS4
+
+Public name:
+
+Warung Jakarta SS4
+
+Address:
+
+35, Jalan SS 4C/5
+Taman Rasa Sayang
+47301 Petaling Jaya
+Selangor
+
+Telephone:
+
+016-404 7058
+
+WhatsApp:
+
+Use 016-404 7058 temporarily unless a different WhatsApp number is later provided.
+
+Regular business hours:
+
+* Monday: 10:00 AM–10:00 PM
+* Tuesday: 10:00 AM–10:00 PM
+* Wednesday: 10:00 AM–10:00 PM
+* Thursday: 10:00 AM–10:00 PM
+* Friday: 10:00 AM–10:00 PM
+* Saturday: 10:00 AM–10:00 PM
+* Sunday: 10:00 AM–10:00 PM
+
+Short display:
+
+“Open daily, 10:00 AM–10:00 PM”
+
+Closing-soon period:
+
+9:00 PM–10:00 PM
+
+Known facilities:
+
+* Outdoor seating
+* Vegetarian options
+* Dine-in
+* Lunch
+* Dinner
+
+Pending SS4 information:
+
+* Confirmed current menu
+* Confirmed SS4 prices
+* Google Maps URL
+* Map embed URL
+* Parking information
+* Holiday hours
+* Restaurant-approved photographs
+* Confirmation that the supplied KLCW menu also applies to SS4
+
+Do not copy KLCW prices to SS4 unless the restaurant confirms that both locations share the same menu and prices.
+
+---
+
+## Branch 2: Warung Jakarta KL Central Walk
+
+Preferred public name:
+
+Warung Jakarta KL Central Walk
+
+Alternative wording found in the supplied menu:
+
+Warung Jakarta, Kuala Lumpur City Walk
+
+Known location information:
+
+KLCW
+Lot BX2A–BX3A
+
+Regular business hours:
+
+* Monday: 10:00 AM–5:30 PM
+* Tuesday: 10:00 AM–5:30 PM
+* Wednesday: 10:00 AM–5:30 PM
+* Thursday: 10:00 AM–5:30 PM
+* Friday: 10:00 AM–5:30 PM
+* Saturday: 10:00 AM–5:30 PM
+* Sunday: Closed
+
+Short display:
+
+“Monday–Saturday, 10:00 AM–5:30 PM”
+“Closed Sunday”
+
+Closing-soon period:
+
+4:30 PM–5:30 PM, Monday–Saturday
+
+Pending KLCW information:
+
+* Complete official postal address
+* Telephone number
+* WhatsApp number
+* Google Maps URL
+* Map embed URL
+* Parking or access information
+* Confirmed facilities
+* Holiday hours
+* Restaurant-approved branch photographs
+* Confirmation that the supplied PDF remains the latest menu
+
+Do not copy the SS4 telephone number to KLCW.
+
+Do not invent missing KLCW details.
+
+---
+
+# 5. LOGO REQUIREMENTS
+
+The supplied profile image contains:
+
+1. The actual Warung Jakarta circular logo
+2. A purple, pink, yellow and orange Instagram profile ring
+3. A dark square background
+
+Use only the real circular logo inside the profile image.
+
+Ignore and remove:
+
+* Purple Instagram ring
+* Pink Instagram ring
+* Yellow Instagram ring
+* Orange Instagram ring
+* Dark square background
+
+Do not sample colours from the Instagram ring.
+
+Do not:
+
+* Redraw the logo
+* Change the logo words
+* Stretch the logo
+* Recolour the logo
+* Change the bowl illustration
+* Change the typography
+* Change “Rasa Original Jakarta”
+
+Use a transparent PNG containing only the actual circular logo.
+
+If a cleaned transparent logo has not yet been supplied, use a temporary circular crop in development, but clearly leave a TODO to replace it with the official transparent asset.
+
+---
+
+# 6. DESIGN CONCEPT
+
+## Design direction
+
+“Modern Jakarta Neighbourhood Warung”
+
+The website should feel:
+
+* Warm
+* Appetising
+* Friendly
+* Authentic
+* Modern
+* Local
+* Energetic
+* Relaxed
+* Welcoming
+* Professionally designed
+* Affordable without looking cheap
+* Refined and tactile
+
+It should not feel:
+
+* Corporate
+* Like a large restaurant chain
+* Like a nightclub
+* Overly luxurious
+* Old-fashioned
+* Rustic in a cliché way
+* Like a generic food-delivery template
+* Like an e-commerce store
+* Overloaded with Indonesian patterns
+* Dominated by red
+* Dominated by black
+* Covered in glass effects
+* Shiny, chrome-like or excessively reflective
+
+Use:
+
+* Editorial food photography
+* Clean off-white and white surfaces
+* Deep forest-green typography and grounding surfaces
+* Burnt terracotta for strong actions and selected states
+* Muted sage for borders, secondary surfaces and subtle accents
+* Generous but controlled spacing
+* Expressive but controlled typography
+* Softly rounded image frames
+* Thin curved lines inspired by the circular logo
+* Plate-inspired circles
+* Subtle steam or bowl line details
+* Fine terracotta dividers inspired by the supplied menu PDF
+* Refined glass only for the floating navigation and selected overlays
+
+Do not copy the menu PDF literally.
+
+Modernise its editorial character for a responsive website using the latest warm Jakarta marketing palette: Burnt Terracotta, deep cocoa-brown text, muted warm body copy, an alabaster-cream base and a restrained coral ambient glow. Preserve neutral glass in navigation and functional green inside the Meal Planner.
+
+The Apple-inspired glass treatment must remain restrained. It should feel softly frosted and layered, not glossy, glowing or futuristic.
+
+---
+
+# 7. PREMIUM COLOUR SYSTEM
+
+Update colours in place. Do not use this section as permission to redesign, resize or restructure any component.
+
+## 7.1 Required pre-change colour audit
+
+Before editing, inspect and document:
+
+* Existing global variables, Tailwind theme values, CSS-module variables and component-level theme objects
+* Hardcoded HEX, RGB, RGBA, HSL and named colours
+* Gradients, shadows, borders and backdrop-filter values
+* Header shell, central navigation capsule, active navigation and mobile-menu colours
+* Brand wordmark and tagline colours
+* Meal Planner modal, selected choices, quantity controls, prices, summary card, recently added rows and Review List button
+* Form focus, valid, error, hover, pressed and disabled states
+* Dark sections, footer and any third-party components that can be themed safely
+
+Do not edit generated files, photographs, the approved logo image, third-party package source or unrelated component geometry.
+
+## 7.2 Canonical design tokens
+
+Use one canonical token system. Existing aliases may remain temporarily only when they map directly to these values.
+
+```css
+:root {
+  /* Public-facing marketing brand palette */
+  --color-primary: #D13827;
+  --color-primary-hover: #B92E20;
+  --color-primary-active: #9F271C;
+  --color-primary-soft: #FBEDEA;
+
+  --color-heading-warm: #3A1E1A;
+  --color-body-warm: #6B5E5A;
+  --color-background-warm: #FBF5EE;
+  --color-coral-glow: #F3C5BA;
+  --color-secondary-warm: #FAF2EA;
+  --color-warm-border: rgba(58, 30, 26, 0.14);
+
+  /* Visible brand wordmark and tagline */
+  --logo-red: var(--color-primary);
+  --brand-tagline-color: var(--color-body-warm);
+
+  /* Meal Planner interaction green */
+  --primary-green: #16A34A;
+  --primary-green-hover: #15803D;
+  --primary-green-active: #166534;
+  --green-text: #15803D;
+  --green-dark: #166534;
+  --green-soft: #EAF8EF;
+  --green-border: #B8E3C5;
+  --green-on-dark: #86E3A6;
+
+  /* Neutral navigation glass */
+  --nav-text: #252525;
+  --nav-text-secondary: #2E2E2E;
+  --glass-bg: rgba(255, 255, 255, 0.36);
+  --glass-bg-hover: rgba(255, 255, 255, 0.46);
+  --glass-active: rgba(255, 255, 255, 0.58);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-active-border: rgba(255, 255, 255, 0.75);
+  --glass-shadow: rgba(20, 20, 20, 0.12);
+
+  /* Existing structural dark green outside the light Meal Planner cards */
+  --color-forest: #153F28;
+  --color-forest-light: #1F3A2B;
+  --color-forest-hover: #0F321F;
+
+  /* Light surfaces */
+  --surface-white: #FFFFFF;
+  --surface-soft: #FAFAF7;
+  --surface-page: #F7F5EF;
+  --color-background: var(--color-background-warm);
+
+  /* Neutral Meal Planner text */
+  --text-primary: #2F3431;
+  --text-secondary: #626A65;
+  --text-supporting: #6B746E;
+  --text-muted: #7C857F;
+
+  /* Borders and shadows */
+  --border-light: #E3E7E4;
+  --border-medium: #D9DFDB;
+  --shadow-soft: 0 8px 30px rgba(21, 63, 40, 0.08);
+  --shadow-card: 0 14px 40px rgba(21, 63, 40, 0.10);
+
+  /* Semantic states */
+  --color-warning: #A96513;
+  --color-warning-soft: #FFF4DE;
+  --color-danger: #B42318;
+  --color-danger-soft: #FDECEA;
+  --color-disabled-bg: #EEF1EF;
+  --color-disabled-text: #8A948E;
+}
+```
+
+Compatibility aliases, when required by the existing codebase, must map to the canonical tokens instead of creating new colours:
+
+```css
+:root {
+  --color-brand: var(--color-primary);
+  --color-brand-tagline: var(--brand-tagline-color);
+  --color-page-heading: var(--color-heading-warm);
+  --color-page-body: var(--color-body-warm);
+  --color-page-background: var(--color-background-warm);
+  --color-secondary-button: var(--color-secondary-warm);
+
+  --color-action-green: var(--primary-green);
+  --color-action-green-hover: var(--primary-green-hover);
+  --color-action-green-active: var(--primary-green-active);
+  --color-action-green-soft: var(--green-soft);
+  --color-action-green-border: var(--green-border);
+  --color-surface: var(--surface-white);
+  --color-border: var(--border-light);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+}
+```
+
+Do not map every text component to one global text token. Marketing-page text uses the warm brown tokens, while Meal Planner components retain the neutral grey-green text tokens.
+
+## 7.3 Colour ownership
+
+### Warm Jakarta marketing palette
+
+Use the new warm palette on the Home page and other public-facing marketing sections without changing layout or copy:
+
+* `--color-primary` (`#D13827`) for primary marketing CTAs, controlled brand accents, important small highlights and any existing emphasized/script phrase.
+* `--color-heading-warm` (`#3A1E1A`) for hero headings and major marketing-section headings.
+* `--color-body-warm` (`#6B5E5A`) for paragraphs, supporting copy and subdued brand text.
+* `--color-background-warm` (`#FBF5EE`) for the main marketing-page base.
+* `--color-coral-glow` (`#F3C5BA`) for the restrained top-right hero glow only.
+* `--color-secondary-warm` (`#FAF2EA`) for existing secondary marketing buttons and subtle warm raised surfaces.
+
+Do not rewrite hero copy merely because a colour example references different wording. Apply the colour to the equivalent existing heading, emphasized phrase or button.
+
+Do not use the coral glow as a solid section fill. Do not apply the warm marketing background inside the neutral navigation glass or as a replacement for white Meal Planner cards.
+
+### Logo red
+
+Use `--logo-red`, which maps to `--color-primary`, for the visible “Warung Jakarta” brand name. Use `--color-body-warm` for the smaller “RASA ORIGINAL” sub-headline.
+
+Do not use green for either text. Do not recolour, redraw or alter the logo image itself.
+
+### Neutral navigation glass
+
+The central navigation capsule and its active/hover states use only transparent white, neutral grey and charcoal text.
+
+Do not use terracotta, red, forest green, bright green, sage, purple or blue as navigation backgrounds.
+
+### Terracotta outside the navigation and Meal Planner
+
+Terracotta is the primary public-facing brand accent. Use it for existing primary marketing CTAs, emphasized/script words, small decorative highlights, selected marketing controls and approved brand details outside the navigation and task-focused Meal Planner UI.
+
+Do not use terracotta as a large page or section background. Do not introduce heavy red blocks. Do not use terracotta for neutral navigation states or for Meal Planner primary buttons, selected options, prices or totals.
+
+### Meal Planner green
+
+Use green consistently for:
+
+* Add to Meal Plan
+* Review List
+* Generate Meal Planning List
+* Plus and minus interaction states
+* Selected options and active indicators
+* Active category shortcuts within the Menu/Planner page
+* Confirmed prices and estimated subtotals
+* Quantity badges
+* Availability and successful local-list feedback
+
+Green confirms a local interface action only. It never means the restaurant received or accepted a request.
+
+### Neutral surfaces and text
+
+Use the warm alabaster background for public-facing marketing pages, white for elevated cards, and the pale warm secondary surface for existing secondary controls.
+
+Use white for Meal Planner modal, card, item-row and summary surfaces. Use soft neutral page backgrounds only to separate those surfaces.
+
+Use cocoa-brown and muted warm brown on marketing pages. Use dark grey for Meal Planner main text and medium grey for its supporting text. Do not keep white text after converting a dark surface to white.
+
+## 7.4 Header and navigation colour mapping
+
+Outer header shell:
+
+```css
+.header,
+.site-header {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+```
+
+Brand text:
+
+```css
+.brand-name {
+  color: var(--logo-red);
+}
+
+.brand-tagline {
+  color: var(--color-body-warm);
+}
+```
+
+Central capsule:
+
+```css
+.navigation-capsule,
+.fluid-navigation {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 10px 30px var(--glass-shadow);
+}
+```
+
+Inactive item:
+
+```css
+.navigation-item,
+.nav-link {
+  color: var(--nav-text);
+  background: transparent;
+}
+```
+
+Hover:
+
+```css
+.navigation-item:hover,
+.nav-link:hover {
+  color: var(--nav-text);
+  background: var(--glass-bg-hover);
+}
+```
+
+Active item:
+
+```css
+.navigation-item.active,
+.nav-link[aria-current="page"],
+.nav-link.is-active,
+.nav-link[data-active="true"] {
+  color: var(--nav-text);
+  background: var(--glass-active);
+  border: 1px solid var(--glass-active-border);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.85),
+    0 5px 16px rgba(20, 20, 20, 0.10);
+}
+```
+
+The active state must be clear through brightness, elevation, border and motion—not colour.
+
+## 7.5 Meal Planner customisation modal
+
+Keep the modal geometry and layout exactly as implemented.
+
+Modal surface:
+
+* Background: `--surface-white`
+* Main text: `--text-primary`
+* Supporting text: `--text-supporting`
+* Borders: `--border-light` or `--border-medium`
+
+Change all former red interactive accents inside the modal to green:
+
+* Add to Meal Plan button
+* Portion total amount
+* Selected noodle or beverage option
+* Selected borders
+* Active indicators
+* Quantity controls
+* Confirmed choice badges
+
+Add button:
+
+```css
+.add-to-meal-plan {
+  background: var(--primary-green);
+  color: #FFFFFF;
+}
+
+.add-to-meal-plan:hover {
+  background: var(--primary-green-hover);
+}
+
+.add-to-meal-plan:active {
+  background: var(--primary-green-active);
+  transform: scale(0.98);
+}
+```
+
+Portion total:
+
+```css
+.portion-total-amount {
+  color: var(--green-text);
+  font-weight: 700;
+}
+```
+
+The “PORTION TOTAL” label remains muted grey using `--text-supporting`.
+
+Selected option:
+
+```css
+.option[aria-checked="true"],
+.option.is-selected {
+  background: var(--green-soft);
+  border: 1.5px solid var(--primary-green);
+  color: var(--green-dark);
+}
+```
+
+Unselected option:
+
+```css
+.option {
+  background: var(--surface-white);
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+}
+```
+
+Quantity selector:
+
+```css
+.quantity-stepper {
+  background: var(--surface-soft);
+  border: 1px solid var(--border-medium);
+}
+
+.quantity-stepper button,
+.quantity-stepper output {
+  color: var(--green-dark);
+}
+
+.quantity-stepper button:hover {
+  background: var(--green-soft);
+  color: var(--green-text);
+}
+```
+
+Do not change button size, position, radius, spacing or typography.
+
+## 7.6 Meal Plan summary surfaces
+
+The desktop Meal Plan summary and recently added rows must no longer use a dark-green background.
+
+Summary card:
+
+```css
+.meal-plan-summary {
+  background: var(--surface-white);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-card);
+  color: var(--text-primary);
+}
+```
+
+Convert all text that previously depended on a dark surface:
+
+* Main headings and item names: `--text-primary`
+* Secondary labels: `--text-supporting`
+* Muted copy: `--text-muted`
+* Estimated subtotal: `--green-text`, weight 700 or 800
+
+Recently added rows:
+
+```css
+.meal-plan-recent-item {
+  background: var(--surface-white);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 14px rgba(21, 63, 40, 0.05);
+}
+```
+
+Quantity badge:
+
+```css
+.meal-plan-quantity-badge {
+  background: var(--green-soft);
+  color: var(--green-text);
+}
+```
+
+Review List and Generate Meal Planning List buttons:
+
+```css
+.review-list-button,
+.generate-meal-plan-button {
+  background: var(--primary-green);
+  color: #FFFFFF;
+}
+
+.review-list-button:hover,
+.generate-meal-plan-button:hover {
+  background: var(--primary-green-hover);
+  box-shadow: 0 8px 22px rgba(22, 163, 74, 0.22);
+}
+
+.review-list-button:active,
+.generate-meal-plan-button:active {
+  background: var(--primary-green-active);
+  transform: scale(0.98);
+}
+```
+
+Clear entire list:
+
+* Default: `#4B524E`
+* Underline: `--text-muted`
+* Hover: `--green-text`
+* Do not use red until the user reaches a destructive confirmation control
+
+## 7.7 Mobile Meal Plan bar
+
+Preserve its current dimensions and placement, but use a light surface:
+
+* Background: `rgba(255,255,255,0.92)` or solid white where blur is unavailable
+* Border: `1px solid var(--border-light)`
+* Main text: `--text-primary`
+* Secondary text: `--text-supporting`
+* Estimated subtotal: `--green-text`
+* Count badge: `--green-soft` with `--green-dark` text
+* Review List button: green with white text
+* Shadow: soft forest-tinted shadow only
+
+Do not use a large dark-green background block.
+
+## 7.8 Category capsules and menu rows
+
+Within the Menu/Planner interface:
+
+Active category:
+
+* Background: `--primary-green`
+* Text: white
+* Border: `--primary-green`
+* Shadow: subtle green shadow
+
+Inactive category:
+
+* Background: white
+* Text: `--text-primary`
+* Border: `--border-light`
+
+Food card and row:
+
+* Background: white
+* Border: `--border-light`
+* Food name: `--text-primary`
+* Description: `--text-secondary`
+* Price: `--green-text`
+* Add control: `--primary-green` with white icon/text
+
+Do not colour the complete card green or red.
+
+## 7.9 Forms and status
+
+Default input:
+
+```css
+background: #FFFFFF;
+border: 1px solid var(--border-medium);
+color: var(--text-primary);
+```
+
+Focus:
+
+```css
+border-color: var(--primary-green);
+box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.10);
+```
+
+Valid:
+
+```css
+border-color: var(--primary-green);
+```
+
+Error:
+
+```css
+border-color: var(--color-danger);
+```
+
+Colour must not be the only indicator. Retain labels, icons and text states.
+
+## 7.10 Other website sections
+
+The latest palette update recolours existing public-facing marketing sections without changing their layouts, copy, images, typography hierarchy or component dimensions.
+
+Use:
+
+* `#FBF5EE` as the default Home and marketing-page background base.
+* `#3A1E1A` for major marketing headings.
+* `#6B5E5A` for supporting body copy.
+* `#D13827` for primary marketing CTAs and controlled brand emphasis.
+* `#FAF2EA` for existing secondary marketing buttons or softly raised warm surfaces.
+* `#F3C5BA` only as a low-opacity ambient glow, mainly in the top-right hero area.
+
+Existing forest-green dark sections may remain only where they are already intentional and still fit the approved composition, such as a footer or specific contrast section. Do not extend dark forest surfaces into the Meal Planner summary, modal or item rows.
+
+Do not apply the warm background or terracotta accent to the neutral navigation capsule. Do not replace Meal Planner green actions, selections, prices or totals with the marketing red.
+
+## 7.11 Migration and contrast rules
+
+* Replace reusable hardcoded component colours with tokens.
+* Do not globally search-and-replace colour values without checking their semantic use.
+* Preserve official logo/image colours.
+* Use `#15803D` or darker for green text on white.
+* Use `#166534` on pale green.
+* Use white text on `#16A34A` buttons.
+* Do not use pale or neon green text on white.
+* Do not keep white text on newly white cards.
+* Maintain WCAG AA contrast for normal text.
+* Preserve visible focus states.
+* Respect `prefers-reduced-motion`.
+* Avoid hard colour seams between adjacent sections. Blend `#FBF5EE`, white and `#FAF2EA` with spacing or very subtle tonal transitions rather than visible bands.
+* Do not add a second theme provider or duplicate token file.
+
+The final result must look like the same website with a warm, appetising Jakarta marketing palette, a refined neutral-glass header and a lighter, cleaner Meal Planner—not a redesigned website.
+
+---
+
+# 8. TYPOGRAPHY
+
+Use:
+
+* Fraunces for major expressive headings
+* Manrope for body text, navigation, buttons, labels, prices, menu names and Meal Planner controls
+
+Use Fraunces only for:
+
+* Hero headline
+* Major section headings
+* Featured editorial statements
+* Empty-state headlines
+* Final CTA
+
+Use Manrope for:
+
+* Navigation
+* Dish names
+* Descriptions
+* Menu categories
+* Prices
+* Business hours
+* Reviews
+* Forms
+* Buttons
+* Options
+* Quantity controls
+* Generated Meal Planning List
+
+Do not use the serif font for every small UI label. Menu scanning must remain fast and clear.
+
+Recommended desktop sizes:
+
+* Hero: 72–88px
+* Main section heading: 48–62px
+* Menu section heading: 26–32px
+* Card heading: 24–30px
+* Menu item name: 17–19px
+* Price: 16–18px
+* Body: 14–18px depending on context
+
+Recommended mobile sizes:
+
+* Hero: 44–54px
+* Main section heading: 34–42px
+* Menu section heading: 22–26px
+* Menu item name: 15–17px
+* Price: 15–16px
+* Body: 13–17px depending on context
+
+Use fluid `clamp()` typography for major headings.
+
+Maintain comfortable line heights, avoid very wide text blocks and prevent oversized mobile headings from reducing useful menu space.
+
+---
+
+# 9. WEBSITE INFORMATION ARCHITECTURE
+
+Create these routes:
+
+```text
+/
+ /menu
+ /contact
+```
+
+## Home page purpose
+
+* Introduce the brand
+* Communicate two locations
+* Show selected dishes
+* Introduce the Group Meal Planner
+* Build trust
+* Drive customers toward Menu, Planner and Directions
+
+## Menu page purpose
+
+* Require branch selection
+* Require visit-time selection
+* Check operating status
+* Display the correct branch menu
+* Allow food selection and quantity adjustment
+* Generate the Meal Planning List
+
+## Contact page purpose
+
+* Show both branches
+* Show confirmed business hours
+* Show branch-specific contact information
+* Provide maps and directions
+* Make it easy to call or WhatsApp the correct location
+
+---
+
+# 10. SHARED NAVIGATION
+
+Update the existing header and navigation components in place. Do not create a duplicate header or a second floating menu.
+
+Preserve:
+
+* Logo and brand on the left
+* Existing central or centre-right navigation capsule
+* Existing labels: Home, Menu & Planner, About & Locations
+* Existing routing and active-route detection
+* Existing desktop/mobile alignment and sticky behaviour
+* Existing responsive menu logic
+
+## 10.1 Remove the large external header capsule
+
+Remove the cream/white rounded background, border and shadow that currently surrounds the complete logo-and-navigation area.
+
+The outer header shell becomes visually transparent:
+
+```css
+.header,
+.site-header {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+```
+
+Requirements:
+
+* Logo and brand sit directly on the page background
+* Preserve current header width, alignment, safe spacing, height and sticky position
+* Do not use `width: 100vw`
+* Keep approximately 24–36px desktop side spacing, 20px tablet spacing and 12–16px mobile spacing
+* The rightmost control must never touch the viewport edge
+* Account for the browser scrollbar
+* Do not leave an empty external rounded shell after removing its visible styling
+
+Where the existing implementation already uses a symmetrical three-column grid safely, retain it. Do not rebuild the header solely to introduce a new grid.
+
+## 10.2 Brand text colour
+
+Use the approved warm brand tokens:
+
+```css
+:root {
+  --logo-red: #D13827;
+  --brand-tagline-color: #6B5E5A;
+}
+```
+
+Apply them separately:
+
+```css
+.brand-name {
+  color: var(--logo-red);
+}
+
+.brand-tagline {
+  color: var(--brand-tagline-color);
+}
+```
+
+Rules:
+
+* “Warung Jakarta” uses the primary brand red
+* “RASA ORIGINAL” uses the muted warm body colour
+* Do not use green for either text
+* Do not modify or recolour the original logo image
+* Keep the existing typeface, size, spacing and alignment
+
+## 10.3 Desktop hamburger and mobile behaviour
+
+Remove the hamburger completely above 768px:
+
+```css
+@media (min-width: 769px) {
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}
+```
+
+Do not reserve invisible space for it.
+
+At 768px and below, preserve:
+
+* Existing open/close behaviour
+* Minimum 44 × 44px target
+* `aria-expanded` and `aria-controls`
+* Escape handling
+* Focus trap and focus return
+* Background-scroll lock
+* Safe-area spacing
+* No horizontal overflow
+
+## 10.4 Neutral fluid-glass central capsule
+
+Apply glass only to the existing central navigation capsule.
+
+Do not apply it to:
+
+* Logo or brand area
+* Complete header shell
+* Mobile menu panel
+* Whole page
+* Map
+* Cards or content sections
+
+Use only transparent white, neutral grey and charcoal text. Remove green, terracotta, red, sage, purple and blue backgrounds from the navigation.
+
+```css
+.navigation-capsule,
+.fluid-navigation {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 10px 30px var(--glass-shadow);
+}
+```
+
+Keep the existing capsule dimensions, padding and spacing.
+
+## 10.5 Gradual blur foundation
+
+Keep the supplied class names:
+
+```css
+.gradual-blur-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gradual-blur-inner > div {
+  -webkit-backdrop-filter: inherit;
+  backdrop-filter: inherit;
+}
+
+.gradual-blur {
+  isolation: isolate;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .gradual-blur-inner > div {
+    background: rgba(255, 255, 255, 0.45);
+    opacity: 0.5;
+  }
+}
+
+.gradual-blur-fixed {
+  position: fixed !important;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+```
+
+Never apply `.gradual-blur-fixed` to the navigation capsule.
+
+Use the local implementation:
+
+```css
+.nav-gradual-blur {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.nav-gradual-blur .gradual-blur-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.nav-gradual-blur .gradual-blur-inner > div {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 1) 35%,
+    rgba(0, 0, 0, 0.7) 65%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 1) 35%,
+    rgba(0, 0, 0, 0.7) 65%,
+    transparent 100%
+  );
+}
+
+.nav-gradual-blur .blur-layer-1 {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  opacity: 0.9;
+}
+
+.nav-gradual-blur .blur-layer-2 {
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  opacity: 0.6;
+}
+
+.nav-gradual-blur .blur-layer-3 {
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  opacity: 0.32;
+}
+```
+
+## 10.6 Required layer structure
+
+```tsx
+<nav className="main-navigation fluid-navigation" aria-label="Main navigation">
+  <FluidGlassNavBackdrop />
+
+  <div className="gradual-blur nav-gradual-blur" aria-hidden="true">
+    <div className="gradual-blur-inner">
+      <div className="blur-layer-1" />
+      <div className="blur-layer-2" />
+      <div className="blur-layer-3" />
+    </div>
+  </div>
+
+  <div className="navigation-content">
+    {/* Existing navigation items remain unchanged. */}
+  </div>
+</nav>
+```
+
+Layering:
+
+1. WebGL backdrop: `z-index: 0`
+2. Gradual blur and neutral highlight: `z-index: 1`
+3. HTML navigation content: `z-index: 2`
+
+Every decorative layer uses `pointer-events: none` and `aria-hidden="true"`.
+
+## 10.7 Neutral active and hover states
+
+Inactive text:
+
+```css
+.navigation-item,
+.nav-link {
+  color: #252525;
+  background: transparent;
+}
+```
+
+Hover:
+
+```css
+.navigation-item:hover,
+.nav-link:hover {
+  color: #252525;
+  background: rgba(255, 255, 255, 0.46);
+}
+```
+
+Active:
+
+```css
+.navigation-item.active,
+.nav-link[aria-current="page"],
+.nav-link.is-active,
+.nav-link[data-active="true"] {
+  color: #252525;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.85),
+    0 5px 16px rgba(20, 20, 20, 0.10);
+}
+```
+
+The active page is identified by a brighter raised glass pill only.
+
+Do not use:
+
+* Red or terracotta active pill
+* Coloured hover background
+* White text on the pale glass
+* Large movement that shifts adjacent labels
+
+## 10.8 Adapt the React Three Fiber fluid-glass layer
+
+Use WebGL only as a decorative background behind semantic HTML navigation.
+
+Remove or omit from the reference scene:
+
+* `ScrollControls`
+* `Scroll`
+* `Typography`
+* `Images`
+* `useScroll`
+* Demo URLs
+* Full-page canvas
+* WebGL navigation text
+* Bottom-locking behaviour
+* Purple clear colour
+
+Use transparent clearing:
+
+```tsx
+<Canvas
+  className="fluid-navigation__canvas"
+  aria-hidden="true"
+  camera={{ position: [0, 0, 5], fov: 25 }}
+  gl={{
+    alpha: true,
+    antialias: true,
+    powerPreference: "high-performance"
+  }}
+  dpr={[1, 1.5]}
+  onCreated={({ gl }) => {
+    gl.setClearColor(0x000000, 0);
+  }}
+>
+  {/* Decorative neutral mesh only */}
+</Canvas>
+```
+
+Canvas styling:
+
+```css
+.fluid-navigation__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fluid-navigation__canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+}
+```
+
+Remove bottom positioning and keep the object centred:
+
+```ts
+ref.current.position.set(0, 0, 0);
+```
+
+Use `ResizeObserver` or measured capsule dimensions. Disconnect observers on cleanup.
+
+## 10.9 GLB and neutral fallback
+
+Verify before use:
+
+* `/assets/3d/bar.glb` exists
+* Geometry key `Cube` exists
+
+Fallback order:
+
+1. Verified GLB geometry
+2. Generated rounded-box/capsule mesh
+3. CSS-only glass and gradual blur
+
+Use neutral optical material values:
+
+```tsx
+<MeshTransmissionMaterial
+  transmission={1}
+  roughness={0.12}
+  thickness={1.4}
+  ior={1.15}
+  chromaticAberration={0.008}
+  anisotropy={0.06}
+  distortion={0.045}
+  distortionScale={0.10}
+  temporalDistortion={0.018}
+  color="#FFFFFF"
+  attenuationColor="#E8E8E8"
+  attenuationDistance={1.8}
+/>
+```
+
+Do not use sage, forest, red, purple or blue tinting in the mesh. The effect should resemble clear premium optical glass, not jelly, chrome, plastic or gaming UI.
+
+## 10.10 Interaction and motion
+
+Hover uses only a subtle increase in glass brightness.
+
+Click/active transition may use a contained neutral liquid-glass highlight and a small press scale. It must:
+
+* Not introduce coloured ripples inside navigation
+* Not alter dimensions
+* Not shift neighbouring links
+* Not capture clicks through WebGL
+* Work with pointer, touch, pen and keyboard
+* Respect `prefers-reduced-motion`
+
+Preserve coloured liquid feedback only on non-navigation controls where the current design requires it. Navigation feedback remains neutral white/grey glass.
+
+## 10.11 Performance, accessibility and fallback
+
+The navigation remains fully functional without WebGL.
+
+Use CSS-only glass when:
+
+* WebGL is unavailable
+* The asset or shader fails
+* Reduced motion is enabled
+* Device policy identifies a low-powered device
+* The existing responsive mobile layout hides the desktop capsule
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .fluid-navigation canvas {
+    display: none;
+  }
+}
+```
+
+For Next.js, load the decorative component client-side only where necessary and keep a stable SSR fallback.
+
+All labels remain semantic HTML links or buttons with visible focus. Preserve browser history, Back/Forward navigation, screen-reader access and existing Link components.
+
+---
+
+# 11. HOME PAGE STRUCTURE
+
+Keep the Home page focused.
+
+Do not duplicate the complete Menu page.
+
+Use this order:
+
+1. Floating navigation
+2. Hero
+3. Trust and branch strip
+4. Featured dishes
+5. Meal Planner introduction
+6. Short brand story
+7. Reviews
+8. Locations
+9. Final CTA
+10. Footer
+
+---
+
+# 12. HOME HERO
+
+## Eyebrow
+
+“Indonesian comfort food · SS4 & KL Central Walk”
+
+## Main headline
+
+“Plan together.
+Arrive hungry.”
+
+## Supporting copy
+
+“Explore homemade noodles, bakso, rice dishes and Jakarta favourites. Build one simple meal list with friends and family before you arrive.”
+
+## Primary CTA
+
+“Plan Your Meal”
+
+## Secondary CTA
+
+“View the Menu”
+
+## Tertiary text link
+
+“Find a Location”
+
+## Supporting trust information
+
+* 4.6 Google rating
+* 376 reviews
+* Indonesian cuisine
+* RM20–40 per person
+* Two locations
+
+Keep the rating and review count editable because they can change.
+
+## Hero colour application
+
+Apply the latest palette without changing the existing hero copy, composition, button labels, image placement or dimensions.
+
+* Main hero background: `var(--color-background-warm)` / `#FBF5EE`.
+* Main hero heading: `var(--color-heading-warm)` / `#3A1E1A`.
+* Existing emphasized or script-style phrase, when present: `var(--color-primary)` / `#D13827`.
+* Supporting paragraph and secondary copy: `var(--color-body-warm)` / `#6B5E5A`.
+* Primary marketing CTA: `#D13827` with white text; hover `#B92E20`; active `#9F271C`.
+* Secondary marketing CTA: `#FAF2EA` with `#3A1E1A` text and a subtle `rgba(58, 30, 26, 0.14)` border.
+* Tertiary text link: `#3A1E1A`, with a terracotta underline or icon only on hover/focus.
+* Top-right ambient glow: `#F3C5BA`, used softly and never as a solid block.
+
+Recommended background treatment:
+
+```css
+.hero-section {
+  background:
+    radial-gradient(
+      circle at 88% 10%,
+      rgba(243, 197, 186, 0.72) 0%,
+      rgba(243, 197, 186, 0.30) 24%,
+      rgba(243, 197, 186, 0) 52%
+    ),
+    var(--color-background-warm);
+}
+```
+
+Keep the glow behind decorative space or imagery rather than directly reducing text contrast. On mobile, reduce its opacity and radius if it competes with the heading.
+
+Do not change the current headline to the wording used in colour examples. The palette applies to the existing content.
+
+## Desktop hero layout
+
+Use an asymmetrical split:
+
+* Approximately 42% text
+* Approximately 58% food photography
+
+Text on the left.
+
+Large food image or shared-table composition on the right.
+
+Add two small location chips:
+
+* SS4 · Open daily until 10:00 PM
+* KL Central Walk · Mon–Sat until 5:30 PM
+
+Do not show a false live status without using the operating-hours logic.
+
+The chips may display either:
+
+* Live status when safely calculated
+* Regular hours when live status is unavailable
+
+Use an organic but controlled rounded image frame.
+
+Include one subtle circular line inspired by the logo.
+
+## Mobile hero
+
+* Text first
+* Buttons beneath text
+* Trust data beneath buttons
+* Food image below
+* Location chips below or partially overlapping the image without covering the food
+* Do not place important text over a busy image
+* Avoid excessive hero height
+* Avoid horizontal overflow
+
+---
+
+# 13. TRUST STRIP
+
+Show a compact trust strip:
+
+* 4.6 Google rating
+* 376 guest reviews
+* Indonesian comfort food
+* Two locations
+* Outdoor seating at SS4
+
+Desktop:
+
+Show in a balanced row.
+
+Mobile:
+
+Use a compact grid or horizontally scrollable chips.
+
+Do not cut off labels.
+
+---
+
+# 14. FEATURED DISHES
+
+Use the heading:
+
+“Jakarta favourites worth coming back for.”
+
+Supporting copy:
+
+“From comforting noodles and bakso to bold sambal dishes and crispy afternoon snacks.”
+
+Because the currently supplied menu belongs to KL Central Walk, show a clear location label:
+
+“Featured from the KL Central Walk menu”
+
+Do not imply that these items or prices are confirmed at SS4.
+
+## Featured selection
+
+Use the label:
+
+“Warung Jakarta Picks”
+
+Do not use “Best Seller” unless actual sales data is later confirmed.
+
+Feature:
+
+1. Mie/Bihun Ayam Original — RM23.90
+2. Bakso Sapi Campur — RM18.90
+3. Nasi Ayam Geprek — RM26.90
+4. Nasi Soto Betawi — RM28.90
+5. Lidah Sapi Oseng Pedas — RM23.90
+6. Bakwan Goreng, 4 pieces — RM9.90
+7. Pisang Goreng Coklat + Keju — RM17.90
+8. Kunyit Asam — RM9.00
+
+Recommended hierarchy:
+
+* Main feature: Mie/Bihun Ayam Original
+* Large feature: Nasi Ayam Geprek
+* Tall feature: Bakso Sapi Campur
+* Secondary: Nasi Soto Betawi
+* Secondary: Lidah Sapi Oseng Pedas
+* Snack: Bakwan Goreng
+* Sweet: Pisang Goreng Coklat + Keju
+* Drink: Kunyit Asam
+
+Use an asymmetrical editorial grid rather than identical cards.
+
+Each card supports:
+
+* Approved photograph
+* Dish name
+* Price
+* Branch label
+* Short confirmed description where available
+* Recommended label
+* View Menu action
+
+If the exact dish image is unavailable, use a tasteful labelled placeholder.
+
+Do not use an incorrect stock photograph.
+
+Do not use customer-uploaded Google photographs without permission.
+
+---
+
+# 15. HOME PAGE MEAL PLANNER INTRODUCTION
+
+Place this section after Featured Dishes.
+
+## Eyebrow
+
+“Planning with friends?”
+
+## Heading
+
+“Decide what to eat before you arrive.”
+
+## Supporting copy
+
+“Choose your location, select dishes, adjust quantities and combine everyone’s choices into one simple list. Show it to our team when you arrive and spend less time deciding at the table.”
+
+## Three steps
+
+1. Choose your branch
+2. Select dishes and quantities
+3. Show your list when you arrive
+
+## Primary CTA
+
+“Start Planning”
+
+## Secondary link
+
+“How It Works”
+
+Use a small animated demonstration:
+
+* One dish is added
+* Quantity changes from 1 to 2
+* Meal list count updates
+* Final list appears
+
+Do not use shopping-cart visuals.
+
+Do not use checkout language.
+
+Do not imply the restaurant receives the list.
+
+---
+
+# 16. SHORT BRAND STORY
+
+## Eyebrow
+
+“A neighbourhood warung with Jakarta soul”
+
+## Heading
+
+“Familiar flavours, served with a little more personality.”
+
+## Body copy
+
+“Warung Jakarta brings comforting Indonesian dishes into relaxed neighbourhood settings in SS4 and KL Central Walk. Whether you are stopping by for lunch, sharing a meal with friends or craving a bold sambal, the experience should feel warm, casual and satisfying.”
+
+Use:
+
+* One restaurant interior or team image
+* One smaller food-preparation image
+* An asymmetrical composition
+* A subtle red line inspired by the logo and menu design
+
+Do not make this section feel like a corporate company profile.
+
+---
+
+# 17. REVIEWS SECTION
+
+Use a deep warm-brown background rather than pure black.
+
+## Eyebrow
+
+“From our guests”
+
+## Heading
+
+“Loved by the local crowd.”
+
+Show:
+
+* Large 4.6 rating
+* Five-star graphic
+* “Based on 376 Google reviews”
+* Approved current review excerpts
+
+Important review rules:
+
+Some supplied reviews and owner replies refer to an older restaurant identity called “Oregano”.
+
+Do not use:
+
+* Oregano branding
+* Owner responses signed by Oregano
+* Reviews that clearly describe the previous restaurant concept
+* Old dishes that are no longer confirmed
+* Statements that could misrepresent current management
+
+Only use reviews confirmed as relevant to the current Warung Jakarta operation.
+
+Do not fabricate reviews.
+
+## Desktop carousel
+
+* Previous and next buttons
+* Mouse drag support
+* Soft right fade before the final review
+* Left fade appears only after the user starts scrolling
+* Right fade disappears at the final review
+* Previous button disabled at the beginning
+* Next button disabled at the end
+* No autoplay
+
+## Mobile carousel
+
+* Hide arrow buttons
+* Enable finger swiping
+* CSS scroll snapping
+* Nearly full-width cards
+* Small progress indicator
+* No autoplay
+
+---
+
+# 18. HOME PAGE LOCATIONS SECTION
+
+## Eyebrow
+
+“Find your nearest Warung Jakarta”
+
+## Heading
+
+“Good food in two locations.”
+
+## Supporting copy
+
+“Visit SS4 for daily lunch and dinner, or stop by KL Central Walk from Monday to Saturday.”
+
+Show two location cards.
+
+## SS4 card
+
+Display:
+
+Warung Jakarta SS4
+
+35, Jalan SS 4C/5
+Taman Rasa Sayang
+47301 Petaling Jaya
+Selangor
+
+Hours:
+
+Open daily
+10:00 AM–10:00 PM
+
+Actions:
+
+* Get Directions
+* Call SS4
+* WhatsApp SS4
+* View Details
+
+Facilities:
+
+* Outdoor seating
+* Vegetarian options
+* Lunch and dinner
+
+## KL Central Walk card
+
+Display:
+
+Warung Jakarta KL Central Walk
+
+KLCW
+Lot BX2A–BX3A
+
+Hours:
+
+Monday–Saturday
+10:00 AM–5:30 PM
+
+Sunday:
+
+Closed
+
+Actions should only appear when valid data exists.
+
+Until KLCW contact and map details are provided:
+
+* Do not create fake links
+* Do not copy SS4 contact details
+* Hide unavailable public actions
+* Leave clear TODO comments in the code
+
+## Card interaction
+
+Desktop:
+
+* Two cards side by side
+* Equal visual importance
+* Balanced heights
+* Image scale approximately 1.03 on hover
+* Small arrow movement
+
+Mobile:
+
+* Stack vertically
+* Full hours visible
+* No horizontal carousel for only two cards
+* Strong directions action
+* Minimum 44px controls
+
+---
+
+# 19. HOME FINAL CTA
+
+Use a wide approved photograph of several dishes on a shared table.
+
+## Heading
+
+“Come hungry.
+We’ll handle the rest.”
+
+## Supporting copy
+
+“Choose your location, plan your meal and arrive ready to enjoy it.”
+
+Buttons:
+
+* Plan Your Meal
+* Find a Location
+
+Use a subtle rounded-mask reveal.
+
+Do not use heavy parallax.
+
+---
+
+# 20. MENU PAGE OVERVIEW
+
+The Menu page is also the Group Meal Planner.
+
+It must feel significantly denser and faster to browse than the previous large-card design, especially after branch and visit-time selection.
+
+Do not copy GrabFood visually. Use only the useful information-density pattern: compact rows, separated customisation, clear prices and a persistent summary.
+
+The required flow is:
+
+1. Choose a branch
+2. Choose visit timing
+3. Check branch status
+4. Show warnings when needed
+5. Display the correct branch menu
+6. Browse compact menu rows or cards
+7. Open customisation only when required
+8. Select food and quantities
+9. View the Meal Plan summary
+10. Recheck branch status
+11. Generate the Meal Planning List
+12. Share, copy or show the list to restaurant staff
+
+Do not show selectable food before branch selection.
+
+Do not show selectable food before a valid visit time is chosen.
+
+Do not describe this interface as ordering, checkout or a cart.
+
+Do not render every option, quantity selector and note field inside every browsing card.
+
+After branch and time are selected, collapse the selection controls into a compact editable visit summary so they do not permanently consume large vertical space.
+
+---
+
+# 21. MENU PAGE HERO
+
+Keep this hero compact because menu browsing is the main task.
+
+## Eyebrow
+
+“Freshly prepared favourites”
+
+## Heading
+
+“Choose your location, then plan your table.”
+
+## Supporting copy
+
+“Explore homemade Indonesian noodles, bakso, rice dishes, crispy snacks and refreshing drinks. Build one simple list for your group before arriving.”
+
+Display:
+
+“This planner does not send an order, reserve food or reserve a table.”
+
+Recommended spacing:
+
+* Desktop vertical padding after the floating header: approximately 48–64px
+* Mobile vertical padding: approximately 24–36px
+* Avoid a full-screen hero
+* Keep the branch-selection step visible without excessive initial scrolling
+
+---
+
+# 22. STEP 1 — MANDATORY BRANCH SELECTION
+
+Show:
+
+## Heading
+
+“Which Warung Jakarta are you visiting?”
+
+## Supporting copy
+
+“Menus, prices and operating hours may differ between locations.”
+
+Display two branch cards:
+
+### SS4
+
+* Address
+* Today’s hours
+* Current or planned status
+* Select SS4 button
+
+### KL Central Walk
+
+* KLCW, Lot BX2A–BX3A
+* Today’s hours
+* Current or planned status
+* Select KL Central Walk button
+
+Do not show the selectable menu until a branch is selected.
+
+Remember the branch on the customer’s device.
+
+---
+
+# 23. STEP 2 — VISIT TIMING
+
+After branch selection, ask:
+
+“When are you planning to visit?”
+
+Options:
+
+* Going now
+* Plan for later
+
+## Going now
+
+Use the current Malaysia time:
+
+```text
+Asia/Kuala_Lumpur
+```
+
+Do not depend only on the customer’s device timezone.
+
+## Plan for later
+
+Allow:
+
+* Visit date
+* Approximate arrival time
+
+Display:
+
+“Selecting a time helps us check the branch hours. It does not reserve a table.”
+
+Validation:
+
+* Prevent past times for the current date
+* Allow future dates
+* Recalculate the branch status immediately
+* Keep the selected date and time visible
+* Allow editing without clearing the meal list where possible
+
+---
+
+# 24. OPERATING-STATUS LOGIC
+
+Support these states:
+
+1. Open
+2. Closing Soon
+3. Closed
+4. Opens Later Today
+5. Confirmed Closed Day
+6. Special Hours
+7. Holiday Closed
+
+Use this calculation order:
+
+1. Check a special-hours override
+2. Check a confirmed full-day closure
+3. Check regular weekly hours
+4. Check whether the visit time is before opening
+5. Check whether the visit time is inside operating hours
+6. Check whether closing is within 60 minutes
+7. Check whether the visit time is after closing
+8. Check the alternative branch’s status
+
+---
+
+# 25. REGULAR HOURS DATA
+
+Use this structure:
+
+```ts
+const locations = [
+  {
+    id: "ss4",
+    name: "Warung Jakarta SS4",
+    shortName: "SS4",
+    timezone: "Asia/Kuala_Lumpur",
+    closingSoonMinutes: 60,
+    addressLines: [
+      "35, Jalan SS 4C/5",
+      "Taman Rasa Sayang",
+      "47301 Petaling Jaya",
+      "Selangor"
+    ],
+    phone: "016-404 7058",
+    whatsapp: "016-404 7058",
+    latitude: null,
+    longitude: null,
+    placeId: "",
+    googleMapsUrl: "",
+    mapEmbedUrl: "",
+    regularHours: {
+      monday: { status: "open", open: "10:00", close: "22:00" },
+      tuesday: { status: "open", open: "10:00", close: "22:00" },
+      wednesday: { status: "open", open: "10:00", close: "22:00" },
+      thursday: { status: "open", open: "10:00", close: "22:00" },
+      friday: { status: "open", open: "10:00", close: "22:00" },
+      saturday: { status: "open", open: "10:00", close: "22:00" },
+      sunday: { status: "open", open: "10:00", close: "22:00" }
+    },
+    specialHours: [],
+    facilities: [
+      "Outdoor seating",
+      "Vegetarian options",
+      "Dine-in",
+      "Lunch",
+      "Dinner"
+    ],
+    menuStatus: "pending"
+  },
+  {
+    id: "kl-central-walk",
+    name: "Warung Jakarta KL Central Walk",
+    shortName: "KL Central Walk",
+    alternativeName: "Warung Jakarta, Kuala Lumpur City Walk",
+    timezone: "Asia/Kuala_Lumpur",
+    closingSoonMinutes: 60,
+    addressLines: [
+      "KLCW",
+      "Lot BX2A–BX3A"
+    ],
+    phone: "",
+    whatsapp: "",
+    latitude: null,
+    longitude: null,
+    placeId: "",
+    googleMapsUrl: "",
+    mapEmbedUrl: "",
+    regularHours: {
+      monday: { status: "open", open: "10:00", close: "17:30" },
+      tuesday: { status: "open", open: "10:00", close: "17:30" },
+      wednesday: { status: "open", open: "10:00", close: "17:30" },
+      thursday: { status: "open", open: "10:00", close: "17:30" },
+      friday: { status: "open", open: "10:00", close: "17:30" },
+      saturday: { status: "open", open: "10:00", close: "17:30" },
+      sunday: { status: "closed", open: null, close: null }
+    },
+    specialHours: [],
+    facilities: [],
+    menuStatus: "confirmed-from-supplied-pdf"
+  }
+];
+```
+
+---
+
+# 26. STATUS MESSAGES
+
+## Open
+
+Example:
+
+“Open at your selected time · Closes at 10:00 PM”
+
+Action:
+
+“Continue to Menu”
+
+## Closing Soon
+
+A branch enters Closing Soon when closing is within 60 minutes.
+
+### SS4 warning period
+
+9:00 PM–10:00 PM
+
+### KL Central Walk warning period
+
+4:30 PM–5:30 PM, Monday–Saturday
+
+Use:
+
+“This location closes in less than one hour.”
+
+Do not call this the last-order time unless the restaurant confirms a last-order policy.
+
+Actions:
+
+* Continue Planning
+* Change Visit Time
+* View Another Location
+
+Show the warning:
+
+1. Before the customer starts selecting food
+2. Again before generating the final list if the branch is still closing soon
+
+Do not repeatedly show the same warning while the customer is browsing.
+
+Show it again only when:
+
+* The operating state changes
+* Branch changes
+* Visit time changes
+* Final list is generated
+
+## Closed
+
+Use:
+
+“This location is closed at your selected time.”
+
+Show:
+
+* Branch
+* Selected date and time
+* Business hours
+* Next known opening time
+* Alternative branch
+
+Do not use order language.
+
+## Opens later
+
+Use:
+
+“This location opens at 10:00 AM.”
+
+Actions:
+
+* Plan for 10:00 AM
+* View Another Location
+* Change Visit Time
+
+## KLCW Sunday
+
+If KLCW is selected for Sunday, show:
+
+“KL Central Walk is closed on Sunday.”
+
+Supporting copy:
+
+“This location operates Monday to Saturday from 10:00 AM to 5:30 PM.”
+
+Next opening:
+
+“Opens Monday at 10:00 AM.”
+
+Recommend:
+
+“Warung Jakarta SS4 is open daily from 10:00 AM to 10:00 PM.”
+
+Actions:
+
+* Switch to SS4
+* Plan for Monday
+* View Business Hours
+
+Do not display Sunday as unconfirmed.
+
+---
+
+# 27. ALTERNATIVE-BRANCH LOGIC
+
+When one location is closing soon or closed, calculate the other branch’s status.
+
+## Alternative branch open
+
+Show:
+
+“Another Warung Jakarta location is still open.”
+
+Display:
+
+* Branch name
+* Address
+* Current or planned hours
+* Closing time
+* Switch Branch action
+* Directions action when available
+
+## Alternative branch closing soon
+
+Show:
+
+“Another location is still open, but it also closes soon.”
+
+Use the warning state.
+
+## Both closed
+
+Show:
+
+“Both Warung Jakarta locations are closed at your selected time.”
+
+Display the next known opening for both branches.
+
+Actions:
+
+* Choose Another Time
+* View All Hours
+
+## KLCW closed, SS4 open
+
+Display SS4 prominently:
+
+Warung Jakarta SS4
+35, Jalan SS 4C/5
+Taman Rasa Sayang
+47301 Petaling Jaya
+10:00 AM–10:00 PM daily
+
+Action:
+
+“Switch Meal Plan to SS4”
+
+---
+
+# 28. CLOSED-BRANCH MENU BEHAVIOUR
+
+If the branch is closed at the selected time:
+
+* Allow the customer to view the menu in read-only mode
+* Disable the active Meal Planner until they choose a valid visit time or another branch
+* Explain why selection is unavailable
+* Provide Change Time and Switch Branch actions
+
+Do not let customers unknowingly build a “current visit” list for a closed restaurant.
+
+If the customer is planning for a future valid date, allow normal selection.
+
+---
+
+# 29. SPECIAL AND HOLIDAY HOURS
+
+Support editable date-based overrides:
+
+```ts
+specialHours: [
+  {
+    date: "2026-08-31",
+    branchId: "ss4",
+    status: "open",
+    open: "11:00",
+    close: "18:00",
+    label: "Public holiday hours"
+  }
+]
+```
+
+A special-hours record overrides the regular weekly schedule.
+
+Support:
+
+* Different opening time
+* Different closing time
+* Full-day closure
+* Temporary closure
+* Holiday notice
+
+Do not automatically invent Malaysian holiday hours.
+
+If no override exists, use the regular schedule and display:
+
+“Hours may differ on public holidays.”
+
+---
+
+# 30. MENU BRANCH RULES
+
+The supplied full menu belongs to:
+
+Warung Jakarta KL Central Walk
+
+Do not automatically apply it to SS4.
+
+## KLCW selected
+
+* Show the complete menu below
+* Show confirmed KLCW prices
+* Allow Meal Planner selection
+* Calculate estimated food subtotal
+* Display the tax and service-charge notice
+
+## SS4 selected
+
+Until the SS4 menu is supplied or confirmed:
+
+Show:
+
+“The SS4 menu is currently being updated.”
+
+Supporting copy:
+
+“Please call or WhatsApp SS4 for today’s available dishes and prices.”
+
+Actions:
+
+* Call SS4
+* WhatsApp SS4
+* View KL Central Walk Menu
+* Change Location
+
+Do not show KLCW prices as SS4 prices.
+
+The planner should remain unavailable for SS4 until sufficient SS4 menu data is confirmed.
+
+Once the restaurant confirms both branches share the same menu:
+
+* Reuse the menu data
+* Add branch-specific availability
+* Add branch-specific prices
+* Keep the ability to vary items later
+
+---
+
+# 31. COMPLETE KL CENTRAL WALK MENU
+
+Store all menu items in one central data file.
+
+Do not hardcode prices inside page components.
+
+## A. Mie Ayam
+
+Display note:
+
+“Comes with complimentary Tea O Jawa.”
+
+Items:
+
+* Mie/Bihun Ayam Original — RM23.90
+* Mie/Bihun Ayam Manis — RM23.90
+* Mie/Bihun Ayam Bakso — RM27.90
+
+Available noodle choice where applicable:
+
+* Mie
+* Bihun
+
+Do not invent descriptions.
+
+---
+
+## B. Bakso
+
+Display note:
+
+“Comes with complimentary Tea O Jawa.”
+
+Noodle choice:
+
+* Soo Hoon
+* Mihun
+
+Items:
+
+* Bakso Sapi Halus — RM17.90
+* Bakso Sapi Urat — RM18.90
+* Bakso Sapi Goreng — RM18.90
+* Bakso Sapi Campur — RM18.90
+
+---
+
+## C. Add-Ons
+
+* Bakso Sapi Halus, 3 pieces — RM4.90
+* Bakso Sapi Urat, 2 pieces — RM4.90
+* Bakso Sapi Goreng, 2 pieces — RM4.90
+* Pangsit Goreng, 2 pieces — RM4.90
+* Pangsit Rebus, 2 pieces — RM4.90
+* Tahu Isi Bakso Sapi, 2 pieces — RM4.90
+* Pangsit Bawang, 2 pieces — RM1.50
+* Kerupuk Emping — RM5.00
+* Kerupuk Merah — RM3.00
+* Soo Hoon — RM3.20
+* Mihun — RM3.20
+
+Show portion quantities clearly.
+
+---
+
+## D. Nasi Meals
+
+These are complete meal options from the supplied menu:
+
+* Nasi Soto Betawi — RM28.90
+* Nasi Ayam Geprek — RM26.90
+* Ikan Goreng Kembung Balado — RM15.20
+* Ikan Goreng Pecel Lele — RM14.20
+* Lidah Sapi Oseng Pedas — RM23.90
+
+Do not calculate these prices from à la carte items plus rice.
+
+Use the exact meal prices.
+
+---
+
+## E. À La Carte Main Dishes
+
+### Soto Betawi — RM25.90
+
+Description:
+
+“Slow-cooked beef in a comforting milk broth with fried potato and diced tomato.”
+
+Do not change “milk broth” to coconut milk unless confirmed.
+
+### Ayam Geprek — RM17.20
+
+Description:
+
+“Crispy battered fried chicken served with mixed spicy geprek sambal.”
+
+Mark as spicy.
+
+### Ikan Goreng Kembung Balado — RM8.90
+
+Description:
+
+“Deep-fried chub mackerel served with balado sauce.”
+
+### Ikan Goreng Pecel Lele — RM7.20
+
+Description:
+
+“Deep-fried catfish served with sambal tomato terasi.”
+
+### Ikan Teri Oseng Terong Pete — RM7.90
+
+Description:
+
+“Deep-fried anchovies with fried eggplant and petai, tossed with sambal merah.”
+
+### Lidah Sapi Oseng Pedas — RM15.90
+
+Description:
+
+“Stir-fried beef tongue in bumbu balado.”
+
+Mark as spicy.
+
+---
+
+## F. Vegetables and Sides
+
+### Sayur Oseng Tempe Kacang Panjang — RM5.90
+
+Description:
+
+“Stir-fried tempeh with long beans.”
+
+Do not automatically mark vegetarian until sauces and preparation are confirmed.
+
+### Sayur Tumis Buncis Toge Bakso — RM4.20
+
+Description:
+
+“Stir-fried green beans, bean sprouts and bakso.”
+
+Do not mark vegetarian.
+
+### Telor Krispi — RM4.20
+
+Description:
+
+“Crispy fried egg.”
+
+### Nasi Putih — RM3.20
+
+Description:
+
+“Steamed white rice.”
+
+---
+
+## G. Gorengan
+
+* Tahu Isi Goreng, 3 pieces — RM9.90
+* Tempe Mendoan, 4 pieces — RM9.90
+* Bakwan Goreng, 4 pieces — RM9.90
+* Pangsit Goreng, 5 pieces — RM9.90
+* Pangsit Goreng, 10 pieces — RM14.00
+
+### Pisang Goreng
+
+* Pisang Goreng Original — RM9.90
+* Pisang Goreng Coklat — RM12.90
+* Pisang Goreng Keju — RM15.90
+* Pisang Goreng Coklat + Keju — RM17.90
+
+Present Pisang Goreng as one item group with flavour choices.
+
+Do not create online ordering controls beyond the Meal Planner quantity selector.
+
+---
+
+## H. Roti Bakar
+
+* Roti Bakar Coklat — RM12.90
+* Roti Bakar Keju — RM15.90
+* Roti Bakar Coklat Keju — RM17.90
+
+Do not label these as desserts unless confirmed.
+
+---
+
+## I. Traditional Indo Jamu
+
+* Kunyit Asam — RM9.00
+* Wedang Jahe — RM11.00
+
+Both are marked as available hot or cold.
+
+Do not make health or medical claims.
+
+Do not use:
+
+* Detox
+* Healing
+* Immunity boosting
+* Weight loss
+* Anti-inflammatory claims
+
+---
+
+## J. Coffee
+
+* Yin & Yang Earl Grey — RM11.00
+* Kopi Gula Aren/Melaka — RM9.00
+* Kopi O — RM7.00
+* Kopi Susu — RM8.00
+
+Yin & Yang Earl Grey and Kopi Gula Aren/Melaka are marked as available hot or cold.
+
+Do not assume all coffee items have both options.
+
+---
+
+## K. Non-Coffee
+
+* Mineral Water — RM3.50
+* Teh Botol Sosro — RM5.00
+* Soda Gembira — RM5.00
+* Es Jeruk — RM6.00
+* Tea O Jawa — RM3.00
+* Plain Water — RM1.00
+
+Tea O Jawa choice:
+
+* Sugar
+* No sugar
+
+Tea O Jawa and Plain Water are marked as available hot or cold in the supplied menu.
+
+---
+
+## L. Soft Drinks
+
+Each item is RM5.00:
+
+* Coke — RM5.00
+* Coke Zero — RM5.00
+* Sprite — RM5.00
+
+Show each separately.
+
+---
+
+# 32. TAX AND SERVICE-CHARGE NOTICE
+
+Display prominently on the KLCW Menu page:
+
+“All prices are subject to 6% government tax and 10% service charge.”
+
+Show it:
+
+* Near the top of the menu
+* Again near the final subtotal or bottom of the menu
+
+Keep the tax and service-charge values editable.
+
+Do not automatically calculate the final bill unless the exact calculation method is confirmed.
+
+Preferred planner display:
+
+“Estimated food subtotal: RM78.70”
+
+Then:
+
+“Final tax, service charge and total will be confirmed by restaurant staff.”
+
+---
+
+# 33. ITEMS SEEN IN SS4 GOOGLE CONTENT BUT NOT IN THE KLCW PDF
+
+The following dishes appeared in the supplied Google listing or review screenshots but are not in the supplied KLCW PDF:
+
+* Sarawak Laksa
+* Mee Kolok
+* Salted Egg Pasta
+* Buttermilk Chicken Waffle
+* Butter Beer
+
+Store them internally under:
+
+`pendingMenuItems`
+
+Do not show them as confirmed menu items yet.
+
+Do not assign prices.
+
+Do not use them in the Meal Planner until the restaurant confirms:
+
+* Which branch sells them
+* Current availability
+* Current price
+* Whether they are permanent or seasonal
+* Whether the supplied photograph can be used
+
+---
+
+# 34. MENU PAGE CATEGORY NAVIGATION
+
+Use this category order:
+
+1. Recommended
+2. Mie Ayam
+3. Bakso
+4. Nasi Meals
+5. À La Carte
+6. Vegetables and Sides
+7. Gorengan
+8. Roti Bakar
+9. Traditional Jamu
+10. Coffee
+11. Non-Coffee
+12. Soft Drinks
+13. Add-Ons
+
+The category capsules are sticky section shortcuts, not filters.
+
+Render every category heading and every menu item vertically in the normal page flow. Clicking a capsule must jump to its section; it must never hide the other categories or replace the menu content.
+
+Create a dedicated sticky category rail immediately below the floating header.
+
+The category rail must never be hidden behind the header.
+
+Use measured variables such as:
+
+```css
+--header-height: 72px;
+--category-height: 48px;
+--sticky-gap: 10px;
+```
+
+Recommended category rail `z-index`:
+
+30
+
+## Shared behaviour
+
+* All categories remain present in one vertically scrollable page
+* Every menu section begins with a visible heading
+* Each heading may include one short descriptive line
+* Clicking a capsule smoothly scrolls to the matching heading
+* Apply `scroll-margin-top` equal to the floating header, category rail and spacing offset
+* Use `IntersectionObserver` to detect the currently viewed section
+* Update the active capsule as the user manually scrolls
+* Horizontally move the active capsule into view without unexpectedly moving the main page
+* Centre the active capsule when practical, but preserve the rail’s natural scroll position near either end
+* Never calculate every page-scroll frame with a heavy continuous handler when `IntersectionObserver` is sufficient
+* Preserve keyboard access and visible focus
+* Minimum capsule touch target: 44px
+* Labels must remain readable and must not be compressed to force everything into one viewport
+* Do not wrap the category rail onto multiple rows
+* The first and final capsules must be fully visible when their respective ends are reached
+
+## Desktop
+
+Use a sticky single-row horizontal rail with:
+
+* Left and right arrow buttons
+* Horizontal trackpad scrolling
+* Mouse-wheel-to-horizontal support while the pointer is over the rail
+* Click-and-drag support with an appropriate grab cursor
+* Keyboard scrolling
+* Soft edge fades only when hidden categories exist in that direction
+* Left arrow hidden or disabled at the beginning
+* Right arrow hidden or disabled at the end
+* Sufficient left and right scroll padding so arrow controls never cover the first or final capsule
+* Active capsule automatically scrolled into view
+
+Recommended dimensions:
+
+* Rail height: 46–50px
+* Capsule height: 38–40px
+* Gap: 8–10px
+* Arrow button: 40–44px
+* Content padding behind each arrow: at least 48px
+
+Active category:
+
+* Green background using `--primary-green`
+* White text
+* Matching green border
+* Subtle green shadow
+
+Inactive category:
+
+* White surface
+* Dark grey text using `--text-primary`
+* Subtle neutral border using `--border-light`
+
+The active white label must always sit on the completed green capsule. Never show white text on the white rail surface.
+
+## Mobile
+
+Use native horizontal touch scrolling:
+
+* Finger swipe
+* Momentum scrolling with `-webkit-overflow-scrolling: touch`
+* Scroll snapping may be gentle, but must not prevent free swiping
+* No permanent arrow buttons by default
+* A subtle edge fade or partially visible next capsule indicates more content
+* Active capsule automatically moves into view
+* Side padding: 12–16px
+* Gap: 8px
+* Capsule height: 36–40px with a 44px touch area
+
+Do not use `overflow: hidden` on the actual scrolling container.
+
+Do not require the customer to click the furthest visible capsule before more categories appear.
+
+Do not force customers to swipe one dish card at a time. The page itself remains a normal vertical menu.
+
+## Menu-section confirmation
+
+Every category must display a visible heading above its first item, for example:
+
+```text
+Add-Ons
+Small extras to complete your meal.
+```
+
+This confirms where the customer has landed after using a capsule shortcut.
+
+---
+
+# 35. RESPONSIVE MENU BROWSING AND ITEM CONTROLS
+
+Preserve one central product and Meal Planner state across all breakpoints, but do not merely scale one card design smaller.
+
+## Breakpoints
+
+* Mobile: below 768px
+* Tablet: 768px–1023px
+* Desktop: 1024px and above
+* Wide desktop: 1280px and above
+
+Use actual available container width when deciding whether a sidebar or second menu column fits.
+
+## Desktop page layout
+
+At desktop widths, use a two-area layout where space permits:
+
+* Menu browsing area: approximately 8–9 grid columns
+* Sticky Meal Plan summary: approximately 3–4 grid columns
+* Main gap: 24–32px
+* Summary width: approximately 290–330px
+* Maximum content width: 1280px
+* Horizontal padding: approximately 24–32px for this task-focused page
+
+At 1280px and above, use a two-column compact menu grid when the available menu area remains comfortable.
+
+At approximately 1024–1279px, use one or two columns according to the actual menu-area width. Do not force two cramped columns.
+
+Recommended desktop menu card:
+
+* Typical height: approximately 136–170px, approximately 20–25% shorter than the previous design
+* Radius: 16–20px
+* Padding: 12–16px
+* Background: `--card`
+* Border: `1px solid var(--sand)`
+* Very subtle shadow
+* No repeated heavy internal dividers
+
+When an approved dish image exists:
+
+* Image: approximately 96–112px square
+* Radius: 12–16px
+* `object-fit: cover`
+
+When no approved dish image exists:
+
+* Use a clean text-first card layout
+* Do not use an unrelated stock image
+* Do not repeat another dish image as a fake substitute
+
+Desktop card content:
+
+Use a responsive three-column internal structure:
+
+* Item information: flexible width
+* Price: fixed, consistently aligned width
+* Action: fixed control width
+
+Do not use absolute positioning that creates a large empty centre or allows the price and action to drift against the card edge.
+
+* Compact but readable portion badge when relevant; use consistent wording such as “3 pcs” or “3 pieces”
+* Dish name, maximum two lines
+* Short description, maximum two or three lines
+* Compact accompaniment note when confirmed
+* Price
+* Add control
+
+Desktop Add control:
+
+* 40–44px visual size
+* At least 44px interactive area
+* Bright Meal Planner green fill with white icon/text. Use a clear forest outline only for a neutral secondary state.
+
+For a simple item already in the list, the control may become:
+
+```text
+[−]  2  [+]
+```
+
+Keep the desktop quantity control approximately 40–42px high and 104–118px wide.
+
+## Tablet layout
+
+* Use a single-column compact menu list by default
+* Product image: approximately 108–120px square where approved
+* Product row: approximately 150–180px high
+* Keep categories horizontally scrollable
+* Use a narrow side summary only when the available landscape width genuinely supports it
+* Otherwise use the compact bottom Meal Plan bar
+* Never force a narrow desktop sidebar into a small tablet layout
+
+## Mobile menu browsing
+
+Replace the old full-form card with a compact menu row.
+
+Do not display inside the browsing row:
+
+* Full description
+* Full customisation form
+* Noodle-choice controls
+* Kitchen-note field
+* Multiple section dividers
+* Large quantity section
+* Oversized internal spacing
+
+Recommended mobile row:
+
+```text
+[OPTIONAL IMAGE]  Dish title
+                  Short description
+                  Compact badge
+                  RM 23.90           [+]
+```
+
+Recommended dimensions:
+
+* Page horizontal padding: 14–16px
+* Row height: approximately 108–132px when an image exists
+* Image: 80–88px square
+* Image radius: 14–16px
+* Gap: 12px
+* Vertical padding: 10–12px
+* Use a subtle divider or light row surface, not a deeply nested card frame
+
+For products without an approved image, use a shorter text-first row while preserving price and Add alignment.
+
+Mobile text:
+
+* Title: 15–17px, maximum two lines
+* Description: 13px, approximately 18px line-height, maximum two lines
+* Price: 15–16px, semibold, using the approved dark action green on white
+* Badges remain compact and never become large paragraphs
+
+Mobile Add control:
+
+* 38–40px visual size
+* Minimum 44px touch area including invisible padding
+* Place near the lower-right area without pushing the price away
+* Use action green with a white plus icon; do not use terracotta for the ordinary Add control
+
+After the branch and visit summary have collapsed, a normal mobile viewport should show approximately four compact menu rows when practical, and never fewer than three solely because of oversized cards or sticky controls.
+
+## Remove decorative mobile framing
+
+On mobile:
+
+* Remove unnecessary vertical page rails
+* Remove desktop-style inner framing
+* Use the full available width
+* Keep only 14–16px main page padding
+* Do not nest multiple cream containers inside one another
+
+A subtle editorial frame may remain on desktop only when it does not reduce menu usability.
+
+## Shared item-control rules
+
+Each confirmed item may support:
+
+* Add to Meal Plan
+* Increase quantity
+* Decrease quantity
+* Current quantity
+* Confirmed choices
+* Optional special-request note
+* Confirmed branch price
+* Branch availability
+
+Requirements:
+
+* Quantity cannot go below zero
+* Reaching zero removes the correct line item
+* Rapid tapping must not create accidental duplicates
+* Minimum 44px interactive targets
+* Subtle visual feedback after adding
+* Essential information visible without hover
+* Do not add unavailable items
+* Do not treat unknown availability as confirmed
+* Keep count badge, portion count and subtotal derived from the same central state
+* Use action green only for Add, plus, quantity increase, confirmed prices, estimated subtotal, availability and successful addition feedback
+* Keep minus/remove visually separate: minus may use a white surface with a green border, while destructive removal uses the dedicated danger colour
+* Never label the subtotal as a final bill, checkout total or confirmed order amount
+
+## Sold-out and unavailable states
+
+Sold-out item:
+
+* Reduce image opacity slightly
+* Show a compact “Sold out” label
+* Keep text readable
+* Disable Add
+* Do not remove the item without explanation
+
+Unavailable choice:
+
+* Keep the choice visible
+* Disable it
+* Label it “Unavailable”
+* Do not allow selection
+
+## Long-content protection
+
+Test:
+
+* Long English, Indonesian and Chinese names
+* Missing descriptions
+* Missing images
+* Multiple compact badges
+* Prices above RM100
+* Double-digit quantities
+* `99+` count badges
+* Sold-out products
+* Temporarily unavailable options
+
+Use line clamp, flexible layout and resilient wrapping. Titles must not push prices or controls outside the card.
+
+---
+
+# 36. VALID ITEM CHOICES AND PRODUCT CUSTOMISATION
+
+Only show choices confirmed by the supplied menu.
+
+Examples:
+
+## Mie Ayam
+
+* Mie
+* Bihun
+
+## Bakso
+
+* Soo Hoon
+* Mihun
+
+## Tea O Jawa
+
+* Sugar
+* No sugar
+
+## Selected marked beverages
+
+* Hot
+* Cold
+
+Do not invent:
+
+* Spice levels
+* Meat substitutions
+* Ingredient removals
+* Portion upgrades
+* Unconfirmed add-ons
+* Dietary classifications
+
+Allow one optional field labelled:
+
+“Special request, subject to restaurant approval.”
+
+Example:
+
+“Less spicy, if possible.”
+
+Do not promise acceptance.
+
+Do not present the note field as an allergy-safe guarantee or a substitute for speaking directly with restaurant staff.
+
+## Separate browsing from customisation
+
+Move the following out of the ordinary menu card and into a dedicated customisation experience:
+
+* Full confirmed description
+* Required choices
+* Optional confirmed choices
+* Complimentary accompaniments
+* Quantity
+* Special-request note
+* Add-to-Meal-Plan confirmation
+
+### Mobile customisation
+
+Open a bottom sheet or near-full-height product drawer:
+
+* Maximum height: approximately 90–94vh
+* Rounded top corners: 24–28px
+* Drag handle
+* Scrollable body
+* Sticky bottom action area
+* Safe-area support
+* Background body scroll locked
+
+Sticky action example:
+
+“Add to Meal Plan · RM23.90”
+
+Use action green for this item-addition action, with white text. Update the displayed line total when quantity changes.
+
+### Desktop customisation
+
+Open a centred modal or suitable side drawer:
+
+* Width: approximately 680–760px
+* Maximum height: 85–90vh
+* Two-column composition when useful
+* Sticky footer containing quantity and Add to Meal Plan
+* Use green for Add to Meal Plan and all Meal Planner-level primary decisions, including Review List and Generate Meal Planning List
+* Focus trapped
+* Escape closes
+* Focus returns to the opening control
+
+Do not open a tiny mobile-style panel in the middle of a desktop screen.
+
+## Add behaviour
+
+If an item has required choices:
+
+* The Add button opens customisation
+* Do not add the item until required choices are valid
+* Show errors next to the relevant missing choice
+
+If an item has no required choices:
+
+* Allow direct addition from the menu
+* Update count and subtotal immediately
+* Provide subtle confirmation
+
+When editing an existing configured line item:
+
+* Reopen with its own saved quantity, choices and note
+* Never show another product’s previous options
+* Preserve separate line items when the same dish has meaningfully different confirmed choices
+
+---
+
+# 37. RESPONSIVE MEAL PLAN SUMMARY AND REVIEW VIEW
+
+Preserve the current dimensions, placement, radius, information hierarchy and responsive behaviour. Update colours and contrast only.
+
+## Desktop sticky summary
+
+Recommended panel:
+
+* Width: preserve the current implementation, approximately 290–330px where already used
+* Radius: preserve the current 16–20px treatment
+* Background: `--surface-white`
+* Border: `1px solid var(--border-light)`
+* Shadow: `0 14px 40px rgba(21, 63, 40, 0.10)`
+* Primary text: `--text-primary`
+* Secondary text: `--text-supporting`
+* Muted text: `--text-muted`
+* Estimated subtotal: `--green-text`, weight 700–800
+* Padding and sticky offsets: unchanged
+* Must stop before overlapping the footer
+
+Show:
+
+1. “YOUR MEAL PLAN”
+2. Selected branch
+3. Selected visit date and time
+4. Branch status
+5. Total portions or quantity
+6. Estimated subtotal when valid
+7. Optional compact list of recently added items
+8. Primary “Review List” button
+
+Convert every element that previously used white text on a dark-green surface to dark grey or supporting grey.
+
+Recently added item rows:
+
+* Background: white
+* Border: `1px solid var(--border-light)`
+* Shadow: `0 4px 14px rgba(21, 63, 40, 0.05)`
+* Food item text: `--text-primary`
+* Supporting text: `--text-supporting`
+* Quantity badge: `--green-soft` with `--green-text`
+
+Review List button:
+
+* Background: `--primary-green`
+* Text and arrow: white
+* Hover: `--primary-green-hover`
+* Pressed: `--primary-green-active` with `scale(0.98)`
+* Preserve current dimensions, radius and placement
+
+Clear entire list:
+
+* Default dark grey
+* Green hover is allowed
+* Do not use red until a destructive confirmation control is displayed
+* Do not place a large delete icon beside Review List
+
+When empty:
+
+* Show a friendly one- or two-line explanation
+* Do not make `RM0.00` dominant
+* Keep the panel shorter than its populated state
+
+Do not render a desktop sidebar and desktop bottom bar at the same time.
+
+## Mobile and smaller-tablet Meal Plan bar
+
+Only show after at least one item has been added.
+
+Preserve the existing compact dimensions:
+
+* Content-shell height: approximately 56–62px
+* Typical total height with safe area: approximately 64–74px
+* Horizontal margin: 10–12px
+* Bottom spacing: 8–10px plus `env(safe-area-inset-bottom)`
+* Radius: 18–22px
+* Horizontal padding: 10–12px
+* `z-index: 50`
+
+Update only colours:
+
+* Background: `rgba(255, 255, 255, 0.92)` or solid white fallback
+* Border: `1px solid var(--border-light)`
+* Main text: `--text-primary`
+* Supporting text: `--text-supporting`
+* Estimated subtotal: `--green-text`
+* Count badge: `--green-soft` with `--green-dark`
+* Shadow: `0 10px 26px rgba(21, 63, 40, 0.14)`
+* Review List button: `--primary-green` with white text
+
+Do not use dark-green or terracotta backgrounds in this bar.
+
+Do not include a delete icon or the large label “Your Meal Plan”.
+
+Continue calculating bottom padding from the measured bar height:
+
+```css
+.menu-page {
+  padding-bottom: calc(var(--mobile-meal-bar-height, 74px) + 24px + env(safe-area-inset-bottom));
+}
+```
+
+The final menu item must scroll fully above the bar. The Meal Plan bar and mobile contact bar must never overlap.
+
+## Added-item state in menu rows
+
+For a simple item:
+
+```text
+[−]  1  [+]
+```
+
+For a configured item:
+
+```text
+Added ✓ · Edit
+```
+
+Rules:
+
+* Use green and pale-green states
+* Never leave the original Add button visually unchanged after successful addition
+* Do not imply restaurant acceptance
+* Prevent duplicate additions from rapid tapping
+* Keep controls aligned with the price
+* Reaching zero removes the correct line item
+* Update header count, mobile bar and desktop summary from one central state
+
+## Review List view
+
+Keep this within `/menu` and preserve the existing view structure.
+
+It includes:
+
+* Added dishes
+* Confirmed choices
+* Quantity controls
+* Special-request notes
+* Individual remove action
+* Clear entire Meal Plan
+* Portion summary
+* Estimated subtotal
+* Branch information
+* Visit date and time
+* Branch status
+* Generate Meal Planning List action
+
+Use green for Review List and Generate Meal Planning List primary actions. Use white/light-neutral surfaces and dark text throughout.
+
+“Clear entire Meal Plan” requires confirmation. Destructive controls remain secondary.
+
+---
+
+# 38. GENERATED MEAL PLANNING LIST
+
+## Heading
+
+“Your Warung Jakarta Meal Plan”
+
+Display:
+
+* Selected branch
+* Branch address
+* Selected visit date
+* Approximate arrival time
+* Branch business hours for that day
+* Branch status
+* Generated date and time
+* Dish names
+* Selected options
+* Quantities
+* Individual prices
+* Line totals
+* Item notes
+* Overall note
+* Total quantity
+* Estimated food subtotal
+
+Example:
+
+```text
+Warung Jakarta Meal Planning List
+
+Location: KL Central Walk
+Planned visit: Saturday, 4:45 PM
+Business hours: 10:00 AM–5:30 PM
+
+Important: This location closes in less than one hour.
+
+NOODLES
+2 × Mie/Bihun Ayam Original — RM47.80
+Choice: Mie
+
+BAKSO
+1 × Bakso Sapi Campur — RM18.90
+Choice: Mihun
+
+DRINKS
+2 × Es Jeruk — RM12.00
+
+Estimated food subtotal: RM78.70
+
+Final availability, prices, tax, service charge and service acceptance will be confirmed by restaurant staff.
+
+Present this list to our waitstaff upon arrival. This is a digital meal-planning summary and does not require an account or login.
+```
+
+The final sentence must appear exactly as written above in generated, copied, shared and restaurant-display versions.
+
+Do not place a website URL, promotional link or account/login CTA beneath the message.
+
+Do not generate:
+
+* Order number
+* Receipt number
+* Confirmation number
+* Payment status
+* Collection time
+* Kitchen status
+* Account prompt
+* Login prompt
+
+---
+
+# 39. FINAL STATUS RECHECK
+
+Recheck the branch status when the customer opens or generates the final list.
+
+This is especially important for “Going now”.
+
+## If the branch became Closing Soon
+
+Show:
+
+“The selected location now closes in less than one hour.”
+
+Actions:
+
+* Generate List Anyway
+* Switch Location
+* Change Visit Time
+
+## If the branch closed while browsing
+
+Show:
+
+“The selected location is now closed.”
+
+Actions:
+
+* Switch Branch
+* Plan for Another Time
+* Save List for Later
+
+Do not present the list as an active current-visit order.
+
+---
+
+# 40. RESTAURANT DISPLAY MODE
+
+Add:
+
+“Show to Restaurant”
+
+Open a clean full-screen view.
+
+Requirements:
+
+* High contrast
+* Large text
+* Quantities prominent
+* Branch name visible
+* Visit time visible
+* Choices and notes visible
+* No food photographs
+* No unnecessary navigation
+* Edit List button
+* Exit button
+
+Title:
+
+“Meal Planning List”
+
+Do not use:
+
+* Confirmed Order
+* Order Receipt
+* Kitchen Ticket
+
+---
+
+# 41. SHARING
+
+Provide:
+
+* Share via WhatsApp
+* Use Device Share
+* Copy List
+* Edit Selection
+* Clear List only from the Review List view, with confirmation
+
+Suggested shared message:
+
+```text
+Warung Jakarta Meal Plan
+
+Location: KL Central Walk
+Planned visit: Saturday, 4:00 PM
+
+2 × Mie/Bihun Ayam Original
+1 × Bakso Sapi Campur
+2 × Nasi Ayam Geprek
+
+Estimated food subtotal: RM___
+
+Final availability, prices, tax, service charge and service acceptance will be confirmed by restaurant staff.
+
+Present this list to our waitstaff upon arrival. This is a digital meal-planning summary and does not require an account or login.
+```
+
+Use the Web Share API when supported and Copy List as fallback.
+
+Do not append a website URL, promotional link, shortened link, account prompt or login prompt to the shared message.
+
+Sharing sends a snapshot of the current text only. It does not create live collaboration, transmit the list to the restaurant or confirm availability.
+
+---
+
+# 42. LOCAL STORAGE
+
+Save locally:
+
+* Selected branch
+* Visit mode
+* Visit date and time
+* Selected items
+* Quantities
+* Selected choices
+* Notes
+* Last updated time
+* Closing-warning acknowledgement state
+
+Restore after:
+
+* Refresh
+* Closing and reopening the browser
+* Moving between pages
+
+Provide “Clear Meal Plan” inside the Review List view and require confirmation.
+
+Do not collect:
+
+* Customer name
+* Telephone number
+* Email address
+* Payment information
+
+Do not send the list to the restaurant.
+
+---
+
+# 43. BRANCH SWITCHING WITH AN EXISTING LIST
+
+When the customer switches branch:
+
+## Available at both branches
+
+* Keep item and quantity
+* Update to the new branch price
+
+## Unavailable at new branch
+
+* Remove from active list
+* Show it in a review summary
+
+## Availability unknown
+
+Show:
+
+“Availability at this location has not been confirmed.”
+
+## Price unknown
+
+* Exclude from subtotal
+* Show “Price not confirmed”
+
+Before finalising the branch change, show:
+
+* Items retained
+* Items removed
+* Items requiring confirmation
+* Price changes
+
+Actions:
+
+* Confirm Branch Change
+* Keep Current Branch
+
+Do not silently transfer unconfirmed items.
+
+---
+
+# 44. MEAL PLANNER DISCLAIMER
+
+Show this before the customer generates or shares a list:
+
+“This tool helps your group plan what to eat before arriving. It does not send an order to the restaurant, reserve a table, reserve food or guarantee availability. Business hours may change during holidays. Final availability, prices, tax, service charge and service acceptance will be confirmed by restaurant staff.”
+
+When Closing Soon, add:
+
+“The selected location closes in less than one hour.”
+
+When Closed, add:
+
+“The selected location is closed at your chosen time.”
+
+Require acknowledgement once per device or when the status materially changes.
+
+Do not show a legal checkbox every time the list is edited.
+
+---
+
+# 45. EMPTY STATES
+
+## Empty meal list
+
+Heading:
+
+“Your meal list is empty.”
+
+Copy:
+
+“Add dishes from the menu and they will appear here.”
+
+Action:
+
+“Browse Menu”
+
+## SS4 menu unavailable
+
+Heading:
+
+“The SS4 menu is being updated.”
+
+Copy:
+
+“Please contact SS4 for today’s available dishes and prices.”
+
+Actions:
+
+* Call SS4
+* WhatsApp SS4
+* View KL Central Walk Menu
+
+## Closed branch
+
+Heading:
+
+“This location is closed at your selected time.”
+
+Actions:
+
+* Change Time
+* Switch Branch
+* View Hours
+
+Do not show disabled buttons without explaining why.
+
+---
+
+# 46. CONTACT PAGE
+
+## Hero eyebrow
+
+“Visit Warung Jakarta”
+
+## Heading
+
+“Choose the location that works for you.”
+
+## Supporting copy
+
+“Find branch hours, directions and contact details for SS4 and KL Central Walk.”
+
+Add an accessible segmented location selector:
+
+* SS4
+* KL Central Walk
+
+Changing the location updates:
+
+* Address
+* Business hours
+* Telephone
+* WhatsApp
+* Map
+* Directions
+* Facilities
+* Parking information
+* Menu link
+
+Do not reload the page.
+
+## Desktop layout
+
+* Location selector at top
+* Details on left
+* Map on right
+* Business hours below
+* Secondary branch card below
+
+## Mobile layout
+
+* Location selector below heading
+* Address first
+* Contact actions next
+* Hours next
+* Map below
+* Secondary branch card at bottom
+
+Do not display two small maps side by side on mobile.
+
+
+## 46.1 Branch map and exact marker requirements
+
+Inspect the existing map component before changing it. Preserve its current card, dimensions, responsive placement, border radius and surrounding content. Fix only the missing marker and any code that prevents the marker from appearing.
+
+### Canonical location data
+
+Keep all map information in the selected branch object. Do not duplicate coordinates, Place IDs or URLs in page components:
+
+```ts
+type BranchMapData = {
+  name: string;
+  addressLines: string[];
+  latitude: number | null;
+  longitude: number | null;
+  placeId: string;
+  googleMapsUrl: string;
+  mapEmbedUrl?: string;
+};
+```
+
+For KL Central Walk, populate these fields from the existing confirmed branch data or a restaurant-approved Google Maps listing. The current master prompt does not contain confirmed coordinates or a Place ID, so do not invent them. Before shipping, verify the marker against the actual Warung Jakarta KL Central Walk listing and the branch lot information.
+
+If the existing code still uses `mapUrl`, migrate it to the canonical `googleMapsUrl` field or keep a temporary compatibility alias in the data layer only. Do not maintain two independently editable map URLs.
+
+### If the current map is an iframe
+
+Do not use a generic Google Maps “view” URL that shows only the surrounding area.
+
+When confirmed coordinates exist, build the source from the selected branch data:
+
+```ts
+const mapSrc =
+  `https://www.google.com/maps?q=${branch.latitude},${branch.longitude}&z=17&output=embed`;
+```
+
+When the project already has a valid Google Maps Embed API key and confirmed Place ID, prefer place mode:
+
+```ts
+const mapSrc =
+  `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=place_id:${branch.placeId}`;
+```
+
+Requirements:
+
+* Do not expose a server-only or private key in client code
+* Use `title={`${branch.name} map`}`
+* Use `loading="lazy"`
+* Use `referrerPolicy="no-referrer-when-downgrade"`
+* Use `allowFullScreen`
+* Use width and height `100%`
+* Preserve the existing radius
+* Remove unintended internal white borders
+* Do not overlay a fake CSS pin
+* Keep “Open in Maps” linked to `branch.googleMapsUrl`
+
+If latitude or longitude is missing, do not generate `q=null,null`. Render the existing professional pending state or a directions link until confirmed data is provided.
+
+### If the current map uses Google Maps JavaScript
+
+Create a real marker after the map has loaded. Prefer `AdvancedMarkerElement` when the installed Google Maps version and map configuration support it:
+
+```ts
+const position = {
+  lat: branch.latitude,
+  lng: branch.longitude
+};
+
+const marker = new google.maps.marker.AdvancedMarkerElement({
+  map,
+  position,
+  title: branch.name
+});
+```
+
+Requirements:
+
+* Guard against null coordinates before initialising the map
+* Centre the map using the same `position`
+* Use approximately zoom 16–17
+* Reuse one map instance where appropriate
+* Clean up marker/listener references on unmount
+* Verify no overlay, pseudo-element, `z-index` or `pointer-events` rule hides the marker
+* Keep the existing Google Maps action and branch selector working
+
+Use the classic `google.maps.Marker` only when the existing project version does not support Advanced Markers and upgrading would be disproportionate.
+
+### Map verification
+
+Before finishing:
+
+* Confirm a visible pin appears on the exact branch
+* Confirm the map is centred on that pin
+* Confirm switching branches updates from the same central data source
+* Confirm “Open in Maps” opens the correct branch listing
+* Confirm mobile and desktop map sizing remains unchanged
+* Confirm no fake overlay marker was introduced
+
+
+---
+
+# 47. BUSINESS HOURS COMPONENT
+
+Create one reusable `BusinessHours` component.
+
+It must:
+
+* Read from selected location data
+* Show all seven days
+* Highlight the current day
+* Support open and closed states
+* Support special hours
+* Support holiday closures
+* Use Malaysia time
+* Remain readable without JavaScript
+* Include “Hours may differ on public holidays”
+
+SS4:
+
+Monday–Sunday
+10:00 AM–10:00 PM
+
+KL Central Walk:
+
+Monday–Saturday
+10:00 AM–5:30 PM
+
+Sunday
+Closed
+
+---
+
+# 48. MOBILE STICKY CONTACT BAR
+
+When no active Meal Planner summary is covering it, show:
+
+* Call
+* WhatsApp
+* Directions
+
+Rules:
+
+* At least 44px high
+* Respect safe-area inset
+* Do not cover content
+* Add page bottom padding
+* Use short text labels
+* Use accessible icons
+
+Because there are two branches:
+
+* Use the selected branch when available
+* If no branch is selected, open a compact branch chooser
+* Hide actions with missing contact details
+* Never send KLCW actions to SS4 contact details
+
+---
+
+# 49. FOOTER
+
+Include:
+
+## Brand column
+
+* Logo
+* Short description
+* Social placeholders
+
+## Navigation
+
+* Home
+* Menu
+* Locations
+* Contact
+* Plan Your Meal
+
+## SS4
+
+Warung Jakarta SS4
+35, Jalan SS 4C/5
+Taman Rasa Sayang
+47301 Petaling Jaya
+10:00 AM–10:00 PM daily
+016-404 7058
+
+## KL Central Walk
+
+Warung Jakarta KL Central Walk
+KLCW, Lot BX2A–BX3A
+Monday–Saturday: 10:00 AM–5:30 PM
+Sunday: Closed
+
+Do not display missing KLCW phone or map details.
+
+---
+
+# 50. MOTION SYSTEM
+
+Preserve the existing motion system. Do not replace current section reveals, carousels, sheets or menu transitions during this colour/header pass. Add only the liquid press feedback specified below and update colours used by existing animations.
+
+Recommended interaction duration:
+
+150–220ms for ordinary controls, sheets, category movement and compact feedback.
+
+Use approximately 180–260ms for a shared active-navigation pill transition where the current implementation already supports it.
+
+## Primary motion behaviours
+
+### Existing hero and section motion
+
+Preserve the current implementation unless a colour reference must be updated. Do not redesign entrance timing or movement.
+
+### Food-card interaction
+
+Preserve the current interaction. Colour-only changes may update borders, shadows and icon colours through the new tokens.
+
+### Pointer-origin liquid press feedback
+
+Apply a polished liquid/ripple response when the user presses:
+
+* Navigation links
+* Mobile hamburger button
+* Primary buttons
+* Secondary buttons
+* Action-green Add and quantity controls
+* Branch-selection cards that are genuinely interactive
+* Existing elements with `[role="button"]`
+
+Do not apply it to static cards, disabled controls or decorative elements.
+
+The liquid effect must:
+
+* Begin at the exact mouse, touch or pen position
+* Expand like a soft liquid bubble
+* Slightly compress the pressed control
+* Fade smoothly
+* Animate only `transform`, `opacity` and `filter`
+* Never change width, height, padding, margin or layout
+* Never cause layout shift
+* Preserve the original click, link navigation, form submission and mobile-menu behaviour
+* Remove generated ripple elements after each animation
+* Avoid leaving duplicate event listeners after component remounts
+* Respect `prefers-reduced-motion`
+* Use a neutral white/grey ripple for navigation, a soft terracotta ripple only for existing marketing brand controls, and a soft pale-green ripple for Meal Planner controls
+* Never run continuously or without user interaction
+
+Use a reusable class or component rather than duplicating interaction code in every button.
+
+Reference CSS:
+
+```css
+.liquid-control {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.liquid-control > *:not(.liquid-ripple) {
+  position: relative;
+  z-index: 2;
+}
+
+.liquid-control.is-liquid-pressed {
+  transform: translateZ(0) scale(0.975);
+}
+
+.liquid-control {
+  --liquid-ripple-rgb: 209, 56, 39;
+}
+
+.liquid-control.is-action-green {
+  --liquid-ripple-rgb: 22, 163, 74;
+}
+
+.liquid-ripple {
+  position: absolute;
+  z-index: 1;
+  left: var(--liquid-x);
+  top: var(--liquid-y);
+
+  width: var(--liquid-size);
+  height: var(--liquid-size);
+  border-radius: 50%;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.64) 0%,
+      rgba(255, 255, 255, 0.30) 28%,
+      rgba(var(--liquid-ripple-rgb), 0.16) 56%,
+      transparent 74%
+    );
+
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  animation: liquid-expand 680ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes liquid-expand {
+  0% {
+    opacity: 0.88;
+    transform: translate(-50%, -50%) scale(0);
+    filter: blur(0);
+  }
+
+  55% {
+    opacity: 0.56;
+    filter: blur(1px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-control,
+  .nav-link {
+    transition: none;
+  }
+
+  .liquid-ripple {
+    display: none;
+    animation: none;
+  }
+
+  .liquid-control.is-liquid-pressed {
+    transform: translateZ(0);
+  }
+}
+```
+
+Reference delegated JavaScript logic:
+
+```js
+function installLiquidControls() {
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  const release = (control) => {
+    control.classList.remove("is-liquid-pressed");
+  };
+
+  const onPointerDown = (event) => {
+    if (!(event.target instanceof Element)) return;
+
+    const control = event.target.closest(
+      ".liquid-control, button, [role='button']"
+    );
+
+    if (
+      !control ||
+      control.matches(":disabled") ||
+      control.getAttribute("aria-disabled") === "true" ||
+      reduceMotion.matches
+    ) {
+      return;
+    }
+
+    const rect = control.getBoundingClientRect();
+    const diameter = Math.ceil(
+      Math.sqrt(rect.width ** 2 + rect.height ** 2) * 2
+    );
+    const ripple = document.createElement("span");
+
+    control.querySelectorAll(".liquid-ripple").forEach((node) => {
+      node.remove();
+    });
+
+    ripple.className = "liquid-ripple";
+    ripple.style.setProperty("--liquid-x", `${event.clientX - rect.left}px`);
+    ripple.style.setProperty("--liquid-y", `${event.clientY - rect.top}px`);
+    ripple.style.setProperty("--liquid-size", `${diameter}px`);
+
+    control.appendChild(ripple);
+    control.classList.add("is-liquid-pressed");
+
+    const releasePress = () => release(control);
+
+    window.addEventListener("pointerup", releasePress, { once: true });
+    window.addEventListener("pointercancel", releasePress, { once: true });
+
+    ripple.addEventListener(
+      "animationend",
+      () => ripple.remove(),
+      { once: true }
+    );
+  };
+
+  document.addEventListener("pointerdown", onPointerDown);
+
+  return () => {
+    document.removeEventListener("pointerdown", onPointerDown);
+  };
+}
+```
+
+For React or Next.js, install the delegated listener once in a client component or implement an equivalent reusable hook. Always clean up the listener. Do not attach another global handler on every render.
+
+If an existing control already uses a transform animation, integrate the press scale into that component’s existing transform pipeline or use an inner wrapper. Do not overwrite a transform required for another feature.
+
+### Active navigation movement
+
+Where the existing navigation has a moving active pill, preserve the shared-layout behaviour but use neutral glass rather than terracotta.
+
+Requirements:
+
+* Active pill remains brighter than the surrounding capsule
+* Active text remains dark charcoal at every animation frame
+* Use a soft white/grey highlight and restrained inner shadow
+* Maximum temporary stretch around `scaleX(1.04)`
+* Small press response around `scale(0.97)`
+* No coloured background, bounce or movement of neighbouring links
+* Reduced-motion users receive an immediate raised-glass state change
+
+### Planner, category and review motion
+
+Preserve the existing behaviours defined elsewhere in this prompt. Do not replace them during the palette migration.
+
+Do not use:
+
+* Confetti
+* Continuous bouncing
+* Spinning
+* Large cursor-following objects
+* Aggressive 3D
+* Flying food animations
+* Checkout animations
+* Autoplay video backgrounds
+* Long entrance delays
+* Excessive glow
+* Constant floating animation
+* Strong card movement
+* Full-page liquid distortion
+* WebGL solely for button feedback
+
+---
+
+# 51. RESPONSIVE REQUIREMENTS
+
+Test:
+
+* 1440px desktop
+* 1280px laptop
+* 1024px tablet landscape
+* 768px tablet
+* 430px mobile
+* 390px mobile
+* 360px small mobile
+
+General ranges:
+
+* Mobile: below 768px
+* Tablet: 768px–1023px
+* Desktop: 1024px and above
+* Wide desktop: 1280px and above
+
+Use container width and available layout space, not only a device label.
+
+Content maximum width:
+
+1200–1320px, with the task-focused Menu page capped around 1280px.
+
+General responsive side padding:
+
+* Desktop marketing sections: 48–72px
+* Menu desktop: approximately 24–32px
+* Tablet: 24–40px
+* Mobile marketing sections: 18–22px
+* Mobile menu browsing: 14–16px
+
+Use a consistent spacing scale:
+
+4px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px.
+
+Avoid repeated 24–32px gaps between tightly related controls.
+
+Requirements:
+
+* No horizontal overflow
+* No clipped headings
+* No overlapping cards
+* No floating card covering food
+* No hover-only mobile information
+* Minimum 44px touch targets
+* Safe-area support
+* Images maintain aspect ratio
+* Sticky navigation does not cover anchors
+* Category rail never hides beneath the header
+* Sticky desktop summary does not overlap the footer
+* Mobile Meal Plan bar does not cover the final menu item
+* Mobile contact bar and Meal Plan bar do not overlap
+* Prices remain visible on narrow screens
+* Body does not scroll behind an open sheet or modal
+* Desktop summary is not duplicated as a bottom bar
+* Header does not jump during scroll
+* Floating header maintains at least 20px desktop and 12px mobile outer spacing on both sides
+* The right action group never touches the header border
+* Active navigation text never becomes white without a completed terracotta active background
+* Category rail supports direct user scrolling, not only click-triggered repositioning
+* Desktop category rail provides usable arrows, drag and trackpad controls
+* Mobile category rail preserves native finger scrolling
+* First and final category capsules are never clipped
+* Product title length does not push controls outside the viewport
+
+Recommended z-index hierarchy:
+
+* Normal content: 0–10
+* Sticky category rail: 30
+* Floating header: 40
+* Mobile Meal Plan bar: 50
+* Modal overlay: 80
+* Modal or sheet: 90
+* Toast or critical notification: 100
+
+---
+
+# 52. IMAGE REQUIREMENTS
+
+Use high-quality restaurant-owned photographs.
+
+Required asset types:
+
+* Clean transparent logo
+* Hero food photograph
+* Shared-table image
+* Mie Ayam
+* Bakso
+* Nasi Ayam Geprek
+* Nasi Soto Betawi
+* Lidah Sapi Oseng Pedas
+* Bakwan Goreng
+* Pisang Goreng
+* Kunyit Asam
+* SS4 exterior or interior
+* KLCW exterior or interior
+* Food preparation or kitchen
+* Optional team image
+
+Rules:
+
+* Do not automatically use customer review photos
+* Do not mix branch images without correct labelling
+* Do not use SS4 interior as KLCW
+* Do not use KLCW food as proof of SS4 availability
+* Use placeholders until approved assets are supplied
+* Use WebP or AVIF
+* Lazy-load below-fold images
+* Reserve image dimensions
+* Provide meaningful alt text
+
+---
+
+# 53. DATA ARCHITECTURE
+
+Keep all editable restaurant information centralised.
+
+Suggested structure:
+
+```text
+src/
+  data/
+    restaurant.ts
+    locations.ts
+    menu.ts
+    reviews.ts
+    special-hours.ts
+  components/
+    Navbar.tsx
+    FluidGlassNavBackdrop.tsx
+    MobileMenu.tsx
+    Hero.tsx
+    FeaturedDishCard.tsx
+    ReviewCarousel.tsx
+    LocationCard.tsx
+    BranchMap.tsx
+    BusinessHours.tsx
+    BranchSelector.tsx
+    VisitTimeSelector.tsx
+    BranchStatusBanner.tsx
+    MenuCategoryNav.tsx
+    MenuItemRow.tsx
+    QuantityControl.tsx
+    MealPlannerSummary.tsx
+    MealPlanModal.tsx
+    RestaurantDisplayMode.tsx
+    MobileActionBar.tsx
+    Footer.tsx
+    MotionReveal.tsx
+  lib/
+    operating-status.ts
+    meal-plan-storage.ts
+    share-meal-plan.ts
+    currency.ts
+```
+
+Menu item structure:
+
+```ts
+type MenuItem = {
+  id: string;
+  name: string;
+  category: string;
+  description?: string;
+  portion?: string;
+  choices?: string[];
+  complimentaryItem?: string;
+  availableHot?: boolean;
+  availableCold?: boolean;
+  spicy?: boolean | null;
+  vegetarian?: boolean | null;
+  recommended?: boolean;
+  image?: string;
+  imageAlt?: string;
+  branchPrices: {
+    ss4: number | null;
+    "kl-central-walk": number | null;
+  };
+  branchAvailability: {
+    ss4: boolean | null;
+    "kl-central-walk": boolean | null;
+  };
+  sortOrder: number;
+};
+```
+
+Meaning:
+
+* `true`: confirmed
+* `false`: confirmed unavailable
+* `null`: unknown
+
+Do not display internal null values publicly.
+
+
+Location records must also centralise map data:
+
+```ts
+type Location = {
+  id: string;
+  name: string;
+  shortName: string;
+  addressLines: string[];
+  latitude: number | null;
+  longitude: number | null;
+  placeId: string;
+  googleMapsUrl: string;
+  mapEmbedUrl?: string;
+  // existing contact, hours, facilities and menu fields remain unchanged
+};
+```
+
+Do not hardcode KL Central Walk coordinates inside `BranchMap`, the Contact page or any button component.
+
+---
+
+# 54. TECHNICAL STACK AND COMPONENT ARCHITECTURE
+
+Preferred stack:
+
+* Next.js App Router
+* TypeScript
+* Tailwind CSS
+* Framer Motion
+* Lucide icons
+* React Three Fiber and Drei only for the optional decorative navigation backdrop when already installed or explicitly required by this update
+
+Use a static deployment without a backend.
+
+If an existing project already uses another suitable framework, preserve it rather than migrating unnecessarily.
+
+For the latest map/navigation update:
+
+* Inspect whether the map uses an iframe or Google Maps JavaScript before editing
+* Inspect whether `@react-three/fiber`, `@react-three/drei` and Three.js already exist before installing packages
+* Keep `FluidGlassNavBackdrop` client-only in SSR frameworks
+* Treat the CSS glass capsule as the baseline and WebGL as optional enhancement
+* Verify `/assets/3d/bar.glb` and node key `Cube` before using them
+* Catch asset-loading failures and switch to a rounded-box mesh without breaking the navigation
+* Keep all real navigation markup outside the canvas
+* Keep branch coordinates, Place ID and Google Maps URL in `locations.ts`
+
+Inspect existing components and state before changing the interface.
+
+Reuse the current product data, branch data and Meal Planner state.
+
+Separate browsing presentation from product customisation.
+
+Suggested reusable responsibilities:
+
+* `MealPlannerHeader`
+* `CategoryRail`
+* `DesktopMenuCard`
+* `MobileMenuRow`
+* `ProductCustomisationModal`
+* `ProductCustomisationSheet`
+* `DesktopMealPlanSummary`
+* `MobileMealPlanBar`
+* `MealPlanReview`
+
+Names may follow the existing codebase conventions.
+
+Use one central source of truth for:
+
+* Quantity
+* Selected choices
+* Confirmed branch price
+* Portion count
+* Line total
+* Meal Plan subtotal
+* Count badge
+
+Do not duplicate calculations across desktop and mobile components.
+
+Prevent:
+
+* Hydration errors
+* Layout shift when sticky UI appears
+* Stale product options in a newly opened modal
+* Duplicate additions after rapid tapping
+* Required-choice bypass
+* Quantity and badge mismatches
+* Competing sticky layers
+
+Prefer CSS media queries or container queries over hardcoded viewport-specific JavaScript.
+
+Use time-zone-safe Malaysia calculations.
+
+Do not parse business hours using browser-local assumptions.
+
+Use:
+
+```text
+Asia/Kuala_Lumpur
+```
+
+Use either:
+
+* A small reliable timezone utility
+* `date-fns-tz`
+* Another lightweight proven timezone approach
+
+Do not add a large date library unnecessarily.
+
+---
+
+# 55. LIGHTWEIGHT SHARING SCOPE
+
+Included:
+
+* Local browser storage
+* Copy List
+* WhatsApp text sharing
+* Device text sharing
+* Restaurant display mode
+
+Not included:
+
+* Website URL appended beneath the shared message
+* Public share-link generation
+* Imported URL-based editable lists
+* Real-time collaborative editing
+* Customer accounts
+* Login requirement
+* Database-stored lists
+* User names
+* Live synchronisation
+* Restaurant dashboard
+* Restaurant notifications
+* Live stock
+* Kitchen integration
+
+A shared list is a static text snapshot. After editing, the customer must share or copy the updated text again.
+
+---
+
+# 56. SEO
+
+## Home page title
+
+“Warung Jakarta | Indonesian Food in SS4 & KL Central Walk”
+
+## Home description
+
+“Discover Indonesian comfort food, homemade noodles, bakso and Jakarta favourites at Warung Jakarta in SS4 and KL Central Walk.”
+
+## Menu title
+
+“Indonesian Menu & Prices | Warung Jakarta KL Central Walk”
+
+Update this title after an SS4 menu is confirmed.
+
+## Menu description
+
+“Explore Mie Ayam, bakso, nasi dishes, gorengan, roti bakar, traditional jamu and Indonesian favourites at Warung Jakarta KL Central Walk.”
+
+## Contact title
+
+“Locations, Hours & Contact | Warung Jakarta”
+
+## Local phrases
+
+Use naturally:
+
+* Indonesian restaurant in SS4
+* Indonesian food in Petaling Jaya
+* Warung Jakarta SS4
+* Warung Jakarta KL Central Walk
+* Indonesian noodles and bakso
+* Jakarta comfort food
+
+Do not keyword-stuff.
+
+---
+
+# 57. STRUCTURED DATA
+
+Create separate `Restaurant` or `LocalBusiness` structured-data entries.
+
+## SS4 may include
+
+* Name
+* Confirmed address
+* Confirmed phone
+* Confirmed hours
+* Cuisine
+* Price range
+* Website
+
+## KLCW
+
+Only include fields that are confirmed.
+
+Do not include:
+
+* Invented full address
+* SS4 phone number
+* Invented map URL
+* Invented facilities
+
+KLCW opening hours must show:
+
+* Monday–Saturday: 10:00 AM–5:30 PM
+* Sunday: Closed
+
+Use current confirmed data only.
+
+---
+
+# 58. ACCESSIBILITY
+
+Requirements:
+
+* Semantic HTML
+* Correct heading order
+* Real buttons instead of clickable `div` elements
+* Visible keyboard focus states
+* Sufficient text contrast
+* Alt text for meaningful approved images
+* Keyboard-accessible navigation
+* Keyboard-accessible branch selector
+* Keyboard-accessible category rail
+* Keyboard-accessible quantity controls
+* Accessible carousel
+* Screen-reader quantity announcements
+* Status changes announced through an appropriate live region
+* Required choices clearly marked
+* Validation errors placed beside the relevant choice
+* Disabled and sold-out states remain readable
+* Icon-only controls have accurate `aria-label` text
+* Dialog and sheet focus trapping
+* Escape closes desktop dialogs
+* Return focus after closing
+* Body scroll locked while modal or sheet is open
+* Do not use colour alone
+* Support 200% zoom
+* Respect reduced motion
+* Minimum 44px touch targets
+* Safe-area-aware mobile controls
+
+---
+
+# 59. PERFORMANCE
+
+Aim for strong Lighthouse results.
+
+* Optimise images
+* Use Next Image where appropriate
+* Lazy-load below-fold media
+* Avoid autoplay video
+* Prevent layout shift
+* Load fonts efficiently
+* Use transform and opacity for motion
+* Avoid unnecessary third-party scripts
+* Keep JavaScript controlled
+* Do not preload all menu images
+* Avoid loading maps until needed
+* Use static content where possible
+
+---
+
+# 60. CONTENT ACCURACY RULES
+
+Never:
+
+* Invent menu prices
+* Invent branch availability
+* Invent contact details
+* Invent opening hours
+* Invent holiday schedules
+* Invent parking information
+* Invent last-order times
+* Invent dietary labels
+* Invent ingredients
+* Invent review quotes
+* Claim an item is a best seller without evidence
+* Claim the Meal Planner submits an order
+* Mix branch menus silently
+* Mix branch contact information
+* Use KLCW prices as SS4 prices without approval
+* Display KLCW as open on Sunday
+* Display KLCW Sunday as unconfirmed
+
+Menu accuracy and branch accuracy are more important than decoration.
+
+---
+
+# 61. RM500 SCOPE CONTROL
+
+## Included
+
+* Three pages
+* Responsive desktop and mobile layouts
+* Custom design system
+* Home page
+* KLCW Menu page
+* Contact page
+* Two branch cards
+* Branch-first Meal Planner
+* Visit date and time
+* Open and closed status logic
+* 60-minute closing warning
+* Sunday closure logic
+* Alternative branch suggestion
+* Quantity selection
+* Meal Planning List
+* Local storage
+* Copy and WhatsApp sharing
+* Restaurant display mode
+* Basic motion
+* Review carousel
+* Basic local SEO
+* Structured restaurant data
+* Editable central data files
+
+## Not included unless separately quoted
+
+* Online ordering
+* Payment gateway
+* Table reservation
+* Food reservation
+* Restaurant receiving the list
+* Kitchen printing
+* POS integration
+* Live menu inventory
+* Customer accounts
+* Loyalty programme
+* Delivery tracking
+* Real-time group collaboration
+* Restaurant admin dashboard
+* Full CMS
+* Live Google Business synchronisation
+* Automatic public-holiday imports
+* Multi-location checkout
+* Advanced analytics dashboard
+
+---
+
+# 62. REQUIRED ACCEPTANCE TESTS
+
+Before considering the implementation complete, verify:
+
+## Branch flow
+
+* No food can be selected before branch selection
+* No food can be selected before a valid visit time is chosen
+* Selected branch remains visible in the collapsed visit summary
+* Branch can be changed without breaking the interface
+* Branch switching never silently transfers unconfirmed items
+
+## SS4 hours
+
+* Open state between 10:00 AM and 9:00 PM
+* Closing Soon from 9:00 PM until 10:00 PM
+* Closed after 10:00 PM
+* Opens Later before 10:00 AM
+* Open every Sunday under regular hours
+
+## KLCW hours
+
+* Open Monday–Saturday from 10:00 AM until 4:30 PM
+* Closing Soon Monday–Saturday from 4:30 PM until 5:30 PM
+* Closed after 5:30 PM
+* Closed all Sunday
+* Sunday suggests SS4
+* Sunday next opening calculates Monday at 10:00 AM
+
+## Alternative branch
+
+* Closed KLCW suggests SS4 when SS4 is open
+* Closing-soon KLCW displays SS4 hours and availability
+* Closed SS4 only suggests KLCW when KLCW is open
+* Both closed displays next known opening times
+
+## Planner logic
+
+* Quantity cannot fall below zero
+* Reaching zero removes the intended line item correctly
+* Required choices cannot be bypassed
+* Rapid tapping does not create accidental duplicates
+* Product customisation never opens with another product’s stale choices
+* Same dish with different valid choices remains distinguishable
+* Price uses selected branch only
+* Unknown SS4 prices never enter subtotal
+* Count badge, portion count and subtotal always agree
+* List survives refresh
+* Clear Meal Plan works from Review List and requires confirmation
+* Copy works
+* WhatsApp sharing works
+* Restaurant display mode works
+* Disclaimer appears
+* No confirmed-order, checkout, cart or kitchen-status wording appears
+
+## Responsive menu browsing
+
+* Mobile can show approximately three to four compact menu rows in a typical browsing viewport after branch controls collapse
+* Mobile header no longer dominates the screen
+* Floating navigation has clear contrast from the page background
+* Floating navigation has equal outer breathing space and never touches the right or left viewport edge
+* Active navigation labels remain readable throughout the liquid-pill transition
+* Navigation click feedback feels liquid and tactile without bounce, glow or layout shift
+* Category rail is never hidden beneath the header
+* All category headings and items remain rendered vertically; capsules never filter the menu
+* Desktop category rail supports arrows, trackpad/wheel scrolling and click-drag
+* Mobile category rail supports native swipe and momentum scrolling
+* Active category updates through section observation and stays visible in the rail
+* First and final capsules are fully reachable and never clipped
+* Product options are not rendered inside every browsing card
+* Required customisation opens in a bottom sheet on mobile
+* Required customisation opens in a properly sized modal or drawer on desktop
+* Mobile Meal Plan bar uses a 56–62px content shell and remains approximately 64–74px total height on common devices including safe-area treatment
+* Desktop menu cards are approximately 20–25% shorter than the previous design
+* Every category section has a visible heading
+* Added items visibly change into quantity controls or an Added/Edit state
+* Wide desktop uses an efficient two-column menu layout when space permits
+* Desktop uses a sticky side summary rather than a giant bottom bar
+* Tablet does not use an overly narrow desktop sidebar
+* The final item can scroll fully above the mobile Meal Plan bar
+* Desktop summary never appears simultaneously as a second bottom bar
+* No decorative mobile rails unnecessarily reduce usable width
+
+## Resilient content
+
+* No horizontal overflow at 360px
+* Long English, Indonesian and Chinese titles do not break layout
+* Missing images do not break layout
+* Prices above RM100 remain readable
+* Double-digit quantities fit
+* `99+` badges fit
+* Sold-out items are explained and cannot be added
+* Unavailable choices remain visible but disabled
+
+## Sticky UI and modal behaviour
+
+* Header does not jump while scrolling
+* Sticky summary does not overlap footer
+* Mobile contact and Meal Plan bars do not overlap
+* Body does not scroll behind an open sheet or modal
+* Z-index order remains correct
+* Dialogs fit the viewport and respect safe areas
+
+## Colour migration, header and Meal Planner interaction
+
+* Outer header shell is transparent with no cream/white rounded container, border or shadow
+* Logo, brand and navigation retain their current alignment, width, spacing and sticky behaviour
+* “Warung Jakarta” uses `#D13827`, while the smaller “RASA ORIGINAL” sub-headline uses `#6B5E5A`
+* Original logo image remains unchanged
+* Public-facing marketing background uses `#FBF5EE` without changing section dimensions
+* Major marketing headings use `#3A1E1A` and supporting copy uses `#6B5E5A`
+* Primary marketing CTAs and emphasized/script accents use `#D13827`
+* Existing secondary marketing controls use `#FAF2EA` with warm-brown text
+* Hero uses a restrained top-right `#F3C5BA` ambient glow without reducing readability
+* Central navigation capsule uses only neutral transparent white/grey glass
+* Active navigation uses a brighter raised neutral-glass pill with dark charcoal text
+* No terracotta, green, sage, purple or blue navigation background remains
+* Navigation hover increases glass brightness without introducing colour
+* Desktop hamburger is absent above 768px and mobile navigation remains functional
+* Navigation still works when WebGL is disabled or reduced motion is enabled
+* Customisation modal retains its layout while former red accents become green
+* Portion total, selected option, quantity controls and Add to Meal Plan use accessible green
+* Desktop Meal Plan summary uses a white surface, neutral border and dark text
+* Recently added rows use white/light-neutral surfaces, not dark green
+* Mobile Meal Plan bar uses a light surface and green Review List button
+* Review List and Generate Meal Planning List primary actions are green
+* Prices and estimated totals use `#15803D` or darker on white
+* No white text remains on newly white summary surfaces
+* Clear entire list is grey by default and becomes destructive red only in confirmation
+* Active Menu/Planner category capsule uses green rather than terracotta
+* Existing dimensions, radius, spacing, typography and responsive behaviour remain unchanged
+* Generated, copied, shared and display-mode lists end with the approved waitstaff/account statement
+* No website URL or promotional line appears beneath the closing message
+
+## Map marker and fluid navigation enhancement
+
+* KL Central Walk marker remains visible and centred using canonical branch data
+* “Open in Maps” continues to use the selected branch’s canonical Google Maps URL
+* Missing coordinates never produce a malformed embed URL
+* Fluid glass remains limited to the existing central navigation capsule
+* WebGL uses a transparent clear colour and neutral material tint
+* Gradual blur remains local; `.gradual-blur-fixed` is not used on the capsule
+* Existing navigation labels remain semantic HTML with existing routing
+* Glass object remains centred and follows measured capsule dimensions
+* Missing GLB or `Cube` geometry activates a generated mesh or CSS fallback
+* Canvas never captures clicks, scrolling or keyboard focus
+* No hydration error, asset error or mobile horizontal overflow is introduced
+
+## Accessibility
+
+* Full keyboard operation
+* Visible focus
+* Status announced
+* Quantity changes announced
+* Required-choice errors announced
+* Modal focus is trapped and returned correctly
+* Reduced motion works
+* Colour is not the only status indicator
+
+---
+
+# 63. LATEST UI OVERRIDE CHECKLIST
+
+Before finalising, confirm:
+
+1. This is an in-place update, not a redesign or rebuild.
+2. Page structure, dimensions, spacing, typography hierarchy, images, content, routes and responsive behaviour remain unchanged.
+3. Existing components and CSS were inspected before editing.
+4. The large external cream/white header capsule is removed visually.
+5. The outer header is transparent while current alignment, width, safe spacing and sticky behaviour remain.
+6. Logo and brand sit directly on the page background.
+7. The visible “Warung Jakarta” brand name uses `--logo-red`, and the smaller “RASA ORIGINAL” sub-headline uses `--color-body-warm`.
+8. The original logo image is unchanged.
+9. Public-facing marketing pages use the approved warm palette: `#FBF5EE` background, `#3A1E1A` headings, `#6B5E5A` body text, `#D13827` primary accents, `#FAF2EA` secondary surfaces and a restrained `#F3C5BA` hero glow.
+10. The palette update does not change hero copy, component dimensions, spacing, images or responsive behaviour.
+11. Only the central navigation capsule receives gradual blur and fluid glass.
+12. Navigation glass uses transparent white/grey only.
+13. Active navigation is a brighter raised glass pill with dark charcoal text.
+14. No red, terracotta, green, sage, purple or blue navigation background remains.
+15. Navigation labels and destinations remain Home, Menu & Planner, About & Locations.
+16. Desktop hamburger is absent above 768px; mobile behaviour remains accessible and functional.
+17. WebGL is decorative, transparent, clipped and `pointer-events: none`.
+18. GLB, generated-mesh and CSS-only fallbacks remain reliable.
+19. KL Central Walk map marker uses the canonical branch coordinates and remains visible.
+20. The existing map action still opens the branch in Google Maps.
+21. Meal Planner layout, component sizes, spacing, radius, modal structure and functionality remain unchanged.
+22. All former red accents inside the customisation modal use green.
+23. Add to Meal Plan, Review List and Generate Meal Planning List buttons use green with white text.
+24. Selected options and active Meal Planner indicators use pale green plus a dark-green border/text treatment.
+25. Quantity controls, prices, portion totals and estimated subtotals use accessible green.
+26. Desktop Meal Plan summary is white with a neutral border, soft shadow and dark text.
+27. Recently added rows are white/light-neutral and no longer dark green.
+28. Mobile Meal Plan bar is light and retains measured bottom spacing.
+29. No white text remains on white surfaces.
+30. Clear entire list remains dark grey until destructive confirmation.
+31. Active Menu/Planner category uses green; every category remains a vertical section shortcut.
+32. Colour alone is not the only indicator for active, success, warning, unavailable or error states.
+33. Generated, copied, shared and restaurant-display lists end with the approved waitstaff/account statement.
+34. No website URL, promotional link, account CTA or login CTA appears beneath that message.
+35. No order, checkout, kitchen, confirmation-number or restaurant-received implication is introduced.
+36. Reduced motion preserves all functionality without nonessential glass or ripple motion.
+37. No horizontal overflow, clipping, sticky overlap, hydration warning or uncaught asset error remains.
+38. The implementation report lists modified files, map method, GLB status, fallback, package changes and remaining warnings.
+
+---
+
+# 64. FINAL OUTPUT INSTRUCTION
+
+When an existing Warung Jakarta codebase is supplied, inspect and update it in place. Do not rebuild working pages or create duplicate header/navigation components.
+
+For the latest pass:
+
+* Preserve the verified KL Central Walk map marker and canonical branch-map data
+* Remove only the outer header shell’s visible cream/white capsule styling
+* Keep logo/brand placement, header spacing and sticky behaviour unchanged
+* Set the “Warung Jakarta” brand name to `#D13827` and the smaller “RASA ORIGINAL” sub-headline to `#6B5E5A`
+* Apply the warm Jakarta marketing palette to existing Home and marketing sections without changing their structure
+* Use `#FBF5EE` for the marketing background, `#3A1E1A` for major headings, `#6B5E5A` for body copy, `#D13827` for primary marketing accents, `#FAF2EA` for secondary controls and `#F3C5BA` for the restrained hero glow
+* Retain the existing central navigation capsule but make it fully neutral fluid glass
+* Replace the terracotta active navigation pill with a raised neutral-glass active state
+* Preserve semantic HTML navigation and every fallback
+* Recolour the Meal Planner to white/light surfaces with green selections, actions, prices and totals
+* Keep all Meal Planner geometry, content and functionality unchanged
+* Replace the final list ending with the approved waitstaff/account statement
+* Do not display any website URL beneath the message
+
+When starting from an empty project only, build the complete website according to the full master prompt.
+
+Deliver:
+
+1. Complete responsive UI and all three routes
+2. Reusable components and central restaurant data
+3. Complete KLCW menu data and branch-first Meal Planner
+4. Business-hours, closing-soon and closed-day logic
+5. Local storage, copy, WhatsApp sharing, device sharing and restaurant display mode
+6. SEO, accessibility and responsive desktop/tablet/mobile behaviour
+7. Transparent outer header with correct edge spacing
+8. Neutral gradual-blur/fluid-glass central navigation capsule
+9. Raised neutral-glass active navigation state
+10. Approved brand-name red and muted warm sub-headline tokens
+11. Warm Jakarta marketing palette applied to existing public-facing sections
+12. Real KL Central Walk marker using canonical branch data
+13. Premium light Meal Planner modal, summary and mobile bar
+14. Green selected states, quantity controls, prices, totals and primary planner actions
+15. Approved generated-list ending with no URL below it
+16. Clear TODO markers for genuinely missing restaurant information
+17. Post-implementation report
+
+## Required implementation report
+
+After making code changes, report:
+
+* Files modified
+* Map implementation used: iframe or Google Maps JavaScript API
+* Canonical branch-data fields used for the marker
+* Whether `/assets/3d/bar.glb` existed
+* Whether geometry key `Cube` existed
+* Fallback used, if any
+* Packages installed or changed
+* Confirmation that the outer header shell is transparent
+* Confirmation that the warm Jakarta marketing tokens were applied without changing layout or copy
+* Confirmation that navigation is neutral glass and the active state is not coloured
+* Confirmation that Meal Planner summary surfaces are light and planner actions are green
+* Confirmation that no website URL appears beneath the generated/shared closing message
+* Remaining console warnings or known browser limitations
+
+Do not claim the marker is exact unless verified against confirmed branch data or the approved Google Maps listing.
+
+Do not stop at conceptual suggestions. Implement the changes while preserving confirmed requirements and existing functionality.
+
