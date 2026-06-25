@@ -5,7 +5,18 @@ import { locations, telHref, waHref, type Location } from "@/data/locations";
 import { BusinessHours } from "./BusinessHours";
 import { BranchMap } from "./BranchMap";
 import { LiveStatus } from "./LiveStatus";
-import { MapPin, Phone, MessageCircle, ArrowRight, Images, Star } from "lucide-react";
+import { MapPin, Phone, ArrowRight, Images } from "lucide-react";
+import { ReviewMeta } from "@/components/ReviewStrip";
+
+// Official-style WhatsApp glyph (phone in a speech bubble) — recognisable as
+// WhatsApp, unlike the generic chat-bubble icon.
+function WhatsAppGlyph({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.6c1.8 1 3.8 1.5 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.4.7.7-3.3-.2-.4c-1-1.6-1.5-3.4-1.5-5.2 0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.8-.9 1-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 2.9 1.2 2.9.8 3.5.8.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z" />
+    </svg>
+  );
+}
 import Link from "next/link";
 import Image from "next/image";
 import { AboutPromotionMarquee } from "./planner/PromotionMarquee";
@@ -86,13 +97,13 @@ export function ContactClient() {
             </span>
           </address>
 
-          <div className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-5 flex items-center gap-3">
             {active.phone ? (
-              <a href={telHref(active.phone)} className="btn btn-secondary !min-h-0 flex-1 justify-center !py-2.5 text-sm sm:flex-none">
+              <a href={telHref(active.phone)} className="btn btn-secondary !min-h-0 flex h-[56px] flex-1 items-center justify-center !py-2.5 text-sm sm:h-auto sm:flex-none">
                 <Phone className="h-4 w-4" /> {active.phone}
               </a>
             ) : (
-              <span className="btn btn-secondary !min-h-0 flex-1 cursor-default justify-center !py-2.5 text-sm opacity-60 sm:flex-none">
+              <span className="btn btn-secondary !min-h-0 flex h-[56px] flex-1 cursor-default items-center justify-center !py-2.5 text-sm opacity-60 sm:h-auto sm:flex-none">
                 {t("pages.contact.phoneComingSoon")}
               </span>
             )}
@@ -101,9 +112,11 @@ export function ContactClient() {
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-whatsapp !min-h-0 flex-1 justify-center !py-2.5 text-sm sm:flex-none"
+                aria-label={t("pages.contact.whatsapp")}
+                className="btn btn-whatsapp !min-h-0 flex h-[56px] w-[56px] shrink-0 items-center justify-center !rounded-full !p-0 text-sm sm:h-auto sm:w-auto sm:flex-none sm:!rounded-xl sm:!px-4 sm:!py-2.5"
               >
-                <MessageCircle className="h-4 w-4" /> {t("pages.contact.whatsapp")}
+                <WhatsAppGlyph className="h-7 w-7 sm:h-4 sm:w-4" />
+                <span className="hidden sm:inline">{t("pages.contact.whatsapp")}</span>
               </a>
             )}
           </div>
@@ -206,17 +219,7 @@ function BranchReview({ className = "" }: { className?: string }) {
             />
           ))}
         </div>
-        <div>
-          <div className="flex items-center gap-1">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="h-3.5 w-3.5 fill-[#E8943A] text-[#E8943A]" />
-            ))}
-          </div>
-          <p className="mt-0.5 text-sm">
-            <span className="font-bold text-heading">4.4</span>{" "}
-            <span className="text-ink-secondary">{t("pages.contact.reviewsCount")}</span>
-          </p>
-        </div>
+        <ReviewMeta />
       </div>
       <p className="mt-4 font-semibold text-heading">{t("pages.contact.lovedTitle")}</p>
       <p className="text-sm leading-relaxed text-body">{t("pages.contact.lovedDesc")}</p>

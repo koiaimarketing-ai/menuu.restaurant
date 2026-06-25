@@ -52,7 +52,7 @@ export function FloatingDish() {
         className="
           absolute left-1/2 top-0
           -translate-x-1/2 -translate-y-[50%]
-          w-[120vw] max-w-[560px]
+          w-[100vw] max-w-[560px]
           sm:w-[86vw] sm:max-w-[700px]
           md:w-[clamp(600px,77vw,1216px)] md:max-w-none
         "

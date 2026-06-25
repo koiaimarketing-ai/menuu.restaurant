@@ -5,6 +5,8 @@ import { X, Receipt, Lock, ShoppingBag } from "lucide-react";
 import { useMealPlan } from "@/lib/meal-plan-store";
 import { computeTotals, fmtRM } from "@/lib/planner";
 import { QuantityControl } from "./QuantityControl";
+import { menu } from "@/data/menu";
+import { describeLine, sortLines } from "./menu-options";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
 export function MealPlanSidebar() {
@@ -27,7 +29,7 @@ export function MealPlanSidebar() {
   const empty = plan.items.length === 0;
 
   return (
-    <div className="flex h-full max-h-full flex-col rounded-3xl border border-line-light bg-white p-5 shadow-soft">
+    <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-line-light bg-white p-5 shadow-soft">
       <div className="flex shrink-0 items-center justify-between">
         <h2 className="text-lg font-bold text-ink-primary">{t("menu.sidebar.title")}</h2>
         <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-semibold text-ink-secondary">
@@ -44,11 +46,13 @@ export function MealPlanSidebar() {
         </div>
       ) : (
         <>
-          <ul className="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain pr-1 lg:max-h-[340px] lg:flex-none">
-            {plan.items.map((l) => {
+          <ul className="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain pb-2 pr-1 [-webkit-overflow-scrolling:touch]">
+            {sortLines(plan.items).map((l) => {
               const rowTotal = (l.unitPrice ?? 0) * l.qty;
+              const code = menu.find((m) => m.id === l.itemId)?.code;
+              const details = describeLine(l.choices, l.note, t);
               return (
-                <li key={l.lineId} className="flex items-center gap-3 border-b border-line-light pb-3">
+                <li key={l.lineId} className="flex items-start gap-3 border-b border-line-light pb-3">
                   <QuantityControl
                     quantity={l.qty}
                     onIncrease={() => plan.setQty(l.lineId, l.qty + 1)}
@@ -56,14 +60,21 @@ export function MealPlanSidebar() {
                     label={l.name}
                   />
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-ink-primary">{l.name}</p>
+                    <p className="text-sm font-medium text-ink-primary">
+                      {code && <span className="text-primary">[{code}]</span>} {l.name}
+                    </p>
                     <p className="text-xs text-ink-muted">{fmtRM(l.unitPrice ?? 0)}</p>
+                    {details.map((d, i) => (
+                      <p key={i} className="text-[11px] leading-snug text-ink-secondary">
+                        <span className="font-medium">{d.label}:</span> {d.value}
+                      </p>
+                    ))}
                   </div>
-                  <span className="text-sm font-semibold text-ink-primary">{fmtRM(rowTotal)}</span>
+                  <span className="shrink-0 text-sm font-semibold text-ink-primary">{fmtRM(rowTotal)}</span>
                   <button
                     onClick={() => plan.removeLine(l.lineId)}
                     aria-label={t("menu.sidebar.removeAria").replace("{name}", l.name)}
-                    className="text-ink-muted hover:text-[#B42318]"
+                    className="shrink-0 text-ink-muted hover:text-[#B42318]"
                   >
                     <X className="h-4 w-4" />
                   </button>

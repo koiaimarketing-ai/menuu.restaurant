@@ -37,3 +37,5 @@ yarn-error.log*
 
 # local source images (not served by Next; keep out of the repo)
 /image
+
+.vercel

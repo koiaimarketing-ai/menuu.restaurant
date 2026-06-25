@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Star, Store, UtensilsCrossed, CalendarCheck } from "lucide-react";
@@ -20,6 +21,14 @@ type PickItem = {
 
 export function HomeContent({ picks }: { picks: PickItem[] }) {
   const { t } = useLang();
+
+  // Cross-page hash links (e.g. Our Story → /#from-our-guests) should land
+  // smoothly on the matching section even after a client navigation/reload.
+  useEffect(() => {
+    if (!window.location.hash) return;
+    const el = document.querySelector(window.location.hash);
+    if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 150);
+  }, []);
 
   const planFeatures = [
     { Icon: Store, title: t("pages.home.planFeat1Title"), desc: t("pages.home.planFeat1Desc") },
@@ -57,7 +66,7 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
           </Reveal>
         </div>
 
-        <div className="container-site mt-6">
+        <div className="container-site mt-6 pb-8 sm:pb-0">
           <PicksCarousel items={picks} />
         </div>
       </section>
@@ -116,7 +125,7 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
       </section>
 
       {/* ===================== REVIEWS ===================== */}
-      <section className="section bg-[#2A1612] text-white">
+      <section id="from-our-guests" className="section scroll-mt-28 bg-[#2A1612] text-white">
         <div className="container-site">
           <Reveal>
             <span className="eyebrow !text-coral">{t("pages.home.reviewsEyebrow")}</span>
@@ -147,7 +156,7 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
                   ))}
                 </div>
                 <p className="text-sm text-white/60 mt-1">
-                  {t("pages.home.reviewsBasedOn1")} {restaurant.reviewCount} {t("pages.home.reviewsBasedOn2")}
+                  {t("pages.home.reviewsBasedOn1")} {t("misc.review.combined")}
                 </p>
               </div>
             </div>

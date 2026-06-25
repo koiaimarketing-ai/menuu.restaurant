@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Sparkles, Star, MapPin } from "lucide-react";
+import { ArrowRight, Sparkles, MapPin } from "lucide-react";
 import { GUEST_AVATARS as AVATARS } from "@/lib/avatars";
+import { ReviewMeta } from "@/components/ReviewStrip";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
 export function HeroContent() {
@@ -47,11 +48,7 @@ export function HeroContent() {
                   />
                 ))}
               </div>
-              <span className="inline-flex items-center gap-1.5 font-semibold text-heading">
-                <Star className="h-4 w-4 fill-primary text-primary" />
-                4.6
-              </span>
-              <span className="text-ink-secondary">(376 {t("hero.reviewsSuffix")})</span>
+              <ReviewMeta />
             </div>
             <p className="mt-2.5 text-ink-secondary">{t("hero.perPerson")}</p>
           </div>

@@ -41,16 +41,29 @@ export function EntranceOverlay() {
   const [exiting, setExiting] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  // The entrance shows on every full page load (the pre-paint gate sets the
-  // attribute). It is dismissed only by entering; internal client navigations
-  // keep this component unmounted afterwards, so it never reappears mid-session.
+  // The pre-paint gate decides whether to show (once per 09:00 day cycle). If it
+  // didn't set the attribute, unmount immediately. Dismissed only by entering;
+  // internal client navigations keep this unmounted, so it never reappears.
   useEffect(() => {
+    if (document.documentElement.getAttribute("data-entrance") !== "show") {
+      setGone(true);
+    }
     const t = timers.current;
     return () => t.forEach(clearTimeout);
   }, []);
 
   const handleEnter = () => {
     if (exiting) return;
+
+    // Remember the welcome was seen — next show is the upcoming 09:00 local time.
+    try {
+      const next = new Date();
+      next.setHours(9, 0, 0, 0);
+      if (Date.now() >= next.getTime()) next.setDate(next.getDate() + 1);
+      localStorage.setItem("warung_welcome_next_show_at", String(next.getTime()));
+    } catch {
+      /* ignore — non-fatal if storage is unavailable */
+    }
 
     // Start ambient sound unless the visitor previously muted it.
     let muted = false;

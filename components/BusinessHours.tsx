@@ -14,9 +14,12 @@ const DAY_LABEL_KEYS = [
   "pages.hours.day.saturday",
 ];
 
+// English short-form day names (index 0 = Sunday). Malay/Chinese keep full names.
+const EN_SHORT_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 export function BusinessHours({ location }: { location: Location }) {
   const { dayIndex } = nowInKL();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
     <div className="rounded-2xl border border-line-light bg-white p-5">
       <h3 className="text-ink-primary font-semibold mb-3">{t("pages.hours.title")}</h3>
@@ -31,15 +34,17 @@ export function BusinessHours({ location }: { location: Location }) {
           return (
             <li
               key={key}
-              className={`flex justify-between py-1.5 border-b border-line-light last:border-0 ${
+              className={`flex items-start justify-between gap-3 py-1.5 border-b border-line-light last:border-0 ${
                 today ? "font-semibold text-ink-primary" : "text-ink-secondary"
               }`}
             >
-              <span>
-                {t(DAY_LABEL_KEYS[i])}
-                {today && <span className="ml-2 text-xs text-green-text">{t("pages.hours.today")}</span>}
+              <span className="flex flex-col leading-tight">
+                <span>{lang === "en" ? EN_SHORT_DAYS[i] : t(DAY_LABEL_KEYS[i])}</span>
+                {today && (
+                  <span className="mt-0.5 text-xs font-medium text-green-text">{t("pages.hours.today")}</span>
+                )}
               </span>
-              <span>{text}</span>
+              <span className="text-right">{text}</span>
             </li>
           );
         })}

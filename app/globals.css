@@ -91,6 +91,14 @@ body {
   -webkit-font-smoothing: antialiased;
   position: static;
   min-height: 100vh;
+  /* iOS Safari sometimes ignores overflow-x:hidden on <html> alone when a
+     descendant is absolutely positioned (hero dish). Clip here too, and cap
+     width so no oversized element can create a horizontal scroll / blank gap.
+     Use `clip` (not `hidden`): hidden makes <body> a scroll container, which
+     breaks `position: sticky` on the meal-plan panel; clip does not. */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 ::selection {
@@ -340,7 +348,9 @@ body {
    zero its top margin when the page's <main> contains the home locations
    section. The footer's own border-top divider is preserved. */
 .home-locations-section {
-  padding-bottom: 0 !important;
+  /* Even breathing room below the location cards — matches the section's top
+     padding so the cards don't feel like they touch the footer divider. */
+  padding-bottom: clamp(27px, 3.84vw, 50px);
   margin-bottom: 0;
   min-height: auto;
 }
@@ -354,7 +364,7 @@ main:has(.home-locations-section) + footer {
 main + footer {
   margin-top: 0;
 }
-main > section:last-child {
+main > section:last-child:not(.home-locations-section) {
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -552,9 +562,12 @@ main > section:last-child {
   position: relative;
   isolation: isolate;
   display: inline-grid;
-  grid-template-columns: 30px 32px 30px;
+  grid-template-columns: 28px 32px 28px;
   align-items: center;
   min-height: 34px;
+  /* Never let a narrow flex row (3 cards per row) squeeze the stepper and clip
+     the + button. Fixed-width grid + no shrink keeps both buttons visible. */
+  flex-shrink: 0;
   overflow: hidden;
   border: 1px solid rgba(235, 75, 56, 0.32);
   border-radius: 10px;
@@ -927,6 +940,95 @@ main > section:last-child {
   margin-top: 3px;
   font-size: 13px;
   color: #9a776d;
+}
+.receipt-item-detail {
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: #9a776d;
+}
+
+/* Checkout "choose your plan" cards — mirror the main planner's WHAT'S YOUR
+   PLAN? card style so the popup feels part of the same design system. */
+.checkout-plan-modal .section-kicker {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: #6f4a3f;
+  text-transform: uppercase;
+}
+.plan-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+@media (max-width: 360px) {
+  .plan-card-grid { grid-template-columns: minmax(0, 1fr); }
+}
+.plan-card {
+  position: relative;
+  min-height: 86px;
+  border: 1px solid rgba(120, 70, 55, 0.18);
+  border-radius: 18px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #3f2b24;
+  transition: all 0.2s ease;
+}
+.plan-card:hover {
+  border-color: rgba(232, 69, 49, 0.5);
+  box-shadow: 0 10px 24px rgba(80, 40, 25, 0.08);
+  transform: translateY(-1px);
+}
+.plan-card.active {
+  border-color: #ef4438;
+  background: #fff3f0;
+  color: #ef4438;
+  box-shadow: 0 14px 30px rgba(239, 68, 56, 0.14);
+}
+.plan-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #fff0ec;
+  color: #ef4438;
+}
+.plan-card.active .plan-icon {
+  background: #ef4438;
+  color: #fff;
+}
+
+/* Animated left→right shine, brand coral. Applied ONLY to the "376 reviews"
+   text — never the stars, rating, quote, cards or buttons. */
+.reviews-shine {
+  background: linear-gradient(
+    90deg,
+    #b85b4a 0%,
+    #e85d3f 25%,
+    #ffd1b8 50%,
+    #e85d3f 75%,
+    #b85b4a 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: reviewsShine 2.8s linear infinite;
+  text-shadow: 0 0 8px rgba(232, 93, 63, 0.25);
+}
+@keyframes reviewsShine {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reviews-shine { animation: none; }
 }
 .receipt-item-right {
   text-align: right;
@@ -1622,10 +1724,19 @@ html[data-entrance="show"] body {
   color: var(--color-forest);
 }
 @media (max-width: 768px) {
+  /* Remove the floating sound control on mobile entirely. */
   .ambient-toggle {
-    right: 16px;
-    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    display: none !important;
   }
+}
+
+/* While the mobile menu is open: lock html scroll and fully hide the floating
+   back-to-top button (not just behind — never visible/clickable). */
+html.menu-open {
+  overflow: hidden;
+}
+body.menu-open .back-to-top-btn {
+  display: none !important;
 }
 .ambient-toggle:focus-visible {
   outline: 3px solid rgba(22, 163, 74, 0.35);

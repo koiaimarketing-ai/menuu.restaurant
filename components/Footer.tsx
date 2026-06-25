@@ -3,7 +3,25 @@
 import Link from "next/link";
 import Image from "next/image";
 import { locations, telHref } from "@/data/locations";
-import { Instagram, Facebook, MapPin, Send } from "lucide-react";
+import { Instagram, Facebook, MapPin, MessageCircle } from "lucide-react";
+
+const WHATSAPP_COMMUNITY_URL =
+  "https://wa.me/60104047058?text=Hi%20Warung%20Jakarta%2C%20I%20want%20to%20join%20the%20WhatsApp%20community";
+
+// TikTok has no lucide icon — small inline brand glyph.
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M16.5 3a5.6 5.6 0 0 0 3.9 1.6v2.7a8.3 8.3 0 0 1-3.9-1v5.9a5.7 5.7 0 1 1-5.7-5.7c.3 0 .5 0 .8.05v2.8a2.9 2.9 0 1 0 2.1 2.8V3h2.7z" />
+    </svg>
+  );
+}
+
+const SOCIAL_LINKS = [
+  { label: "Instagram", href: "https://www.instagram.com/warungjakarta.kl/?hl=en", Icon: Instagram },
+  { label: "TikTok", href: "https://www.tiktok.com/@warungjakarta.klcw", Icon: TikTokIcon },
+  { label: "Facebook", href: "https://www.facebook.com/p/warungjakartaklcw-61563801992205/", Icon: Facebook },
+] as const;
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
 export function Footer() {
@@ -34,15 +52,17 @@ export function Footer() {
               {t("footer.tagline")}
             </p>
             <div className="mt-5 flex gap-3">
-              {[Instagram, Facebook].map((Icon, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  aria-label={i === 0 ? "Instagram (coming soon)" : "Facebook (coming soon)"}
+              {SOCIAL_LINKS.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
                   className="grid h-9 w-9 place-items-center rounded-full border border-line-warm text-body transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
                 >
                   <Icon className="h-4 w-4" />
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -82,25 +102,19 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Newsletter */}
+          {/* WhatsApp community */}
           <div className="text-sm">
-            <h3 className="mb-4 font-semibold text-heading">{t("footer.newsletter")}</h3>
-            <p className="leading-relaxed text-body">{t("footer.newsletterText")}</p>
-            <div className="mt-4 flex gap-2">
-              <input
-                type="email"
-                placeholder={t("footer.emailPlaceholder")}
-                aria-label="Email address"
-                className="h-10 min-w-0 flex-1 rounded-lg border border-line-warm bg-white px-3 text-sm text-ink-primary outline-none placeholder:text-ink-muted focus:border-primary focus:ring-2 focus:ring-primary/15"
-              />
-              <button
-                type="button"
-                aria-label="Subscribe to the newsletter"
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary text-white transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-              >
-                <Send className="h-4 w-4" />
-              </button>
-            </div>
+            <h3 className="mb-4 font-semibold text-heading">{t("footer.whatsappTitle")}</h3>
+            <p className="leading-relaxed text-body">{t("footer.whatsappText")}</p>
+            <a
+              href={WHATSAPP_COMMUNITY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-whatsapp mt-4 inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green/40"
+            >
+              <MessageCircle className="h-4 w-4" />
+              {t("footer.joinWhatsapp")}
+            </a>
           </div>
         </div>
 

@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { X, Footprints, Bike, Info, MessageCircle } from "lucide-react";
+import { X, Footprints, Bike, Info, MessageCircle, Check } from "lucide-react";
 import { useMealPlan } from "@/lib/meal-plan-store";
+import { menu } from "@/data/menu";
+import { describeLine, sortLines } from "./menu-options";
 import { getLocation, waHref } from "@/data/locations";
 import { computeTotals, fmtRM } from "@/lib/planner";
 import { DeliveryAddressAutocomplete, type VerifiedAddress } from "./DeliveryAddressAutocomplete";
@@ -49,16 +51,16 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[1000] flex items-start justify-center overflow-y-auto bg-[rgba(32,24,20,0.42)] p-4 py-8 backdrop-blur-[6px] sm:items-center"
+      className="fixed inset-0 z-[1000] flex items-end justify-center overflow-hidden bg-[rgba(32,24,20,0.42)] p-4 backdrop-blur-[6px] sm:items-center sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-label={tr("checkout.title")}
       {...backdrop}
     >
       <div
-        className="relative z-[1010] w-full max-w-[820px] rounded-[24px] border border-[#EADDD4] bg-white p-5 shadow-[0_24px_70px_rgba(58,43,36,0.18)] sm:p-6"
+        className="relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[820px] flex-col overflow-hidden rounded-t-[24px] border border-[#EADDD4] bg-white p-5 shadow-[0_24px_70px_rgba(58,43,36,0.18)] sm:max-h-[calc(100dvh-48px)] sm:rounded-[24px] sm:p-6"
       >
-        <div className="flex items-center justify-between">
+        <div className="flex shrink-0 items-center justify-between">
           <h3 className="flex items-center gap-2 text-lg font-bold text-[#3B2A24]">
             <MessageCircle className="h-5 w-5 text-[#E24A34]" /> {tr("checkout.title")} · {branch.shortName}
           </h3>
@@ -71,6 +73,7 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
           </button>
         </div>
 
+        <div className="-mr-1 mt-1 flex-1 min-h-0 overflow-y-auto pr-1">
         {plan.items.length === 0 ? (
           <p className="mt-6 text-sm text-ink-secondary">{tr("checkout.empty")}</p>
         ) : planType === "going" ? (
@@ -82,6 +85,7 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
         ) : (
           <ChoosePlanPrompt />
         )}
+        </div>
       </div>
     </div>,
     document.body
@@ -125,17 +129,24 @@ function OrderItems() {
   const { t: tr } = useLang();
   return (
     <>
-      {plan.items.map((l) => (
-        <div key={l.lineId} className="order-summary-row">
-          <div className="min-w-0">
-            <div className="order-summary-item-name">{l.name}</div>
-            <div className="order-summary-item-subtext">
-              {fmtRM(l.unitPrice ?? 0)} · {tr("checkout.qty")} {l.qty}
+      {sortLines(plan.items).map((l) => {
+        const code = menu.find((m) => m.id === l.itemId)?.code;
+        const details = describeLine(l.choices, l.note, tr);
+        return (
+          <div key={l.lineId} className="order-summary-row">
+            <div className="min-w-0">
+              <div className="order-summary-item-name">{code ? `[${code}] ` : ""}{l.name}</div>
+              <div className="order-summary-item-subtext">
+                {fmtRM(l.unitPrice ?? 0)} · {tr("checkout.qty")} {l.qty}
+              </div>
+              {details.map((d, i) => (
+                <div key={i} className="order-summary-item-subtext">{d.label}: {d.value}</div>
+              ))}
             </div>
+            <div className="order-summary-price">{fmtRM((l.unitPrice ?? 0) * l.qty)}</div>
           </div>
-          <div className="order-summary-price">{fmtRM((l.unitPrice ?? 0) * l.qty)}</div>
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 }
@@ -143,15 +154,31 @@ function OrderItems() {
 function ChoosePlanPrompt() {
   const plan = useMealPlan();
   const { t: tr } = useLang();
+  // planType is the SAME state used by the main planner page — selecting here
+  // updates the planner card too and advances the checkout flow.
+  const active = plan.planType;
   return (
-    <div className="mt-6">
-      <p className="text-sm text-ink-secondary">{tr("checkout.chooseHowReceive")}</p>
-      <div className="mt-3 grid grid-cols-2 gap-3">
-        <button onClick={() => plan.setPlanType("going")} className="flex flex-col items-center gap-2 rounded-2xl border border-line-light bg-white p-4 hover:border-primary/40">
-          <Footprints className="h-6 w-6 text-primary" /> <span className="text-sm font-semibold">{tr("planner.goingNow")}</span>
+    <div className="checkout-plan-modal mt-4">
+      <p className="section-kicker">{tr("planner.whatsYourPlan")}</p>
+      <p className="mt-1.5 text-sm text-ink-secondary">{tr("checkout.choosePlanBefore")}</p>
+      <div className="plan-card-grid mt-4">
+        <button
+          type="button"
+          onClick={() => plan.setPlanType("going")}
+          className={`plan-card ${active === "going" ? "active" : ""}`}
+        >
+          {active === "going" && <Check className="absolute right-2.5 top-2.5 h-4 w-4" />}
+          <span className="plan-icon"><Footprints className="h-5 w-5" /></span>
+          <span className="text-sm">{tr("planner.goingNow")}</span>
         </button>
-        <button onClick={() => plan.setPlanType("delivery")} className="flex flex-col items-center gap-2 rounded-2xl border border-line-light bg-white p-4 hover:border-primary/40">
-          <Bike className="h-6 w-6 text-primary" /> <span className="text-sm font-semibold">{tr("planner.deliveryNow")}</span>
+        <button
+          type="button"
+          onClick={() => plan.setPlanType("delivery")}
+          className={`plan-card ${active === "delivery" ? "active" : ""}`}
+        >
+          {active === "delivery" && <Check className="absolute right-2.5 top-2.5 h-4 w-4" />}
+          <span className="plan-icon"><Bike className="h-5 w-5" /></span>
+          <span className="text-sm">{tr("planner.deliveryNow")}</span>
         </button>
       </div>
     </div>
@@ -161,7 +188,12 @@ function ChoosePlanPrompt() {
 /* ------------------------- message helpers ------------------------- */
 
 function itemLines(items: ReturnType<typeof useMealPlan>["items"]) {
-  return items.map((l) => `- ${l.qty}× ${l.name}`).join("\n");
+  return sortLines(items)
+    .map((l) => {
+      const code = menu.find((m) => m.id === l.itemId)?.code;
+      return `- ${l.qty}× ${code ? `[${code}] ` : ""}${l.name}`;
+    })
+    .join("\n");
 }
 
 function openWhatsApp(branchWa: string | undefined, text: string) {

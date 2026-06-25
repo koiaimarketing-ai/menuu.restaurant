@@ -1,10 +1,16 @@
 export type MenuItem = {
   id: string;
+  /** Display code shown before the name, e.g. "A1". Assigned per category. */
+  code?: string;
   name: string;
   category: string;
   description?: string;
   portion?: string;
   choices?: { label: string; options: string[]; required?: boolean }[];
+  /** Optional override of the detail-modal "Option" chips (free preferences).
+   * When set, exactly these are shown; when omitted they are derived from the
+   * item's category + tags. Use `[]` for plain items that need no options. */
+  availableOptions?: string[];
   complimentaryItem?: string;
   availableHotCold?: boolean;
   spicy?: boolean;
@@ -243,15 +249,6 @@ export const menu: MenuItem[] = [
     branchPrices: P(4.2),
     sortOrder: next(),
   },
-  {
-    id: "nasi-putih",
-    name: "Nasi Putih",
-    category: "vegetables",
-    description: "Steamed white rice.",
-    branchPrices: P(3.2),
-    sortOrder: next(),
-  },
-
   // G. Gorengan
   {
     id: "tahu-isi-goreng",
@@ -473,7 +470,6 @@ const MENU_IMAGES: Record<string, string> = {
   "sayur-tempe-kacang": "/images/menu-sayur-tempe.png",
   "sayur-buncis-toge": "/images/menu-sayur-buncis.png",
   "telor-krispi": "/images/menu-telor-krispi.png",
-  "nasi-putih": "/images/menu-nasi-putih.png",
   "tahu-isi-goreng": "/images/menu-tahu-isi.png",
   "tempe-mendoan": "/images/menu-tempe-mendoan.png",
   "roti-bakar-keju": "/images/menu-roti-keju.png",
@@ -496,6 +492,30 @@ const MENU_IMAGES: Record<string, string> = {
 };
 menu.forEach((m) => {
   if (MENU_IMAGES[m.id]) m.image = MENU_IMAGES[m.id];
+});
+
+// Assign per-category display codes (e.g. A1, B2). Beverages share one "H"
+// series; add-ons use "T". Numbered in menu order within each prefix.
+const CODE_PREFIX: Record<string, string> = {
+  "mie-ayam": "A",
+  bakso: "B",
+  "nasi-meals": "C",
+  "ala-carte": "D",
+  vegetables: "S",
+  gorengan: "G",
+  "roti-bakar": "F",
+  jamu: "H",
+  coffee: "H",
+  "non-coffee": "H",
+  "soft-drinks": "H",
+  "add-ons": "T",
+};
+const codeCounters: Record<string, number> = {};
+menu.forEach((m) => {
+  const prefix = CODE_PREFIX[m.category];
+  if (!prefix) return;
+  codeCounters[prefix] = (codeCounters[prefix] ?? 0) + 1;
+  m.code = `${prefix}${codeCounters[prefix]}`;
 });
 
 export const getMenuByCategory = (catId: string) =>

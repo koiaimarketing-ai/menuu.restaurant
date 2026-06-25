@@ -28,7 +28,7 @@ export function PicksCarousel({ items }: { items: Pick[] }) {
   const dragRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<Animation | null>(null);
   const canHoverRef = useRef(false);
-  const drag = useRef({ active: false, startX: 0 });
+  const drag = useRef({ active: false, startX: 0, moved: false });
 
   useEffect(() => {
     const track = trackRef.current;
@@ -60,14 +60,17 @@ export function PicksCarousel({ items }: { items: Pick[] }) {
   // snap back and resume — never breaks the loop.
   const onDown = (e: React.PointerEvent) => {
     if (reduce) return;
-    drag.current = { active: true, startX: e.clientX };
+    drag.current = { active: true, startX: e.clientX, moved: false };
     animRef.current?.pause();
     if (dragRef.current) dragRef.current.style.transition = "none";
-    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+    // NOTE: no setPointerCapture — capturing would steal the click from the card
+    // <Link>, breaking navigation on tap. We track movement manually instead.
   };
   const onMove = (e: React.PointerEvent) => {
     if (!drag.current.active || !dragRef.current) return;
-    dragRef.current.style.transform = `translate3d(${e.clientX - drag.current.startX}px,0,0)`;
+    const dx = e.clientX - drag.current.startX;
+    if (Math.abs(dx) > 6) drag.current.moved = true;
+    dragRef.current.style.transform = `translate3d(${dx}px,0,0)`;
   };
   const onUp = () => {
     if (!drag.current.active) return;
@@ -81,7 +84,7 @@ export function PicksCarousel({ items }: { items: Pick[] }) {
 
   if (reduce) {
     return (
-      <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="-mx-4 overflow-x-auto px-4 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="flex w-max">
           {items.map((it) => (
             <PickCard key={it.id} item={it} />
@@ -93,13 +96,21 @@ export function PicksCarousel({ items }: { items: Pick[] }) {
 
   return (
     <div
-      className="picks-mask relative overflow-hidden"
+      className="picks-mask relative overflow-hidden py-3"
       onPointerEnter={onEnter}
       onPointerLeave={onLeave}
       onPointerDown={onDown}
       onPointerMove={onMove}
       onPointerUp={onUp}
       onPointerCancel={onUp}
+      onClickCapture={(e) => {
+        // Swallow the click only when the pointer actually dragged, so a real
+        // tap still navigates via the card <Link>.
+        if (drag.current.moved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }}
       style={{ touchAction: "pan-y" }}
     >
       <div ref={dragRef} className="will-change-transform">
@@ -119,8 +130,10 @@ export function PicksCarousel({ items }: { items: Pick[] }) {
 function PickCard({ item, duplicate }: { item: Pick; duplicate?: boolean }) {
   const { t } = useLang();
   return (
-    <article
+    <Link
+      href="/menu"
       aria-hidden={duplicate || undefined}
+      tabIndex={duplicate ? -1 : undefined}
       className="group mr-4 flex w-[min(72vw,240px)] shrink-0 flex-col overflow-hidden rounded-3xl border border-line-light bg-white shadow-soft sm:mr-5 md:w-[230px]"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
@@ -148,11 +161,11 @@ function PickCard({ item, duplicate }: { item: Pick; duplicate?: boolean }) {
           <span className="font-bold text-green-text">
             {item.price != null ? formatRM(item.price) : "—"}
           </span>
-          <Link href="/menu" className="text-sm font-semibold text-primary hover:underline">
+          <span className="text-sm font-semibold text-primary group-hover:underline">
             {t("pages.home.viewMenuArrow")}
-          </Link>
+          </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Sparkles } from "lucide-react";
 import { useMealPlan } from "@/lib/meal-plan-store";
 import { menu } from "@/data/menu";
@@ -14,6 +14,7 @@ import { MealPlanSidebar } from "./MealPlanSidebar";
 import { MobileMealBar } from "./MobileMealBar";
 import { MealPlanWelcomeModal } from "./MealPlanWelcomeModal";
 import { PromotionMarquee } from "./PromotionMarquee";
+import { ReviewStrip } from "@/components/ReviewStrip";
 import { FOOD_SECTIONS, ADDON_SECTION } from "./sections";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
@@ -73,6 +74,7 @@ export function MealPlannerPage() {
           </h1>
           <div className="mx-auto mt-3 h-0.5 w-14 rounded-full bg-primary/70" />
           <p className="mt-4 text-body">{t("menu.planner.heroSub")}</p>
+          <ReviewStrip compact className="mt-6" />
         </div>
 
         {/* two-column planner */}
@@ -94,20 +96,29 @@ export function MealPlannerPage() {
             <PromotionMarquee />
 
             <div className="mt-3 space-y-6 pb-28 lg:pb-8">
-              {FOOD_SECTIONS.map((s) =>
-                s.presentation === "featured" ? (
-                  <FeaturedMenuCategory key={s.id} section={s} vegOnly={vegOnly} />
-                ) : (
-                  <FeaturedThumbCategory key={s.id} section={s} vegOnly={vegOnly} />
-                )
-              )}
+              {FOOD_SECTIONS.map((s, i) => (
+                <Fragment key={s.id}>
+                  {s.presentation === "featured" ? (
+                    <FeaturedMenuCategory section={s} vegOnly={vegOnly} />
+                  ) : (
+                    <FeaturedThumbCategory section={s} vegOnly={vegOnly} />
+                  )}
+                  {/* One review strip between the 3rd and 4th category sections —
+                      same compact layout as the hero card (no trust text). */}
+                  {i === 2 && (
+                    <div className="text-center">
+                      <ReviewStrip compact />
+                    </div>
+                  )}
+                </Fragment>
+              ))}
               <BeverageGroup vegOnly={vegOnly} />
               <FeaturedThumbCategory section={ADDON_SECTION} vegOnly={vegOnly} noImage />
             </div>
           </div>
 
           {/* RIGHT: sticky summary only — receipt now opens in a modal */}
-          <aside className="sticky top-[88px] hidden self-start lg:block">
+          <aside className="sticky top-[88px] hidden max-h-[calc(100vh-104px)] self-start lg:flex lg:flex-col">
             <MealPlanSidebar />
           </aside>
         </div>

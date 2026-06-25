@@ -328,7 +328,7 @@ export const dictPages: Record<Lang, Record<string, string>> = {
     "pages.contact.phoneComingSoon": "Telefon akan menyusul",
     "pages.contact.whatsapp": "WhatsApp",
     "pages.contact.facilities": "Kemudahan",
-    "pages.contact.viewMenuPlan": "Lihat menu & rancang hidangan",
+    "pages.contact.viewMenuPlan": "Jom Lihat Menu",
     "pages.contact.viewPhotos": "Lihat foto",
     "pages.contact.lovedTitle": "Digemari orang tempatan & pengunjung",
     "pages.contact.lovedDesc": "kerana makanan selesa Indonesia yang asli.",

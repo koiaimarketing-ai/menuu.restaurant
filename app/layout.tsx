@@ -10,11 +10,17 @@ import { CheckoutHost } from "@/components/planner/CheckoutHost";
 import { AmbientAudioProvider } from "@/lib/ambient-audio";
 import { EntranceOverlay } from "@/components/EntranceOverlay";
 import { AmbientSoundToggle } from "@/components/AmbientSoundToggle";
+import { BackToTop } from "@/components/BackToTop";
 
-// Pre-paint gate: show the entrance on every full page load (refresh / new tab)
-// before paint, so there is never a flash of Home first. Internal client
-// navigations don't re-run this and keep the (already dismissed) overlay hidden.
-const ENTRANCE_GATE = `document.documentElement.setAttribute('data-entrance','show');`;
+// Pre-paint gate: show the entrance at most once per "day cycle" that resets at
+// 09:00 local (Malaysia) time. We only set data-entrance="show" when the stored
+// next-show timestamp has passed. If localStorage is unavailable, show normally.
+// Runs before paint so there is never a flash of Home first.
+const ENTRANCE_GATE = `(function(){try{
+  var KEY="warung_welcome_next_show_at";
+  var next=Number(localStorage.getItem(KEY)||0);
+  if(!next||Date.now()>=next){document.documentElement.setAttribute('data-entrance','show');}
+}catch(e){document.documentElement.setAttribute('data-entrance','show');}})();`;
 
 // Warung Jakarta brand type system: Bricolage Grotesque (display/headings) +
 // DM Sans (body/UI). Kept on the existing CSS variable names (--font-fraunces =
@@ -58,6 +64,7 @@ export default function RootLayout({
             <ReceiptHost />
             <CheckoutHost />
             <AmbientSoundToggle />
+            <BackToTop />
             <EntranceOverlay />
           </AmbientAudioProvider>
         </MealPlanProvider>

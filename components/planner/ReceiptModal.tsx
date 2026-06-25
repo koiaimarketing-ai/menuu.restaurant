@@ -6,6 +6,8 @@ import { toPng } from "html-to-image";
 import Image from "next/image";
 import { X, ImageDown, MessageCircle } from "lucide-react";
 import { useMealPlan } from "@/lib/meal-plan-store";
+import { menu } from "@/data/menu";
+import { describeLine, sortLines } from "./menu-options";
 import { getLocation, waHref } from "@/data/locations";
 import { computeTotals, fmtRM } from "@/lib/planner";
 import { useBackdropDismiss } from "@/lib/use-backdrop-dismiss";
@@ -128,7 +130,10 @@ export function ReceiptModal({
       "",
       w("wa.preSelected"),
       "",
-      ...plan.items.map((l) => `- ${l.qty}× ${l.name}`),
+      ...sortLines(plan.items).map((l) => {
+        const code = menu.find((m) => m.id === l.itemId)?.code;
+        return `- ${l.qty}× ${code ? `[${code}] ` : ""}${l.name}`;
+      }),
       "",
       `${w("wa.estimatedTotal")}: ${fmtRM(finalTotal)}`,
     ].join("\n");
@@ -156,14 +161,14 @@ export function ReceiptModal({
   // context — otherwise the sticky capsule bar / navbar would paint over it.
   return createPortal(
     <div
-      className="fixed inset-0 z-[1000] flex items-start justify-center overflow-y-auto bg-[rgba(32,24,20,0.42)] p-4 py-8 backdrop-blur-[6px] sm:items-center"
+      className="fixed inset-0 z-[1000] flex items-end justify-center overflow-hidden bg-[rgba(32,24,20,0.42)] p-4 backdrop-blur-[6px] sm:items-center sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-label={tr("receipt.title")}
       {...backdrop}
     >
       <div
-        className="relative z-[1010] w-full max-w-[400px] rounded-3xl border border-[#EADDD4] bg-[#FFF9F3] p-4 shadow-[0_24px_70px_rgba(58,43,36,0.18)]"
+        className="relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[400px] flex-col overflow-hidden rounded-t-3xl border border-[#EADDD4] bg-[#FFF9F3] p-4 shadow-[0_24px_70px_rgba(58,43,36,0.18)] sm:max-h-[calc(100dvh-48px)] sm:rounded-3xl"
       >
         <button
           onClick={onClose}
@@ -173,6 +178,9 @@ export function ReceiptModal({
           <X className="h-5 w-5" />
         </button>
 
+        {/* Scrollable region — the panel is capped to the viewport; only this
+            scrolls so the title (top) and close button stay reachable. */}
+        <div className="-mr-1 flex-1 min-h-0 overflow-y-auto pr-1">
         {plan.items.length === 0 ? (
           <div className="mt-4 rounded-2xl border border-dashed border-line-medium bg-secondary/40 px-5 py-12 text-center">
             <p className="text-lg font-bold text-ink-primary">{tr("receipt.empty")}</p>
@@ -187,17 +195,24 @@ export function ReceiptModal({
           </div>
 
           <div className="receipt-items">
-            {plan.items.map((l) => (
-              <div className="receipt-item" key={l.lineId}>
-                <div className="receipt-item-left">
-                  <div className="receipt-item-name">{l.name}</div>
-                  <div className="receipt-item-price">{fmtRM(l.unitPrice ?? 0)} · {tr("checkout.qty")} {l.qty}</div>
+            {sortLines(plan.items).map((l) => {
+              const code = menu.find((m) => m.id === l.itemId)?.code;
+              const details = describeLine(l.choices, l.note, tr);
+              return (
+                <div className="receipt-item" key={l.lineId}>
+                  <div className="receipt-item-left">
+                    <div className="receipt-item-name">{code ? `[${code}] ` : ""}{l.name}</div>
+                    <div className="receipt-item-price">{fmtRM(l.unitPrice ?? 0)} · {tr("checkout.qty")} {l.qty}</div>
+                    {details.map((d, i) => (
+                      <div key={i} className="receipt-item-detail">{d.label}: {d.value}</div>
+                    ))}
+                  </div>
+                  <div className="receipt-item-right">
+                    <div className="receipt-item-total">{fmtRM((l.unitPrice ?? 0) * l.qty)}</div>
+                  </div>
                 </div>
-                <div className="receipt-item-right">
-                  <div className="receipt-item-total">{fmtRM((l.unitPrice ?? 0) * l.qty)}</div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="receipt-summary">
@@ -246,6 +261,7 @@ export function ReceiptModal({
         </p>
         </>
         )}
+        </div>
       </div>
     </div>,
     document.body

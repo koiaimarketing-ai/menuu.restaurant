@@ -1,7 +1,14 @@
-# Handoff — Warung Jakarta (Menu & Planner UI/UX pass)
+# Handoff — Warung Jakarta (Menu & Planner UI/UX + i18n + Deploy)
 
-**Updated:** 2026-06-22
-**Project:** `C:\Users\User\Desktop\Warung Jakarta` — Next.js 14.2.18 App Router, TypeScript, Tailwind, Framer Motion, lucide-react. **Not a git repo.**
+**Updated:** 2026-06-24
+**Project:** `C:\Users\User\Desktop\Warung Jakarta` — Next.js 14.2.18 App Router, TypeScript, Tailwind, Framer Motion, lucide-react. **Now a git repo** (`main`, initial commit `987b1c3`; git identity set locally: koiaimarketing-ai / koiaimarketing@gmail.com).
+
+## ⭐ DEPLOYMENT STATUS — resume here
+- **Vercel: LIVE.** Project `warung-jakarta` under team `koiaimarketing-ais-projects` (Vercel CLI authed as `koiaimarketing-ai`). Production URL **https://warung-jakarta.vercel.app** (first `vercel deploy` auto-took the production alias; build succeeds clean in the cloud). `.vercel/` is gitignored. Re-deploy: `vercel deploy` (preview) / `vercel deploy --prod` (prod). NOTE: deployment protection may show a Vercel login wall to visitors — toggle in Vercel dashboard → Settings → Deployment Protection if a public URL is wanted.
+- **GitHub: PENDING the user's one-time auth.** `gh` CLI v2.95.0 IS installed at `C:\Program Files\GitHub CLI\gh.exe` (NOT on the Bash tool PATH — call with full path). The interactive `gh auth login` cannot be driven from this harness (no TTY). **Next step:** user runs `gh auth login` in their own PowerShell (GitHub.com → HTTPS → web browser). Once `gh auth status` shows logged in, run:
+  `& "C:\Program Files\GitHub CLI\gh.exe" repo create warung-jakarta --private --source=. --remote=origin --push`
+  → creates the **private** repo and pushes. (Alternative: a PAT with `repo` scope via `gh auth login --with-token`.)
+- `.gitignore` excludes node_modules, .next, .env*, .vercel, and the top-level `/image` source folder.
 
 ## How to run / preview (IMPORTANT)
 - The host's port **3000 is taken by another project (KOI Car Rental)**. Warung Jakarta must run on another port.

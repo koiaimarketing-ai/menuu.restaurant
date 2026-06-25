@@ -67,7 +67,7 @@ export function MobileMealBar() {
                 <X className="h-5 w-5 text-ink-secondary" />
               </button>
             </div>
-            <div className="min-h-0 flex-1 overflow-hidden">
+            <div className="flex min-h-0 flex-1 flex-col">
               <MealPlanSidebar />
             </div>
           </div>

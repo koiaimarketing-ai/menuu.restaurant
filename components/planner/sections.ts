@@ -78,7 +78,6 @@ export const VEG_IDS = new Set<string>([
   "roti-bakar-coklat-keju",
   "sayur-tempe-kacang",
   "telor-krispi",
-  "nasi-putih",
   "kunyit-asam",
   "wedang-jahe",
   "yin-yang-earl-grey",

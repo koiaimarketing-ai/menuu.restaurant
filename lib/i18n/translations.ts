@@ -52,6 +52,9 @@ const en = {
   "footer.newsletter": "Newsletter",
   "footer.newsletterText": "Be the first to know about new dishes, promotions and events.",
   "footer.emailPlaceholder": "Your email",
+  "footer.whatsappTitle": "WhatsApp Updates",
+  "footer.whatsappText": "Join our WhatsApp community to receive new dishes, promotions and branch updates.",
+  "footer.joinWhatsapp": "Join WhatsApp Community",
   "footer.hoursSs4": "10:00 AM–10:00 PM daily",
   "footer.hoursKlcw": "Mon–Sat 10:00 AM–5:30 PM",
   "footer.bottomTagline": "Indonesian comfort food · Petaling Jaya & Kuala Lumpur",
@@ -123,6 +126,7 @@ const en = {
   "err.landmark": "Please enter a landmark.",
   // choose plan prompt
   "checkout.chooseHowReceive": "Choose how you'd like to receive your meal:",
+  "checkout.choosePlanBefore": "Choose your plan before checkout",
 
   // ---- Receipt modal ----
   "receipt.title": "Receipt",
@@ -217,6 +221,9 @@ const ms: Dict = {
   "footer.newsletter": "Surat Berita",
   "footer.newsletterText": "Jadi yang pertama tahu tentang hidangan baharu, promosi dan acara.",
   "footer.emailPlaceholder": "E-mel anda",
+  "footer.whatsappTitle": "Kemas Kini WhatsApp",
+  "footer.whatsappText": "Sertai komuniti WhatsApp kami untuk menerima hidangan baharu, promosi dan kemas kini cawangan.",
+  "footer.joinWhatsapp": "Sertai Komuniti WhatsApp",
   "footer.hoursSs4": "10:00 pagi–10:00 malam setiap hari",
   "footer.hoursKlcw": "Isnin–Sabtu 10:00 pagi–5:30 petang",
   "footer.bottomTagline": "Makanan selesa Indonesia · Petaling Jaya & Kuala Lumpur",
@@ -282,6 +289,7 @@ const ms: Dict = {
   "err.unit": "Sila masukkan unit / tingkat anda.",
   "err.landmark": "Sila masukkan mercu tanda.",
   "checkout.chooseHowReceive": "Pilih cara anda mahu menikmati hidangan:",
+  "checkout.choosePlanBefore": "Pilih rancangan anda sebelum checkout",
 
   // Receipt
   "receipt.title": "Resit",
@@ -372,6 +380,9 @@ const zh: Dict = {
   "footer.newsletter": "订阅通讯",
   "footer.newsletterText": "抢先获知新菜色、优惠与活动消息。",
   "footer.emailPlaceholder": "你的电邮",
+  "footer.whatsappTitle": "WhatsApp 最新消息",
+  "footer.whatsappText": "加入我们的 WhatsApp 社群，获取新菜色、优惠与分店最新消息。",
+  "footer.joinWhatsapp": "加入 WhatsApp 社群",
   "footer.hoursSs4": "每日 10:00 – 22:00",
   "footer.hoursKlcw": "周一至周六 10:00 – 17:30",
   "footer.bottomTagline": "印尼暖心料理 · 八打灵再也 & 吉隆坡",
@@ -436,6 +447,7 @@ const zh: Dict = {
   "err.unit": "请输入你的单位 / 楼层。",
   "err.landmark": "请输入地标。",
   "checkout.chooseHowReceive": "请选择你想要的用餐方式：",
+  "checkout.choosePlanBefore": "结账前请先选择你的用餐方式",
 
   // Receipt
   "receipt.title": "收据",

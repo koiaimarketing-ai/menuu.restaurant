@@ -54,9 +54,15 @@ export function Navbar() {
     const { overflow, touchAction } = document.body.style;
     document.body.style.overflow = "hidden";
     document.body.style.touchAction = "none";
+    // Marks the open state for global CSS (locks html scroll + hides the
+    // floating back-to-top button so it never sits above the menu).
+    document.documentElement.classList.add("menu-open");
+    document.body.classList.add("menu-open");
     return () => {
       document.body.style.overflow = overflow;
       document.body.style.touchAction = touchAction;
+      document.documentElement.classList.remove("menu-open");
+      document.body.classList.remove("menu-open");
     };
   }, [open]);
 
@@ -77,7 +83,7 @@ export function Navbar() {
       <div className="container-site">
         {/* Full-width pill containing logo + nav + CTA.
             `relative` anchors the absolutely-centred mobile meal-plan pill. */}
-        <div className="relative flex h-16 flex-nowrap items-center gap-3 rounded-full border border-line-warm bg-white/85 px-4 pl-4 shadow-soft backdrop-blur-md sm:pl-5 min-[1080px]:gap-[clamp(12px,1.5vw,26px)]">
+        <div className="relative flex h-16 flex-nowrap items-center gap-3 rounded-full border border-white/55 bg-white/70 px-4 pl-4 shadow-[0_8px_30px_rgba(58,30,26,0.12)] backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/60 sm:pl-5 min-[1080px]:gap-[clamp(12px,1.5vw,26px)]">
           {/* Brand */}
           <Link href="/" className="relative z-[2] flex shrink-0 items-center gap-2.5" aria-label="Warung Jakarta home">
             <Image

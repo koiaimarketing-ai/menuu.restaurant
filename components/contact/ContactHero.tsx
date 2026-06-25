@@ -1,7 +1,7 @@
 "use client";
 
-import { Star } from "lucide-react";
 import { GUEST_AVATARS } from "@/lib/avatars";
+import { ReviewMeta } from "@/components/ReviewStrip";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
 const REVIEW_PLATFORMS = ["Google", "Facebook", "Instagram", "TripAdvisor"];
@@ -40,17 +40,7 @@ export function ContactHero() {
                   />
                 ))}
               </div>
-              <div>
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-3.5 w-3.5 fill-[#E8943A] text-[#E8943A]" />
-                  ))}
-                </div>
-                <p className="mt-0.5 text-sm">
-                  <span className="font-bold text-heading">4.4</span>{" "}
-                  <span className="text-ink-secondary">{t("pages.contact.reviewsCount")}</span>
-                </p>
-              </div>
+              <ReviewMeta />
             </div>
             <p className="mt-4 font-semibold text-heading">{t("pages.contact.lovedTitle")}</p>
             <p className="text-sm leading-relaxed text-body">{t("pages.contact.lovedDesc")}</p>

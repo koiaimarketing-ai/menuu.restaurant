@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, MapPin, Soup, HeartHandshake, Sparkles, Check, Star } from "lucide-react";
+import { ArrowRight, MapPin, Soup, HeartHandshake, Sparkles, Check } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { GUEST_AVATARS } from "@/lib/avatars";
+import { ReviewMeta } from "@/components/ReviewStrip";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
 const VALUES = [
@@ -73,16 +74,11 @@ export function StoryContent() {
                 />
               ))}
             </div>
-            <div className="flex shrink-0 items-center gap-2">
-              <span className="inline-flex items-center gap-1 text-lg font-bold text-heading">
-                <Star className="h-4 w-4 fill-primary text-primary" /> 4.6
-              </span>
-              <span className="text-sm text-ink-secondary">{t("pages.story.reviewCount")}</span>
-            </div>
+            <ReviewMeta className="shrink-0" />
             <p className="text-center text-sm leading-relaxed text-body sm:flex-1 sm:text-left">
               {t("pages.story.reviewQuote")}
             </p>
-            <Link href="/" className="shrink-0 text-sm font-semibold text-primary hover:underline">
+            <Link href="/#from-our-guests" className="shrink-0 text-sm font-semibold text-primary hover:underline">
               {t("pages.story.readReviews")}
             </Link>
           </div>
