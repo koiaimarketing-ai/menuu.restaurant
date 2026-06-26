@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Leaf, Fish } from "lucide-react";
+import { Flame, Leaf, Fish, Drumstick } from "lucide-react";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
 /**
@@ -55,22 +55,29 @@ export function FoodTags({
   veg,
   fish,
   beef,
+  chicken,
   className = "",
 }: {
   spicy?: boolean;
   veg?: boolean;
   fish?: boolean;
   beef?: boolean;
+  chicken?: boolean;
   className?: string;
 }) {
   const { t } = useLang();
-  if (!spicy && !veg && !fish && !beef) return null;
+  if (!spicy && !veg && !fish && !beef && !chicken) return null;
 
   return (
     <div className={`flex min-h-[18px] items-center gap-1.5 ${className}`}>
       {spicy && (
         <span className="inline-flex items-center justify-center leading-none text-[#ef4438]" aria-label={t("menu.tag.spicy")} title={t("menu.tag.spicy")}>
           <Flame className="h-[15px] w-[15px]" />
+        </span>
+      )}
+      {chicken && (
+        <span className="inline-flex items-center justify-center leading-none text-[#C97A33]" aria-label={t("menu.tag.chicken")} title={t("menu.tag.chicken")}>
+          <Drumstick className="h-[15px] w-[15px]" />
         </span>
       )}
       {beef && (

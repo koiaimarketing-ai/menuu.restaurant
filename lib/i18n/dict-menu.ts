@@ -15,6 +15,7 @@ export const dictMenu: Record<Lang, Record<string, string>> = {
     // ---- FoodTags ----
     "menu.tag.spicy": "Spicy",
     "menu.tag.beef": "Beef",
+    "menu.tag.chicken": "Chicken",
     "menu.tag.fish": "Fish / Seafood",
     "menu.tag.veg": "Vegetarian-friendly",
 
@@ -238,6 +239,7 @@ export const dictMenu: Record<Lang, Record<string, string>> = {
 
     "menu.tag.spicy": "Pedas",
     "menu.tag.beef": "Daging Lembu",
+    "menu.tag.chicken": "Ayam",
     "menu.tag.fish": "Ikan / Makanan Laut",
     "menu.tag.veg": "Mesra vegetarian",
 
@@ -451,6 +453,7 @@ export const dictMenu: Record<Lang, Record<string, string>> = {
 
     "menu.tag.spicy": "辣",
     "menu.tag.beef": "牛肉",
+    "menu.tag.chicken": "鸡肉",
     "menu.tag.fish": "鱼 / 海鲜",
     "menu.tag.veg": "素食友善",
 

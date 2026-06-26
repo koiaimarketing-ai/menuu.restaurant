@@ -94,10 +94,11 @@ export const VEG_IDS = new Set<string>([
   "coke-zero",
   "sprite",
   "addon-kerupuk-emping",
-  "addon-kerupuk-merah",
   "addon-soo-hoon",
   "addon-mihun",
 ]);
+// NOTE: "addon-kerupuk-merah" (Red Prawn Cracker) is intentionally NOT here —
+// it contains prawn, so it must never show the vegetarian leaf.
 
 export const isVegetarian = (id: string): boolean => VEG_IDS.has(id);
 
@@ -144,3 +145,7 @@ export const showFishIcon = (item: MenuItem): boolean =>
   FISH_IDS.has(item.id) && !isBeverageItem(item);
 export const showBeefIcon = (item: MenuItem): boolean =>
   BEEF_IDS.has(item.id) && !isBeverageItem(item);
+
+// Chicken dishes — any item whose (original Malay) name contains "ayam".
+export const showChickenIcon = (item: MenuItem): boolean =>
+  /ayam|chicken/i.test(item.name) && !isBeverageItem(item);

@@ -197,7 +197,7 @@ export function ReceiptModal({
           <div className="receipt-items">
             {sortLines(plan.items).map((l) => {
               const code = menu.find((m) => m.id === l.itemId)?.code;
-              const details = describeLine(l.choices, l.note, tr);
+              const details = describeLine(l.choices, l.note);
               return (
                 <div className="receipt-item" key={l.lineId}>
                   <div className="receipt-item-left">

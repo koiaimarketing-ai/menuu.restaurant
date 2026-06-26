@@ -724,6 +724,35 @@ main > section:last-child:not(.home-locations-section) {
 .mobile-mealplan-pill:focus-visible::after {
   left: 130%;
 }
+/* Continuous, subtle left→right light sweep to draw the eye — stays inside the
+   rounded pill (overflow:hidden), under the text (z-index 1 vs 2), and rests
+   off-screen between passes so it glides rather than blinks. */
+.mobile-mealplan-pill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.32),
+    transparent
+  );
+  transform: skewX(-20deg);
+  z-index: 1;
+  pointer-events: none;
+  animation: mealCtaShine 2.8s ease-in-out infinite;
+}
+@keyframes mealCtaShine {
+  0% { left: -75%; }
+  50% { left: 130%; }
+  100% { left: 130%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-mealplan-pill::before { animation: none; opacity: 0; }
+}
 @media (max-width: 380px) {
   .mobile-mealplan-pill { font-size: 15px; gap: 10px; }
 }

@@ -14,6 +14,16 @@ import { getAddOns, getFoodOptions, getBeverageGroups } from "./menu-options";
 const splitVals = (s?: string) =>
   (s ?? "").split(", ").map((v) => v.trim()).filter(Boolean);
 
+// Display-only translation for noodle/variation choice values (e.g. Chinese
+// modal shows 粉丝/米粉) while the STORED value stays the original backend string
+// so pricing + cart identity never change.
+const CHOICE_VALUE_KEY: Record<string, string> = {
+  "Soo Hoon": "misc.cval.sooHoon",
+  Mihun: "misc.cval.mihun",
+  Mie: "misc.cval.mie",
+  Bihun: "misc.cval.bihun",
+};
+
 // Parse stored add-on string "rice x2, egg x1" → { rice: 2, egg: 1 }.
 const parseAddOnQty = (s?: string): Record<string, number> => {
   const out: Record<string, number> = {};
@@ -101,6 +111,13 @@ export function CustomisationModal({
     const k = `misc.choice.${label}`;
     const v = t(k);
     return v === k ? label : v;
+  };
+  // Display label for a choice VALUE (stored value unchanged).
+  const cval = (value: string) => {
+    const k = CHOICE_VALUE_KEY[value];
+    if (!k) return value;
+    const v = t(k);
+    return v === k ? value : v;
   };
 
   const requiredChoices = item.choices?.filter((c) => c.required) ?? [];
@@ -237,7 +254,7 @@ export function CustomisationModal({
                       }`}
                       style={selected ? { borderWidth: 1.5 } : undefined}
                     >
-                      {opt}
+                      {cval(opt)}
                     </button>
                   );
                 })}

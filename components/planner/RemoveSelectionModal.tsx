@@ -71,7 +71,7 @@ export function RemoveSelectionModal({ item, onClose }: { item: MenuItem; onClos
 
         <div className="space-y-2.5 overflow-y-auto p-4 sm:p-5">
           {lines.map((l) => {
-            const details = describeLine(l.choices, l.note, t);
+            const details = describeLine(l.choices, l.note);
             return (
               <div
                 key={l.lineId}

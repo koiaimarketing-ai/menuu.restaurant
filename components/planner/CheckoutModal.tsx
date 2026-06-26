@@ -131,7 +131,7 @@ function OrderItems() {
     <>
       {sortLines(plan.items).map((l) => {
         const code = menu.find((m) => m.id === l.itemId)?.code;
-        const details = describeLine(l.choices, l.note, tr);
+        const details = describeLine(l.choices, l.note);
         return (
           <div key={l.lineId} className="order-summary-row">
             <div className="min-w-0">

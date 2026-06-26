@@ -50,7 +50,7 @@ export function MealPlanSidebar() {
             {sortLines(plan.items).map((l) => {
               const rowTotal = (l.unitPrice ?? 0) * l.qty;
               const code = menu.find((m) => m.id === l.itemId)?.code;
-              const details = describeLine(l.choices, l.note, t);
+              const details = describeLine(l.choices, l.note);
               return (
                 <li key={l.lineId} className="flex items-start gap-3 border-b border-line-light pb-3">
                   <QuantityControl

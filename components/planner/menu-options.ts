@@ -83,18 +83,25 @@ const OPTION_LABEL: Record<string, string> = {
 
 export const optionLabelKey = (value: string): string => OPTION_LABEL[value] ?? value;
 
-// Add-on key → i18n label key (for rendering stored "rice x2" in the cart).
-export const ADDON_LABEL_KEY: Record<string, string> = {
-  sambal: "misc.opt.addSambal",
-  rice: "misc.opt.addRice",
-  egg: "misc.opt.addEgg",
+// Add-on key → original (Malay) name shown in the cart/receipt (e.g. "Telur").
+export const ADDON_ORIGINAL: Record<string, string> = {
+  sambal: "Sambal",
+  rice: "Nasi",
+  egg: "Telur",
 };
 
-/** Human-readable detail rows for a cart line's choices + special request. */
+/**
+ * Detail rows for a cart line's choices + special request.
+ *
+ * Deliberately language-INDEPENDENT: category labels are always English
+ * (Noodle / Add-on / Option / Remark) and values keep their original menu form
+ * (e.g. "Mihun", "Telur") — even in Chinese mode — while the surrounding cart UI
+ * (subtotal, totals, buttons) stays translated. This keeps the kitchen-facing
+ * detail unambiguous regardless of the customer's chosen UI language.
+ */
 export function describeLine(
   choices: Record<string, string>,
-  note: string | undefined,
-  t: (k: string) => string
+  note: string | undefined
 ): { label: string; value: string }[] {
   const out: { label: string; value: string }[] = [];
   for (const [k, v] of Object.entries(choices)) {
@@ -104,18 +111,16 @@ export function describeLine(
         const m = p.match(/^(.+?)\s*x\s*(\d+)$/i);
         const key = m ? m[1].trim() : p;
         const n = m ? m[2] : "1";
-        const lk = ADDON_LABEL_KEY[key];
-        return `${lk ? t(lk) : key} x${n}`;
+        return `${ADDON_ORIGINAL[key] ?? key} x${n}`;
       });
-      out.push({ label: t("misc.cust.addOns"), value: parts.join(", ") });
+      out.push({ label: "Add-on", value: parts.join(", ") });
     } else if (k === "Option") {
-      const parts = v.split(", ").map((o) => t(optionLabelKey(o.trim())));
-      out.push({ label: t("misc.cust.allergyOptions"), value: parts.join(", ") });
+      out.push({ label: "Option", value: v });
     } else {
       out.push({ label: k, value: v });
     }
   }
-  if (note) out.push({ label: t("misc.cust.specialRequest"), value: note });
+  if (note) out.push({ label: "Remark", value: note });
   return out;
 }
 

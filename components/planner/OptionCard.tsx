@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useMealPlan } from "@/lib/meal-plan-store";
 import { plannerPrice, fmtRM } from "@/lib/planner";
-import { showVegLeaf, showFishIcon, showBeefIcon } from "./sections";
+import { showVegLeaf, showFishIcon, showBeefIcon, showChickenIcon } from "./sections";
 import { FoodTags } from "./FoodTags";
 import { QuantityControl, useCardBubble } from "./QuantityControl";
 import { CustomisationModal, type DraftAdd } from "./CustomisationModal";
@@ -50,6 +50,7 @@ export function OptionCard({ item }: { item: MenuItem }) {
   const veg = showVegLeaf(item);
   const fish = showFishIcon(item);
   const beef = showBeefIcon(item);
+  const chicken = showChickenIcon(item);
 
   return (
     <div
@@ -93,10 +94,10 @@ export function OptionCard({ item }: { item: MenuItem }) {
       </p>
 
       {/* second row: quantity (pcs) + ingredient icons, inline & centred */}
-      {(item.portion || item.spicy || veg || fish || beef) && (
+      {(item.portion || item.spicy || veg || fish || beef || chicken) && (
         <div className="mt-1 flex min-h-[16px] items-center gap-1.5 text-[11px] leading-none text-ink-muted">
           {item.portion && <span>{item.portion}</span>}
-          <FoodTags spicy={item.spicy} veg={veg} fish={fish} beef={beef} />
+          <FoodTags spicy={item.spicy} veg={veg} fish={fish} beef={beef} chicken={chicken} />
         </div>
       )}
 

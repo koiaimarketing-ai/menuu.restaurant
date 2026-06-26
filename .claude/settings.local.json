@@ -72,7 +72,9 @@
       "Bash(tee /tmp/ghlogin.txt)",
       "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" auth status)",
       "Bash(echo \"EXIT:$?\")",
-      "Bash(git commit -m '@ *)"
+      "Bash(git commit -m '@ *)",
+      "Bash(git commit *)",
+      "Bash(echo \"TSC_EXIT:$?\")"
     ]
   }
 }

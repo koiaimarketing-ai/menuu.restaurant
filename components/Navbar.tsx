@@ -189,7 +189,7 @@ export function Navbar() {
             {...backdrop}
           >
             <motion.div
-              className="flex h-full w-full flex-col overflow-y-auto rounded-3xl border border-[#F0E6E0] bg-white shadow-[0_20px_60px_rgba(58,30,26,0.16)]"
+              className="flex max-h-[calc(100dvh-40px)] w-full flex-col overflow-y-auto rounded-3xl border border-[#F0E6E0] bg-white shadow-[0_20px_60px_rgba(58,30,26,0.16)]"
               style={{ overscrollBehavior: "contain", WebkitOverflowScrolling: "touch" }}
               initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -272,7 +272,7 @@ export function Navbar() {
               {/* Dynamic branch-status card */}
               <BranchStatusCard onNavigate={() => setOpen(false)} />
 
-              <div className="flex-1" />
+              <div className="h-4 shrink-0" />
             </motion.div>
           </motion.div>
         )}

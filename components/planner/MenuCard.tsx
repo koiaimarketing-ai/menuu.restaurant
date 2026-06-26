@@ -9,7 +9,7 @@ import { RemoveSelectionModal } from "./RemoveSelectionModal";
 import { useMenuCardCart } from "./useMenuCardCart";
 import { useMealPlan } from "@/lib/meal-plan-store";
 import { plannerPrice, fmtRM } from "@/lib/planner";
-import { showVegLeaf, showFishIcon, showBeefIcon } from "./sections";
+import { showVegLeaf, showFishIcon, showBeefIcon, showChickenIcon } from "./sections";
 import { FoodTags } from "./FoodTags";
 import { QuantityControl, useCardBubble } from "./QuantityControl";
 import type { MenuItem } from "@/data/menu";
@@ -48,6 +48,7 @@ export function MenuCard({ item, noImage }: { item: MenuItem; noImage?: boolean 
   const veg = showVegLeaf(item);
   const fish = showFishIcon(item);
   const beef = showBeefIcon(item);
+  const chicken = showChickenIcon(item);
 
   return (
     <div
@@ -127,10 +128,10 @@ export function MenuCard({ item, noImage }: { item: MenuItem; noImage?: boolean 
         </p>
 
         {/* second row: quantity (pcs) + ingredient icons, inline & centred */}
-        {(item.portion || item.spicy || veg || fish || beef) && (
+        {(item.portion || item.spicy || veg || fish || beef || chicken) && (
           <div className="mt-1 flex min-h-[18px] items-center gap-2 text-[11px] leading-none text-ink-muted">
             {item.portion && <span>{item.portion}</span>}
-            <FoodTags spicy={item.spicy} veg={veg} fish={fish} beef={beef} />
+            <FoodTags spicy={item.spicy} veg={veg} fish={fish} beef={beef} chicken={chicken} />
           </div>
         )}
 
