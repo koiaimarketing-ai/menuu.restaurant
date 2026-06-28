@@ -24,7 +24,8 @@ export function HeroContent() {
           {t("hero.subtitle")}
         </p>
         <div className="mt-8 flex flex-col items-start gap-3.5">
-          <Link href="/menu" className="btn btn-primary">
+          {/* Mobile uses the sticky bottom CTA instead — show this only on desktop. */}
+          <Link href="/menu" className="btn btn-primary hidden lg:inline-flex">
             {t("nav.exploreMenuNow")} <ArrowRight className="h-4 w-4" />
           </Link>
           <Link href="/our-story" className="read-story-link">

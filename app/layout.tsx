@@ -11,6 +11,8 @@ import { AmbientAudioProvider } from "@/lib/ambient-audio";
 import { EntranceOverlay } from "@/components/EntranceOverlay";
 import { AmbientSoundToggle } from "@/components/AmbientSoundToggle";
 import { BackToTop } from "@/components/BackToTop";
+import { MobileScrollbar } from "@/components/MobileScrollbar";
+import { MobileMenuCta } from "@/components/MobileMenuCta";
 
 // Pre-paint gate: show the entrance at most once per "day cycle" that resets at
 // 09:00 local (Malaysia) time. We only set data-entrance="show" when the stored
@@ -65,6 +67,8 @@ export default function RootLayout({
             <CheckoutHost />
             <AmbientSoundToggle />
             <BackToTop />
+            <MobileScrollbar />
+            <MobileMenuCta />
             <EntranceOverlay />
           </AmbientAudioProvider>
         </MealPlanProvider>

@@ -179,6 +179,13 @@ body {
   cursor: pointer;
   min-height: 48px;
 }
+/* Mobile: softer, more rounded CTA edges (Tailwind !rounded-* overrides still
+   win, e.g. the WhatsApp circle button). */
+@media (max-width: 768px) {
+  .btn {
+    border-radius: 18px;
+  }
+}
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(58, 30, 26, 0.14);
@@ -665,6 +672,29 @@ main > section:last-child:not(.home-locations-section) {
   -webkit-backdrop-filter: blur(16px);
   border-top: 1px solid rgba(255, 255, 255, 0.55);
 }
+/* Frosted floating bottom CTA bar (mobile, non-menu pages). Holds the green
+   meal-plan pill so it shares the exact same look + shine as the menu page. */
+.mobile-menu-cta-wrap {
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  padding: 8px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  box-shadow: 0 12px 34px rgba(58, 30, 26, 0.14);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-menu-cta-wrap.is-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+}
+
 .mobile-mealplan-pill {
   position: relative;
   isolation: isolate;
@@ -1756,6 +1786,61 @@ html[data-entrance="show"] body {
   /* Remove the floating sound control on mobile entirely. */
   .ambient-toggle {
     display: none !important;
+  }
+}
+
+/* ---- Mobile: hide all red primary CTA buttons + the red back-to-top ----
+   The green sticky bottom CTA is the single menu action on mobile, so every red
+   ".btn-primary" menu button in page content (Jom Lihat Menu / Rancang Hidangan
+   Anda / Terokai Menu Kami / contact view-menu) is hidden below the lg breakpoint
+   (matches where the sticky CTA shows). Desktop is unchanged. Grey/secondary,
+   WhatsApp, direction buttons and text links are untouched. */
+@media (max-width: 1023px) {
+  .btn-primary,
+  .back-to-top-btn {
+    display: none !important;
+  }
+}
+
+/* ---- Modern thin auto-hiding scroll indicator (mobile only) ---- */
+@media (max-width: 768px) {
+  html,
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
+  .custom-scrollbar {
+    position: fixed;
+    top: 10px;
+    right: 4px;
+    width: 4px;
+    height: 60px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to bottom,
+      rgba(226, 74, 52, 0.95),
+      rgba(251, 146, 60, 0.85)
+    );
+    box-shadow: 0 0 10px rgba(226, 74, 52, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.25s ease;
+    will-change: transform;
+  }
+  body.is-scrolling .custom-scrollbar {
+    opacity: 1;
+  }
+}
+/* Desktop: the indicator element is never shown. */
+@media (min-width: 769px) {
+  .custom-scrollbar {
+    display: none;
   }
 }
 
