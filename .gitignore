@@ -39,3 +39,6 @@ yarn-error.log*
 /image
 
 .vercel
+
+# Local Claude editor settings
+.claude/settings.local.json
