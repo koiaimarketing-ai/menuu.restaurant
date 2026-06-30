@@ -110,7 +110,16 @@ export function MealPlanWelcomeModal() {
             animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 8 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            drag={reduce ? false : "y"}
+            dragDirectionLock
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={{ top: 0, bottom: 0.7 }}
+            onDragEnd={(_e, info) => {
+              if (info.offset.y > 110) setOpen(false);
+            }}
+            style={{ touchAction: "pan-y" }}
           >
+            <div className="modal-drag-handle sm:hidden" />
             <div className="flex items-start justify-between gap-3">
               <h2 id="meal-welcome-heading" className="text-[1.3rem] font-extrabold leading-tight text-[#3B2A24]">
                 {tr("saved.title")}
@@ -140,14 +149,14 @@ export function MealPlanWelcomeModal() {
                 type="button"
                 onClick={continuePlan}
                 autoFocus
-                className="cta-whatsapp cta-shine inline-flex min-h-[48px] w-full items-center justify-center rounded-xl px-5 text-[15px] font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A]/40 focus-visible:ring-offset-2"
+                className="cta-whatsapp cta-shine inline-flex min-h-[52px] w-full items-center justify-center rounded-full px-6 text-[15px] font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16A34A]/40 focus-visible:ring-offset-2"
               >
                 {tr("saved.continue")}
               </button>
               <button
                 type="button"
                 onClick={startNew}
-                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-xl border border-[#E8DDD5] bg-white px-5 text-[15px] font-semibold text-[#3B2A24] transition-colors hover:border-[#E94A36]/50 hover:bg-[#FFF0EC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E94A36]/30 focus-visible:ring-offset-2"
+                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#E8DDD5] bg-white px-6 text-[15px] font-semibold text-[#3B2A24] transition-colors hover:border-[#E94A36]/50 hover:bg-[#FFF0EC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E94A36]/30 focus-visible:ring-offset-2"
               >
                 {tr("saved.startFresh")}
               </button>

@@ -11,6 +11,7 @@ import { computeTotals, fmtRM } from "@/lib/planner";
 import { DeliveryAddressAutocomplete, type VerifiedAddress } from "./DeliveryAddressAutocomplete";
 import { mapsConfigured } from "@/lib/google-maps-loader";
 import { useBackdropDismiss } from "@/lib/use-backdrop-dismiss";
+import { useDragToClose } from "@/lib/use-drag-to-close";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
@@ -25,6 +26,7 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const backdrop = useBackdropDismiss(onClose);
+  const drag = useDragToClose(onClose);
 
   // Customer details (shared)
   const [name, setName] = useState("");
@@ -56,10 +58,13 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
       aria-modal="true"
       aria-label={tr("menu.sidebar.checkout")}
       {...backdrop}
+      style={drag.backdropProps.style}
     >
       <div
         className="relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[820px] flex-col overflow-hidden rounded-t-[24px] border border-[#EADDD4] bg-white p-5 shadow-[0_24px_70px_rgba(58,43,36,0.18)] sm:max-h-[calc(100dvh-48px)] sm:rounded-[24px] sm:p-6"
+        {...drag.shellProps}
       >
+        <div className="modal-drag-handle sm:hidden" />
         <div className="flex shrink-0 items-center justify-between">
           <h3 className="flex items-center gap-2 text-lg font-bold text-[#3B2A24]">
             <MessageCircle className="h-5 w-5 text-[#E24A34]" /> {tr("menu.sidebar.checkout")} · {branch.shortName}
@@ -73,7 +78,7 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
           </button>
         </div>
 
-        <div className="-mr-1 mt-1 flex-1 min-h-0 overflow-y-auto pr-1">
+        <div ref={drag.scrollRef} className="-mr-1 mt-1 flex-1 min-h-0 overflow-y-auto overscroll-contain pr-1">
         {plan.items.length === 0 ? (
           <p className="mt-6 text-sm text-ink-secondary">{tr("checkout.empty")}</p>
         ) : planType === "going" ? (
@@ -222,7 +227,7 @@ function WhatsAppCTA({ disabled, onClick, label }: { disabled?: boolean; onClick
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className="btn btn-whatsapp cta-shine h-[52px] w-full justify-center rounded-2xl font-extrabold disabled:!bg-[#EADDD4] disabled:!text-[#9B7B70]"
+      className="btn btn-whatsapp cta-shine h-[52px] w-full justify-center !rounded-full font-extrabold disabled:!bg-[#EADDD4] disabled:!text-[#9B7B70]"
     >
       <MessageCircle className="h-4 w-4" aria-hidden="true" /> {label}
     </button>
@@ -295,14 +300,14 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
         </Section>
 
         <Section title={tr("checkout.reservationDetails")}>
-          <div className="space-y-2.5">
+          <div className="grid grid-cols-2 gap-3 max-[360px]:grid-cols-1">
             <label className="block text-sm">
               <span className="mb-1 block text-xs font-medium text-[#9A766B]">{tr("checkout.date")}</span>
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="block h-11 w-full min-w-0 max-w-full box-border appearance-none rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none [&::-webkit-date-and-time-value]:text-left focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
+                className="flex h-11 w-full min-w-0 max-w-full box-border appearance-none items-center rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm leading-none text-[#3B2A24] outline-none [&::-webkit-date-and-time-value]:text-left [&::-webkit-date-and-time-value]:m-0 focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
               />
             </label>
             <label className="block text-sm">
@@ -311,7 +316,7 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="block h-11 w-full min-w-0 max-w-full box-border appearance-none rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none [&::-webkit-date-and-time-value]:text-left focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
+                className="flex h-11 w-full min-w-0 max-w-full box-border appearance-none items-center rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm leading-none text-[#3B2A24] outline-none [&::-webkit-date-and-time-value]:text-left [&::-webkit-date-and-time-value]:m-0 focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
               />
             </label>
           </div>

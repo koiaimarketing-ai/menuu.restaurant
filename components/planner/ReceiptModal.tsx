@@ -11,6 +11,7 @@ import { describeLine, sortLines } from "./menu-options";
 import { getLocation, waHref } from "@/data/locations";
 import { computeTotals, fmtRM } from "@/lib/planner";
 import { useBackdropDismiss } from "@/lib/use-backdrop-dismiss";
+import { useDragToClose } from "@/lib/use-drag-to-close";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 import { translations } from "@/lib/i18n/translations";
 
@@ -35,6 +36,7 @@ export function ReceiptModal({
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const backdrop = useBackdropDismiss(onClose);
+  const drag = useDragToClose(onClose);
 
   // Capture target: ONLY the receipt card (not the modal chrome / buttons).
   const receiptRef = useRef<HTMLDivElement>(null);
@@ -62,7 +64,7 @@ export function ReceiptModal({
       const dataUrl = await toPng(node, {
         pixelRatio: 3,
         cacheBust: true,
-        backgroundColor: "#fffaf5", // solid receipt surface, never transparent
+        backgroundColor: "#ffffff", // solid white receipt surface, never transparent
         skipFonts: false,
       });
 
@@ -166,21 +168,24 @@ export function ReceiptModal({
       aria-modal="true"
       aria-label={tr("receipt.title")}
       {...backdrop}
+      style={drag.backdropProps.style}
     >
       <div
-        className="relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[400px] flex-col overflow-hidden rounded-t-3xl border border-[#EADDD4] bg-[#FFF9F3] p-4 shadow-[0_24px_70px_rgba(58,43,36,0.18)] sm:max-h-[calc(100dvh-48px)] sm:rounded-3xl"
+        className="relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[400px] flex-col overflow-hidden rounded-t-3xl border border-line-light bg-white p-4 shadow-[0_24px_70px_rgba(8,17,39,0.16)] sm:max-h-[calc(100dvh-48px)] sm:rounded-3xl"
+        {...drag.shellProps}
       >
+        <div className="modal-drag-handle sm:hidden" />
         <button
           onClick={onClose}
           aria-label={tr("nav.closeMenu")}
-          className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-[#F4E8E0] text-[#7A5D51] transition-colors hover:bg-[#EADDD4]"
+          className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-secondary text-ink-secondary transition-colors hover:bg-line-light"
         >
           <X className="h-5 w-5" />
         </button>
 
         {/* Scrollable region — the panel is capped to the viewport; only this
             scrolls so the title (top) and close button stay reachable. */}
-        <div className="-mr-1 flex-1 min-h-0 overflow-y-auto pr-1">
+        <div ref={drag.scrollRef} className="-mr-1 flex-1 min-h-0 overflow-y-auto overscroll-contain pr-1">
         {plan.items.length === 0 ? (
           <div className="mt-4 rounded-2xl border border-dashed border-line-medium bg-secondary/40 px-5 py-12 text-center">
             <p className="text-lg font-bold text-ink-primary">{tr("receipt.empty")}</p>
@@ -240,7 +245,7 @@ export function ReceiptModal({
         <button
           type="button"
           onClick={sendReceiptWhatsApp}
-          className="btn btn-whatsapp cta-shine mt-4 h-[52px] w-full justify-center rounded-2xl font-extrabold"
+          className="btn btn-whatsapp cta-shine mt-4 h-[52px] w-full justify-center !rounded-full font-extrabold"
         >
           <MessageCircle className="h-4 w-4" aria-hidden="true" /> {tr("receipt.whatsappUsNow")}
         </button>
