@@ -107,7 +107,7 @@ export function MealPlanSidebar() {
         <button
           onClick={plan.openCheckout}
           disabled={empty}
-          className={`${empty ? "" : "cta-whatsapp checkout-button cta-pulse"} flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3.5 text-[15px] font-semibold text-white transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:bg-line-medium disabled:text-ink-muted disabled:shadow-none`}
+          className={`${empty ? "" : "cta-whatsapp checkout-button cta-pulse"} flex w-full items-center justify-center gap-2 !rounded-full px-6 py-3.5 text-[15px] font-semibold text-white transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:bg-line-medium disabled:text-ink-muted disabled:shadow-none`}
         >
           <span className="checkout-button-content">
             <ShoppingBag className="h-4 w-4" /> {t("menu.sidebar.checkout")}
@@ -116,7 +116,7 @@ export function MealPlanSidebar() {
         <button
           onClick={plan.openReceipt}
           disabled={empty}
-          className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-line-medium bg-white px-3 py-2.5 text-sm font-semibold text-ink-primary transition-colors hover:border-primary hover:bg-primary-soft disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-1.5 rounded-full border border-line-medium bg-white px-5 py-3 text-sm font-semibold text-ink-primary transition-colors hover:border-primary hover:bg-primary-soft disabled:opacity-50"
         >
           <Receipt className="h-4 w-4" /> {t("menu.sidebar.receipt")}
         </button>

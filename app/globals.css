@@ -996,6 +996,18 @@ main > section:last-child:not(.home-locations-section) {
 /* ---- Receipt modal (clean premium card, read-only) ---- */
 /* Export-safe wrapper: warm padding captured into the saved PNG so content
    never touches the image edge. On screen it blends with the modal surface. */
+/* Bottom-sheet pull-to-dismiss: keep overscroll inside the sheet so the page
+   behind never rubber-bands, and let the shell own vertical gestures. */
+.popup-sheet {
+  will-change: transform;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+.popup-scroll-area {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Pull-to-dismiss affordance shown at the top of bottom-sheet modals (mobile). */
 .modal-drag-handle {
   width: 40px;

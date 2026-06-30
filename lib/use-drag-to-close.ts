@@ -1,94 +1,108 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useEffect, useReducer, useRef } from "react";
 
 /**
  * Native-feeling "pull down to dismiss" for bottom-sheet style modals.
  *
- * Only engages when the inner scroll container is already at the top
- * (scrollTop <= 0) and the finger drags DOWNWARD — so normal scrolling inside
- * the modal keeps working and only a top-overscroll pull dismisses. Past the
- * threshold the modal closes; otherwise it springs back.
+ * Uses real (non-passive) touch listeners so `preventDefault` can suppress the
+ * browser's overscroll/rubber-band while the sheet follows the finger — which
+ * is what makes the motion smooth on iOS Safari.
  *
- * Wire it up:
+ * Engages ONLY when the inner scroll container is at the top (scrollTop <= 0)
+ * and the finger drags DOWNWARD, so normal scrolling keeps working and only a
+ * top-overscroll pull dismisses. Past the threshold it closes; otherwise it
+ * springs back with a smooth eased transition.
+ *
+ * Wire-up:
  *   const drag = useDragToClose(onClose);
- *   <div {...drag.backdropProps}>            // backdrop
- *     <div {...drag.shellProps}>             // modal shell (moves with finger)
- *       <div className="modal-drag-handle" /> // optional affordance
- *       <div ref={drag.scrollRef} className="overflow-y-auto">…</div>
+ *   <div style={drag.backdropStyle} ...>            // backdrop
+ *     <div ref={drag.shellRef} style={drag.shellStyle} className="popup-sheet">
+ *       <div className="modal-drag-handle" />
+ *       <div ref={drag.scrollRef} className="popup-scroll-area overflow-y-auto">…</div>
  *     </div>
  *   </div>
  */
-export function useDragToClose(onClose: () => void, threshold = 110) {
+export function useDragToClose(onClose: () => void, open = true, threshold = 100) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const startY = useRef<number | null>(null);
+  const shellRef = useRef<HTMLDivElement | null>(null);
+  const dragY = useRef(0);
+  const startY = useRef(0);
   const active = useRef(false);
-  const [dy, setDy] = useState(0);
-  const [settling, setSettling] = useState(false);
+  const settling = useRef(false);
+  const [, force] = useReducer((x: number) => x + 1, 0);
 
-  const onTouchStart = useCallback((e: React.TouchEvent) => {
-    const sc = scrollRef.current;
-    if (sc && sc.scrollTop > 0) {
-      startY.current = null;
-      return;
-    }
-    startY.current = e.touches[0].clientY;
-    active.current = false;
-    setSettling(false);
-  }, []);
+  useEffect(() => {
+    const shell = shellRef.current;
+    if (!shell || !open) return;
+    const setY = (v: number) => {
+      if (dragY.current === v) return;
+      dragY.current = v;
+      force();
+    };
 
-  const onTouchMove = useCallback((e: React.TouchEvent) => {
-    if (startY.current == null) return;
-    const delta = e.touches[0].clientY - startY.current;
-    const sc = scrollRef.current;
-    // Upward, or no longer at top → let the content scroll normally.
-    if (delta <= 0 || (sc && sc.scrollTop > 0)) {
-      if (active.current) setDy(0);
+    const onStart = (e: TouchEvent) => {
+      const sc = scrollRef.current;
+      if (sc && sc.scrollTop > 0) {
+        active.current = false;
+        return;
+      }
+      startY.current = e.touches[0].clientY;
+      active.current = true;
+      settling.current = false;
+    };
+
+    const onMove = (e: TouchEvent) => {
+      if (!active.current) return;
+      const sc = scrollRef.current;
+      const diff = e.touches[0].clientY - startY.current;
+      // Upward, or the content has scrolled → hand back to normal scrolling.
+      if (diff <= 0 || (sc && sc.scrollTop > 0)) {
+        if (dragY.current !== 0) setY(0);
+        active.current = false;
+        return;
+      }
+      // Following the finger downward from the top — own the gesture.
+      e.preventDefault();
+      setY(Math.min(diff * 0.8, 200));
+    };
+
+    const onEnd = () => {
+      if (!active.current && dragY.current === 0) return;
       active.current = false;
-      startY.current = null;
-      return;
-    }
-    active.current = true;
-    // Mild resistance so the pull feels rubbery.
-    setDy(delta > 0 ? delta * 0.85 : 0);
-  }, []);
+      settling.current = true;
+      const dragged = dragY.current;
+      setY(0);
+      force();
+      if (dragged > threshold) onClose();
+    };
 
-  const endDrag = useCallback(() => {
-    if (startY.current == null && !active.current) return;
-    const dragged = dy;
-    startY.current = null;
-    active.current = false;
-    setSettling(true);
-    if (dragged > threshold) {
-      setDy(0);
-      onClose();
-    } else {
-      setDy(0);
-    }
-  }, [dy, threshold, onClose]);
+    shell.addEventListener("touchstart", onStart, { passive: true });
+    shell.addEventListener("touchmove", onMove, { passive: false });
+    shell.addEventListener("touchend", onEnd);
+    shell.addEventListener("touchcancel", onEnd);
+    return () => {
+      shell.removeEventListener("touchstart", onStart);
+      shell.removeEventListener("touchmove", onMove);
+      shell.removeEventListener("touchend", onEnd);
+      shell.removeEventListener("touchcancel", onEnd);
+    };
+  }, [onClose, open, threshold]);
 
-  const backdropOpacity = dy > 0 ? Math.max(0, 1 - dy / 360) : undefined;
-
+  const y = dragY.current;
+  const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
   return {
     scrollRef,
-    dragging: dy > 0,
-    backdropProps: {
-      style: {
-        opacity: backdropOpacity,
-        transition: settling ? "opacity 0.22s ease" : undefined,
-      } as React.CSSProperties,
-    },
-    shellProps: {
-      onTouchStart,
-      onTouchMove,
-      onTouchEnd: endDrag,
-      onTouchCancel: endDrag,
-      style: {
-        transform: dy > 0 ? `translateY(${dy}px)` : undefined,
-        transition: settling ? "transform 0.22s ease" : "none",
-        touchAction: "pan-y",
-        willChange: "transform",
-      } as React.CSSProperties,
-    },
+    shellRef,
+    shellStyle: {
+      transform: y ? `translateY(${y}px)` : undefined,
+      transition: settling.current ? `transform 0.24s ${ease}` : "none",
+      touchAction: "pan-y",
+      willChange: "transform",
+    } as React.CSSProperties,
+    backdropStyle: {
+      opacity: y ? Math.max(0.45, 1 - y / 260) : undefined,
+      transition: settling.current ? "opacity 0.24s ease" : undefined,
+    } as React.CSSProperties,
   };
 }

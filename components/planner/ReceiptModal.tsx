@@ -36,7 +36,7 @@ export function ReceiptModal({
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const backdrop = useBackdropDismiss(onClose);
-  const drag = useDragToClose(onClose);
+  const drag = useDragToClose(onClose, open);
 
   // Capture target: ONLY the receipt card (not the modal chrome / buttons).
   const receiptRef = useRef<HTMLDivElement>(null);
@@ -168,11 +168,12 @@ export function ReceiptModal({
       aria-modal="true"
       aria-label={tr("receipt.title")}
       {...backdrop}
-      style={drag.backdropProps.style}
+      style={drag.backdropStyle}
     >
       <div
-        className="relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[400px] flex-col overflow-hidden rounded-t-3xl border border-line-light bg-white p-4 shadow-[0_24px_70px_rgba(8,17,39,0.16)] sm:max-h-[calc(100dvh-48px)] sm:rounded-3xl"
-        {...drag.shellProps}
+        ref={drag.shellRef}
+        className="popup-sheet relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[400px] flex-col overflow-hidden rounded-t-3xl border border-line-light bg-white p-4 shadow-[0_24px_70px_rgba(8,17,39,0.16)] sm:max-h-[calc(100dvh-48px)] sm:rounded-3xl"
+        style={drag.shellStyle}
       >
         <div className="modal-drag-handle sm:hidden" />
         <button

@@ -6,6 +6,7 @@ import { useMealPlan } from "@/lib/meal-plan-store";
 import { computeTotals, fmtRM } from "@/lib/planner";
 import { MealPlanSidebar } from "./MealPlanSidebar";
 import { useBackdropDismiss } from "@/lib/use-backdrop-dismiss";
+import { useDragToClose } from "@/lib/use-drag-to-close";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
 export function MobileMealBar() {
@@ -15,6 +16,19 @@ export function MobileMealBar() {
   const finalTotal = Math.max(0, totals.grandTotal - plan.voucherDiscount);
   const [open, setOpen] = useState(false);
   const backdrop = useBackdropDismiss(() => setOpen(false));
+  const drag = useDragToClose(() => setOpen(false), open);
+
+  // The real scroll container lives inside MealPlanSidebar (the item list).
+  // Point the drag hook at it so pull-to-close only fires when that list is
+  // already scrolled to the top.
+  useEffect(() => {
+    if (!open) return;
+    const id = requestAnimationFrame(() => {
+      const sc = drag.shellRef.current?.querySelector<HTMLDivElement>(".overflow-y-auto");
+      drag.scrollRef.current = sc ?? null;
+    });
+    return () => cancelAnimationFrame(id);
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Lock body scroll only while the sheet is open; always restore on close/unmount.
   useEffect(() => {
@@ -57,12 +71,14 @@ export function MobileMealBar() {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-[60] flex flex-col justify-end bg-black/40 lg:hidden" {...backdrop}>
+        <div className="fixed inset-0 z-[60] flex flex-col justify-end bg-black/40 lg:hidden" {...backdrop} style={drag.backdropStyle}>
           <div
-            className="flex max-h-[92dvh] flex-col overflow-hidden rounded-t-3xl bg-cream p-4 pb-[max(16px,env(safe-area-inset-bottom))]"
+            ref={drag.shellRef}
+            style={drag.shellStyle}
+            className="popup-sheet flex max-h-[92dvh] flex-col overflow-hidden rounded-t-3xl bg-cream p-4 pb-[max(16px,env(safe-area-inset-bottom))]"
           >
             <div className="mb-2 flex shrink-0 items-center justify-between">
-              <span className="mx-auto h-1.5 w-10 rounded-full bg-line-medium" />
+              <span className="modal-drag-handle mx-auto" />
               <button onClick={() => setOpen(false)} aria-label={t("menu.mobile.close")} className="grid h-9 w-9 place-items-center rounded-full bg-white">
                 <X className="h-5 w-5 text-ink-secondary" />
               </button>

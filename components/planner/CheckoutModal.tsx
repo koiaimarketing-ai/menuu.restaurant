@@ -26,7 +26,7 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const backdrop = useBackdropDismiss(onClose);
-  const drag = useDragToClose(onClose);
+  const drag = useDragToClose(onClose, open);
 
   // Customer details (shared)
   const [name, setName] = useState("");
@@ -58,11 +58,12 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
       aria-modal="true"
       aria-label={tr("menu.sidebar.checkout")}
       {...backdrop}
-      style={drag.backdropProps.style}
+      style={drag.backdropStyle}
     >
       <div
-        className="relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[820px] flex-col overflow-hidden rounded-t-[24px] border border-[#EADDD4] bg-white p-5 shadow-[0_24px_70px_rgba(58,43,36,0.18)] sm:max-h-[calc(100dvh-48px)] sm:rounded-[24px] sm:p-6"
-        {...drag.shellProps}
+        ref={drag.shellRef}
+        className="popup-sheet relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[820px] flex-col overflow-hidden rounded-t-[24px] border border-[#EADDD4] bg-white p-5 shadow-[0_24px_70px_rgba(58,43,36,0.18)] sm:max-h-[calc(100dvh-48px)] sm:rounded-[24px] sm:p-6"
+        style={drag.shellStyle}
       >
         <div className="modal-drag-handle sm:hidden" />
         <div className="flex shrink-0 items-center justify-between">
