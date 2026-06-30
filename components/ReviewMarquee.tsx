@@ -221,15 +221,15 @@ function ReviewCard({
       onPointerEnter={onEnter}
       onPointerMove={onMove}
       onPointerLeave={onLeave}
-      className="review-card mr-4 flex shrink-0 flex-col rounded-[18px] border p-6 md:mr-5"
+      className="review-card mr-4 flex shrink-0 flex-col rounded-[24px] border p-6 md:mr-5"
       style={{
         width: "var(--card-w)",
         minHeight: "176px",
-        background: "rgba(255, 245, 238, 0.05)",
+        background: "#ffffff",
         borderColor:
-          "color-mix(in srgb, #F3C5BA calc(var(--glow, 0) * 45%), rgba(255,255,255,0.10))",
+          "color-mix(in srgb, #2258da calc(var(--glow, 0) * 40%), #dde4f7)",
         boxShadow:
-          "0 18px 40px rgba(0,0,0,calc(0.18 + var(--glow,0) * 0.18)), 0 0 0 1px rgba(255,255,255,0.02), 0 0 calc(var(--glow,0) * 40px) rgba(243,197,186,calc(var(--glow,0) * 0.22))",
+          "0 14px 34px rgba(8,17,39,calc(0.06 + var(--glow,0) * 0.08)), 0 0 0 1px rgba(8,17,39,0.01), 0 0 calc(var(--glow,0) * 36px) rgba(106,147,241,calc(var(--glow,0) * 0.20))",
         transform:
           "translate3d(0,var(--lift,0px),0) scale(var(--scale,1)) perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))",
         transition:
@@ -247,14 +247,14 @@ function ReviewCard({
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
-              className={`h-3.5 w-3.5 ${i < r.rating ? "fill-coral text-coral" : "text-white/20"}`}
+              className={`h-3.5 w-3.5 ${i < r.rating ? "fill-coral text-coral" : "text-[#dde4f7]"}`}
             />
           ))}
         </div>
-        <blockquote className="line-clamp-5 text-[14.5px] leading-[1.65] text-white/90">
+        <blockquote className="line-clamp-5 text-[14.5px] leading-[1.65] text-[#202f4f]">
           “{text}”
         </blockquote>
-        <figcaption className="mt-auto pt-5 text-sm font-semibold text-white/70">
+        <figcaption className="mt-auto pt-5 text-sm font-semibold text-heading">
           {name}
         </figcaption>
       </div>

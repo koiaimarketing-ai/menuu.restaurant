@@ -8,49 +8,49 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ---- Warung Jakarta brand palette ----
-        // Red #E24A34 (primary), White (surfaces), Dark Coffee Brown #3B241B (text).
-        // 70% white / 20% red / 10% brown overall ratio.
+        // ---- Menuu brand palette — Blue / White ----
+        // Primary #2258DA, White surfaces, Deep Navy #081127 text.
+        // Clean blue-and-white: ~70% white / 20% blue / 10% navy-ink.
         primary: {
-          DEFAULT: "#E24A34", // Warung Jakarta Red
-          hover: "#C73D28",
-          active: "#B5331F",
-          soft: "#FDE8E4", // light red tint (gradient B end)
+          DEFAULT: "#2258DA", // Primary Blue
+          hover: "#1D46B7", // Primary Blue Dark / hover
+          active: "#1D46B7",
+          soft: "#EEF3FF", // soft blue tint
         },
-        heading: "#3B241B", // Dark Coffee Brown
-        body: "#4A352B",
-        cream: "#F8F9FC", // de-warmed clean page base
-        coral: "#F6C9BE", // soft red glow (accent only)
-        secondary: "#F3F4F7", // de-warmed neutral surface (chips/badges)
-        sand: "#DDE1EA",
-        copper: "#B5331F",
-        espresso: "#3B241B",
-        // forest/green were the old meal-planner accent — remapped onto brand red
-        // so meal-plan CTAs and price highlights stay on-palette.
+        heading: "#081127", // Deep Navy — titles & main headings
+        body: "#202F4F", // Ink Blue — paragraph & secondary text
+        cream: "#F8F9FC", // page background
+        coral: "#6A93F1", // accent blue (glow / highlight)
+        secondary: "#EEF3FF", // soft blue tint surface (chips/badges)
+        sand: "#DDE4F7", // light border blue
+        copper: "#1D46B7",
+        espresso: "#081127",
+        // forest/green tokens are the meal-planner accent — mapped onto the
+        // primary blue so CTAs and price highlights stay on-palette.
         forest: {
-          DEFAULT: "#B5331F",
-          light: "#C73D28",
-          hover: "#9E2C1A",
+          DEFAULT: "#1D46B7",
+          light: "#2258DA",
+          hover: "#15357F",
         },
         green: {
-          DEFAULT: "#E24A34",
-          hover: "#C73D28",
-          active: "#B5331F",
-          text: "#B5331F", // deep red for totals/prices (AA on white)
-          dark: "#B5331F",
-          soft: "#FDE8E4",
-          bd: "#F3C5BA",
+          DEFAULT: "#2258DA",
+          hover: "#1D46B7",
+          active: "#1D46B7",
+          text: "#1D46B7", // deep blue for totals/prices (AA on white)
+          dark: "#1D46B7",
+          soft: "#EEF3FF",
+          bd: "#DDE4F7",
         },
         ink: {
-          primary: "#3B241B", // Dark Coffee Brown
-          secondary: "#6B5249",
-          supporting: "#7C6358",
-          muted: "#8A7164",
+          primary: "#081127", // Deep Navy
+          secondary: "#202F4F", // Ink Blue
+          supporting: "#6B7589", // Muted Slate
+          muted: "#6B7589", // Muted Slate
         },
         line: {
-          light: "#E9EBF1",
-          medium: "#DDE1EA",
-          warm: "rgba(28,36,60,0.12)",
+          light: "#DDE4F7", // light border blue
+          medium: "#DDE4F7",
+          warm: "rgba(8,17,39,0.12)",
         },
       },
       fontFamily: {
@@ -58,8 +58,8 @@ const config: Config = {
         sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 8px 30px rgba(59,36,27,0.08)",
-        card: "0 14px 40px rgba(59,36,27,0.10)",
+        soft: "0 8px 30px rgba(8,17,39,0.08)",
+        card: "0 14px 40px rgba(8,17,39,0.10)",
       },
       maxWidth: {
         site: "1320px",

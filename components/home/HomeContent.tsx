@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Star, Store, UtensilsCrossed, CalendarCheck } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { PicksCarousel } from "@/components/PicksCarousel";
@@ -72,21 +71,14 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
       </section>
 
       {/* ===================== PLAN YOUR MEAL ===================== */}
-      <section className="section">
+      <section className="section bg-white">
         <div className="container-site">
           <Reveal>
-            <div
-              className="relative overflow-hidden rounded-[36px] border border-line-warm bg-secondary px-6 py-9 sm:px-10 lg:px-12"
-              style={{
-                backgroundImage: "url(/images/plan-your-meal.png)",
-                backgroundSize: "cover",
-                backgroundPosition: "right center",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
+            <div className="relative overflow-hidden rounded-[32px] border border-[#dde4f7] bg-gradient-to-br from-white via-white to-[#eef3ff] px-6 py-9 sm:px-10 lg:px-12">
+              {/* faint accent-blue corner glow for a subtle premium texture (no warm photo) */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#FAF4EC]/92 via-[#FAF4EC]/68 to-[#FAF4EC]/38"
+                className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[#6a93f1]/10 blur-3xl"
               />
               <div className="relative z-10 grid gap-9 lg:grid-cols-[minmax(0,1fr)_1.25fr] lg:items-center lg:gap-12">
                 <div>
@@ -102,13 +94,13 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
                   </Link>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-line-warm">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-[#dde4f7]">
                   {planFeatures.map(({ Icon, title, desc }) => (
                     <div
                       key={title}
                       className="flex items-start gap-3.5 sm:flex-col sm:px-6 sm:first:pl-0 sm:last:pr-0"
                     >
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#F04438] text-white shadow-[0_8px_20px_rgba(240,68,56,0.22)]">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#2258da] text-white shadow-[0_8px_20px_rgba(34,88,218,0.22)]">
                         <Icon className="h-5 w-5" />
                       </span>
                       <div className="sm:mt-3.5">
@@ -125,12 +117,12 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
       </section>
 
       {/* ===================== REVIEWS ===================== */}
-      <section id="from-our-guests" className="section scroll-mt-28 bg-[#2A1612] text-white">
+      <section id="from-our-guests" className="section scroll-mt-28 bg-[#eef3ff]">
         <div className="container-site">
           <Reveal>
-            <span className="eyebrow !text-coral">{t("pages.home.reviewsEyebrow")}</span>
+            <span className="eyebrow">{t("pages.home.reviewsEyebrow")}</span>
             <h2
-              className="mt-3 text-[clamp(1.9rem,4vw,3rem)] text-white"
+              className="mt-3 text-[clamp(1.9rem,4vw,3rem)] text-heading"
               style={{ fontFamily: "var(--font-fraunces)", lineHeight: 1.05 }}
             >
               {t("pages.home.reviewsTitle")}
@@ -142,20 +134,20 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
                   <img
                     key={i}
                     src={src}
-                    alt="Warung Jakarta customer"
+                    alt="Menuu customer"
                     loading="lazy"
-                    className="-ml-2.5 h-[34px] w-[34px] rounded-full border-2 border-[#2A1612] object-cover first:ml-0 sm:h-[38px] sm:w-[38px]"
+                    className="-ml-2.5 h-[34px] w-[34px] rounded-full border-2 border-white object-cover first:ml-0 sm:h-[38px] sm:w-[38px]"
                   />
                 ))}
               </div>
-              <span className="text-4xl font-bold">{restaurant.rating}</span>
+              <span className="text-4xl font-bold text-heading">{restaurant.rating}</span>
               <div>
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-coral text-coral" />
                   ))}
                 </div>
-                <p className="text-sm text-white/60 mt-1">
+                <p className="text-sm text-[#6b7589] mt-1">
                   {t("pages.home.reviewsBasedOn1")} {t("misc.review.combined")}
                 </p>
               </div>
@@ -168,18 +160,7 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
       </section>
 
       {/* ===================== LOCATIONS ===================== */}
-      <section className="section home-locations-section relative overflow-hidden">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-          <Image
-            src="/images/location.png"
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover object-left"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-cream/30 via-cream/55 to-cream/85" />
-        </div>
-
+      <section className="section home-locations-section relative overflow-hidden bg-white">
         <div className="container-site relative z-10">
           <div className="grid items-center gap-10 lg:grid-cols-[35%_minmax(0,1fr)] lg:gap-12">
             <Reveal>

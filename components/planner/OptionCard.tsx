@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Plus } from "lucide-react";
 import { useMealPlan } from "@/lib/meal-plan-store";
 import { plannerPrice, fmtRM } from "@/lib/planner";
@@ -86,6 +87,18 @@ export function OptionCard({ item }: { item: MenuItem }) {
         <span onClick={(e) => e.stopPropagation()}>
           <RemoveSelectionModal item={item} onClose={() => setRemoveOpen(false)} />
         </span>
+      )}
+      {item.image && (
+        <div className="relative mb-2.5 aspect-[16/10] w-full overflow-hidden rounded-xl bg-secondary">
+          <Image
+            src={item.image}
+            alt={itemName}
+            fill
+            sizes="(max-width: 640px) 50vw, 200px"
+            loading="lazy"
+            className="object-cover"
+          />
+        </div>
       )}
       <p className="text-[13.5px] font-semibold leading-snug text-ink-primary">
         <span className="line-clamp-2">

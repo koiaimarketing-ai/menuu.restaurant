@@ -3,22 +3,25 @@ import Image from "next/image";
 export function HeroBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      {/* night storefront photo — subtle backdrop */}
       <Image
-        src="/images/jakarta.png"
+        src="/images/hero-night.png"
         alt=""
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[72%_center] md:object-[80%_center]"
+        className="object-cover object-center"
       />
-      {/* readability gradient on the left only, kept light so the monument stays visible */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#FBF5EE]/90 via-[#FBF5EE]/20 to-transparent" />
-      {/* warm coral ambient glow, top-right */}
+      {/* light blue-white overlay so the hero text stays readable (kept strong) */}
+      <div className="absolute inset-0 bg-[#f8f9fc]/70" />
+      {/* extra readability fade on the left where the text sits */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#f8f9fc]/92 via-[#f8f9fc]/45 to-transparent" />
+      {/* accent-blue ambient glow, top-right */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 86% 6%, rgba(243,197,186,0.55) 0%, rgba(243,197,186,0.2) 22%, rgba(243,197,186,0) 48%)",
+            "radial-gradient(circle at 86% 6%, rgba(106,147,241,0.35) 0%, rgba(106,147,241,0.14) 22%, rgba(106,147,241,0) 48%)",
         }}
       />
     </div>

@@ -34,7 +34,7 @@ export function ContactHero() {
                   <img
                     key={i}
                     src={src}
-                    alt="Warung Jakarta customer"
+                    alt="Menuu customer"
                     loading="lazy"
                     className="h-9 w-9 rounded-full border-2 border-white object-cover"
                   />

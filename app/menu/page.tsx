@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { MealPlannerPage } from "@/components/planner/MealPlannerPage";
 
 export const metadata: Metadata = {
-  title: "Indonesian Menu & Prices | Warung Jakarta KL Central Walk",
+  title: "Menu & Prices | Menuu Petaling Jaya",
   description:
-    "Explore Mie Ayam, bakso, nasi dishes, gorengan, roti bakar, traditional jamu and Indonesian favourites at Warung Jakarta. Plan your meal before you arrive.",
+    "Explore chicken noodles, meatball bowls, nasi lemak, chicken rice, kopitiam toast, fried snacks and kopitiam drinks at Menuu in Taman Sea, Petaling Jaya. Plan your meal before you arrive.",
 };
 
 export default function MenuPage() {

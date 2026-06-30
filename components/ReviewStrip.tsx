@@ -39,7 +39,7 @@ export function ReviewStrip({ className = "", compact = false }: { className?: s
   if (compact) {
     return (
       <div
-        className={`inline-flex max-w-[calc(100%-24px)] flex-col items-center gap-2.5 rounded-[18px] border border-line-warm bg-white px-5 py-3.5 shadow-[0_12px_30px_rgba(80,40,25,0.08)] ${className}`}
+        className={`inline-flex max-w-[calc(100%-24px)] flex-col items-center gap-2.5 rounded-[18px] border border-line-warm bg-white px-5 py-3.5 shadow-[0_12px_30px_rgba(8,17,39,0.08)] ${className}`}
       >
         {/* Row 1: avatar group, centred */}
         <div className="flex shrink-0 -space-x-2.5">
@@ -48,7 +48,7 @@ export function ReviewStrip({ className = "", compact = false }: { className?: s
             <img
               key={i}
               src={src}
-              alt="Warung Jakarta customer"
+              alt="Menuu customer"
               loading="lazy"
               className="h-7 w-7 rounded-full border-2 border-cream bg-secondary object-cover sm:h-8 sm:w-8"
             />
@@ -74,7 +74,7 @@ export function ReviewStrip({ className = "", compact = false }: { className?: s
           <img
             key={i}
             src={src}
-            alt="Warung Jakarta customer"
+            alt="Menuu customer"
             loading="lazy"
             className="h-9 w-9 rounded-full border-2 border-cream bg-secondary object-cover"
           />

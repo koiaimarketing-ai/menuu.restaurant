@@ -11,36 +11,41 @@ export type PlannerSection = {
   presentation: CategoryPresentation;
   /** Large featured product photo (featured presentation only). */
   featuredImage?: string;
+  /** When true, the banner image is a square food illustration (no baked-in
+   * title), so render it as a title + contained illustration instead of a
+   * full-width wide banner. */
+  illustrationBanner?: boolean;
 };
 
 /**
- * Food categories. Mie Ayam / Bakso / Gorengan / Roti Bakar use the new
- * featured hero layout; Nasi Meals / À La Carte / Vegetables keep the original
- * standard thumbnail-card design.
+ * Food categories. Chicken Noodle / Meat Ball / Fried Food / Toast use the new
+ * featured hero layout; Rice Meal / À La Carte / Vegetables keep the original
+ * standard thumbnail-card design. (Display labels/blurbs are localised via
+ * `menu.section.<id>.*`; these are fallbacks.)
  */
 export const FOOD_SECTIONS: PlannerSection[] = [
-  { id: "mie-ayam", label: "Mie Ayam", blurb: "Handcrafted yellow wheat noodles topped with savoury chicken and warm broth.", catIds: ["mie-ayam"], presentation: "featured", featuredImage: "/images/menu-bg-mie-ayam.png" },
-  { id: "bakso", label: "Bakso", blurb: "Comforting Indonesian meatball soup with noodles, tofu, crispy wonton and aromatic garnishes.", catIds: ["bakso"], presentation: "featured", featuredImage: "/images/menu-bg-bakso.png" },
-  { id: "nasi-meals", label: "Rice Meal", blurb: "Traditional Indonesian rice plates with rich flavours and authentic sambals.", catIds: ["nasi-meals"], presentation: "featured-thumb", featuredImage: "/images/menu-bg-rice-meal.png" },
-  { id: "ala-carte", label: "À La Carte", blurb: "Signature mains served on their own.", catIds: ["ala-carte"], presentation: "featured-thumb", featuredImage: "/images/menu-bg-ala-carte.png" },
-  { id: "vegetables", label: "Vegetables & Sides", blurb: "Fresh vegetable plates and comforting small sides.", catIds: ["vegetables"], presentation: "featured-thumb", featuredImage: "/images/menu-bg-vegetables.png" },
-  { id: "gorengan", label: "Gorengan", blurb: "Crispy Indonesian favourites, freshly fried and perfect for sharing.", catIds: ["gorengan"], presentation: "featured", featuredImage: "/images/menu-bg-gorengan.png" },
-  { id: "roti-bakar", label: "Roti Bakar", blurb: "Toasted Indonesian bread with warm, comforting fillings and classic sweet flavours.", catIds: ["roti-bakar"], presentation: "featured", featuredImage: "/images/menu-bg-roti-bakar.png" },
+  { id: "mie-ayam", label: "Noodle Horfun", blurb: "Malaysian-style noodle favourites with comforting broth, dry sauce and local flavours.", catIds: ["mie-ayam"], presentation: "featured-thumb", featuredImage: "/images/menu-banner-mie-ayam.png" },
+  { id: "bakso", label: "Fish Ball Bihun Noodle", blurb: "Comforting Malaysian meatball bowls with noodles, soup and local sides.", catIds: ["bakso"], presentation: "featured-thumb", featuredImage: "/images/menu-banner-bakso.png" },
+  { id: "nasi-meals", label: "Rice Meal", blurb: "Malaysian rice meals inspired by Malay, Chinese and Indian everyday favourites.", catIds: ["nasi-meals"], presentation: "featured-thumb", featuredImage: "/images/menu-banner-rice-meal.png" },
+  { id: "ala-carte", label: "À La Carte", blurb: "Single dishes and local favourites to enjoy on their own or with rice.", catIds: ["ala-carte"], presentation: "featured-thumb", featuredImage: "/images/menu-banner-ala-carte.png" },
+  { id: "vegetables", label: "Vegetable Dishes", blurb: "Vegetable dishes and small sides to complete your meal.", catIds: ["vegetables"], presentation: "featured-thumb", featuredImage: "/images/menu-banner-vegetables.png" },
+  { id: "gorengan", label: "Fried Food", blurb: "Crispy Malaysian snacks and fried favourites for sharing.", catIds: ["gorengan"], presentation: "featured-thumb", featuredImage: "/images/menu-banner-gorengan.png" },
+  { id: "roti-bakar", label: "Toast", blurb: "Malaysian kopitiam toast with kaya, butter and classic fillings.", catIds: ["roti-bakar"], presentation: "featured", featuredImage: "/images/menu-banner-roti-bakar.png" },
 ];
 
 /** Add-ons render after the beverages group as a standard thumbnail section. */
 export const ADDON_SECTION: PlannerSection = {
   id: "add-ons",
-  label: "Add-On / Sides",
+  label: "Add-On",
   blurb: "Add more to make your meal even better.",
   catIds: ["add-ons"],
   presentation: "featured-thumb",
-  featuredImage: "/images/menu-bg-addon.png",
+  featuredImage: "/images/menu-banner-addon.png",
 };
 
 /** Beverage subsections shown vertically under one "Beverages" group. */
 export const BEVERAGE_SUBSECTIONS: PlannerSection[] = [
-  { id: "jamu", label: "Traditional Jamu", blurb: "Traditional Indonesian herbal drinks prepared with aromatic roots, spices and natural ingredients.", catIds: ["jamu"], presentation: "standard" },
+  { id: "jamu", label: "Kopitiam Classics", blurb: "Malaysian kopitiam drinks and refreshing traditional favourites.", catIds: ["jamu"], presentation: "standard" },
   { id: "coffee", label: "Coffee", blurb: "Rich and aromatic coffee prepared for a smooth, comforting finish.", catIds: ["coffee"], presentation: "standard" },
   { id: "non-coffee", label: "Non-Coffee", blurb: "Creamy, refreshing and comforting drinks without coffee.", catIds: ["non-coffee"], presentation: "standard" },
   { id: "other-drinks", label: "Soft Drink", blurb: "Refreshing everyday drinks to complete your meal.", catIds: ["soft-drinks"], presentation: "standard" },
@@ -48,9 +53,9 @@ export const BEVERAGE_SUBSECTIONS: PlannerSection[] = [
 
 export const BEVERAGE_GROUP = {
   id: "beverages",
-  label: "Beverages",
+  label: "Beverage",
   blurb: "Refreshing traditional drinks, handcrafted coffee and everyday favourites for every meal.",
-  featuredImage: "/images/menu-bg-beverages.png",
+  featuredImage: "/images/menu-banner-beverages.png",
   subsections: BEVERAGE_SUBSECTIONS,
 };
 
@@ -66,18 +71,26 @@ export const sectionItems = (s: PlannerSection): MenuItem[] =>
     .filter((m) => s.catIds.includes(m.category))
     .sort((a, b) => a.sortOrder - b.sortOrder);
 
-// Curated vegetarian-friendly items (plant / dairy / egg based — no meat,
-// seafood or bakso). Indicative only; guests should confirm with staff.
+// Curated vegetarian-friendly items (plant / dairy / egg based — no meat or
+// seafood). Indicative only; guests should confirm with staff. Mapped to the
+// Malaysian menu (e.g. Vegetable Pakora, Fried Popiah, toast, egg, papadom).
 export const VEG_IDS = new Set<string>([
-  "tahu-isi-goreng",
-  "tempe-mendoan",
-  "bakwan-goreng",
-  "pisang-goreng",
-  "roti-bakar-coklat",
-  "roti-bakar-keju",
-  "roti-bakar-coklat-keju",
-  "sayur-tempe-kacang",
-  "telor-krispi",
+  "bakwan-goreng", // Vegetable Pakora
+  "pisang-goreng", // Fried Popiah
+  "roti-bakar-coklat", // Kaya Butter Toast
+  "roti-bakar-keju", // Peanut Butter Toast
+  "roti-bakar-coklat-keju", // Milo & Kaya Toast
+  "sayur-buncis-toge", // Stir-Fried Bean Sprouts
+  "telor-krispi", // Acar Jelatah
+  "addon-bakso-urat", // Fried Egg
+  "addon-bakso-goreng", // Boiled Egg
+  "addon-pangsit-goreng", // Papadom
+  "addon-pangsit-rebus", // Begedil
+  "addon-tahu-isi-bakso", // Fried Tofu
+  "addon-kerupuk-merah", // Extra Rice
+  "addon-soo-hoon", // Extra Noodles
+  // beverages (the veg leaf is hidden on drinks, but these are veg for the
+  // vegetarian-only filter):
   "kunyit-asam",
   "wedang-jahe",
   "yin-yang-earl-grey",
@@ -93,12 +106,7 @@ export const VEG_IDS = new Set<string>([
   "coke",
   "coke-zero",
   "sprite",
-  "addon-kerupuk-emping",
-  "addon-soo-hoon",
-  "addon-mihun",
 ]);
-// NOTE: "addon-kerupuk-merah" (Red Prawn Cracker) is intentionally NOT here —
-// it contains prawn, so it must never show the vegetarian leaf.
 
 export const isVegetarian = (id: string): boolean => VEG_IDS.has(id);
 
@@ -113,32 +121,21 @@ export const isBeverageItem = (item: MenuItem): boolean => BEVERAGE_CAT_IDS.has(
 export const showVegLeaf = (item: MenuItem): boolean =>
   isVegetarian(item.id) && !isBeverageItem(item);
 
-// Fish / seafood dishes (ikan, teri, lele, kembung).
+// Fish / seafood dishes on the Malaysian menu (fish ball, grilled fish, prawn
+// fritter, fish crackers, fish cake).
 export const FISH_IDS = new Set<string>([
-  "ikan-kembung-balado-meal",
-  "ikan-pecel-lele-meal",
-  "ikan-kembung-balado",
-  "ikan-pecel-lele",
-  "ikan-teri-terong-pete",
+  "bakso-urat", // Fish Ball Kuey Teow Soup
+  "ikan-kembung-balado", // Ikan Bakar Sambal
+  "tahu-isi-goreng", // Cucur Udang (prawn fritter)
+  "pangsit-goreng-10", // Keropok Lekor (fish crackers)
+  "addon-kerupuk-emping", // Fish Cake
 ]);
 
-// Beef dishes — includes sapi (beef tongue, soto betawi) and bakso (beef balls).
-// One cow icon represents all beef, per the brief.
+// Beef dishes — one cow icon represents all beef (beef balls, beef soup).
 export const BEEF_IDS = new Set<string>([
-  "mie-ayam-bakso",
-  "bakso-halus",
-  "bakso-urat",
-  "bakso-goreng",
-  "bakso-campur",
-  "nasi-soto-betawi",
-  "lidah-sapi-meal",
-  "soto-betawi",
-  "lidah-sapi",
-  "sayur-buncis-toge",
-  "addon-bakso-halus",
-  "addon-bakso-urat",
-  "addon-bakso-goreng",
-  "addon-tahu-isi-bakso",
+  "bakso-halus", // Beef Ball Noodle Soup
+  "bakso-campur", // Mixed Ball Noodle Soup (incl. beef)
+  "soto-betawi", // Sup Daging
 ]);
 
 export const showFishIcon = (item: MenuItem): boolean =>

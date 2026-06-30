@@ -417,7 +417,11 @@ export function CustomisationModal({
               id="note"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder={t("misc.cust.specialRequestPlaceholder")}
+              placeholder={
+                t(`menu.item.${item.id}.remark`) === `menu.item.${item.id}.remark`
+                  ? t("misc.cust.specialRequestPlaceholder")
+                  : t(`menu.item.${item.id}.remark`)
+              }
               className="w-full rounded-xl border border-line-medium px-3 py-2.5 text-sm focus:border-green focus:outline-none"
             />
           </div>

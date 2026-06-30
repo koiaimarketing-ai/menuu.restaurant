@@ -2,10 +2,11 @@ import { menu, type MenuItem } from "@/data/menu";
 import { isBeverageItem } from "./sections";
 
 // ---- Cart sequencing by food code ------------------------------------------
-// Category display order: A Mie Ayam, B Bakso, C Set Nasi, D À La Carte,
-// S Sayur & Lauk, G Gorengan, F Roti Bakar, H Minuman/Drinks, T Tambahan.
+// Category display order: A Chicken Noodle, B Meat Ball, C Rice Meal,
+// D À La Carte, E Vegetables & Sides, F Fried Food, G Toast, H Beverages,
+// T Add-On / Sides.
 const CATEGORY_ORDER: Record<string, number> = {
-  A: 1, B: 2, C: 3, D: 4, S: 5, G: 6, F: 7, H: 8, T: 9,
+  A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, T: 9,
 };
 
 export const categoryCode = (item: MenuItem): string =>

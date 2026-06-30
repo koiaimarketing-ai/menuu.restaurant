@@ -1,4 +1,4 @@
-// Only reviews confirmed as relevant to the current Warung Jakarta operation.
+// Only reviews confirmed as relevant to the current Menuu operation.
 // Do not use any review referring to the previous "Oregano" concept.
 // `nameZh` / `textZh` are optional Chinese overrides shown only in the zh locale;
 // English & Malay always use `name` / `text`.
@@ -15,7 +15,7 @@ export const reviews: Review[] = [
   {
     id: "r1",
     name: "Aisyah R.",
-    text: "The Mie Ayam tastes just like home in Jakarta. Generous portions and the complimentary Tea O Jawa is a lovely touch.",
+    text: "The Mie Ayam tastes just like home. Generous portions and the complimentary Tea O Jawa is a lovely touch.",
     rating: 5,
   },
   {
@@ -80,13 +80,13 @@ export const reviews: Review[] = [
   {
     id: "r11",
     name: "Syahrul Noh",
-    text: "Truly a hidden gem. Cosy ambience, friendly service, great food and an authentic taste of Jakarta. We ordered soto betawi, tumis buncis, kembung balado and crispy egg. Worth the money and the drive. Definitely coming again.",
+    text: "Truly a hidden gem. Cosy ambience, friendly service, great food and an authentic taste of home. We ordered soto betawi, tumis buncis, kembung balado and crispy egg. Worth the money and the drive. Definitely coming again.",
     rating: 5,
   },
   {
     id: "r12",
     name: "Sharifah Dewi Smith",
-    text: "I'm a Jakarta girl and Mie Ayam has always been one of my favourite street foods. Personally I love their place, the deco and the ambience. I really like their bakwan sayur (cucur sayur) with peanut sauce, and I'll come back for the soto betawi and pisang goreng chocolate. Thank you for the lovely service!",
+    text: "I grew up loving Mie Ayam, one of my favourite street foods. Personally I love their place, the deco and the ambience. I really like their bakwan sayur (cucur sayur) with peanut sauce, and I'll come back for the soto betawi and pisang goreng chocolate. Thank you for the lovely service!",
     rating: 4,
   },
   {

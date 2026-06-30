@@ -4,10 +4,11 @@ import { useLang } from "@/lib/i18n/LanguageProvider";
 
 /**
  * Auto-scrolling promotion banners shown above the first menu category on the
- * Menu & Planner page. Images live in /public/promotions/ (lowercase, no spaces:
- * promotion-1.png .. promotion-5.png). The list is duplicated so the right→left
- * loop (translateX(-50%)) is seamless. No text/overlay is added — banners show
- * as-is. Pauses on hover (desktop); respects reduced-motion (CSS in globals.css).
+ * Menu & Planner page and on the Contact/Location page. Images live in
+ * /public/promotions/ (lowercase, no spaces: promotion-1.png .. promotion-6.png).
+ * The list is duplicated so the right→left loop (translateX(-50%)) is seamless.
+ * No text/overlay is added — banners show as-is. Pauses on hover (desktop);
+ * respects reduced-motion (CSS in globals.css).
  *
  * To update: drop new banners in /public/promotions/ and edit this array.
  */
@@ -17,6 +18,7 @@ export const promotions = [
   "/promotions/promotion-3.png",
   "/promotions/promotion-4.png",
   "/promotions/promotion-5.png",
+  "/promotions/promotion-6.png",
 ];
 
 export function PromotionMarquee() {

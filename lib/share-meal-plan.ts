@@ -23,7 +23,7 @@ export function buildListText(
   closingStatement: string = CLOSING_STATEMENT
 ): string {
   const lines: string[] = [];
-  lines.push("Warung Jakarta Meal Planning List");
+  lines.push("Menuu Meal Planning List");
   lines.push("");
   if (branch) {
     lines.push(`Location: ${branch.shortName}`);

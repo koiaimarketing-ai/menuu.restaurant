@@ -24,7 +24,7 @@ const ENTRANCE_GATE = `(function(){try{
   if(!next||Date.now()>=next){document.documentElement.setAttribute('data-entrance','show');}
 }catch(e){document.documentElement.setAttribute('data-entrance','show');}})();`;
 
-// Warung Jakarta brand type system: Bricolage Grotesque (display/headings) +
+// Menuu brand type system: Bricolage Grotesque (display/headings) +
 // DM Sans (body/UI). Kept on the existing CSS variable names (--font-fraunces =
 // heading, --font-manrope = body) so every existing usage picks them up.
 const fraunces = Bricolage_Grotesque({
@@ -39,9 +39,9 @@ const manrope = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Warung Jakarta | Indonesian Food in SS4 & KL Central Walk",
+  title: "Menuu | Authentic Indonesian-Style Food in Petaling Jaya",
   description:
-    "Discover Indonesian comfort food, homemade noodles, bakso and Jakarta favourites at Warung Jakarta in SS4 and KL Central Walk.",
+    "Discover comforting Indonesian-style food, homemade noodles, bakso and street-food favourites at Menuu — Taman Sea, Petaling Jaya.",
 };
 
 export default function RootLayout({

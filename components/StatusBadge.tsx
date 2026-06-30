@@ -13,17 +13,17 @@ const LABEL_KEY: Record<string, string> = {
 
 const styles: Record<string, string> = {
   open: "bg-green-soft text-green-dark",
-  "closing-soon": "bg-[#FFF4DE] text-[#A96513]",
+  "closing-soon": "bg-[#eef3ff] text-[#2258da]",
   closed: "bg-[#FDECEA] text-[#B42318]",
-  "opens-later": "bg-[#FFF4DE] text-[#A96513]",
+  "opens-later": "bg-[#eef3ff] text-[#2258da]",
   "closed-day": "bg-[#FDECEA] text-[#B42318]",
 };
 
 const dot: Record<string, string> = {
   open: "bg-green",
-  "closing-soon": "bg-[#A96513]",
+  "closing-soon": "bg-[#2258da]",
   closed: "bg-[#B42318]",
-  "opens-later": "bg-[#A96513]",
+  "opens-later": "bg-[#2258da]",
   "closed-day": "bg-[#B42318]",
 };
 

@@ -9,14 +9,14 @@ import { useLang } from "@/lib/i18n/LanguageProvider";
 
 const BRANCH_FRAMES = [
   {
-    label: "KLCW",
-    src: "/images/klcw-branch.png",
-    alt: "Warung Jakarta KLCW — restaurant frontage with outdoor seating and signage",
+    label: "Our outlet",
+    src: "/images/photo-exterior.png",
+    alt: "Restaurant exterior",
   },
   {
-    label: "SS4",
-    src: "/images/ss4-branch.png",
-    alt: "Warung Jakarta SS4 — warm wooden dining room",
+    label: "Dine-in",
+    src: "/images/photo-interior.png",
+    alt: "Restaurant interior",
   },
 ];
 
@@ -78,31 +78,6 @@ const features = [
   { Icon: HeartIcon, titleKey: "pages.ourStory.feat4Title", body: ["pages.ourStory.feat4Body1", "pages.ourStory.feat4Body2"] },
 ];
 
-/* ---------------- batik pattern (right edge) ---------------- */
-function BatikEdge() {
-  return (
-    <div
-      className="pointer-events-none absolute inset-y-0 right-0 hidden md:block w-[220px] lg:w-[280px]"
-      aria-hidden="true"
-      style={{
-        WebkitMaskImage: "linear-gradient(to left, #000, transparent)",
-        maskImage: "linear-gradient(to left, #000, transparent)",
-      }}
-    >
-      <svg className="h-full w-full" style={{ opacity: 0.12, color: "#D13827" }} aria-hidden="true">
-        <defs>
-          <pattern id="batik" width="56" height="56" patternUnits="userSpaceOnUse" patternTransform="rotate(8)">
-            <path d="M28 8c8 4 12 12 0 20-12-8-8-16 0-20Z" fill="none" stroke="currentColor" strokeWidth="1.3" />
-            <circle cx="28" cy="28" r="3" fill="currentColor" />
-            <circle cx="4" cy="4" r="2" fill="currentColor" />
-            <circle cx="52" cy="52" r="2" fill="currentColor" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#batik)" />
-      </svg>
-    </div>
-  );
-}
 
 export function OurStory() {
   const { t } = useLang();
@@ -131,27 +106,14 @@ export function OurStory() {
       className="
         relative z-[2] isolate overflow-hidden
         rounded-t-[30px] md:rounded-t-[56px]
-        bg-secondary
+        bg-white
         pt-[clamp(220px,32vw,500px)]
         pb-14 md:pb-20
-        shadow-[0_-22px_60px_-24px_rgba(209,56,39,0.16),0_-10px_34px_-18px_rgba(58,30,26,0.18),inset_0_2px_30px_rgba(58,30,26,0.04)]
+        shadow-[0_-22px_60px_-24px_rgba(34,88,218,0.16),0_-10px_34px_-18px_rgba(8,17,39,0.18),inset_0_2px_30px_rgba(8,17,39,0.04)]
       "
     >
-      {/* full-section background: the 2nd-section artwork (cover, undistorted) */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-20"
-        style={{
-          backgroundImage: "url('/images/2nd-section.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
-      {/* warm readability overlay (kept off the outlet image box, which sits in content) */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[rgba(255,248,239,0.72)]" />
-
-      <BatikEdge />
+      {/* Clean white section — warm artwork backdrop, warm overlay and batik
+          edge removed for a cooler blue-and-white treatment. */}
 
       <div className="container-site relative">
         {/* ---- two-column story ---- */}
@@ -195,7 +157,7 @@ export function OurStory() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="group relative overflow-hidden rounded-[28px] lg:rounded-[34px]"
-            style={{ boxShadow: "0 22px 50px rgba(58,30,26,0.10), 0 4px 12px rgba(58,30,26,0.05)" }}
+            style={{ boxShadow: "0 22px 50px rgba(8,17,39,0.10), 0 4px 12px rgba(8,17,39,0.05)" }}
           >
             <div className="relative aspect-[3/2] w-full">
               <AnimatePresence mode="sync">
@@ -249,7 +211,7 @@ export function OurStory() {
               {...rise(0.05 * i)}
               className="flex items-start gap-3.5 lg:px-6 first:lg:pl-0 py-2"
             >
-              <span className="h-12 w-12 shrink-0 grid place-items-center rounded-full bg-[#F04438] text-white shadow-[0_8px_20px_rgba(240,68,56,0.22)]">
+              <span className="h-12 w-12 shrink-0 grid place-items-center rounded-full bg-[#2258da] text-white shadow-[0_8px_20px_rgba(34,88,218,0.22)]">
                 <span className="h-5 w-5">
                   <Icon className="h-full w-full" />
                 </span>

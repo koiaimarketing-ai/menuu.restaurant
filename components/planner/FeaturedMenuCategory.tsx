@@ -27,43 +27,40 @@ export function FeaturedMenuCategory({ section, vegOnly }: { section: PlannerSec
 
   return (
     <section id={`sec-${section.id}`} data-section={section.id} className="scroll-mt-32">
-      <div className="overflow-hidden rounded-[28px] border border-line-warm bg-secondary shadow-soft">
-        {/* banner top: editorial text (left) + integrated dish photo (right) */}
-        <div className="grid md:grid-cols-[1fr_minmax(0,1.05fr)]">
-          <div className="relative z-[2] flex flex-col justify-center px-5 py-5 sm:px-6">
-            <h2
-              className="text-[clamp(1.6rem,3vw,2.35rem)] font-medium leading-tight text-heading"
-              style={{ fontFamily: "var(--font-fraunces)" }}
-            >
-              {label}
-            </h2>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-body">{blurb}</p>
-          </div>
-
-          {section.featuredImage && (
-            <div className="relative h-[170px] w-full sm:h-[200px] md:h-auto md:min-h-[200px]">
+      <div className="overflow-hidden rounded-[24px] border border-[#dde4f7] bg-white shadow-soft">
+        {section.featuredImage &&
+          (section.illustrationBanner ? (
+            /* square food illustration → title text + contained illustration */
+            <div className="flex items-center gap-4 bg-[#eef3ff] px-5 py-4 sm:gap-6 sm:px-6">
+              <div className="min-w-0 flex-1">
+                <h2 className="text-[clamp(1.5rem,3vw,2.2rem)] font-medium leading-tight text-heading" style={{ fontFamily: "var(--font-fraunces)" }}>
+                  {label}
+                </h2>
+                <p className="mt-1.5 line-clamp-2 max-w-md text-sm leading-relaxed text-body">{blurb}</p>
+              </div>
               <Image
                 src={section.featuredImage}
                 alt={label}
-                fill
-                sizes="(max-width: 768px) 100vw, 480px"
-                className="object-cover object-right"
-              />
-              {/* blend the photo's left edge into the warm section surface */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 hidden bg-gradient-to-r from-secondary via-secondary/15 to-transparent md:block"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-secondary/70 to-transparent md:hidden"
+                width={1254}
+                height={1254}
+                sizes="160px"
+                className="h-[104px] w-[104px] shrink-0 object-contain sm:h-[140px] sm:w-[140px]"
               />
             </div>
-          )}
-        </div>
+          ) : (
+            /* full-width illustrated banner (title + description baked in) */
+            <Image
+              src={section.featuredImage}
+              alt={label}
+              width={2079}
+              height={756}
+              sizes="(max-width: 1024px) 100vw, 760px"
+              className="block h-auto w-full"
+            />
+          ))}
 
-        {/* compact product cards along the bottom: 1 → 3 → 4 columns */}
-        <div className="grid grid-cols-1 gap-2.5 px-4 pb-4 pt-1 sm:grid-cols-3 sm:gap-3 sm:px-5 sm:pb-5 xl:grid-cols-4">
+        {/* compact product cards: 1 → 3 → 4 columns */}
+        <div className="grid grid-cols-1 gap-2.5 px-4 pb-4 pt-4 sm:grid-cols-3 sm:gap-3 sm:px-5 sm:pb-5 xl:grid-cols-4">
           {items.map((item) => (
             <OptionCard key={item.id} item={item} />
           ))}

@@ -47,14 +47,17 @@ export function FloatingDish() {
     // TRANSITION WRAPPER — height 0, anchored at the hero/story boundary, above both sections.
     <div className="relative z-20 h-0 pointer-events-none" aria-hidden="false">
       {/* POSITIONING LAYER — static transforms only (centring + vertical anchor).
-          translateY ≈ -47% → ~45% of the dish sits in the hero, ~55% over the story. */}
+          Width = min(page width − 48px, breakpoint max), so the dish always stays
+          inside the page (≥24px each side, no horizontal overflow) yet holds its
+          max on wide screens: 440px mobile → 780px (md) → 900px (lg) → 980px (xl). */}
       <div
         className="
           absolute left-1/2 top-0
-          -translate-x-1/2 -translate-y-[50%]
-          w-[100vw] max-w-[560px]
-          sm:w-[86vw] sm:max-w-[700px]
-          md:w-[clamp(600px,77vw,1216px)] md:max-w-none
+          -translate-x-1/2 -translate-y-[40%]
+          w-[min(100%_-_48px,440px)]
+          md:w-[min(100%_-_48px,780px)]
+          lg:w-[min(100%_-_48px,900px)]
+          xl:w-[min(100%_-_48px,980px)]
         "
       >
         {/* AMBIENT FLOAT */}
@@ -78,12 +81,12 @@ export function FloatingDish() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/signature-dish.png"
-              alt="Warung Jakarta signature meal — sambal grilled fish with rice, kerupuk, soup and traditional accompaniments"
+              src="/images/hero-food.png"
+              alt="Signature food dish"
               width={1448}
               height={1086}
               draggable={false}
-              className="h-auto w-full select-none object-contain drop-shadow-[0_24px_32px_rgba(58,30,26,0.22)] drop-shadow-[0_8px_12px_rgba(58,30,26,0.10)]"
+              className="h-auto w-full select-none object-contain drop-shadow-[0_24px_32px_rgba(8,17,39,0.22)] drop-shadow-[0_8px_12px_rgba(8,17,39,0.10)]"
             />
           </motion.div>
         </motion.div>

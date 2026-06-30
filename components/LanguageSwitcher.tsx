@@ -10,7 +10,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
     <div
       role="group"
       aria-label="Language"
-      className={`inline-flex shrink-0 items-center gap-0.5 rounded-full border border-[#EADDD4] bg-[#FAF8F5] p-0.5 ${className}`}
+      className={`inline-flex shrink-0 items-center gap-0.5 rounded-full border border-[#dde4f7] bg-[#eef3ff] p-0.5 ${className}`}
     >
       {LANGS.map((l) => {
         const active = lang === l;
@@ -21,7 +21,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
             onClick={() => setLang(l)}
             aria-pressed={active}
             className={`rounded-full px-2.5 py-1 text-xs font-bold leading-none transition-colors ${
-              active ? "bg-[#E24A34] text-white" : "text-[#7A3B2E] hover:text-[#E24A34]"
+              active ? "bg-[#2258da] text-white" : "text-[#6b7589] hover:text-[#2258da]"
             }`}
           >
             {LANG_LABELS[l]}

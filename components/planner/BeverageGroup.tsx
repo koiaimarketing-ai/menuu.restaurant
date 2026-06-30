@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { OptionCard } from "./OptionCard";
+import { MenuCard } from "./MenuCard";
 import { BEVERAGE_GROUP, sectionItems, isVegetarian, type PlannerSection } from "./sections";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
@@ -32,38 +32,18 @@ export function BeverageGroup({ vegOnly }: { vegOnly?: boolean }) {
 
   return (
     <section id={`sec-${BEVERAGE_GROUP.id}`} data-section={BEVERAGE_GROUP.id} className="scroll-mt-32">
-      <div className="overflow-hidden rounded-[28px] border border-line-warm bg-secondary shadow-soft">
-        {/* banner top: editorial text (left) + compact beverage photo (right) */}
-        <div className="grid md:grid-cols-[1fr_minmax(0,1.05fr)]">
-          <div className="relative z-[2] flex flex-col justify-center px-5 py-5 sm:px-6">
-            <h2
-              className="text-[clamp(1.6rem,3vw,2.35rem)] font-medium leading-tight text-heading"
-              style={{ fontFamily: "var(--font-fraunces)" }}
-            >
-              {t("menu.section.beverages.label")}
-            </h2>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-body">{t("menu.section.beverages.blurb")}</p>
-          </div>
-          {BEVERAGE_GROUP.featuredImage && (
-            <div className="relative h-[150px] w-full sm:h-[180px] md:h-auto md:min-h-[180px]">
-              <Image
-                src={BEVERAGE_GROUP.featuredImage}
-                alt={t("menu.section.beverages.label")}
-                fill
-                sizes="(max-width: 768px) 100vw, 480px"
-                className="object-cover object-right"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 hidden bg-gradient-to-r from-secondary via-secondary/15 to-transparent md:block"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-secondary/70 to-transparent md:hidden"
-              />
-            </div>
-          )}
-        </div>
+      <div className="overflow-hidden rounded-[24px] border border-[#dde4f7] bg-white shadow-soft">
+        {/* full-width illustrated beverages banner (title + description baked in) */}
+        {BEVERAGE_GROUP.featuredImage && (
+          <Image
+            src={BEVERAGE_GROUP.featuredImage}
+            alt={t("menu.section.beverages.label")}
+            width={2079}
+            height={756}
+            sizes="(max-width: 1024px) 100vw, 760px"
+            className="block h-auto w-full"
+          />
+        )}
 
         {/* pill subsection tabs — horizontally scrollable, arrows on desktop overflow */}
         <div className="flex items-center gap-2 px-4 pt-3 sm:px-5">
@@ -129,9 +109,9 @@ function BeverageSubsection({ section, vegOnly }: { section: PlannerSection; veg
       <h3 className="text-[15px] font-semibold text-heading" style={{ fontFamily: "var(--font-fraunces)" }}>
         {label}
       </h3>
-      <div className="mt-2.5 grid grid-cols-1 gap-2.5 sm:grid-cols-3 sm:gap-3 xl:grid-cols-4">
+      <div className="mt-2.5 grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3 xl:grid-cols-3">
         {items.map((item) => (
-          <OptionCard key={item.id} item={item} />
+          <MenuCard key={item.id} item={item} />
         ))}
       </div>
     </section>

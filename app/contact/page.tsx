@@ -3,9 +3,9 @@ import { ContactClient } from "@/components/ContactClient";
 import { ContactHero } from "@/components/contact/ContactHero";
 
 export const metadata: Metadata = {
-  title: "Locations, Hours & Contact | Warung Jakarta",
+  title: "Locations, Hours & Contact | Menuu",
   description:
-    "Find branch hours, directions and contact details for Warung Jakarta SS4 and KL Central Walk.",
+    "Find opening hours, directions and contact details for Menuu in Taman Sea, Petaling Jaya.",
 };
 
 export default function ContactPage() {

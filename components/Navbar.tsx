@@ -83,21 +83,17 @@ export function Navbar() {
       <div className="container-site">
         {/* Full-width pill containing logo + nav + CTA.
             `relative` anchors the absolutely-centred mobile meal-plan pill. */}
-        <div className="relative flex h-16 flex-nowrap items-center gap-3 rounded-full border border-white/55 bg-white/70 px-4 pl-4 shadow-[0_8px_30px_rgba(58,30,26,0.12)] backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/60 sm:pl-5 min-[1080px]:gap-[clamp(12px,1.5vw,26px)]">
+        <div className="relative flex h-16 flex-nowrap items-center gap-3 rounded-full border border-white/55 bg-white/70 px-4 pl-4 shadow-[0_8px_30px_rgba(8,17,39,0.12)] backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/60 sm:pl-5 min-[1080px]:gap-[clamp(12px,1.5vw,26px)]">
           {/* Brand */}
-          <Link href="/" className="relative z-[2] flex shrink-0 items-center gap-2.5" aria-label="Warung Jakarta home">
+          <Link href="/" className="relative z-[2] flex shrink-0 items-center" aria-label="Menuu home">
             <Image
               src="/images/logo.png"
-              alt="Warung Jakarta"
-              width={48}
-              height={48}
-              className="h-10 w-10 rounded-full"
+              alt="Menuu"
+              width={176}
+              height={32}
+              className="h-auto w-[112px] max-h-[36px] object-contain sm:w-[140px] sm:max-h-[42px]"
               priority
             />
-            <span className="hidden flex-col leading-none sm:flex">
-              <span className="brand-name text-base">Warung Jakarta</span>
-              <span className="brand-tagline mt-0.5 whitespace-nowrap text-[9px]">Rasa Original Jakarta</span>
-            </span>
           </Link>
 
           {/* Nav — desktop only, single row, never wraps */}
@@ -178,7 +174,7 @@ export function Navbar() {
               height: "100dvh",
               padding:
                 "max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom))",
-              background: "rgba(38, 26, 22, 0.22)",
+              background: "rgba(8,17,39, 0.22)",
               backdropFilter: "blur(14px)",
               WebkitBackdropFilter: "blur(14px)",
             }}
@@ -189,7 +185,7 @@ export function Navbar() {
             {...backdrop}
           >
             <motion.div
-              className="flex max-h-[calc(100dvh-40px)] w-full flex-col overflow-y-auto rounded-3xl border border-[#F0E6E0] bg-white shadow-[0_20px_60px_rgba(58,30,26,0.16)]"
+              className="flex max-h-[calc(100dvh-40px)] w-full flex-col overflow-y-auto rounded-3xl border border-[#dde4f7] bg-white shadow-[0_20px_60px_rgba(8,17,39,0.16)]"
               style={{ overscrollBehavior: "contain", WebkitOverflowScrolling: "touch" }}
               initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -201,23 +197,22 @@ export function Navbar() {
                 <Link
                   href="/"
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-2.5"
-                  aria-label="Warung Jakarta home"
+                  className="flex items-center"
+                  aria-label="Menuu home"
                 >
                   <Image
                     src="/images/logo.png"
-                    alt="Warung Jakarta"
-                    width={44}
-                    height={44}
-                    className="h-10 w-10 rounded-full"
+                    alt="Menuu"
+                    width={176}
+                    height={32}
+                    className="h-8 w-auto"
                   />
-                  <span className="brand-name text-[17px]">Warung Jakarta</span>
                 </Link>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label="Close navigation menu"
-                  className="grid h-12 w-12 place-items-center rounded-full border border-[rgba(58,30,26,0.10)] bg-white text-[#3a1e1a] shadow-soft"
+                  className="grid h-12 w-12 place-items-center rounded-full border border-[rgba(8,17,39,0.10)] bg-white text-[#081127] shadow-soft"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -235,18 +230,18 @@ export function Navbar() {
                       onClick={() => setOpen(false)}
                       aria-current={active ? "page" : undefined}
                       className={`grid min-h-[64px] grid-cols-[32px_1fr_24px] items-center gap-4 rounded-2xl border px-5 ${
-                        active ? "border-[#F2CFC7] bg-[#FCEDEA]" : "border-[#F0E6E0] bg-white"
+                        active ? "border-[#dde4f7] bg-[#eef3ff]" : "border-[#dde4f7] bg-white"
                       }`}
                     >
-                      <Icon className={`h-6 w-6 ${active ? "text-[#E24A34]" : "text-[#3A2A20]"}`} />
+                      <Icon className={`h-6 w-6 ${active ? "text-[#2258da]" : "text-[#081127]"}`} />
                       <span
                         className={`text-[17px] ${
-                          active ? "font-semibold text-[#E24A34]" : "font-medium text-[#3A2A20]"
+                          active ? "font-semibold text-[#2258da]" : "font-medium text-[#081127]"
                         }`}
                       >
                         {t(l.key)}
                       </span>
-                      <ChevronRight className={`h-5 w-5 ${active ? "text-[#E24A34]" : "text-[#a89a92]"}`} />
+                      <ChevronRight className={`h-5 w-5 ${active ? "text-[#2258da]" : "text-[#6b7589]"}`} />
                     </Link>
                   );
                 })}
@@ -266,7 +261,7 @@ export function Navbar() {
                 >
                   {t("nav.exploreMenu")} <ArrowRight className="h-5 w-5" />
                 </Link>
-                <p className="mt-2 text-center text-sm text-[#6B5E5A]">{t("nav.discover")}</p>
+                <p className="mt-2 text-center text-sm text-[#6b7589]">{t("nav.discover")}</p>
               </div>
 
               {/* Dynamic branch-status card */}
@@ -323,10 +318,10 @@ function BranchStatusCard({ onNavigate }: { onNavigate: () => void }) {
 
   return (
     <div className="px-5 pt-4">
-      <div className="rounded-2xl border border-[#F2CFC7] bg-[#FFF7F5] p-4">
+      <div className="rounded-2xl border border-[#dde4f7] bg-[#eef3ff] p-4">
         <div className="flex items-start gap-2.5">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#E24A34]" />
-          <div className="text-sm text-[#C94B35]">
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#2258da]" />
+          <div className="text-sm text-[#2258da]">
             <p className="font-semibold">{title}</p>
             {action &&
               (actionIsSs4Link ? (
@@ -338,7 +333,7 @@ function BranchStatusCard({ onNavigate }: { onNavigate: () => void }) {
                   {action}
                 </Link>
               ) : (
-                <p className="mt-1 text-[#7a5620]">{action}</p>
+                <p className="mt-1 text-[#6b7589]">{action}</p>
               ))}
           </div>
         </div>

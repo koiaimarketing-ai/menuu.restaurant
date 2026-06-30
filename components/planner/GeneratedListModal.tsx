@@ -168,7 +168,7 @@ export function GeneratedListModal({
             </div>
           )}
           {warning && (
-            <p className="text-sm rounded-xl bg-[#FFF4DE] text-[#A96513] px-3 py-2 font-medium">
+            <p className="text-sm rounded-xl bg-[#eef3ff] text-[#2258da] px-3 py-2 font-medium">
               {t("misc.gen.important")} {warning}
             </p>
           )}

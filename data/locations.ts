@@ -38,30 +38,36 @@ export type Location = {
   menuStatus: "pending" | "confirmed-from-supplied-pdf";
 };
 
+// Single Menuu outlet (Taman Sea, Petaling Jaya). The internal id stays "ss4"
+// because it is the default branch id used across the planner/menu pricing —
+// reusing it keeps the per-item price data and branch logic working without a
+// type-wide rename. There is only one location now, so branch-switching UI is
+// hidden whenever `locations.length < 2`.
 export const locations: Location[] = [
   {
     id: "ss4",
-    name: "Warung Jakarta SS4",
-    shortName: "SS4",
+    name: "Menuu",
+    shortName: "Taman Sea",
     timezone: "Asia/Kuala_Lumpur",
     closingSoonMinutes: 60,
     addressLines: [
-      "35, Jalan SS 4C/5",
-      "Taman Rasa Sayang",
-      "47301 Petaling Jaya",
+      "No 42-1, Jalan SS2/4A",
+      "Taman Sea",
+      "47300 Petaling Jaya",
       "Selangor",
     ],
-    phone: "016-404 7058",
-    whatsapp: "016-404 7058",
+    phone: "016-921 4297",
+    whatsapp: "016-921 4297",
     latitude: null,
     longitude: null,
     placeId: "",
-    // TODO: replace with verified SS4 Google Maps URL
-    googleMapsUrl: "",
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Menuu%2C%20No%2042-1%20Jalan%20SS2%2F4A%2C%20Taman%20Sea%2C%2047300%20Petaling%20Jaya",
     mapEmbedUrl: "",
     mapQuery:
-      "Warung Jakarta SS4, 35 Jalan SS 4C/5, Taman Rasa Sayang, 47301 Petaling Jaya, Selangor",
-    wazeUrl: "https://waze.com/ul/hw2838n377",
+      "Menuu, No 42-1, Jalan SS2/4A, Taman Sea, 47300 Petaling Jaya, Selangor",
+    wazeUrl:
+      "https://www.waze.com/ul?q=Menuu%20Taman%20Sea%20Petaling%20Jaya&navigate=yes",
     regularHours: {
       monday: { status: "open", open: "10:00", close: "22:00" },
       tuesday: { status: "open", open: "10:00", close: "22:00" },
@@ -70,49 +76,6 @@ export const locations: Location[] = [
       friday: { status: "open", open: "10:00", close: "22:00" },
       saturday: { status: "open", open: "10:00", close: "22:00" },
       sunday: { status: "open", open: "10:00", close: "22:00" },
-    },
-    specialHours: [],
-    facilities: [
-      "Outdoor seating",
-      "Vegetarian options",
-      "Dine-in",
-      "Lunch",
-      "Dinner",
-    ],
-    menuStatus: "pending",
-  },
-  {
-    id: "kl-central-walk",
-    name: "Warung Jakarta KLCW",
-    shortName: "KLCW",
-    alternativeName: "Warung Jakarta, Kuala Lumpur City Walk",
-    timezone: "Asia/Kuala_Lumpur",
-    closingSoonMinutes: 60,
-    addressLines: [
-      "Block BX 2A – BX 3A",
-      "Jalan P. Ramlee, KL City Walk",
-      "50250 Kuala Lumpur",
-      "Wilayah Persekutuan Kuala Lumpur",
-    ],
-    phone: "010-829 9409",
-    whatsapp: "010-829 9409",
-    latitude: null,
-    longitude: null,
-    placeId: "",
-    // TODO: replace with verified KL Central Walk coordinates / Place ID if precise pin needed
-    googleMapsUrl: "",
-    mapEmbedUrl: "",
-    mapQuery:
-      "Warung Jakarta, Block BX 2A - BX 3A, Jalan P. Ramlee, KL City Walk, 50250 Kuala Lumpur",
-    wazeUrl: "https://waze.com/ul/hw283fqqjh",
-    regularHours: {
-      monday: { status: "open", open: "10:00", close: "17:30" },
-      tuesday: { status: "open", open: "10:00", close: "17:30" },
-      wednesday: { status: "open", open: "10:00", close: "17:30" },
-      thursday: { status: "open", open: "10:00", close: "17:30" },
-      friday: { status: "open", open: "10:00", close: "17:30" },
-      saturday: { status: "open", open: "10:00", close: "17:30" },
-      sunday: { status: "closed", open: null, close: null },
     },
     specialHours: [],
     facilities: [
@@ -138,7 +101,7 @@ export const waHref = (phone: string): string =>
   `https://wa.me/60${phone.replace(/[^0-9]/g, "").replace(/^0/, "")}`;
 
 export const restaurant = {
-  name: "Warung Jakarta",
+  name: "Menuu",
   cuisine: "Indonesian",
   rating: 4.6,
   reviewCount: 376,

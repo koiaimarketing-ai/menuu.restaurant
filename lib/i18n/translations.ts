@@ -1,4 +1,4 @@
-// Warung Jakarta multilingual dictionary.
+// Menuu multilingual dictionary.
 // Translations are meaning-based (warm, friendly, local Malaysian restaurant tone)
 // — NOT literal. Indonesian food names are kept original on purpose.
 
@@ -24,17 +24,17 @@ const en = {
   // branch status (mobile drawer)
   "status.klcwClosingSoon": "KLCW is closing soon.",
   "status.klcwClosed": "KLCW is currently closed.",
-  "status.bothClosed": "Both branches are currently closed.",
+  "status.bothClosed": "We're currently closed.",
   "status.viewSs4": "View SS4 availability →",
   "status.klcwReopens": "KLCW reopens",
 
   // ---- Hero ----
-  "hero.badge": "Authentic Jakarta Flavours",
+  "hero.badge": "Authentic Home-Style Flavours",
   "hero.titleTop": "Comfort food",
-  "hero.titlePre": "with a Jakarta ",
-  "hero.titleAccent": "soul.",
+  "hero.titlePre": "made the ",
+  "hero.titleAccent": "home-style way.",
   "hero.subtitle":
-    "Bold sambal, familiar recipes and comforting flavours — made the Jakarta way. Taste the heritage in every bite.",
+    "Bold sambal, familiar recipes and comforting flavours — made the home-style way. Taste the heritage in every bite.",
   "hero.ourStory": "Our Story",
   "hero.loved": "Loved by locals & travellers",
   "hero.reviewsSuffix": "reviews",
@@ -42,7 +42,7 @@ const en = {
 
   // ---- Footer ----
   "footer.tagline":
-    "Comforting Indonesian dishes served with a little more personality — in SS4 and KLCW.",
+    "Comforting Indonesian-style dishes served with a little more personality — in Taman Sea, Petaling Jaya.",
   "footer.explore": "Explore",
   "footer.locations": "Locations",
   "footer.aboutUs": "About Us",
@@ -57,7 +57,7 @@ const en = {
   "footer.joinWhatsapp": "Join WhatsApp Community",
   "footer.hoursSs4": "10:00 AM–10:00 PM daily",
   "footer.hoursKlcw": "Mon–Sat 10:00 AM–5:30 PM",
-  "footer.bottomTagline": "Indonesian comfort food · Petaling Jaya & Kuala Lumpur",
+  "footer.bottomTagline": "Indonesian-style comfort food · Taman Sea, Petaling Jaya",
 
   // ---- Planner controls ----
   "planner.selectOutlet": "Select your preferred outlet",
@@ -155,10 +155,10 @@ const en = {
   "saved.note": "This is not a preorder — it does not reserve a table or submit an order.",
 
   // ---- WhatsApp message lines ----
-  "wa.rsvpGreeting": "Hi Warung Jakarta, I'd like to make a reservation (RSVP).",
-  "wa.goingGreeting": "Hi Warung Jakarta, i'm on the way to your branch",
-  "wa.deliveryGreeting": "Hi Warung Jakarta, I want to order food delivery",
-  "wa.planGreeting": "Hi Warung Jakarta, here is my meal plan.",
+  "wa.rsvpGreeting": "Hi Menuu, I'd like to make a reservation (RSVP).",
+  "wa.goingGreeting": "Hi Menuu, i'm on the way to your branch",
+  "wa.deliveryGreeting": "Hi Menuu, I want to order food delivery",
+  "wa.planGreeting": "Hi Menuu, here is my meal plan.",
   "wa.preSelected": "Pre-selected meal plan (not a preorder):",
   "wa.name": "Name",
   "wa.contact": "Contact",
@@ -193,17 +193,17 @@ const ms: Dict = {
   "nav.closeMenu": "Tutup menu",
   "status.klcwClosingSoon": "KLCW akan tutup sebentar lagi.",
   "status.klcwClosed": "KLCW sedang tutup buat masa ini.",
-  "status.bothClosed": "Kedua-dua cawangan sedang tutup buat masa ini.",
+  "status.bothClosed": "Kami sedang tutup buat masa ini.",
   "status.viewSs4": "Lihat ketersediaan SS4 →",
   "status.klcwReopens": "KLCW buka semula",
 
   // Hero
-  "hero.badge": "Rasa Asli Jakarta",
+  "hero.badge": "Rasa Asli Ala Rumah",
   "hero.titleTop": "Makanan selesa,",
-  "hero.titlePre": "penuh jiwa ",
-  "hero.titleAccent": "Jakarta.",
+  "hero.titlePre": "disaji cara ",
+  "hero.titleAccent": "ala rumah.",
   "hero.subtitle":
-    "Sambal yang padu, resipi yang dekat di hati dan rasa yang menyelerakan — ala Jakarta. Rasai warisannya dalam setiap suapan.",
+    "Sambal yang padu, resipi yang dekat di hati dan rasa yang menyelerakan — ala rumah. Rasai warisannya dalam setiap suapan.",
   "hero.ourStory": "Kisah Kami",
   "hero.loved": "Digemari penduduk tempatan & pelancong",
   "hero.reviewsSuffix": "ulasan",
@@ -211,7 +211,7 @@ const ms: Dict = {
 
   // Footer
   "footer.tagline":
-    "Hidangan Indonesia yang menyelesakan, disaji dengan sentuhan istimewa — di SS4 dan KLCW.",
+    "Hidangan ala Indonesia yang menyelesakan, disaji dengan sentuhan istimewa — di Taman Sea, Petaling Jaya.",
   "footer.explore": "Terokai",
   "footer.locations": "Lokasi",
   "footer.aboutUs": "Tentang Kami",
@@ -226,7 +226,7 @@ const ms: Dict = {
   "footer.joinWhatsapp": "Sertai Komuniti WhatsApp",
   "footer.hoursSs4": "10:00 pagi–10:00 malam setiap hari",
   "footer.hoursKlcw": "Isnin–Sabtu 10:00 pagi–5:30 petang",
-  "footer.bottomTagline": "Makanan selesa Indonesia · Petaling Jaya & Kuala Lumpur",
+  "footer.bottomTagline": "Makanan selesa ala Indonesia · Taman Sea, Petaling Jaya",
 
   // Planner
   "planner.selectOutlet": "Pilih cawangan pilihan anda",
@@ -318,10 +318,10 @@ const ms: Dict = {
   "saved.note": "Ini bukan prapesanan — ia tidak menempah meja atau menghantar pesanan.",
 
   // WhatsApp
-  "wa.rsvpGreeting": "Hai Warung Jakarta, saya ingin membuat tempahan (RSVP).",
-  "wa.goingGreeting": "Hai Warung Jakarta, saya dalam perjalanan ke cawangan anda",
-  "wa.deliveryGreeting": "Hai Warung Jakarta, saya ingin membuat pesanan penghantaran",
-  "wa.planGreeting": "Hai Warung Jakarta, ini pilihan hidangan saya.",
+  "wa.rsvpGreeting": "Hai Menuu, saya ingin membuat tempahan (RSVP).",
+  "wa.goingGreeting": "Hai Menuu, saya dalam perjalanan ke cawangan anda",
+  "wa.deliveryGreeting": "Hai Menuu, saya ingin membuat pesanan penghantaran",
+  "wa.planGreeting": "Hai Menuu, ini pilihan hidangan saya.",
   "wa.preSelected": "Pilihan hidangan (bukan prapesanan):",
   "wa.name": "Nama",
   "wa.contact": "Telefon",
@@ -353,24 +353,24 @@ const zh: Dict = {
   "nav.closeMenu": "关闭菜单",
   "status.klcwClosingSoon": "KLCW 即将打烊。",
   "status.klcwClosed": "KLCW 目前已打烊。",
-  "status.bothClosed": "两家分店目前都已打烊。",
+  "status.bothClosed": "我们目前已打烊。",
   "status.viewSs4": "查看 SS4 营业情况 →",
   "status.klcwReopens": "KLCW 重新营业",
 
   // Hero
-  "hero.badge": "正宗雅加达风味",
+  "hero.badge": "正宗家常风味",
   "hero.titleTop": "暖心美食",
-  "hero.titlePre": "雅加达的",
-  "hero.titleAccent": "灵魂",
+  "hero.titlePre": "家常的",
+  "hero.titleAccent": "味道",
   "hero.subtitle":
-    "够味的参巴、熟悉的食谱、暖心的味道——道地雅加达做法。每一口都尝得到传承。",
+    "够味的参巴、熟悉的食谱、暖心的味道——道地家常做法。每一口都尝得到传承。",
   "hero.ourStory": "我们的故事",
   "hero.loved": "深受本地人与游客喜爱",
   "hero.reviewsSuffix": "则评价",
   "hero.perPerson": "每位 RM20 - RM40",
 
   // Footer
-  "footer.tagline": "暖心的印尼料理，多一份用心款待——就在 SS4 与 KLCW。",
+  "footer.tagline": "暖心的印尼风味料理，多一份用心款待——就在 Taman Sea，八打灵再也。",
   "footer.explore": "探索",
   "footer.locations": "分店地点",
   "footer.aboutUs": "关于我们",
@@ -385,7 +385,7 @@ const zh: Dict = {
   "footer.joinWhatsapp": "加入 WhatsApp 社群",
   "footer.hoursSs4": "每日 10:00 – 22:00",
   "footer.hoursKlcw": "周一至周六 10:00 – 17:30",
-  "footer.bottomTagline": "印尼暖心料理 · 八打灵再也 & 吉隆坡",
+  "footer.bottomTagline": "印尼风味暖心料理 · Taman Sea，八打灵再也",
 
   // Planner
   "planner.selectOutlet": "请选择你想去的分店",
@@ -476,10 +476,10 @@ const zh: Dict = {
   "saved.note": "这不是预先下单——不会预订桌位，也不会提交订单。",
 
   // WhatsApp
-  "wa.rsvpGreeting": "Warung Jakarta 你好，我想订位（RSVP）。",
-  "wa.goingGreeting": "Warung Jakarta 你好，我正在前往你们分店的路上",
-  "wa.deliveryGreeting": "Warung Jakarta 你好，我想点外送",
-  "wa.planGreeting": "Warung Jakarta 你好，这是我的菜色选择。",
+  "wa.rsvpGreeting": "Menuu 你好，我想订位（RSVP）。",
+  "wa.goingGreeting": "Menuu 你好，我正在前往你们分店的路上",
+  "wa.deliveryGreeting": "Menuu 你好，我想点外送",
+  "wa.planGreeting": "Menuu 你好，这是我的菜色选择。",
   "wa.preSelected": "预选菜色（非预先下单）：",
   "wa.name": "姓名",
   "wa.contact": "联络",

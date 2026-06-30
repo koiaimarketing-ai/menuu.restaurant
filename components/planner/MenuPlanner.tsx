@@ -97,7 +97,7 @@ export function MenuPlanner() {
   // ---- category rail intersection observer ----
   const railRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!plannerActive && branchId !== "kl-central-walk") return;
+    if (!plannerActive) return;
     const headings = document.querySelectorAll<HTMLElement>("[data-cat-section]");
     if (!headings.length) return;
     const obs = new IntersectionObserver(
@@ -184,7 +184,9 @@ export function MenuPlanner() {
   }
 
   // ============ STEP 3: MENU + PLANNER ============
-  const isSS4 = branchId === "ss4";
+  // Single outlet now always serves the live, confirmed menu (the former SS4
+  // "menu updating" state no longer applies), so this is always false.
+  const isSS4 = false;
 
   return (
     <div className="container-site pb-32 lg:pb-16">
@@ -192,7 +194,7 @@ export function MenuPlanner() {
         branch={branch!}
         status={visitStatus}
         visitLabel={visitLabel}
-        onChangeBranch={() => plan.setBranch(isSS4 ? "kl-central-walk" : "ss4")}
+        onChangeBranch={() => plan.setBranch(branchId)}
         onChangeTime={() => plan.setVisit(null as never, null, null)}
       />
 
@@ -203,12 +205,13 @@ export function MenuPlanner() {
           branchName={branch!.name}
           altBranch={altBranch?.name}
           altStatus={altStatus}
-          onSwitch={() => plan.setBranch(isSS4 ? "kl-central-walk" : "ss4")}
+          onSwitch={() => plan.setBranch(branchId)}
           onChangeTime={() => plan.setVisit(null as never, null, null)}
         />
       )}
 
-      {/* SS4 menu pending */}
+      {/* Single outlet: the live menu always renders (the old per-branch
+          "menu updating" placeholder below is kept but never shown). */}
       {isSS4 ? (
         <div className="mt-8 rounded-3xl bg-white border border-line-light p-8 text-center max-w-xl mx-auto">
           <h2 className="h-display text-2xl">{t("menu.planner.ss4Updating")}</h2>
@@ -451,9 +454,11 @@ function CollapsedVisit({
       {visitLabel && <span className="text-sm text-ink-secondary">· {visitLabel}</span>}
       {status && <StatusBadge status={status} />}
       <div className="ml-auto flex gap-3 text-sm font-semibold">
-        <button onClick={onChangeBranch} className="text-green-text hover:underline">
-          {editBranch ? t("menu.planner.changeBranch") : t("menu.planner.switchBranch")}
-        </button>
+        {locations.length > 1 && (
+          <button onClick={onChangeBranch} className="text-green-text hover:underline">
+            {editBranch ? t("menu.planner.changeBranch") : t("menu.planner.switchBranch")}
+          </button>
+        )}
         {onChangeTime && (
           <button onClick={onChangeTime} className="text-green-text hover:underline">
             {t("menu.planner.changeTime")}
@@ -485,11 +490,11 @@ function StatusBanner({
   return (
     <div
       className={`mt-4 rounded-2xl border p-4 ${
-        danger ? "bg-[#FDECEA] border-[#f5c6c0]" : "bg-[#FFF4DE] border-[#f0dca8]"
+        danger ? "bg-[#FDECEA] border-[#f5c6c0]" : "bg-[#eef3ff] border-[#dde4f7]"
       }`}
     >
       <div className="flex gap-3">
-        <AlertTriangle className={`h-5 w-5 shrink-0 ${danger ? "text-[#B42318]" : "text-[#A96513]"}`} />
+        <AlertTriangle className={`h-5 w-5 shrink-0 ${danger ? "text-[#B42318]" : "text-[#2258da]"}`} />
         <div className="text-sm">
           <p className="font-semibold text-ink-primary">
             {status.kind === "closing-soon" && t("menu.planner.bannerClosingSoon").replace("{branch}", branchName)}
@@ -638,7 +643,7 @@ function DesktopSummary({
     <aside className="hidden lg:block sticky top-[100px]">
       <div className="rounded-2xl bg-white border border-line-light shadow-card p-5">
         <p className="text-xs font-bold tracking-wider text-ink-supporting">{t("menu.planner.yourMealPlan")}</p>
-        <p className="text-sm text-ink-primary mt-1 font-semibold">{plan.branchId === "ss4" ? "SS4" : "KL Central Walk"}</p>
+        <p className="text-sm text-ink-primary mt-1 font-semibold">{getLocation(plan.branchId ?? "ss4")?.shortName ?? "Menuu"}</p>
         <p className="text-xs text-ink-secondary">{visitLabel}</p>
         {status && <div className="mt-2"><StatusBadge status={status} /></div>}
 

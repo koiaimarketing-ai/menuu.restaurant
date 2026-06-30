@@ -3,5 +3,5 @@
 export const REVIEW_INFO = {
   rating: "4.6",
   reviewsCount: 376,
-  quote: "Tastes just like home in Jakarta.",
+  quote: "Tastes just like home.",
 } as const;

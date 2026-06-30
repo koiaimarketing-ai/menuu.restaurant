@@ -35,7 +35,7 @@ export function BranchMap({ location }: { location: Location }) {
             rel="noopener noreferrer"
             aria-label={`Open ${location.name} in Google Maps`}
             title="Open in Google Maps"
-            className="grid h-[46px] w-[46px] place-items-center rounded-full border border-line-warm bg-white/85 shadow-[0_6px_18px_rgba(58,30,26,0.08)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:scale-[1.04] hover:shadow-[0_10px_24px_rgba(58,30,26,0.13)] active:scale-95 motion-reduce:transform-none"
+            className="grid h-[46px] w-[46px] place-items-center rounded-full border border-line-warm bg-white/85 shadow-[0_6px_18px_rgba(8,17,39,0.08)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:scale-[1.04] hover:shadow-[0_10px_24px_rgba(8,17,39,0.13)] active:scale-95 motion-reduce:transform-none"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icons/google-maps.svg" alt="" className="h-6 w-6 object-contain" />
@@ -46,7 +46,7 @@ export function BranchMap({ location }: { location: Location }) {
             rel="noopener noreferrer"
             aria-label={`Open ${location.name} in Waze`}
             title="Open in Waze"
-            className="grid h-[46px] w-[46px] place-items-center rounded-full border border-line-warm bg-white/85 shadow-[0_6px_18px_rgba(58,30,26,0.08)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:scale-[1.04] hover:shadow-[0_10px_24px_rgba(58,30,26,0.13)] active:scale-95 motion-reduce:transform-none"
+            className="grid h-[46px] w-[46px] place-items-center rounded-full border border-line-warm bg-white/85 shadow-[0_6px_18px_rgba(8,17,39,0.08)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:scale-[1.04] hover:shadow-[0_10px_24px_rgba(8,17,39,0.13)] active:scale-95 motion-reduce:transform-none"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icons/waze.svg" alt="" className="h-6 w-6 object-contain" />

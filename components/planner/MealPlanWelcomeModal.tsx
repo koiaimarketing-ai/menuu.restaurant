@@ -121,14 +121,14 @@ export function MealPlanWelcomeModal() {
           >
             <div className="modal-drag-handle sm:hidden" />
             <div className="flex items-start justify-between gap-3">
-              <h2 id="meal-welcome-heading" className="text-[1.3rem] font-extrabold leading-tight text-[#3B2A24]">
+              <h2 id="meal-welcome-heading" className="text-[1.3rem] font-extrabold leading-tight text-[#081127]">
                 {tr("saved.title")}
               </h2>
-              <span className="mt-0.5 shrink-0 rounded-full bg-[#F8E8E4] px-3 py-1 text-[11px] font-semibold text-[#7A5048]">
+              <span className="mt-0.5 shrink-0 rounded-full bg-[#eef3ff] px-3 py-1 text-[11px] font-semibold text-[#6b7589]">
                 {tr("saved.badge")}
               </span>
             </div>
-            <p className="mt-2 text-[14px] leading-relaxed text-[#9A766B]">{tr("saved.desc")}</p>
+            <p className="mt-2 text-[14px] leading-relaxed text-[#6b7589]">{tr("saved.desc")}</p>
 
             <div className="mt-5 text-left">
               <SummaryRow icon={<MapPin className="h-4 w-4" />} label={tr("saved.outlet")} value={branch?.shortName ?? tr("saved.notSelected")} />
@@ -138,8 +138,8 @@ export function MealPlanWelcomeModal() {
                 value={visitLabel}
               />
               <SummaryRow icon={<UtensilsCrossed className="h-4 w-4" />} label={tr("saved.itemsSelected")} value={`${plan.count}`} />
-              <div className="mt-3 flex items-center justify-between border-t border-[#E8DDD5] pt-3">
-                <span className="text-base font-extrabold text-[#3B2A24]">{tr("saved.estimatedTotal")}</span>
+              <div className="mt-3 flex items-center justify-between border-t border-[#dde4f7] pt-3">
+                <span className="text-base font-extrabold text-[#081127]">{tr("saved.estimatedTotal")}</span>
                 <span className="text-2xl font-extrabold text-[#16A34A]">{fmtRM(t.grandTotal)}</span>
               </div>
             </div>
@@ -156,13 +156,13 @@ export function MealPlanWelcomeModal() {
               <button
                 type="button"
                 onClick={startNew}
-                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#E8DDD5] bg-white px-6 text-[15px] font-semibold text-[#3B2A24] transition-colors hover:border-[#E94A36]/50 hover:bg-[#FFF0EC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E94A36]/30 focus-visible:ring-offset-2"
+                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-[#dde4f7] bg-white px-6 text-[15px] font-semibold text-[#081127] transition-colors hover:border-[#2258da]/50 hover:bg-[#eef3ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2258da]/30 focus-visible:ring-offset-2"
               >
                 {tr("saved.startFresh")}
               </button>
             </div>
 
-            <p className="mt-4 text-center text-xs leading-relaxed text-[#9A766B]">{tr("saved.note")}</p>
+            <p className="mt-4 text-center text-xs leading-relaxed text-[#6b7589]">{tr("saved.note")}</p>
           </motion.div>
         </motion.div>
       )}
@@ -173,12 +173,12 @@ export function MealPlanWelcomeModal() {
 
 function SummaryRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between gap-3 border-b border-[#E8DDD5] py-2.5">
-      <span className="flex items-center gap-2 text-sm text-[#9A766B]">
-        <span className="text-[#E94A36]">{icon}</span>
+    <div className="flex items-center justify-between gap-3 border-b border-[#dde4f7] py-2.5">
+      <span className="flex items-center gap-2 text-sm text-[#6b7589]">
+        <span className="text-[#2258da]">{icon}</span>
         {label}
       </span>
-      <span className="text-sm font-semibold text-[#3B2A24]">{value}</span>
+      <span className="text-sm font-semibold text-[#081127]">{value}</span>
     </div>
   );
 }

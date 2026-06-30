@@ -49,18 +49,6 @@ export function MealPlannerPage() {
 
   return (
     <div className="relative">
-      {/* faded landmark sketches */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[420px] opacity-[0.08]"
-        aria-hidden="true"
-        style={{
-          backgroundImage: "url(/images/jakarta.png)",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "top right",
-          backgroundSize: "640px auto",
-        }}
-      />
-
       <div className="container-site relative">
         {/* two-column planner — top padding clears the fixed navbar */}
         <div className="grid items-start gap-7 pt-28 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_350px] lg:pt-32">

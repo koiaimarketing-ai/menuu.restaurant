@@ -70,10 +70,10 @@ export function ReceiptModal({
 
       const blob = await (await fetch(dataUrl)).blob();
 
-      // warung-jakarta-meal-plan-<BRANCH>-<YYYY-MM-DD>.png (case preserved, e.g. KLCW)
-      const safeBranch = (branch?.shortName ?? "branch").replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "");
+      // menuu-meal-plan-<OUTLET>-<YYYY-MM-DD>.png
+      const safeBranch = (branch?.shortName ?? "outlet").replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "");
       const date = new Date().toISOString().split("T")[0];
-      const filename = `warung-jakarta-meal-plan-${safeBranch}-${date}.png`;
+      const filename = `menuu-meal-plan-${safeBranch}-${date}.png`;
       const file = new File([blob], filename, { type: "image/png" });
       // Image generated successfully → keep it and reveal the WhatsApp hand-off.
       lastFileRef.current = file;
@@ -85,7 +85,7 @@ export function ReceiptModal({
 
       // Mobile: native share/save sheet when available.
       if (isMobile && navigator.share && navigator.canShare?.({ files: [file] })) {
-        await navigator.share({ files: [file], title: "Warung Jakarta Meal Plan" });
+        await navigator.share({ files: [file], title: "Menuu Meal Plan" });
         return;
       }
 
@@ -163,7 +163,7 @@ export function ReceiptModal({
   // context — otherwise the sticky capsule bar / navbar would paint over it.
   return createPortal(
     <div
-      className="fixed inset-0 z-[1000] flex items-end justify-center overflow-hidden bg-[rgba(32,24,20,0.42)] p-4 backdrop-blur-[6px] sm:items-center sm:p-6"
+      className="fixed inset-0 z-[1000] flex items-end justify-center overflow-hidden bg-[rgba(8,17,39,0.42)] p-4 backdrop-blur-[6px] sm:items-center sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-label={tr("receipt.title")}
@@ -238,7 +238,7 @@ export function ReceiptModal({
           <p className="receipt-note">{tr("receipt.note")}</p>
 
           <div className="mt-3 flex items-center justify-center gap-2 text-[11px] text-ink-muted">
-            <Image src="/images/logo.png" alt="Warung Jakarta" width={28} height={28} className="h-7 w-7 rounded-full" />
+            <Image src="/images/logo.png" alt="Menuu" width={121} height={22} className="h-[22px] w-auto" />
             <span>{branch?.shortName} · {generatedAt || "…"}</span>
           </div>
         </div>

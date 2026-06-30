@@ -19,7 +19,7 @@ function ReviewBlock({ align = "left" }: { align?: "left" | "right" }) {
             <img
               key={i}
               src={src}
-              alt="Warung Jakarta customer"
+              alt="Menuu customer"
               loading="lazy"
               className="h-8 w-8 rounded-full border-2 border-cream bg-secondary object-cover sm:h-[30px] sm:w-[30px]"
             />
@@ -35,7 +35,7 @@ function ReviewBlock({ align = "left" }: { align?: "left" | "right" }) {
 function LocationPills({ align = "left" }: { align?: "left" | "right" }) {
   return (
     <div className={`flex flex-wrap gap-2 ${align === "right" ? "justify-end" : ""}`}>
-      {["SS4", "KLCW"].map((b) => (
+      {["Taman Sea, PJ"].map((b) => (
         <span
           key={b}
           className="inline-flex items-center gap-1.5 rounded-full bg-white/70 border border-line-warm px-3 py-1 font-medium text-heading"

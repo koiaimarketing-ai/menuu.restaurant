@@ -33,8 +33,8 @@ export function QrPayment({
           <p className="mt-2 text-ink-secondary">Payment reference</p>
           <p className="font-mono font-semibold tracking-wide text-ink-primary">{reference}</p>
 
-          <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#FFF4DE] px-2.5 py-1 text-xs font-medium text-[#A96513]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#A96513]" /> Awaiting receipt confirmation
+          <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#eef3ff] px-2.5 py-1 text-xs font-medium text-[#2258da]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#2258da]" /> Awaiting receipt confirmation
           </span>
         </div>
       </div>
@@ -71,10 +71,10 @@ function QrPlaceholder() {
     <svg viewBox="0 0 7 7" className="h-28 w-28" shapeRendering="crispEdges" aria-label="Payment QR code">
       <rect width="7" height="7" fill="#fff" />
       {modules.map((m, i) => (
-        <rect key={`m${i}`} x={m.x} y={m.y} width="1" height="1" fill="#2e1e17" />
+        <rect key={`m${i}`} x={m.x} y={m.y} width="1" height="1" fill="#081127" />
       ))}
       {extra.map(([x, y], i) => (
-        <rect key={`e${i}`} x={x} y={y} width="1" height="1" fill="#2e1e17" />
+        <rect key={`e${i}`} x={x} y={y} width="1" height="1" fill="#081127" />
       ))}
     </svg>
   );

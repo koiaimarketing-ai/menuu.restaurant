@@ -61,7 +61,7 @@ export function DeliveryRouteMap({
         path,
         map,
         geodesic: true,
-        strokeColor: "#C8472E",
+        strokeColor: "#2258da",
         strokeOpacity: 0.9,
         strokeWeight: 4,
       });

@@ -71,22 +71,22 @@ export function FoodTags({
   return (
     <div className={`flex min-h-[18px] items-center gap-1.5 ${className}`}>
       {spicy && (
-        <span className="inline-flex items-center justify-center leading-none text-[#ef4438]" aria-label={t("menu.tag.spicy")} title={t("menu.tag.spicy")}>
+        <span className="inline-flex items-center justify-center leading-none text-[#2258da]" aria-label={t("menu.tag.spicy")} title={t("menu.tag.spicy")}>
           <Flame className="h-[15px] w-[15px]" />
         </span>
       )}
       {chicken && (
-        <span className="inline-flex items-center justify-center leading-none text-[#C97A33]" aria-label={t("menu.tag.chicken")} title={t("menu.tag.chicken")}>
+        <span className="inline-flex items-center justify-center leading-none text-[#6b7589]" aria-label={t("menu.tag.chicken")} title={t("menu.tag.chicken")}>
           <Drumstick className="h-[15px] w-[15px]" />
         </span>
       )}
       {beef && (
-        <span className="inline-flex items-center justify-center leading-none text-[#9a5a33]" aria-label={t("menu.tag.beef")} title={t("menu.tag.beef")}>
+        <span className="inline-flex items-center justify-center leading-none text-[#6b7589]" aria-label={t("menu.tag.beef")} title={t("menu.tag.beef")}>
           <CowIcon className="h-[15px] w-[15px]" />
         </span>
       )}
       {fish && (
-        <span className="inline-flex items-center justify-center leading-none text-[#2b86c5]" aria-label={t("menu.tag.fish")} title={t("menu.tag.fish")}>
+        <span className="inline-flex items-center justify-center leading-none text-[#2258da]" aria-label={t("menu.tag.fish")} title={t("menu.tag.fish")}>
           <Fish className="h-[15px] w-[15px]" />
         </span>
       )}

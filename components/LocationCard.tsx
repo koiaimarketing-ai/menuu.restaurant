@@ -8,7 +8,7 @@ import { MapPin, MessageCircle } from "lucide-react";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
 const BRANCH_IMAGE: Record<string, string> = {
-  ss4: "/images/ss4-branch.png",
+  ss4: "/images/photo-exterior.png",
   "kl-central-walk": "/images/klcw-branch.png",
 };
 
@@ -23,7 +23,7 @@ export function LocationCard({ location }: { location: Location }) {
 
   return (
     <article
-      className="flex h-full flex-col overflow-hidden rounded-[20px] border border-[rgba(83,48,30,0.12)] bg-[rgba(255,251,246,0.97)] shadow-[0_18px_45px_rgba(71,39,24,0.10)] transition-transform duration-200 hover:-translate-y-[3px]"
+      className="flex h-full flex-col overflow-hidden rounded-[20px] border border-[rgba(8,17,39,0.08)] bg-white shadow-[0_18px_45px_rgba(8,17,39,0.08)] transition-transform duration-200 hover:-translate-y-[3px]"
     >
       {/* Location photo + branch badge */}
       <div className="relative h-[190px] w-full sm:h-[200px]">

@@ -49,7 +49,7 @@ export function buildWhatsAppMessage(
   const branch = branchId ? getLocation(branchId) : undefined;
   const t = computeTotals(items);
   const lines: string[] = [];
-  lines.push("*Warung Jakarta — Meal Planning List*");
+  lines.push("*Menuu — Meal Planning List*");
   lines.push("");
   if (branch) lines.push(`Outlet: ${branch.shortName}`);
   lines.push(`Visit: ${visitLabel(visitMode, visitDate, visitTime)}`);

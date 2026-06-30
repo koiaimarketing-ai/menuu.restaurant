@@ -6,7 +6,7 @@ import { locations, telHref } from "@/data/locations";
 import { Instagram, Facebook, MapPin, MessageCircle } from "lucide-react";
 
 const WHATSAPP_COMMUNITY_URL =
-  "https://wa.me/60104047058?text=Hi%20Warung%20Jakarta%2C%20I%20want%20to%20join%20the%20WhatsApp%20community";
+  "https://wa.me/60169214297?text=Hi%20Menuu%2C%20I%20want%20to%20join%20the%20WhatsApp%20community";
 
 // TikTok has no lucide icon — small inline brand glyph.
 function TikTokIcon({ className }: { className?: string }) {
@@ -26,12 +26,10 @@ import { useLang } from "@/lib/i18n/LanguageProvider";
 
 export function Footer() {
   const { t } = useLang();
-  const ss4 = locations[0];
-  const klcw = locations[1];
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line-warm bg-[#FAF4EC] text-body">
+    <footer className="border-t border-line-warm bg-[#eef3ff] text-body">
       <div className="mx-auto w-full max-w-[1280px] px-6 md:px-10 pt-12 pb-5">
         <div className="grid gap-x-12 gap-y-10 md:grid-cols-[1.4fr_0.8fr_1.2fr_1.2fr]">
           {/* Brand */}
@@ -39,14 +37,11 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <Image
                 src="/images/logo.png"
-                alt="Warung Jakarta"
-                width={52}
-                height={52}
-                className="h-12 w-12 rounded-full"
+                alt="Menuu"
+                width={176}
+                height={32}
+                className="h-8 w-auto"
               />
-              <span className="text-lg text-heading" style={{ fontFamily: "var(--font-fraunces)" }}>
-                Warung Jakarta
-              </span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-body">
               {t("footer.tagline")}
@@ -82,18 +77,15 @@ export function Footer() {
 
           {/* Our Branches */}
           <div className="text-sm">
-            <h3 className="mb-4 font-semibold text-heading">{t("footer.ourBranches")}</h3>
+            <h3 className="mb-4 font-semibold text-heading">{t("footer.locations")}</h3>
             <div className="space-y-4">
-              {[
-                { l: ss4, hours: t("footer.hoursSs4") },
-                { l: klcw, hours: t("footer.hoursKlcw") },
-              ].map(({ l, hours }) => (
+              {locations.map((l) => (
                 <address key={l.id} className="not-italic leading-relaxed">
                   <p className="flex items-start gap-1.5 font-semibold text-heading">
                     <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" /> {l.name}
                   </p>
                   <p className="text-body">{l.addressLines.slice(0, 2).join(", ")}</p>
-                  <p className="text-ink-secondary">{hours}</p>
+                  <p className="text-ink-secondary">{t("footer.hoursSs4")}</p>
                   <a href={telHref(l.phone)} className="transition-colors hover:text-primary">
                     {l.phone}
                   </a>
@@ -120,7 +112,7 @@ export function Footer() {
 
         {/* Bottom row */}
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-line-warm pt-6 text-center text-xs text-ink-secondary sm:flex-row sm:justify-between sm:text-left">
-          <span>© {year} Warung Jakarta. Rasa Original.</span>
+          <span>© {year} Menuu. All rights reserved.</span>
           <span>{t("footer.bottomTagline")}</span>
         </div>
       </div>

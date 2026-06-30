@@ -31,13 +31,13 @@ export function StoryContent() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/interior.png"
-            alt="Inside Warung Jakarta"
+            src="/images/photo-interior.png"
+            alt="Inside Menuu"
             fill
             priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#2A1612]/85 via-[#2A1612]/70 to-[#2A1612]/92" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#081127]/85 via-[#081127]/70 to-[#081127]/92" />
         </div>
         <div className="container-site relative py-28 md:py-40 text-white">
           <Reveal>
@@ -68,7 +68,7 @@ export function StoryContent() {
                 <img
                   key={i}
                   src={src}
-                  alt="Warung Jakarta customer"
+                  alt="Menuu customer"
                   loading="lazy"
                   className="h-9 w-9 rounded-full border-2 border-white object-cover"
                 />
@@ -89,7 +89,7 @@ export function StoryContent() {
       <section className="section">
         <div className="container-site grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <StoryImage src="/images/menu-mie-ayam.png" alt="A bowl of Mie Ayam" />
+            <StoryImage src="/images/menu-noodle.png" alt="Noodle dish" />
           </Reveal>
           <Reveal delay={0.1}>
             <span className="eyebrow">{t("pages.story.s1Eyebrow")}</span>
@@ -108,7 +108,7 @@ export function StoryContent() {
       <section className="section bg-secondary">
         <div className="container-site grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal className="lg:order-2">
-            <StoryImage src="/images/signature-dish.png" alt="A Warung Jakarta signature dish" />
+            <StoryImage src="/images/founder-chef.png" alt="Founder chef" contain />
           </Reveal>
           <Reveal delay={0.1} className="lg:order-1">
             <span className="eyebrow">{t("pages.story.s2Eyebrow")}</span>
@@ -128,7 +128,7 @@ export function StoryContent() {
       <section className="section">
         <div className="container-site grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <StoryImage src="/images/klcw-branch.png" alt="Warung Jakarta KL Central Walk branch" />
+            <StoryImage src="/images/photo-exterior.png" alt="Restaurant exterior" />
           </Reveal>
           <Reveal delay={0.1}>
             <span className="eyebrow">{t("pages.story.s3Eyebrow")}</span>
@@ -148,9 +148,9 @@ export function StoryContent() {
       </section>
 
       {/* ===================== SECTION 4 — TWO CULTURES, ONE TABLE ===================== */}
-      <section className="relative overflow-hidden bg-[#2A1612] text-white">
-        <div className="absolute inset-0 opacity-[0.18]">
-          <Image src="/images/dish-window.png" alt="" fill className="object-cover" aria-hidden />
+      <section className="relative overflow-hidden bg-[#081127] text-white">
+        <div className="absolute inset-0 opacity-[0.32]">
+          <Image src="/images/photo-interior.png" alt="" fill className="object-cover" aria-hidden />
         </div>
         <div className="container-site relative py-12 md:py-16">
           <Reveal>
@@ -269,8 +269,8 @@ export function StoryContent() {
       {/* ===================== CLOSING ===================== */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <Image src="/images/dish-topdown.png" alt="" fill className="object-cover" aria-hidden />
-          <div className="absolute inset-0 bg-[#2A1612]/85" />
+          <Image src="/images/logo.png" alt="" fill className="object-contain p-10" aria-hidden />
+          <div className="absolute inset-0 bg-[#081127]/80" />
         </div>
         <div className="container-site relative py-12 md:py-16 text-center text-white">
           <Reveal>
@@ -303,18 +303,18 @@ export function StoryContent() {
   );
 }
 
-function StoryImage({ src, alt }: { src: string; alt: string }) {
+function StoryImage({ src, alt, contain }: { src: string; alt: string; contain?: boolean }) {
   return (
     <div
-      className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px]"
-      style={{ boxShadow: "0 22px 50px rgba(58,30,26,0.12), 0 4px 12px rgba(58,30,26,0.05)" }}
+      className={`relative aspect-[4/3] w-full overflow-hidden rounded-[28px] ${contain ? "bg-[#eef3ff]" : ""}`}
+      style={{ boxShadow: "0 22px 50px rgba(8,17,39,0.12), 0 4px 12px rgba(8,17,39,0.05)" }}
     >
       <Image
         src={src}
         alt={alt}
         fill
         sizes="(max-width: 1024px) 100vw, 600px"
-        className="object-cover"
+        className={contain ? "object-contain p-6" : "object-cover"}
       />
     </div>
   );

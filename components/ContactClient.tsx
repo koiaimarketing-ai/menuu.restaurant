@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { locations, telHref, waHref, type Location } from "@/data/locations";
 import { BusinessHours } from "./BusinessHours";
 import { BranchMap } from "./BranchMap";
@@ -23,8 +23,11 @@ import { AboutPromotionMarquee } from "./planner/PromotionMarquee";
 import { GUEST_AVATARS } from "@/lib/avatars";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
-const branchImage = (id: string) =>
-  id === "ss4" ? "/images/ss4-branch.png" : "/images/klcw-branch.png";
+// Outlet photo card auto-rotates between the interior and exterior shots.
+const LOCATION_IMAGES = [
+  { src: "/images/loc-interior.png", alt: "Restaurant interior" },
+  { src: "/images/loc-exterior.png", alt: "Restaurant exterior" },
+];
 
 const REVIEW_PLATFORMS = ["Google", "Facebook", "Instagram", "TripAdvisor"];
 
@@ -46,26 +49,28 @@ export function ContactClient() {
 
   return (
     <div className="container-site pb-20">
-      {/* segmented branch toggle */}
-      <div
-        role="tablist"
-        aria-label="Choose a location"
-        className="mx-auto grid max-w-md grid-cols-2 gap-1 rounded-full border border-line-light bg-white p-1 shadow-soft sm:mx-0 sm:inline-grid sm:w-auto sm:grid-flow-col"
-      >
-        {locations.map((l) => (
-          <button
-            key={l.id}
-            role="tab"
-            aria-selected={activeId === l.id}
-            onClick={() => setActiveId(l.id)}
-            className={`rounded-full px-6 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
-              activeId === l.id ? "bg-primary text-white shadow-sm" : "text-body hover:text-heading"
-            }`}
-          >
-            {l.shortName}
-          </button>
-        ))}
-      </div>
+      {/* segmented branch toggle — only when there is more than one outlet */}
+      {locations.length > 1 && (
+        <div
+          role="tablist"
+          aria-label="Choose a location"
+          className="mx-auto grid max-w-md grid-cols-2 gap-1 rounded-full border border-line-light bg-white p-1 shadow-soft sm:mx-0 sm:inline-grid sm:w-auto sm:grid-flow-col"
+        >
+          {locations.map((l) => (
+            <button
+              key={l.id}
+              role="tab"
+              aria-selected={activeId === l.id}
+              onClick={() => setActiveId(l.id)}
+              className={`rounded-full px-6 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                activeId === l.id ? "bg-primary text-white shadow-sm" : "text-body hover:text-heading"
+              }`}
+            >
+              {l.shortName}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* MOBILE-ONLY: restaurant photo directly below the SS4 / KLCW tabs */}
       <div className="mt-6 lg:hidden">
@@ -178,18 +183,32 @@ export function ContactClient() {
     below the tabs and the desktop media column). */
 function BranchPhoto({ active, className = "" }: { active: Location; className?: string }) {
   const { t } = useLang();
+  const [idx, setIdx] = useState(0);
+  // Cross-fade between interior/exterior every 5s.
+  useEffect(() => {
+    const id = setInterval(() => setIdx((i) => (i + 1) % LOCATION_IMAGES.length), 5000);
+    return () => clearInterval(id);
+  }, []);
+  void active; // single outlet — both photos apply
   return (
     <div className={`relative overflow-hidden rounded-[24px] shadow-soft ${className}`}>
-      <Image
-        src={branchImage(active.id)}
-        alt={`Warung Jakarta ${active.shortName} restaurant`}
-        width={1556}
-        height={1029}
-        sizes="(max-width: 1024px) 100vw, 620px"
-        className="aspect-[16/10] w-full object-cover lg:aspect-auto lg:h-full"
-      />
+      <div className="relative aspect-[16/10] w-full lg:aspect-auto lg:h-full">
+        {LOCATION_IMAGES.map((img, i) => (
+          <Image
+            key={img.src}
+            src={img.src}
+            alt={img.alt}
+            fill
+            sizes="(max-width: 1024px) 100vw, 620px"
+            priority={i === 0}
+            className={`object-cover transition-opacity duration-700 ease-in-out ${
+              i === idx ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+      </div>
       <a
-        href={branchImage(active.id)}
+        href={LOCATION_IMAGES[idx].src}
         target="_blank"
         rel="noopener noreferrer"
         className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-heading shadow-sm backdrop-blur transition-colors hover:bg-white"
@@ -213,7 +232,7 @@ function BranchReview({ className = "" }: { className?: string }) {
             <img
               key={i}
               src={src}
-              alt="Warung Jakarta customer"
+              alt="Menuu customer"
               loading="lazy"
               className="h-9 w-9 rounded-full border-2 border-white object-cover"
             />

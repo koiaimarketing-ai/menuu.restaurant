@@ -16,7 +16,7 @@ export type Pick = {
 };
 
 /**
- * Single-row, slowly auto-scrolling carousel of the featured "Warung Jakarta
+ * Single-row, slowly auto-scrolling carousel of the featured "Menuu
  * Picks" cards. Seamless infinite loop via a duplicated set + a Web Animations
  * API transform (GPU-friendly, no React state churn). Pauses on hover and while
  * dragging, resumes smoothly after, supports manual swipe/drag, and falls back

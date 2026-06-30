@@ -53,7 +53,7 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[1000] flex items-end justify-center overflow-hidden bg-[rgba(32,24,20,0.42)] p-4 backdrop-blur-[6px] sm:items-center sm:p-6"
+      className="fixed inset-0 z-[1000] flex items-end justify-center overflow-hidden bg-[rgba(8,17,39,0.42)] p-4 backdrop-blur-[6px] sm:items-center sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-label={tr("menu.sidebar.checkout")}
@@ -62,18 +62,18 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
     >
       <div
         ref={drag.shellRef}
-        className="popup-sheet relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[820px] flex-col overflow-hidden rounded-t-[24px] border border-[#EADDD4] bg-white p-5 shadow-[0_24px_70px_rgba(58,43,36,0.18)] sm:max-h-[calc(100dvh-48px)] sm:rounded-[24px] sm:p-6"
+        className="popup-sheet relative z-[1010] flex max-h-[calc(100dvh-32px)] w-full max-w-[820px] flex-col overflow-hidden rounded-t-[24px] border border-[#dde4f7] bg-white p-5 shadow-[0_24px_70px_rgba(8,17,39,0.18)] sm:max-h-[calc(100dvh-48px)] sm:rounded-[24px] sm:p-6"
         style={drag.shellStyle}
       >
         <div className="modal-drag-handle sm:hidden" />
         <div className="flex shrink-0 items-center justify-between">
-          <h3 className="flex items-center gap-2 text-lg font-bold text-[#3B2A24]">
-            <MessageCircle className="h-5 w-5 text-[#E24A34]" /> {tr("menu.sidebar.checkout")} · {branch.shortName}
+          <h3 className="flex items-center gap-2 text-lg font-bold text-[#081127]">
+            <MessageCircle className="h-5 w-5 text-[#2258da]" /> {tr("menu.sidebar.checkout")} · {branch.shortName}
           </h3>
           <button
             onClick={onClose}
             aria-label={tr("nav.closeMenu")}
-            className="grid h-9 w-9 place-items-center rounded-full bg-[#F4E8E0] text-[#7A5D51] transition-colors hover:bg-[#EADDD4]"
+            className="grid h-9 w-9 place-items-center rounded-full bg-[#eef3ff] text-[#6b7589] transition-colors hover:bg-[#dde4f7]"
           >
             <X className="h-5 w-5" />
           </button>
@@ -112,19 +112,19 @@ function Field({ label, value, onChange, placeholder, optional, error }: { label
   const { t: tr } = useLang();
   return (
     <label className="block text-sm">
-      <span className="mb-1 block text-xs font-medium text-[#9A766B]">
-        {label} {optional && <span className="text-[#b39a8f]">{tr("checkout.optional")}</span>}
+      <span className="mb-1 block text-xs font-medium text-[#6b7589]">
+        {label} {optional && <span className="text-[#6b7589]">{tr("checkout.optional")}</span>}
       </span>
       <input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className={`h-11 w-full rounded-[11px] border bg-white px-3 text-sm text-[#3B2A24] outline-none placeholder:text-[#A08478] focus:ring-2 ${
-          error ? "border-[#E24A34] focus:border-[#E24A34] focus:ring-[#E24A34]/15" : "border-[#EADDD4] focus:border-[#E24A34] focus:ring-[#E24A34]/10"
+        className={`h-11 w-full rounded-[11px] border bg-white px-3 text-sm text-[#081127] outline-none placeholder:text-[#6b7589] focus:ring-2 ${
+          error ? "border-[#2258da] focus:border-[#2258da] focus:ring-[#2258da]/15" : "border-[#dde4f7] focus:border-[#2258da] focus:ring-[#2258da]/10"
         }`}
       />
-      {error && <span className="mt-1 block text-xs font-medium text-[#E24A34]">{error}</span>}
+      {error && <span className="mt-1 block text-xs font-medium text-[#2258da]">{error}</span>}
     </label>
   );
 }
@@ -211,11 +211,11 @@ function openWhatsApp(branchWa: string | undefined, text: string) {
 function PaymentNotice() {
   const { t: tr } = useLang();
   return (
-    <div className="flex items-start gap-2.5 rounded-2xl border border-[#EADDD4] bg-white p-3.5 text-sm">
-      <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#E24A34]" aria-hidden="true" />
-      <div className="text-[#3B302C]">
+    <div className="flex items-start gap-2.5 rounded-2xl border border-[#dde4f7] bg-white p-3.5 text-sm">
+      <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#2258da]" aria-hidden="true" />
+      <div className="text-[#081127]">
         <p className="font-semibold">{tr("checkout.noticeTitle")}</p>
-        <p className="mt-1 text-[#9B7B70]">{tr("checkout.noticeBody")}</p>
+        <p className="mt-1 text-[#6b7589]">{tr("checkout.noticeBody")}</p>
       </div>
     </div>
   );
@@ -228,7 +228,7 @@ function WhatsAppCTA({ disabled, onClick, label }: { disabled?: boolean; onClick
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className="btn btn-whatsapp cta-shine h-[52px] w-full justify-center !rounded-full font-extrabold disabled:!bg-[#EADDD4] disabled:!text-[#9B7B70]"
+      className="btn btn-whatsapp cta-shine h-[52px] w-full justify-center !rounded-full font-extrabold disabled:!bg-[#dde4f7] disabled:!text-[#6b7589]"
     >
       <MessageCircle className="h-4 w-4" aria-hidden="true" /> {label}
     </button>
@@ -239,11 +239,11 @@ function WhatsAppCTA({ disabled, onClick, label }: { disabled?: boolean; onClick
 function PaxSelect({ value, onChange, label }: { value: string; onChange: (v: string) => void; label: string }) {
   return (
     <label className="block text-sm">
-      <span className="mb-1 block text-xs font-medium text-[#9A766B]">{label}</span>
+      <span className="mb-1 block text-xs font-medium text-[#6b7589]">{label}</span>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-11 w-full rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none focus:border-[#16A34A] focus:ring-2 focus:ring-[#16A34A]/15"
+        className="h-11 w-full rounded-[11px] border border-[#dde4f7] bg-white px-3 text-sm text-[#081127] outline-none focus:border-[#16A34A] focus:ring-2 focus:ring-[#16A34A]/15"
       >
         {Array.from({ length: 120 }, (_, i) => i + 1).map((n) => (
           <option key={n} value={String(n)}>
@@ -303,21 +303,21 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
         <Section title={tr("checkout.reservationDetails")}>
           <div className="grid grid-cols-2 gap-3 max-[360px]:grid-cols-1">
             <label className="block text-sm">
-              <span className="mb-1 block text-xs font-medium text-[#9A766B]">{tr("checkout.date")}</span>
+              <span className="mb-1 block text-xs font-medium text-[#6b7589]">{tr("checkout.date")}</span>
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="flex h-11 w-full min-w-0 max-w-full box-border appearance-none items-center rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm leading-none text-[#3B2A24] outline-none [&::-webkit-date-and-time-value]:text-left [&::-webkit-date-and-time-value]:m-0 focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
+                className="flex h-11 w-full min-w-0 max-w-full box-border appearance-none items-center rounded-[11px] border border-[#dde4f7] bg-white px-3 text-sm leading-none text-[#081127] outline-none [&::-webkit-date-and-time-value]:text-left [&::-webkit-date-and-time-value]:m-0 focus:border-[#2258da] focus:ring-2 focus:ring-[#2258da]/10"
               />
             </label>
             <label className="block text-sm">
-              <span className="mb-1 block text-xs font-medium text-[#9A766B]">{tr("checkout.time")}</span>
+              <span className="mb-1 block text-xs font-medium text-[#6b7589]">{tr("checkout.time")}</span>
               <input
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="flex h-11 w-full min-w-0 max-w-full box-border appearance-none items-center rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm leading-none text-[#3B2A24] outline-none [&::-webkit-date-and-time-value]:text-left [&::-webkit-date-and-time-value]:m-0 focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
+                className="flex h-11 w-full min-w-0 max-w-full box-border appearance-none items-center rounded-[11px] border border-[#dde4f7] bg-white px-3 text-sm leading-none text-[#081127] outline-none [&::-webkit-date-and-time-value]:text-left [&::-webkit-date-and-time-value]:m-0 focus:border-[#2258da] focus:ring-2 focus:ring-[#2258da]/10"
               />
             </label>
           </div>
@@ -329,7 +329,7 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
           </div>
         </Section>
 
-        <p className="rounded-2xl border border-[#EADDD4] bg-white px-3.5 py-3 text-xs text-[#9B7B70]">
+        <p className="rounded-2xl border border-[#dde4f7] bg-white px-3.5 py-3 text-xs text-[#6b7589]">
           {tr("checkout.rsvpNotice")}
         </p>
       </div>
@@ -338,7 +338,7 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
       <div className="space-y-3">
         <OrderSummary total={foodPayable} outlet={branch!.shortName} visitType={tr("planner.rsvp")} />
         <WhatsAppCTA disabled={!canConfirm} onClick={confirmReservation} label={tr("checkout.whatsappUsNow")} />
-        <p className="text-center text-xs text-[#9A766B]">
+        <p className="text-center text-xs text-[#6b7589]">
           {canConfirm ? tr("checkout.rsvpHintReady") : tr("checkout.rsvpHintMissing")}
         </p>
       </div>
@@ -397,7 +397,7 @@ function GoingNowCheckout({ branch, foodPayable, customer }: { branch: Branch; f
       <div className="space-y-3">
         <OrderSummary total={foodPayable} outlet={branch!.shortName} visitType={tr("planner.goingNow")} />
         <WhatsAppCTA disabled={!canConfirm} onClick={confirmGoing} label={tr("checkout.whatsappUsNow")} />
-        <p className="text-center text-xs text-[#9A766B]">
+        <p className="text-center text-xs text-[#6b7589]">
           {canConfirm ? tr("checkout.goingHintReady") : tr("checkout.goingHintMissing")}
         </p>
       </div>
@@ -476,12 +476,12 @@ function DeliveryCheckout({ branch, foodPayable, customer }: { branch: Branch; f
         </Section>
 
         <Section title={tr("checkout.deliveryAddress")}>
-          <p className="mb-2.5 text-xs text-[#9B7B70]">{tr("checkout.deliveryAddressHelp")}</p>
+          <p className="mb-2.5 text-xs text-[#6b7589]">{tr("checkout.deliveryAddressHelp")}</p>
           {liveMaps ? (
             <>
               <DeliveryAddressAutocomplete outlet={outletCoords} onSelect={setSelected} />
               {attempted && missing.address && (
-                <span className="mt-1 block text-xs font-medium text-[#E24A34]">{tr("err.address")}</span>
+                <span className="mt-1 block text-xs font-medium text-[#2258da]">{tr("err.address")}</span>
               )}
             </>
           ) : (
@@ -509,7 +509,7 @@ function DeliveryCheckout({ branch, foodPayable, customer }: { branch: Branch; f
       <div className="space-y-3">
         <OrderSummary total={foodPayable} outlet={branch!.shortName} visitType={tr("planner.deliveryNow")} deliveryNote={tr("checkout.paidByCustomer")} payNowLabel={tr("checkout.payNow")} />
         <WhatsAppCTA disabled={attempted && !canConfirm} onClick={confirmDelivery} label={tr("checkout.whatsappUsNow")} />
-        <p className="text-center text-xs text-[#9A766B]">{tr("checkout.deliveryHint")}</p>
+        <p className="text-center text-xs text-[#6b7589]">{tr("checkout.deliveryHint")}</p>
       </div>
     </div>
   );
@@ -525,7 +525,7 @@ function waText(lang: Lang) {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[#9A8075]">{title}</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[#6b7589]">{title}</p>
       {children}
     </div>
   );

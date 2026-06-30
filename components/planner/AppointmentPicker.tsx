@@ -114,7 +114,7 @@ export function AppointmentPicker({
       <div className="flex h-full flex-col rounded-[28px] border border-line-light bg-white p-4 md:min-h-[390px]">
         <p className="text-sm font-semibold text-ink-primary">{t("misc.appt.chooseTime")}</p>
         {warn && (
-          <p className="mt-2 flex items-start gap-2 rounded-lg bg-[#FFF4DE] px-3 py-2 text-xs text-[#A96513]">
+          <p className="mt-2 flex items-start gap-2 rounded-lg bg-[#eef3ff] px-3 py-2 text-xs text-[#2258da]">
             <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" /> {t("misc.appt.closesSoon").replace("{time}", warn)}
           </p>
         )}

@@ -15,11 +15,11 @@ export const dictMisc: Record<Lang, Record<string, string>> = {
     "misc.review.next": "Next reviews",
 
     // EntranceOverlay
-    "misc.entrance.welcomeLabel": "Welcome to Warung Jakarta",
-    "misc.entrance.eyebrow": "From Jakarta to Kuala Lumpur",
-    "misc.entrance.title": "Welcome to Warung Jakarta",
+    "misc.entrance.welcomeLabel": "Welcome to Menuu",
+    "misc.entrance.eyebrow": "Authentic flavours in Petaling Jaya",
+    "misc.entrance.title": "Welcome to Menuu",
     "misc.entrance.sub":
-      "A little taste of Jakarta, served with warmth in the heart of Kuala Lumpur.",
+      "A little taste of home, served with warmth in the heart of Petaling Jaya.",
     "misc.entrance.clickMe": "Click Me",
 
     // AmbientSoundToggle
@@ -98,7 +98,7 @@ export const dictMisc: Record<Lang, Record<string, string>> = {
     "misc.gen.editList": "Edit List",
     "misc.gen.note": "Note:",
     "misc.gen.exit": "Exit",
-    "misc.gen.title": "Your Warung Jakarta Meal Plan",
+    "misc.gen.title": "Your Menuu Meal Plan",
     "misc.gen.close": "Close",
     "misc.gen.plannedVisit": "Planned visit:",
     "misc.gen.businessHours": "Business hours:",
@@ -109,7 +109,7 @@ export const dictMisc: Record<Lang, Record<string, string>> = {
     "misc.gen.whatsapp": "WhatsApp",
     "misc.gen.share": "Share",
     "misc.gen.show": "Show",
-    "misc.gen.shareTitle": "Warung Jakarta Meal Plan",
+    "misc.gen.shareTitle": "Menuu Meal Plan",
     "misc.gen.closingStatement":
       "Present this list to our waitstaff upon arrival. This is a digital meal-planning summary and does not require an account or login.",
     "misc.gen.finalNote":
@@ -149,11 +149,11 @@ export const dictMisc: Record<Lang, Record<string, string>> = {
     "misc.review.next": "Ulasan seterusnya",
 
     // EntranceOverlay
-    "misc.entrance.welcomeLabel": "Selamat datang ke Warung Jakarta",
-    "misc.entrance.eyebrow": "Dari Jakarta ke Kuala Lumpur",
-    "misc.entrance.title": "Selamat datang ke Warung Jakarta",
+    "misc.entrance.welcomeLabel": "Selamat datang ke Menuu",
+    "misc.entrance.eyebrow": "Rasa asli di Petaling Jaya",
+    "misc.entrance.title": "Selamat datang ke Menuu",
     "misc.entrance.sub":
-      "Sedikit rasa Jakarta, dihidangkan penuh mesra di tengah-tengah Kuala Lumpur.",
+      "Sedikit rasa ala rumah, dihidangkan penuh mesra di tengah-tengah Petaling Jaya.",
     "misc.entrance.clickMe": "Klik Saya",
 
     // AmbientSoundToggle
@@ -232,7 +232,7 @@ export const dictMisc: Record<Lang, Record<string, string>> = {
     "misc.gen.editList": "Sunting Senarai",
     "misc.gen.note": "Nota:",
     "misc.gen.exit": "Keluar",
-    "misc.gen.title": "Pelan Hidangan Warung Jakarta Anda",
+    "misc.gen.title": "Pelan Hidangan Menuu Anda",
     "misc.gen.close": "Tutup",
     "misc.gen.plannedVisit": "Lawatan dirancang:",
     "misc.gen.businessHours": "Waktu operasi:",
@@ -243,7 +243,7 @@ export const dictMisc: Record<Lang, Record<string, string>> = {
     "misc.gen.whatsapp": "WhatsApp",
     "misc.gen.share": "Kongsi",
     "misc.gen.show": "Papar",
-    "misc.gen.shareTitle": "Pelan Hidangan Warung Jakarta",
+    "misc.gen.shareTitle": "Pelan Hidangan Menuu",
     "misc.gen.closingStatement":
       "Tunjukkan senarai ini kepada pelayan kami sebaik tiba. Ini ialah ringkasan perancangan hidangan digital dan tidak memerlukan akaun atau log masuk.",
     "misc.gen.finalNote":
@@ -283,11 +283,11 @@ export const dictMisc: Record<Lang, Record<string, string>> = {
     "misc.review.next": "下一批评价",
 
     // EntranceOverlay
-    "misc.entrance.welcomeLabel": "欢迎来到 Warung Jakarta",
-    "misc.entrance.eyebrow": "从雅加达到吉隆坡",
-    "misc.entrance.title": "欢迎来到 Warung Jakarta",
+    "misc.entrance.welcomeLabel": "欢迎来到 Menuu",
+    "misc.entrance.eyebrow": "八打灵再也的道地风味",
+    "misc.entrance.title": "欢迎来到 Menuu",
     "misc.entrance.sub":
-      "在吉隆坡的中心，为您奉上一份温暖的雅加达风味。",
+      "在八打灵再也的中心，为您奉上一份温暖的家常风味。",
     "misc.entrance.clickMe": "点我进入",
 
     // AmbientSoundToggle
@@ -366,7 +366,7 @@ export const dictMisc: Record<Lang, Record<string, string>> = {
     "misc.gen.editList": "编辑清单",
     "misc.gen.note": "备注：",
     "misc.gen.exit": "退出",
-    "misc.gen.title": "您的 Warung Jakarta 餐单",
+    "misc.gen.title": "您的 Menuu 餐单",
     "misc.gen.close": "关闭",
     "misc.gen.plannedVisit": "计划到访：",
     "misc.gen.businessHours": "营业时间：",
@@ -377,7 +377,7 @@ export const dictMisc: Record<Lang, Record<string, string>> = {
     "misc.gen.whatsapp": "WhatsApp",
     "misc.gen.share": "分享",
     "misc.gen.show": "展示",
-    "misc.gen.shareTitle": "Warung Jakarta 餐单",
+    "misc.gen.shareTitle": "Menuu 餐单",
     "misc.gen.closingStatement":
       "到店时请将此清单出示给我们的服务员。这是一份电子餐单规划摘要，无需账户或登录。",
     "misc.gen.finalNote":

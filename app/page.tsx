@@ -4,7 +4,7 @@ import { OurStory } from "@/components/OurStory";
 import { HomeContent } from "@/components/home/HomeContent";
 import { menu } from "@/data/menu";
 
-// Warung Jakarta Picks — featured dishes (in order).
+// Menuu Picks — featured dishes (in order).
 const PICK_IDS = [
   "mie-ayam-original",
   "bakso-campur",

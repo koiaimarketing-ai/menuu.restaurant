@@ -15,10 +15,10 @@ import { useLang } from "@/lib/i18n/LanguageProvider";
 
 // Warm + dark gradient stack baked into each half so the tint splits with it.
 const ENTRANCE_BG =
-  "radial-gradient(120% 90% at 50% 22%, rgba(243,197,186,0.30), transparent 55%)," +
-  "linear-gradient(180deg, rgba(42,22,18,0.55) 0%, rgba(42,22,18,0.32) 38%, rgba(42,22,18,0.72) 100%)," +
-  "url('/images/jakarta.png')," +
-  "linear-gradient(160deg, #3a1e1a 0%, #6b3a2c 45%, #c97a4a 100%)";
+  "radial-gradient(120% 90% at 50% 22%, rgba(106,147,241,0.30), transparent 55%)," +
+  "linear-gradient(180deg, rgba(8,17,39,0.55) 0%, rgba(8,17,39,0.32) 38%, rgba(8,17,39,0.72) 100%)," +
+  "url('/images/welcome-exterior.png')," +
+  "linear-gradient(160deg, #081127 0%, #6b7589 45%, #6b7589 100%)";
 
 // Fixed (deterministic, SSR-safe) drifting dust particles.
 const PARTICLES = [
@@ -126,9 +126,9 @@ export function EntranceOverlay() {
       <div className="entrance-content">
         <Image
           src="/images/logo.png"
-          alt="Warung Jakarta"
-          width={96}
-          height={96}
+          alt="Menuu"
+          width={240}
+          height={44}
           priority
           className="entrance-logo"
         />
