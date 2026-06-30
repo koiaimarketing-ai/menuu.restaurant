@@ -288,14 +288,14 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
       {/* left: details + reservation */}
       <div className="space-y-4">
         <Section title={tr("checkout.yourDetails")}>
-          <div className="grid gap-2.5 sm:grid-cols-2">
+          <div className="space-y-2.5">
             <Field label={tr("checkout.name")} value={customer.name} onChange={customer.setName} placeholder={tr("checkout.namePlaceholder")} />
             <Field label={tr("checkout.contact")} value={customer.contact} onChange={customer.setContact} placeholder={tr("checkout.contactPlaceholder")} />
           </div>
         </Section>
 
         <Section title={tr("checkout.reservationDetails")}>
-          <div className="grid gap-2.5 sm:grid-cols-2">
+          <div className="space-y-2.5">
             <label className="block text-sm">
               <span className="mb-1 block text-xs font-medium text-[#9A766B]">{tr("checkout.date")}</span>
               <input
