@@ -347,7 +347,7 @@ export function CustomisationModal({
                         <button
                           type="button"
                           onClick={() => setAddon(a.key, 1)}
-                          className="h-[34px] shrink-0 rounded-lg bg-green px-3 text-xs font-semibold text-white hover:bg-green-hover"
+                          className="h-[34px] shrink-0 rounded-full bg-green px-4 text-xs font-semibold text-white hover:bg-green-hover"
                         >
                           {t("menu.card.add")}
                         </button>

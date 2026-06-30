@@ -113,7 +113,7 @@ export function ContactClient() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t("pages.contact.whatsapp")}
-                className="btn btn-whatsapp !min-h-0 flex h-[56px] w-[56px] shrink-0 items-center justify-center !rounded-full !p-0 text-sm sm:h-auto sm:w-auto sm:flex-none sm:!rounded-xl sm:!px-4 sm:!py-2.5"
+                className="btn btn-whatsapp !min-h-0 flex h-[56px] w-[56px] shrink-0 items-center justify-center !rounded-full !p-0 text-sm sm:h-auto sm:w-auto sm:flex-none sm:!rounded-full sm:!px-4 sm:!py-2.5"
               >
                 <WhatsAppGlyph className="h-7 w-7 sm:h-4 sm:w-4" />
                 <span className="hidden sm:inline">{t("pages.contact.whatsapp")}</span>

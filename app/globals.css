@@ -175,7 +175,7 @@ body {
   justify-content: center;
   gap: 0.5rem;
   font-weight: 600;
-  border-radius: 14px;
+  border-radius: 9999px;
   padding: 0.875rem 1.5rem;
   transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
   cursor: pointer;
@@ -185,7 +185,7 @@ body {
    win, e.g. the WhatsApp circle button). */
 @media (max-width: 768px) {
   .btn {
-    border-radius: 18px;
+    border-radius: 9999px;
   }
 }
 .btn:hover {

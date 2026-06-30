@@ -29,7 +29,7 @@ export function useDragToClose(onClose: () => void, open = true, threshold = 100
   const dragY = useRef(0);
   const startY = useRef(0);
   const active = useRef(false);
-  const settling = useRef(false);
+  const exiting = useRef(false);
   const [, force] = useReducer((x: number) => x + 1, 0);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export function useDragToClose(onClose: () => void, open = true, threshold = 100
       }
       startY.current = e.touches[0].clientY;
       active.current = true;
-      settling.current = false;
+      exiting.current = false;
     };
 
     const onMove = (e: TouchEvent) => {
@@ -69,12 +69,24 @@ export function useDragToClose(onClose: () => void, open = true, threshold = 100
 
     const onEnd = () => {
       if (!active.current && dragY.current === 0) return;
+      const wasActive = active.current;
       active.current = false;
-      settling.current = true;
       const dragged = dragY.current;
+      // Decide ONLY on release. Past the threshold: keep the sheet mounted,
+      // animate it the rest of the way down + fade, THEN unmount via onClose.
+      if (wasActive && dragged > threshold) {
+        exiting.current = true;
+        force();
+        window.setTimeout(() => {
+          exiting.current = false;
+          dragY.current = 0;
+          onClose();
+        }, 260);
+        return;
+      }
+      // Not far enough → spring back smoothly.
       setY(0);
       force();
-      if (dragged > threshold) onClose();
     };
 
     shell.addEventListener("touchstart", onStart, { passive: true });
@@ -90,19 +102,22 @@ export function useDragToClose(onClose: () => void, open = true, threshold = 100
   }, [onClose, open, threshold]);
 
   const y = dragY.current;
+  const isExiting = exiting.current;
+  const dragging = active.current;
   const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
   return {
     scrollRef,
     shellRef,
     shellStyle: {
-      transform: y ? `translateY(${y}px)` : undefined,
-      transition: settling.current ? `transform 0.24s ${ease}` : "none",
+      transform: isExiting ? "translateY(100%)" : y ? `translateY(${y}px)` : undefined,
+      opacity: isExiting ? 0 : undefined,
+      transition: dragging ? "none" : `transform 0.26s ${ease}, opacity 0.22s ease`,
       touchAction: "pan-y",
-      willChange: "transform",
+      willChange: "transform, opacity",
     } as React.CSSProperties,
     backdropStyle: {
-      opacity: y ? Math.max(0.45, 1 - y / 260) : undefined,
-      transition: settling.current ? "opacity 0.24s ease" : undefined,
+      opacity: isExiting ? 0 : y ? Math.max(0.45, 1 - y / 300) : undefined,
+      transition: dragging ? "none" : "opacity 0.24s ease",
     } as React.CSSProperties,
   };
 }

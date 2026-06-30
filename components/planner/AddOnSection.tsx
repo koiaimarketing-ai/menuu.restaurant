@@ -96,7 +96,7 @@ function AddOnCard({ item }: { item: MenuItem }) {
           <button
             onClick={add}
             aria-label={t("menu.card.addAria").replace("{name}", item.name)}
-            className="inline-flex h-8 shrink-0 items-center gap-1 whitespace-nowrap rounded-lg bg-green px-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-green-hover"
+            className="inline-flex h-8 shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-green px-3.5 text-[13px] font-semibold text-white transition-colors hover:bg-green-hover"
           >
             <Plus className="h-3.5 w-3.5" /> {t("menu.card.add")}
           </button>
