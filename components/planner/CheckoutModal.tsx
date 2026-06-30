@@ -54,7 +54,7 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
       className="fixed inset-0 z-[1000] flex items-end justify-center overflow-hidden bg-[rgba(32,24,20,0.42)] p-4 backdrop-blur-[6px] sm:items-center sm:p-6"
       role="dialog"
       aria-modal="true"
-      aria-label={tr("checkout.title")}
+      aria-label={tr("menu.sidebar.checkout")}
       {...backdrop}
     >
       <div
@@ -62,7 +62,7 @@ export function CheckoutModal({ open, onClose }: { open: boolean; onClose: () =>
       >
         <div className="flex shrink-0 items-center justify-between">
           <h3 className="flex items-center gap-2 text-lg font-bold text-[#3B2A24]">
-            <MessageCircle className="h-5 w-5 text-[#E24A34]" /> {tr("checkout.title")} · {branch.shortName}
+            <MessageCircle className="h-5 w-5 text-[#E24A34]" /> {tr("menu.sidebar.checkout")} · {branch.shortName}
           </h3>
           <button
             onClick={onClose}
@@ -302,7 +302,7 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="block h-11 w-full min-w-0 max-w-full box-border rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
+                className="block h-11 w-full min-w-0 max-w-full box-border appearance-none rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none [&::-webkit-date-and-time-value]:text-left focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
               />
             </label>
             <label className="block text-sm">
@@ -311,7 +311,7 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="block h-11 w-full min-w-0 max-w-full box-border rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
+                className="block h-11 w-full min-w-0 max-w-full box-border appearance-none rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none [&::-webkit-date-and-time-value]:text-left focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
               />
             </label>
           </div>
