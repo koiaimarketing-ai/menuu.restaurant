@@ -1,7 +1,6 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Sparkles } from "lucide-react";
 import { useMealPlan } from "@/lib/meal-plan-store";
 import { menu } from "@/data/menu";
 import { plannerPrice, decodeSharedPlan } from "@/lib/planner";
@@ -63,31 +62,11 @@ export function MealPlannerPage() {
       />
 
       <div className="container-site relative">
-        {/* hero — top padding clears the fixed navbar overlaying this section */}
-        <div className="mx-auto max-w-2xl text-center pt-28 sm:pt-28 lg:pt-32">
-          <span className="inline-flex items-center gap-2 rounded-full border border-line-warm bg-white/70 px-3.5 py-1.5 text-sm font-semibold text-primary">
-            <Sparkles className="h-4 w-4" /> {t("menu.planner.heroBadge")}
-          </span>
-          <h1 className="h-display mt-4 text-[clamp(2rem,4.5vw,3.25rem)]">
-            {t("menu.planner.heroTitle1")}
-            <br /> {t("menu.planner.heroTitle2")}
-          </h1>
-          <div className="mx-auto mt-3 h-0.5 w-14 rounded-full bg-primary/70" />
-          <p className="mt-4 text-body">{t("menu.planner.heroSub")}</p>
-          <ReviewStrip compact className="mt-6" />
-        </div>
-
-        {/* two-column planner */}
-        <div className="mt-6 grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_350px]">
+        {/* two-column planner — top padding clears the fixed navbar */}
+        <div className="grid items-start gap-7 pt-28 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_350px] lg:pt-32">
           {/* LEFT: controls + notice + pills + menu */}
           <div className="min-w-0">
             <PlannerControls />
-
-            {/* not-a-preorder notice — plain text, no box */}
-            <p className="mt-4 text-sm text-ink-secondary">
-              <span className="font-semibold text-ink-primary">{t("menu.planner.notPreorderLead")}</span>{" "}
-              {t("menu.planner.notPreorderRest")}
-            </p>
 
             <div className="mt-4">
               <CategoryPills vegOnly={vegOnly} onToggleVeg={() => setVegOnly((v) => !v)} />

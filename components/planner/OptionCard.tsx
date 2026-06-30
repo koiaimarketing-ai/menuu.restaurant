@@ -67,7 +67,7 @@ export function OptionCard({ item }: { item: MenuItem }) {
           setDetail(true);
         }
       }}
-      className={`menu-item-card ${qty > 0 ? "is-selected" : ""} ${bubbling ? "is-bubbling" : ""} flex min-h-[78px] min-w-0 cursor-pointer flex-col rounded-[12px] border border-[rgba(58,30,26,0.12)] bg-white/95 p-2.5 shadow-[0_4px_14px_rgba(58,30,26,0.05)]`}
+      className={`menu-item-card ${qty > 0 ? "is-selected" : ""} ${bubbling ? "is-bubbling" : ""} flex min-h-[92px] min-w-0 cursor-pointer flex-col rounded-[24px] border border-line-light bg-white p-4 shadow-[0_4px_14px_rgba(8,17,39,0.05)]`}
     >
       {detail && (
         <span onClick={(e) => e.stopPropagation()}>

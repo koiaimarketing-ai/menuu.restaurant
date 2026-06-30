@@ -29,7 +29,6 @@ export function PlannerControls() {
   // (branchId / planType) — these only control the collapse/expand visuals so
   // no business logic changes.
   const [outletCollapsed, setOutletCollapsed] = useState(false);
-  const [planCollapsed, setPlanCollapsed] = useState(false);
 
   const chooseBranch = (id: BranchId) => {
     if (id !== plan.branchId) {
@@ -51,17 +50,6 @@ export function PlannerControls() {
     }
     chooseBranch(id);
     setOutletCollapsed(true);
-  };
-
-  // Same bubble-absorb behaviour as the outlet selector: pick → collapse the
-  // others into the chosen card; clicking the collapsed card reopens the choices.
-  const handlePlanClick = (id: PlanType) => {
-    if (planCollapsed) {
-      setPlanCollapsed(false);
-      return;
-    }
-    plan.setPlanType(id);
-    setPlanCollapsed(true);
   };
 
   return (
@@ -86,26 +74,39 @@ export function PlannerControls() {
           </div>
         </section>
 
-        {/* ---- Whats ur plan? ---- */}
+        {/* ---- Whats ur plan? — rounded segmented control ---- */}
         <section className="plan-selector">
           <p className="selector-label">{t("planner.whatsYourPlan")}</p>
-          <div className={`plan-options ${planCollapsed ? "is-collapsed" : "is-expanded"}`}>
-            {PLANS.map((p) => (
-              <PlanCard
-                key={p.id}
-                icon={p.icon}
-                label={t(p.labelKey)}
-                selected={planType === p.id}
-                onClick={() => handlePlanClick(p.id)}
-              />
-            ))}
+          <div className="visit-segment" role="tablist" aria-label="What's your plan?">
+            {PLANS.map((p) => {
+              const active = planType === p.id;
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => plan.setPlanType(p.id)}
+                  className={`visit-seg-option ${active ? "is-active" : ""}`}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="activePlanPill"
+                      className="visit-seg-pill"
+                      transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}
+                      aria-hidden
+                    />
+                  )}
+                  <span className="visit-seg-label">
+                    {p.icon}
+                    <span>{t(p.labelKey)}</span>
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </section>
       </div>
-
-      {(planType === "going" || planType === "delivery") && (
-        <p className="text-xs text-ink-secondary">{t("planner.addDishesHint")}</p>
-      )}
 
       {/* ---- RSVP: existing reservation / appointment flow ---- */}
       <AnimatePresence initial={false}>
@@ -133,7 +134,6 @@ export function PlannerControls() {
 /* ---------------- outlet card ---------------- */
 function OutletCard({ loc, selected, onSelect }: { loc: Location; selected: boolean; onSelect: () => void }) {
   const status = getLiveStatus(loc);
-  const scheduleBadge = loc.id === "ss4" ? "Open Daily" : "Mon–Sat";
   return (
     <button
       type="button"
@@ -147,20 +147,17 @@ function OutletCard({ loc, selected, onSelect }: { loc: Location; selected: bool
           selected ? "bg-primary text-white" : "bg-primary-soft text-primary"
         }`}
       >
-        <MapPin className="h-5 w-5" />
+        <MapPin className="h-[18px] w-[18px]" />
       </span>
-      <span className="min-w-0 flex-1">
-        <span className="flex flex-wrap items-center gap-2">
-          <span className="font-bold text-ink-primary">{loc.shortName}</span>
-          <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-ink-secondary">
-            {scheduleBadge}
-          </span>
-          <StatusBadge status={status} />
+      <span className="flex min-w-0 flex-1 items-center gap-2">
+        <span className="truncate font-bold text-ink-primary">{loc.shortName}</span>
+        <StatusBadge status={status} />
+        <span className="ml-auto shrink-0 whitespace-nowrap text-[13px] text-ink-secondary">
+          {todayHoursLabel(loc)}
         </span>
-        <span className="mt-0.5 block text-sm text-ink-secondary">{todayHoursLabel(loc)}</span>
       </span>
       <span
-        className={`grid h-6 w-6 shrink-0 place-items-center rounded-full border ${
+        className={`grid h-[26px] w-[26px] shrink-0 place-items-center rounded-full border ${
           selected ? "border-primary bg-primary text-white" : "border-line-medium"
         }`}
         aria-hidden
@@ -171,25 +168,3 @@ function OutletCard({ loc, selected, onSelect }: { loc: Location; selected: bool
   );
 }
 
-/* ---------------- plan card ---------------- */
-function PlanCard({ icon, label, selected, onClick }: { icon: React.ReactNode; label: string; selected: boolean; onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      aria-pressed={selected}
-      onClick={onClick}
-      className={`plan-card ${selected ? "is-selected" : "is-unselected"} flex flex-col items-center justify-center gap-1.5`}
-    >
-      <span
-        className={`grid h-8 w-8 place-items-center rounded-full ${
-          selected ? "bg-primary text-white" : "bg-primary-soft text-primary"
-        }`}
-      >
-        {icon}
-      </span>
-      <span className={`text-[12px] font-bold leading-tight ${selected ? "text-primary" : "text-ink-primary"}`}>
-        {label}
-      </span>
-    </button>
-  );
-}

@@ -146,10 +146,11 @@ export function CategoryPills({
         )}
       </div>
 
-      <p className="mt-1.5 px-1 text-center text-xs text-ink-muted">
-        {t("menu.pills.hint")}
-        {vegOnly && t("menu.pills.vegNote")}
-      </p>
+      {vegOnly && (
+        <p className="mt-1.5 px-1 text-center text-xs text-ink-muted">
+          {t("menu.pills.vegNote")}
+        </p>
+      )}
     </div>
   );
 }

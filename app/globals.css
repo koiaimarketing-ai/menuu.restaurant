@@ -11,10 +11,10 @@
 
   --color-heading-warm: #3b241b; /* Dark Coffee Brown */
   --color-body-warm: #4a352b;
-  --color-background-warm: #ffffff; /* Pure white base (70% rule) */
-  --color-coral-glow: #f6c9be; /* soft red glow */
-  --color-secondary-warm: #f7ede9; /* warm light neutral */
-  --color-warm-border: rgba(59, 36, 27, 0.14);
+  --color-background-warm: #f8f9fc; /* clean cool page background (de-warmed) */
+  --color-coral-glow: #f6c9be; /* soft red glow (accent only) */
+  --color-secondary-warm: #f3f4f7; /* de-warmed neutral surface (chips/badges) */
+  --color-warm-border: rgba(28, 36, 60, 0.12);
 
   /* Support tones (kept on brown/red) */
   --color-sand: #e7d8d0;
@@ -46,31 +46,33 @@
   --color-forest: #b5331f;
 
   --surface-white: #ffffff;
-  --surface-soft: #fffaf8;
+  --surface-soft: #fafbfd;
 
   --text-primary: #3b241b;
   --text-secondary: #6b5249;
   --text-supporting: #7c6358;
   --text-muted: #8a7164;
 
-  --border-light: #efe4df;
-  --border-medium: #e3d5ce;
-  --shadow-card: 0 14px 40px rgba(59, 36, 27, 0.1);
+  --border-light: #e9ebf1;
+  --border-medium: #dde1ea;
+  --shadow-card: 0 14px 36px rgba(8, 17, 39, 0.08);
 
   --color-danger: #b42318;
 
   --header-height: 84px;
+  --control-height: 60px; /* shared height: outlet cards + plan segmented control */
+  --radius-large: 28px; /* shared rounded corner: outlet cards, calendar + time boxes */
 
   /* Shared modal design tokens (Receipt / Checkout / Continue-plan popups) */
-  --modal-bg: #fffcf7;
+  --modal-bg: #ffffff;
   --modal-text: #3b2a24;
-  --modal-muted: #9a766b;
+  --modal-muted: #6b7280;
   --modal-accent-red: #e94a36;
   --modal-accent-green: #16a34a;
-  --modal-line: #e8ddd5;
-  --modal-soft-red-bg: #fff0ec;
+  --modal-line: #e6e8ef;
+  --modal-soft-red-bg: #fdecea;
   --modal-soft-red-border: #f6b7aa;
-  --modal-disabled-bg: #e5d5cc;
+  --modal-disabled-bg: #e6e8ef;
 }
 
 * {
@@ -429,9 +431,9 @@ main > section:last-child:not(.home-locations-section) {
 .outlet-card {
   width: 100%;
   height: auto;
-  min-height: 72px;
-  padding: 12px 16px;
-  border-radius: 17px;
+  min-height: var(--control-height);
+  padding: 8px 14px;
+  border-radius: var(--radius-large);
   text-align: left;
   cursor: pointer;
 }
@@ -439,9 +441,65 @@ main > section:last-child:not(.home-locations-section) {
   height: 68px;
   min-height: 68px;
   padding: 8px 10px;
-  border-radius: 17px;
+  border-radius: 22px;
   text-align: center;
   cursor: pointer;
+}
+/* Win over the unrelated checkout-modal `.plan-card` rule (same class name). */
+.plan-options .plan-card {
+  border-radius: 22px;
+}
+
+/* ---- "What's your plan?" rounded segmented control (animated pill) ---- */
+.visit-segment {
+  width: 100%;
+  height: var(--control-height);
+  padding: 4px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-light);
+  background: var(--color-primary-soft);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.visit-seg-option {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+/* Shared sliding highlight (Framer layoutId) behind the active option. */
+.visit-seg-pill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(226, 74, 52, 0.22);
+}
+.visit-seg-label {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.visit-seg-label svg {
+  width: 16px;
+  height: 16px;
+}
+.visit-seg-option:not(.is-active):hover {
+  color: var(--color-primary);
+}
+.visit-seg-option.is-active {
+  color: #ffffff;
 }
 .outlet-card:hover,
 .plan-card:hover {
@@ -1328,9 +1386,8 @@ main > section:last-child:not(.home-locations-section) {
   .plan-card { height: 66px; min-height: 66px; padding: 7px 6px; }
   /* selected plan stretches full width to match the outlet card above it */
   .plan-options.is-collapsed { grid-template-columns: 1fr; }
-  .outlet-options { gap: 13px; }
-  .outlet-card { height: auto; min-height: 90px; padding: 14px 16px; }
-  .quantity-control { grid-template-columns: 28px 30px 28px; }
+  .outlet-options { gap: 12px; }
+  .outlet-card { height: auto; min-height: var(--control-height); padding: 8px 14px; }
 }
 @media (max-width: 390px) {
   .plan-card { font-size: 12px; }

@@ -76,7 +76,7 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
         <div className="container-site">
           <Reveal>
             <div
-              className="relative overflow-hidden rounded-[28px] border border-line-warm bg-secondary px-6 py-9 sm:px-10 lg:px-12"
+              className="relative overflow-hidden rounded-[36px] border border-line-warm bg-secondary px-6 py-9 sm:px-10 lg:px-12"
               style={{
                 backgroundImage: "url(/images/plan-your-meal.png)",
                 backgroundSize: "cover",
@@ -97,7 +97,7 @@ export function HomeContent({ picks }: { picks: PickItem[] }) {
                   <p className="mt-4 max-w-md leading-relaxed text-body">
                     {t("pages.home.planDesc")}
                   </p>
-                  <Link href="/menu" className="btn btn-primary mt-6">
+                  <Link href="/menu" className="btn btn-primary mt-6 !rounded-full px-7">
                     {t("pages.home.planCta")} <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>

@@ -73,7 +73,7 @@ export function AppointmentPicker({
 
   if (complete) {
     return (
-      <div className="w-full rounded-2xl border border-line-light bg-white p-4">
+      <div className="w-full rounded-[28px] border border-line-light bg-white p-4">
         <p className="text-xs font-semibold uppercase tracking-wide text-ink-supporting">{t("misc.appt.yourVisit")}</p>
         <div className="mt-2 space-y-1 text-sm">
           <p className="flex items-center gap-2 font-semibold text-ink-primary">
@@ -111,7 +111,7 @@ export function AppointmentPicker({
       </div>
 
       {/* Time card */}
-      <div className="flex h-full flex-col rounded-2xl border border-line-light bg-white p-4 md:min-h-[390px]">
+      <div className="flex h-full flex-col rounded-[28px] border border-line-light bg-white p-4 md:min-h-[390px]">
         <p className="text-sm font-semibold text-ink-primary">{t("misc.appt.chooseTime")}</p>
         {warn && (
           <p className="mt-2 flex items-start gap-2 rounded-lg bg-[#FFF4DE] px-3 py-2 text-xs text-[#A96513]">

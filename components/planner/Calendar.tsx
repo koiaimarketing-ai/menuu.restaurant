@@ -58,7 +58,7 @@ export function Calendar({
   const atOrBeforeCurrentMonth = view.y < ty || (view.y === ty && view.m <= tm - 1);
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-line-light bg-white p-4">
+    <div className="flex h-full flex-col rounded-[28px] border border-line-light bg-white p-4">
       <div className="text-center">
         <p className="text-xs font-semibold uppercase tracking-wide text-ink-supporting">
           {t("misc.cal.chooseVisitDate")}

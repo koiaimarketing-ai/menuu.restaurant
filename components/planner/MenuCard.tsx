@@ -64,8 +64,8 @@ export function MenuCard({ item, noImage }: { item: MenuItem; noImage?: boolean 
           setDetail(true);
         }
       }}
-      className={`menu-item-card ${qty > 0 ? "is-selected" : ""} ${bubbling ? "is-bubbling" : ""} group flex min-w-0 cursor-pointer rounded-2xl border border-line-light bg-white p-3 hover:shadow-card ${
-        noImage ? "min-h-[92px] flex-col" : "min-h-[104px] items-center gap-3.5"
+      className={`menu-item-card ${qty > 0 ? "is-selected" : ""} ${bubbling ? "is-bubbling" : ""} group flex min-w-0 cursor-pointer rounded-[24px] border border-line-light bg-white p-4 hover:shadow-card ${
+        noImage ? "min-h-[96px] flex-col" : "min-h-[108px] items-center gap-3.5"
       }`}
     >
       {!noImage && (

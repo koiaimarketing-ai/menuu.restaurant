@@ -27,7 +27,7 @@ export function FeaturedMenuCategory({ section, vegOnly }: { section: PlannerSec
 
   return (
     <section id={`sec-${section.id}`} data-section={section.id} className="scroll-mt-32">
-      <div className="overflow-hidden rounded-[20px] border border-line-warm bg-secondary shadow-soft">
+      <div className="overflow-hidden rounded-[28px] border border-line-warm bg-secondary shadow-soft">
         {/* banner top: editorial text (left) + integrated dish photo (right) */}
         <div className="grid md:grid-cols-[1fr_minmax(0,1.05fr)]">
           <div className="relative z-[2] flex flex-col justify-center px-5 py-5 sm:px-6">

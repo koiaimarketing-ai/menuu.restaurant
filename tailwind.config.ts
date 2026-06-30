@@ -19,10 +19,10 @@ const config: Config = {
         },
         heading: "#3B241B", // Dark Coffee Brown
         body: "#4A352B",
-        cream: "#FFF8F6", // near-white warm base
-        coral: "#F6C9BE", // soft red glow
-        secondary: "#F7EDE9", // warm light neutral (chips/badges)
-        sand: "#E7D8D0",
+        cream: "#F8F9FC", // de-warmed clean page base
+        coral: "#F6C9BE", // soft red glow (accent only)
+        secondary: "#F3F4F7", // de-warmed neutral surface (chips/badges)
+        sand: "#DDE1EA",
         copper: "#B5331F",
         espresso: "#3B241B",
         // forest/green were the old meal-planner accent — remapped onto brand red
@@ -48,9 +48,9 @@ const config: Config = {
           muted: "#8A7164",
         },
         line: {
-          light: "#EFE4DF",
-          medium: "#E3D5CE",
-          warm: "rgba(59,36,27,0.14)",
+          light: "#E9EBF1",
+          medium: "#DDE1EA",
+          warm: "rgba(28,36,60,0.12)",
         },
       },
       fontFamily: {
