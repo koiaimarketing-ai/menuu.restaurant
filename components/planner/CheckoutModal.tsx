@@ -302,7 +302,7 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="h-11 w-full rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
+                className="block h-11 w-full min-w-0 max-w-full box-border rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
               />
             </label>
             <label className="block text-sm">
@@ -311,7 +311,7 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="h-11 w-full rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
+                className="block h-11 w-full min-w-0 max-w-full box-border rounded-[11px] border border-[#EADDD4] bg-white px-3 text-sm text-[#3B2A24] outline-none focus:border-[#E24A34] focus:ring-2 focus:ring-[#E24A34]/10"
               />
             </label>
           </div>
