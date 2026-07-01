@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { X, Receipt, Lock, ShoppingBag } from "lucide-react";
-import { useMealPlan } from "@/lib/meal-plan-store";
+import { X, Receipt, Lock, ShoppingBag, Pencil } from "lucide-react";
+import { useMealPlan, type LineItem } from "@/lib/meal-plan-store";
 import { computeTotals, fmtRM } from "@/lib/planner";
 import { QuantityControl } from "./QuantityControl";
+import { CustomisationModal, type DraftAdd } from "./CustomisationModal";
 import { menu } from "@/data/menu";
 import { describeLine, sortLines } from "./menu-options";
 import { useLang } from "@/lib/i18n/LanguageProvider";
@@ -12,6 +13,8 @@ import { useLang } from "@/lib/i18n/LanguageProvider";
 export function MealPlanSidebar() {
   const { t } = useLang();
   const plan = useMealPlan();
+  // The cart line currently being edited (opens a pre-filled CustomisationModal).
+  const [editing, setEditing] = useState<LineItem | null>(null);
   const totals = computeTotals(plan.items);
   const finalTotal = Math.max(0, totals.grandTotal - plan.voucherDiscount);
   const [pulse, setPulse] = useState(false);
@@ -69,6 +72,13 @@ export function MealPlanSidebar() {
                         <span className="font-medium">{d.label}:</span> {d.value}
                       </p>
                     ))}
+                    <button
+                      onClick={() => setEditing(l)}
+                      aria-label={t("menu.sidebar.edit") + " " + l.name}
+                      className="mt-1.5 inline-flex items-center gap-1 rounded-full border border-[#DDE4F7] bg-[#EEF3FF] px-3 py-1.5 text-xs font-semibold text-[#2258DA] transition-colors hover:bg-[#E2EAFF]"
+                    >
+                      <Pencil className="h-3 w-3" /> {t("menu.sidebar.edit")}
+                    </button>
                   </div>
                   <span className="shrink-0 text-sm font-semibold text-ink-primary">{fmtRM(rowTotal)}</span>
                   <button
@@ -125,6 +135,31 @@ export function MealPlanSidebar() {
           <Lock className="h-3 w-3" /> {t("menu.sidebar.private")}
         </p>
       </div>
+
+      {/* Edit an existing line: same modal, pre-filled, updates in place (keeps
+          quantity, cart position and lineId — no duplicate row is created). */}
+      {editing && (() => {
+        const item = menu.find((m) => m.id === editing.itemId);
+        if (!item) return null;
+        return (
+          <CustomisationModal
+            item={item}
+            branchId="kl-central-walk"
+            editing
+            initial={{ qty: editing.qty, choices: editing.choices, note: editing.note }}
+            onClose={() => setEditing(null)}
+            onConfirm={(d: DraftAdd) => {
+              plan.updateLine(editing.lineId, {
+                unitPrice: d.unitPrice,
+                qty: d.qty,
+                choices: d.choices,
+                note: d.note,
+              });
+              setEditing(null);
+            }}
+          />
+        );
+      })()}
     </div>
   );
 }

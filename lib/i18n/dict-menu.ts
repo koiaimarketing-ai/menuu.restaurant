@@ -48,6 +48,7 @@ export const dictMenu: Record<Lang, Record<string, string>> = {
     "menu.sidebar.grandTotal": "Grand Total",
     "menu.sidebar.checkout": "Order",
     "menu.sidebar.receipt": "Receipt",
+    "menu.sidebar.edit": "Edit",
     "menu.sidebar.private": "Your list is private and secure.",
     "menu.sidebar.removeAria": "Remove {name}",
 
@@ -367,6 +368,7 @@ export const dictMenu: Record<Lang, Record<string, string>> = {
     "menu.sidebar.grandTotal": "Jumlah Keseluruhan",
     "menu.sidebar.checkout": "Pesan",
     "menu.sidebar.receipt": "Resit",
+    "menu.sidebar.edit": "Edit",
     "menu.sidebar.private": "Senarai anda peribadi dan selamat.",
     "menu.sidebar.removeAria": "Buang {name}",
 
@@ -681,6 +683,7 @@ export const dictMenu: Record<Lang, Record<string, string>> = {
     "menu.sidebar.grandTotal": "总计",
     "menu.sidebar.checkout": "下单",
     "menu.sidebar.receipt": "收据",
+    "menu.sidebar.edit": "编辑",
     "menu.sidebar.private": "您的清单私密且安全。",
     "menu.sidebar.removeAria": "移除 {name}",
 

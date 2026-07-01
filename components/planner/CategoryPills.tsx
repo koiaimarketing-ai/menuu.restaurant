@@ -77,77 +77,73 @@ export function CategoryPills({
   };
 
   return (
-    <div className="sticky top-[84px] z-30 -mx-1 bg-cream/95 py-2 backdrop-blur">
-      <div className="flex items-center gap-2">
-        {/* Left arrow — only rendered when there is content scrolled off to the left. */}
-        {!atStart && (
-          <button
-            onClick={() => nudge(-1)}
-            aria-label={t("menu.pills.scrollLeft")}
-            className="hidden h-10 w-10 shrink-0 place-items-center rounded-full border border-line-warm bg-white text-ink-secondary shadow-soft transition-colors hover:bg-secondary md:grid"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-        )}
-
-        <div className="relative min-w-0 flex-1">
-          {/* Soft right-edge fade — only when more categories are hidden to the right. */}
-          {!atEnd && (
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-cream to-transparent"
-            />
-          )}
-          <div
-            ref={railRef}
-            className="no-scrollbar flex flex-nowrap items-center gap-2.5 overflow-x-auto whitespace-nowrap px-1 py-1"
-            style={{ overscrollBehaviorX: "contain", touchAction: "pan-x pan-y" }}
-          >
-          {TOP_NAV_SECTIONS.map((s) => (
+    <div className="menu-category-sticky">
+      {/* Frosted glass pill — settles below the navbar when sticky. */}
+      <div className="menu-category-sticky-inner">
+        <div className="relative z-[1] flex items-center gap-2 px-2 py-1.5">
+          {/* Left arrow — desktop only; shown when the rail is scrolled right. */}
+          {!atStart && (
             <button
-              key={s.id}
-              data-pill={s.id}
-              onClick={() => jump(s.id)}
-              aria-current={active === s.id ? "true" : undefined}
-              className={`h-10 shrink-0 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors ${
-                active === s.id
-                  ? "border-green bg-green text-white"
-                  : "border-line-light bg-white text-ink-primary hover:border-green"
-              }`}
+              onClick={() => nudge(-1)}
+              aria-label={t("menu.pills.scrollLeft")}
+              className="hidden h-10 w-10 shrink-0 place-items-center rounded-full border border-[#dde4f7] bg-white text-ink-secondary shadow-soft transition-colors hover:bg-secondary md:grid"
             >
-              {t(`menu.section.${s.id}.label`) === `menu.section.${s.id}.label`
-                ? s.label
-                : t(`menu.section.${s.id}.label`)}
+              <ChevronLeft className="h-4 w-4" />
             </button>
-          ))}
+          )}
 
-          {/* vegetarian filter — same row, same height */}
-          <button
-            onClick={onToggleVeg}
-            aria-pressed={vegOnly}
-            className={`inline-flex h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors ${
-              vegOnly ? "border-green bg-green text-white" : "border-[#A7E1C1] bg-[#F0FFF6] text-[#087A3E] hover:bg-[#e6fbef]"
-            }`}
-          >
-            <Leaf className="h-4 w-4" /> {t("menu.pills.vegFriendly")}
-          </button>
+          <div className="min-w-0 flex-1">
+            <div
+              ref={railRef}
+              className="category-scroll px-1 py-1"
+              style={{ touchAction: "pan-x pan-y" }}
+            >
+              {TOP_NAV_SECTIONS.map((s) => (
+                <button
+                  key={s.id}
+                  data-pill={s.id}
+                  onClick={() => jump(s.id)}
+                  aria-current={active === s.id ? "true" : undefined}
+                  className={`h-10 shrink-0 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors ${
+                    active === s.id
+                      ? "border-green bg-green text-white"
+                      : "border-line-light bg-white text-ink-primary hover:border-green"
+                  }`}
+                >
+                  {t(`menu.section.${s.id}.label`) === `menu.section.${s.id}.label`
+                    ? s.label
+                    : t(`menu.section.${s.id}.label`)}
+                </button>
+              ))}
+
+              {/* vegetarian filter — same row, same height */}
+              <button
+                onClick={onToggleVeg}
+                aria-pressed={vegOnly}
+                className={`inline-flex h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors ${
+                  vegOnly ? "border-green bg-green text-white" : "border-[#A7E1C1] bg-[#F0FFF6] text-[#087A3E] hover:bg-[#e6fbef]"
+                }`}
+              >
+                <Leaf className="h-4 w-4" /> {t("menu.pills.vegFriendly")}
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Right arrow — only rendered when more categories remain to the right. */}
-        {!atEnd && (
-          <button
-            onClick={() => nudge(1)}
-            aria-label={t("menu.pills.scrollRight")}
-            className="hidden h-10 w-10 shrink-0 place-items-center rounded-full border border-line-warm bg-white text-ink-secondary shadow-soft transition-colors hover:bg-secondary md:grid"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        )}
+          {/* Right arrow — desktop only; shown when more categories remain. */}
+          {!atEnd && (
+            <button
+              onClick={() => nudge(1)}
+              aria-label={t("menu.pills.scrollRight")}
+              className="hidden h-10 w-10 shrink-0 place-items-center rounded-full border border-[#dde4f7] bg-white text-ink-secondary shadow-soft transition-colors hover:bg-secondary md:grid"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          )}
+        </div>
       </div>
 
       {vegOnly && (
-        <p className="mt-1.5 px-1 text-center text-xs text-ink-muted">
+        <p className="mt-2 px-1 text-center text-xs text-ink-muted">
           {t("menu.pills.vegNote")}
         </p>
       )}

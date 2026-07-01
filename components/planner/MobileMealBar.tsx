@@ -71,7 +71,7 @@ export function MobileMealBar() {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-[60] flex flex-col justify-end bg-black/40 lg:hidden" {...backdrop} style={drag.backdropStyle}>
+        <div className="fixed inset-0 z-[100] flex flex-col justify-end bg-black/40 lg:hidden" {...backdrop} style={drag.backdropStyle}>
           <div
             ref={drag.shellRef}
             style={drag.shellStyle}

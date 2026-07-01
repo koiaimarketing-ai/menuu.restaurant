@@ -1871,15 +1871,14 @@ html[data-entrance="show"] body {
   }
 }
 
-/* ---- Mobile: hide all red primary CTA buttons + the red back-to-top ----
-   The green sticky bottom CTA is the single menu action on mobile, so every red
-   ".btn-primary" menu button in page content (Jom Lihat Menu / Rancang Hidangan
-   Anda / Terokai Menu Kami / contact view-menu) is hidden below the lg breakpoint
-   (matches where the sticky CTA shows). Desktop is unchanged. Grey/secondary,
-   WhatsApp, direction buttons and text links are untouched. */
+/* ---- Mobile: hide red primary CTA buttons (the green sticky CTA replaces them) ----
+   Every red ".btn-primary" menu button in page content (Jom Lihat Menu / Rancang
+   Hidangan Anda / Terokai Menu Kami / contact view-menu) is hidden below the lg
+   breakpoint. The back-to-top button is intentionally NOT hidden here — it stays
+   visible on mobile, sitting above the green meal-plan CTA. Desktop unchanged.
+   Grey/secondary, WhatsApp, direction buttons and text links are untouched. */
 @media (max-width: 1023px) {
-  .btn-primary,
-  .back-to-top-btn {
+  .btn-primary {
     display: none !important;
   }
 }
@@ -2075,3 +2074,70 @@ body.menu-open .back-to-top-btn {
   );
 }
 
+
+/* ============================================================
+   Menu & Planner — sticky frosted-glass category bar
+   Layer order: content(1) < sidebar(50) < category(60) < navbar(80) < modals(1000+)
+   ============================================================ */
+.menu-category-sticky {
+  position: sticky;
+  top: var(--header-height); /* 84px — sits just below the fixed navbar */
+  z-index: 60;
+  padding: 12px 0;
+}
+@media (max-width: 768px) {
+  .menu-category-sticky { padding: 10px 0; }
+}
+
+/* Frosted glass pill that "settles" once the bar sticks. */
+.menu-category-sticky-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid rgba(221, 228, 247, 0.9);
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: 0 12px 36px rgba(8, 17, 39, 0.08);
+}
+
+/* Subtle diagonal shine sweeping across the glass (behind the buttons). */
+.menu-category-sticky-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 35%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  animation: categoryShine 3.5s ease-in-out infinite;
+}
+@keyframes categoryShine {
+  0%   { transform: translateX(-120%); }
+  45%  { transform: translateX(120%); }
+  100% { transform: translateX(120%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-category-sticky-inner::before { animation: none; opacity: 0; }
+}
+
+/* Horizontal category rail — single row, hidden scrollbar, no page overflow. */
+.category-scroll {
+  position: relative;
+  z-index: 1; /* keep buttons above the shine */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.category-scroll::-webkit-scrollbar { display: none; }

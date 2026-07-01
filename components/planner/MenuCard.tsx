@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Plus, UtensilsCrossed } from "lucide-react";
-import { ImageLightbox } from "./ImageLightbox";
 import { CustomisationModal, type DraftAdd } from "./CustomisationModal";
 import { RemoveSelectionModal } from "./RemoveSelectionModal";
 import { useMenuCardCart } from "./useMenuCardCart";
@@ -31,7 +30,6 @@ export function MenuCard({ item, noImage }: { item: MenuItem; noImage?: boolean 
   const itemName = t(nameKey) === nameKey ? item.name : t(nameKey);
 
   const { bubbling, bubble } = useCardBubble();
-  const [preview, setPreview] = useState(false);
   const [detail, setDetail] = useState(false);
   const [removeOpen, setRemoveOpen] = useState(false);
 
@@ -69,36 +67,28 @@ export function MenuCard({ item, noImage }: { item: MenuItem; noImage?: boolean 
       }`}
     >
       {!noImage && (
-        <div className="relative h-[78px] w-[78px] shrink-0 overflow-hidden rounded-xl bg-secondary">
+        // Decorative only — the thumbnail must never open a lightbox/preview.
+        // stopPropagation keeps a click on the image from bubbling to the card
+        // (which opens the customise modal); the image itself does nothing.
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="relative h-[78px] w-[78px] shrink-0 cursor-default overflow-hidden rounded-xl bg-secondary"
+        >
           {item.image ? (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setPreview(true);
-              }}
-              aria-label={`Preview ${item.name}`}
-              className="relative block h-full w-full cursor-pointer"
-            >
-              <Image
-                src={item.image}
-                alt={item.name}
-                fill
-                sizes="96px"
-                loading="lazy"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </button>
+            <Image
+              src={item.image}
+              alt=""
+              fill
+              sizes="96px"
+              loading="lazy"
+              className="pointer-events-none object-cover transition-transform duration-500 group-hover:scale-105"
+            />
           ) : (
             <div className="grid h-full w-full place-items-center text-ink-muted">
               <UtensilsCrossed className="h-6 w-6" />
             </div>
           )}
         </div>
-      )}
-
-      {preview && item.image && (
-        <ImageLightbox src={item.image} alt={itemName} onClose={() => setPreview(false)} />
       )}
 
       {detail && (

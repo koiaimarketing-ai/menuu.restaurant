@@ -24,8 +24,9 @@ type Ctx = {
 const LanguageContext = createContext<Ctx | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  // Default Malay. Server + first client render both use DEFAULT_LANG so there
-  // is no hydration mismatch; the stored choice is applied after mount.
+  // Default English (DEFAULT_LANG). Server + first client render both use it so
+  // there is no hydration mismatch; a returning visitor's manually stored choice
+  // is applied after mount. Never auto-detect browser/device language.
   const [lang, setLangState] = useState<Lang>(DEFAULT_LANG);
 
   useEffect(() => {

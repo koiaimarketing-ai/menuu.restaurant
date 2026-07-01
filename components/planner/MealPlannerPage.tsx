@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useMealPlan } from "@/lib/meal-plan-store";
 import { menu } from "@/data/menu";
 import { plannerPrice, decodeSharedPlan } from "@/lib/planner";
@@ -22,6 +23,12 @@ export function MealPlannerPage() {
   const { t } = useLang();
   const didInit = useRef(false);
   const [vegOnly, setVegOnly] = useState(false);
+
+  // Outlet + plan controls gently fade and lift away as the user scrolls into
+  // the menu, leaving the sticky category bar as the topmost element.
+  const { scrollY } = useScroll();
+  const topOpacity = useTransform(scrollY, [0, 120], [1, 0]);
+  const topY = useTransform(scrollY, [0, 120], [0, -24]);
 
   // Default outlet + decode a shared plan from the URL (once, after hydration).
   useEffect(() => {
@@ -54,11 +61,15 @@ export function MealPlannerPage() {
         <div className="grid items-start gap-7 pt-28 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_350px] lg:pt-32">
           {/* LEFT: controls + notice + pills + menu */}
           <div className="min-w-0">
-            <PlannerControls />
+            {/* Outlet + plan controls — fade/lift away on scroll (never sticky). */}
+            <motion.div style={{ opacity: topOpacity, y: topY }}>
+              <PlannerControls />
+            </motion.div>
 
-            <div className="mt-4">
-              <CategoryPills vegOnly={vegOnly} onToggleVeg={() => setVegOnly((v) => !v)} />
-            </div>
+            {/* Sticky frosted category bar — a DIRECT child of this tall column so
+                it stays pinned below the navbar for the whole menu scroll (a short
+                wrapper would bound the sticky range to the bar's own height). */}
+            <CategoryPills vegOnly={vegOnly} onToggleVeg={() => setVegOnly((v) => !v)} />
 
             <PromotionMarquee />
 
@@ -85,7 +96,7 @@ export function MealPlannerPage() {
           </div>
 
           {/* RIGHT: sticky summary only — receipt now opens in a modal */}
-          <aside className="sticky top-[88px] hidden max-h-[calc(100vh-104px)] self-start lg:flex lg:flex-col">
+          <aside className="sticky top-[88px] z-50 hidden max-h-[calc(100vh-104px)] self-start lg:flex lg:flex-col">
             <MealPlanSidebar />
           </aside>
         </div>

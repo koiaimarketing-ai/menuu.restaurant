@@ -6,7 +6,10 @@ export type Lang = "ms" | "en" | "zh";
 
 export const LANGS: Lang[] = ["ms", "en", "zh"];
 export const LANG_LABELS: Record<Lang, string> = { ms: "BM", en: "EN", zh: "中文" };
-export const DEFAULT_LANG: Lang = "ms";
+// English is the default for every first-time visitor. A returning visitor's
+// manually chosen language is restored from localStorage after mount (see
+// LanguageProvider). No browser/device auto-detection is used.
+export const DEFAULT_LANG: Lang = "en";
 
 // English is the source-of-truth key set.
 const en = {
@@ -57,7 +60,7 @@ const en = {
   "footer.joinWhatsapp": "Join WhatsApp Community",
   "footer.hoursSs4": "10:00 AM–10:00 PM daily",
   "footer.hoursKlcw": "Mon–Sat 10:00 AM–5:30 PM",
-  "footer.bottomTagline": "Indonesian-style comfort food · Taman Sea, Petaling Jaya",
+  "footer.bottomTagline": "Malaysian-style comfort food · Taman Sea, Petaling Jaya",
 
   // ---- Planner controls ----
   "planner.selectOutlet": "Select your preferred outlet",
@@ -226,7 +229,7 @@ const ms: Dict = {
   "footer.joinWhatsapp": "Sertai Komuniti WhatsApp",
   "footer.hoursSs4": "10:00 pagi–10:00 malam setiap hari",
   "footer.hoursKlcw": "Isnin–Sabtu 10:00 pagi–5:30 petang",
-  "footer.bottomTagline": "Makanan selesa ala Indonesia · Taman Sea, Petaling Jaya",
+  "footer.bottomTagline": "Makanan selesa ala Malaysia · Taman Sea, Petaling Jaya",
 
   // Planner
   "planner.selectOutlet": "Pilih cawangan pilihan anda",
@@ -385,7 +388,7 @@ const zh: Dict = {
   "footer.joinWhatsapp": "加入 WhatsApp 社群",
   "footer.hoursSs4": "每日 10:00 – 22:00",
   "footer.hoursKlcw": "周一至周六 10:00 – 17:30",
-  "footer.bottomTagline": "印尼风味暖心料理 · Taman Sea，八打灵再也",
+  "footer.bottomTagline": "马来西亚风味暖心料理 · Taman Sea，八打灵再也",
 
   // Planner
   "planner.selectOutlet": "请选择你想去的分店",

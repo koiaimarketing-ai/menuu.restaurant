@@ -60,6 +60,23 @@ export function Footer() {
                 </a>
               ))}
             </div>
+
+            {/* Developer attribution — below the social icons */}
+            <div className="mt-4 text-[13px] leading-[1.6] text-[#6B7589]">
+              <p>Website is developed by Menuu</p>
+              <p>
+                WhatsApp us at:{" "}
+                <a
+                  href="https://wa.me/60169214297"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#2258DA] hover:text-[#1D46B7]"
+                >
+                  0169214297
+                </a>{" "}
+                to set up your own online restaurant
+              </p>
+            </div>
           </div>
 
           {/* Explore */}

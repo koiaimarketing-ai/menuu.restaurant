@@ -79,7 +79,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 pt-4 sm:pt-3">
+    <header className="fixed inset-x-0 top-0 z-[80] pt-4 sm:pt-3">
       <div className="container-site">
         {/* Full-width pill containing logo + nav + CTA.
             `relative` anchors the absolutely-centred mobile meal-plan pill. */}

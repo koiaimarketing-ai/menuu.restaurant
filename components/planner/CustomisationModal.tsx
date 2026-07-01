@@ -48,12 +48,16 @@ export function CustomisationModal({
   item,
   branchId,
   initial,
+  editing,
   onClose,
   onConfirm,
 }: {
   item: MenuItem;
   branchId: BranchId;
   initial?: { qty: number; choices: Record<string, string>; note?: string };
+  /** Editing an existing cart line (vs adding a new one) — swaps the title
+   *  eyebrow to "Edit Item" and the confirm button to "Update Item". */
+  editing?: boolean;
   onClose: () => void;
   onConfirm: (d: DraftAdd) => void;
 }) {
@@ -184,6 +188,11 @@ export function CustomisationModal({
         {/* header */}
         <div className="flex items-start justify-between gap-3 p-5 sm:p-6 border-b border-line-light">
           <div>
+            {editing && (
+              <p className="mb-0.5 text-xs font-bold uppercase tracking-wide text-primary">
+                {t("misc.cust.editItem")}
+              </p>
+            )}
             <h2 className="text-xl font-semibold text-ink-primary flex items-center gap-2">
               {item.code && <span className="text-primary">[{item.code}]</span>}
               {itemName}
@@ -462,10 +471,10 @@ export function CustomisationModal({
             className="btn btn-green h-12 min-h-[48px] flex-1 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <span className="hidden sm:inline">
-              {t("misc.cust.addToMealPlan")}{price != null ? ` · ${formatRM(lineTotal)}` : ""}
+              {editing ? t("misc.cust.updateItem") : t("misc.cust.addToMealPlan")}{price != null ? ` · ${formatRM(lineTotal)}` : ""}
             </span>
             <span className="sm:hidden">
-              {t("menu.card.add")}{price != null ? ` · ${formatRM(lineTotal)}` : ""}
+              {editing ? t("misc.cust.update") : t("menu.card.add")}{price != null ? ` · ${formatRM(lineTotal)}` : ""}
             </span>
           </button>
           </div>
