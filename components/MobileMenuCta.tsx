@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { useMealPlan } from "@/lib/meal-plan-store";
 import { computeTotals, fmtRM } from "@/lib/planner";
 import { useLang } from "@/lib/i18n/LanguageProvider";
+import { MobileBottomCtaShell } from "@/components/MobileBottomCtaShell";
 
 /**
  * Mobile-only sticky bottom CTA shown on every page EXCEPT /menu (which has its
@@ -42,37 +43,35 @@ export function MobileMenuCta() {
   const hasItems = plan.hydrated && plan.count > 0;
 
   return (
-    <div className={`mobile-menu-cta-wrap lg:hidden ${footerVisible ? "is-hidden" : ""}`}>
-      <div className="mx-auto max-w-md">
-        <Link
-          href="/menu"
-          aria-label={
-            hasItems
-              ? t("menu.mobile.viewAria")
-                  .replace("{count}", String(plan.count))
-                  .replace(
-                    "{itemWord}",
-                    plan.count === 1 ? t("menu.sidebar.item") : t("menu.sidebar.items")
-                  )
-                  .replace("{total}", fmtRM(finalTotal))
-              : t("nav.exploreMenuNow")
-          }
-          className="mobile-mealplan-pill cta-pulse"
-        >
-          {hasItems ? (
-            <>
-              <span className="label">{t("menu.mobile.view")}</span>
-              <span className="amount tabular-nums">
-                {plan.count} · {fmtRM(finalTotal)}
-              </span>
-            </>
-          ) : (
-            <span className="label inline-flex items-center gap-2">
-              {t("nav.exploreMenuNow")} <ArrowRight className="h-4 w-4" />
+    <MobileBottomCtaShell hidden={footerVisible}>
+      <Link
+        href="/menu"
+        aria-label={
+          hasItems
+            ? t("menu.mobile.viewAria")
+                .replace("{count}", String(plan.count))
+                .replace(
+                  "{itemWord}",
+                  plan.count === 1 ? t("menu.sidebar.item") : t("menu.sidebar.items")
+                )
+                .replace("{total}", fmtRM(finalTotal))
+            : t("nav.exploreMenuNow")
+        }
+        className="mobile-mealplan-pill cta-pulse"
+      >
+        {hasItems ? (
+          <>
+            <span className="label">{t("menu.mobile.view")}</span>
+            <span className="amount tabular-nums">
+              {plan.count} · {fmtRM(finalTotal)}
             </span>
-          )}
-        </Link>
-      </div>
-    </div>
+          </>
+        ) : (
+          <span className="label inline-flex items-center gap-2">
+            {t("nav.exploreMenuNow")} <ArrowRight className="h-4 w-4" />
+          </span>
+        )}
+      </Link>
+    </MobileBottomCtaShell>
   );
 }

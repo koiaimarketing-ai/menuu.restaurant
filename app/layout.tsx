@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
@@ -42,6 +42,15 @@ export const metadata: Metadata = {
   title: "Menuu | Authentic Indonesian-Style Food in Petaling Jaya",
   description:
     "Discover comforting Indonesian-style food, homemade noodles, bakso and street-food favourites at Menuu — Taman Sea, Petaling Jaya.",
+};
+
+// viewportFit "cover" is required for env(safe-area-inset-*) to resolve to real
+// values — without it the bottom CTA + back-to-top ignore the iOS home indicator
+// and Android gesture area. Applies site-wide.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

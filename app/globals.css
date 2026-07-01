@@ -718,39 +718,72 @@ main > section:last-child:not(.home-locations-section) {
 }
 
 /* Mobile sticky bottom CTA — blurred translucent wrapper + centered pill */
-.mobile-mealplan-sticky {
+/* ===== Unified mobile floating bottom CTA — used on ALL pages (incl. /menu) ===
+   ONE rounded frosted-glass shell shared by MobileMealBar (menu) and
+   MobileMenuCta (other pages), so the bottom CTA looks + sits identically
+   everywhere. Rendered fixed and mounted at the document root — no transformed /
+   filtered / contain ancestor — so position:fixed stays viewport-relative on
+   Android Chrome (a transformed ancestor would capture it and misplace it).
+   Layer order: content < CTA wrap (80) < back-to-top (90) < modals (100+). */
+.mobile-bottom-cta-wrap {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 50;
-  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-  background: rgba(255, 250, 246, 0.68);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.55);
-}
-/* Frosted floating bottom CTA bar (mobile, non-menu pages). Holds the green
-   meal-plan pill so it shares the exact same look + shine as the menu page. */
-.mobile-menu-cta-wrap {
-  position: fixed;
-  left: 14px;
-  right: 14px;
+  left: 16px;
+  right: 16px;
   bottom: calc(14px + env(safe-area-inset-bottom, 0px));
-  z-index: 50;
-  padding: 8px;
+  z-index: 80;
+  padding: 10px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.72);
   -webkit-backdrop-filter: blur(16px) saturate(150%);
   backdrop-filter: blur(16px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  box-shadow: 0 12px 34px rgba(8,17,39, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 10px 30px rgba(34, 88, 218, 0.1), 0 4px 12px rgba(8, 17, 39, 0.08);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.mobile-menu-cta-wrap.is-hidden {
+.mobile-bottom-cta-wrap.is-hidden {
   opacity: 0;
   transform: translateY(24px);
   pointer-events: none;
+}
+
+/* Floating jump-to-top button — ALWAYS above the bottom CTA, on every page.
+   Positioned in plain CSS (not Tailwind arbitrary calc) so the safe-area math is
+   reliable on Android Chrome + iOS Safari. Sits at a fixed 96px above the bottom
+   so it clears the CTA shell (bottom 14px + ~72px tall) on all pages. */
+.back-to-top-btn {
+  position: fixed;
+  left: 16px;
+  /* CTA shell = 14px bottom + 78px tall (56 pill + 20 pad + 2 border) → its top
+     sits ~92px up; 108px clears it with a comfortable ~16px gap on all engines. */
+  bottom: calc(108px + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: #2258da;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(34, 88, 218, 0.28);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+}
+.back-to-top-btn:hover {
+  background: #1d46b7;
+}
+.back-to-top-btn.is-hidden {
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+}
+/* Desktop: no bottom CTA to clear — return to the low corner button. */
+@media (min-width: 1024px) {
+  .back-to-top-btn {
+    left: 24px;
+    bottom: 24px;
+    z-index: 70;
+    width: 44px;
+    height: 44px;
+  }
 }
 
 .mobile-mealplan-pill {
@@ -758,7 +791,7 @@ main > section:last-child:not(.home-locations-section) {
   isolation: isolate;
   overflow: hidden;
   width: 100%;
-  min-height: 54px;
+  min-height: 56px;
   border-radius: 9999px;
   background: #16a34a;
   color: #ffffff;

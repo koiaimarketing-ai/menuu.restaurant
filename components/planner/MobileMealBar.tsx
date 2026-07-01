@@ -8,6 +8,7 @@ import { MealPlanSidebar } from "./MealPlanSidebar";
 import { useBackdropDismiss } from "@/lib/use-backdrop-dismiss";
 import { useDragToClose } from "@/lib/use-drag-to-close";
 import { useLang } from "@/lib/i18n/LanguageProvider";
+import { MobileBottomCtaShell } from "@/components/MobileBottomCtaShell";
 
 export function MobileMealBar() {
   const { t } = useLang();
@@ -52,23 +53,21 @@ export function MobileMealBar() {
 
   return (
     <>
-      <div className="mobile-mealplan-sticky lg:hidden">
-        <div className="mx-auto max-w-md">
-          <button
-            onClick={() => setOpen(true)}
-            aria-label={t("menu.mobile.viewAria")
-              .replace("{count}", String(plan.count))
-              .replace("{itemWord}", plan.count === 1 ? t("menu.sidebar.item") : t("menu.sidebar.items"))
-              .replace("{total}", fmtRM(finalTotal))}
-            className="mobile-mealplan-pill cta-pulse"
-          >
-            <span className="label">{t("menu.mobile.view")}</span>
-            <span className="amount tabular-nums">
-              {plan.count} · {fmtRM(finalTotal)}
-            </span>
-          </button>
-        </div>
-      </div>
+      <MobileBottomCtaShell>
+        <button
+          onClick={() => setOpen(true)}
+          aria-label={t("menu.mobile.viewAria")
+            .replace("{count}", String(plan.count))
+            .replace("{itemWord}", plan.count === 1 ? t("menu.sidebar.item") : t("menu.sidebar.items"))
+            .replace("{total}", fmtRM(finalTotal))}
+          className="mobile-mealplan-pill cta-pulse"
+        >
+          <span className="label">{t("menu.mobile.view")}</span>
+          <span className="amount tabular-nums">
+            {plan.count} · {fmtRM(finalTotal)}
+          </span>
+        </button>
+      </MobileBottomCtaShell>
 
       {open && (
         <div className="fixed inset-0 z-[100] flex flex-col justify-end bg-black/40 lg:hidden" {...backdrop} style={drag.backdropStyle}>
