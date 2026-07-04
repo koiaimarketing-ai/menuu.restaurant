@@ -1,63 +1,49 @@
-# Handoff — Warung Jakarta (Menu & Planner UI/UX + i18n + Deploy)
+# Handoff — Menuu restaurant site
 
-**Updated:** 2026-06-24
-**Project:** `C:\Users\User\Desktop\Warung Jakarta` — Next.js 14.2.18 App Router, TypeScript, Tailwind, Framer Motion, lucide-react. **Now a git repo** (`main`, initial commit `987b1c3`; git identity set locally: koiaimarketing-ai / koiaimarketing@gmail.com).
+**Updated:** 2026-07-04
+**Project:** `C:\Users\User\Desktop\Project\Restaurant Website Sample` — Next.js 14.2.18 App Router, React 18.3.1, TypeScript, Tailwind 3.4.17, framer-motion ^11.11.17, lucide-react. Git repo on `main`.
+**Latest commit:** `a0dbf3c` (hero dish raise + 2-row subtitle + coloured mobile outlet status).
 
-## ⭐ DEPLOYMENT STATUS — resume here
-- **Vercel: LIVE.** Project `warung-jakarta` under team `koiaimarketing-ais-projects` (Vercel CLI authed as `koiaimarketing-ai`). Production URL **https://warung-jakarta.vercel.app** (first `vercel deploy` auto-took the production alias; build succeeds clean in the cloud). `.vercel/` is gitignored. Re-deploy: `vercel deploy` (preview) / `vercel deploy --prod` (prod). NOTE: deployment protection may show a Vercel login wall to visitors — toggle in Vercel dashboard → Settings → Deployment Protection if a public URL is wanted.
-- **GitHub: PENDING the user's one-time auth.** `gh` CLI v2.95.0 IS installed at `C:\Program Files\GitHub CLI\gh.exe` (NOT on the Bash tool PATH — call with full path). The interactive `gh auth login` cannot be driven from this harness (no TTY). **Next step:** user runs `gh auth login` in their own PowerShell (GitHub.com → HTTPS → web browser). Once `gh auth status` shows logged in, run:
-  `& "C:\Program Files\GitHub CLI\gh.exe" repo create warung-jakarta --private --source=. --remote=origin --push`
-  → creates the **private** repo and pushes. (Alternative: a PAT with `repo` scope via `gh auth login --with-token`.)
-- `.gitignore` excludes node_modules, .next, .env*, .vercel, and the top-level `/image` source folder.
+## Brand / product state
+- **MENUU** — blue-and-white. Primary blue `#2258DA` / deep `#1D46B7`. Logo = rounded blue "menuu".
+- **Single outlet:** `data/locations.ts` → id `ss4`, shortName **Taman Sea** (Petaling Jaya). phone + whatsapp both **+60167068931** (normalised via `digits60()` / `telHref` / `waHref`). Regular hours **10:00–22:00 every day**.
+- Pages: `/` (home), `/menu` (planner + checkout), `/introduction` (MENUU pitch landing), `/our-story`, `/contact`.
+- Default language **EN** (was `ms`). Menu food names are Malaysian (nasi lemak, teh tarik, etc.).
 
-## How to run / preview (IMPORTANT)
-- The host's port **3000 is taken by another project (KOI Car Rental)**. Warung Jakarta must run on another port.
-- Launch: double-click **`start-warung.bat`** (runs `npx next dev -p 3000`; Next auto-falls back to a free port and prints `Local: http://localhost:XXXX`). Keep that terminal open.
-- Mobile preview helper: open **`mobile-view.html`** (auto-detects the running port by pinging `/images/logo.png` and shows the site in a phone frame).
-- **Limits of this agent env:** the assistant CANNOT save chat-uploaded images to disk, and servers it starts run in a sandbox the user's Chrome can't reach. Verify code via `npx tsc --noEmit` + the Claude Preview tool (DOM evals). Preview *screenshots* often time out because of infinite CSS animations (marquee/pulse/shine) — verify via DOM geometry/computed styles instead, not screenshots.
+## ⭐ Deploy — how it works now
+- **Vercel Git integration is CONNECTED.** `git push origin main` **auto-deploys to production** (menuurestaurant.vercel.app, custom domain menuu.restaurant). No CLI needed — the old `vercel deploy` token is dead; do NOT use it.
+- Workflow every change: stop dev server → `rm -rf .next && npm run build` (catch errors) → `git add -A && git commit && git push origin main`.
+- **menuu.asia domain: PENDING USER.** Domain added to Vercel already; user must set Namecheap DNS **A record `@` → `216.198.79.1`** (and CNAME `www` → `cname.vercel-dns.com`). Until then it won't resolve.
 
-## Image workflow (how images get in)
-- User drops source PNGs in `C:\Users\User\Desktop\Warung Jakarta\image\` (a **top-level** folder Next does NOT serve). The agent must **copy** them into `public/...` with lowercase/hyphen names via Bash `cp`.
-- Promotions: `image/Promotion 1..5.png` → `public/promotions/promotion-1..5.png` (referenced by `components/planner/PromotionMarquee.tsx`).
-- Menu category banners: `image/Menu Background/*.png` → `public/images/menu-bg-*.png` (wired in `components/planner/sections.ts` `featuredImage`).
+## Preview / verify (IMPORTANT)
+- Use the **Claude Preview** tool, server name **`warung-jakarta-dev`** (`preview_start`). Port varies.
+- **NEVER run `npm run build` while the dev server is running** — corrupts `.next`, preview dies with chunk 404s. Always `preview_stop` first, then build.
+- Preview **screenshots are heavily downscaled** (page renders ~250px wide in the canvas) — fine for gross layout, useless for pixel checks. **Verify geometry/colour via `preview_eval` DOM measurement** (getBoundingClientRect, computed styles, canvas alpha sampling), not screenshots.
+- Entrance overlay blocks the hero: suppress with `localStorage.setItem('warung_welcome_next_show_at', String(Date.now()+864e5))` then reload. Do NOT `removeChild` the overlay node (React crash).
 
-## Done this session (all `tsc` clean, verified via DOM)
-- **Brand rebrand** (earlier): red `#E24A34`, coffee-brown text `#3B241B`, white; fonts **Bricolage Grotesque** (`--font-fraunces`) + **DM Sans** (`--font-manrope`) — set in `app/layout.tsx`, `tailwind.config.ts`, `app/globals.css`.
-- **WhatsApp buttons** use real WhatsApp green via `.btn-whatsapp`.
-- **Home footer gap** removed globally: `main + footer{margin-top:0}` + `main > section:last-child{padding-bottom:0}`; Footer `mt-10` removed.
-- **PlannerControls** (`components/planner/PlannerControls.tsx`): two-column outlet/plan layout (`.visit-selection-layout`), bubble-absorb collapse/expand (CSS `.outlet-options/.plan-options .is-collapsed/.is-expanded`, `order:-1` keeps selected card top-aligned). Title "What's your plan?". Outlet cards `height:auto;min-height:72/90px` (fixed height clipped KLCW content — do NOT reintroduce fixed height). Mobile selected plan = full width.
-- **Menu cards**: `.menu-item-card` selected gradient + `is-bubbling` pulse; reusable **`QuantityControl`** (`components/planner/QuantityControl.tsx`) with green(+)/red(−) directional glow + `useCardBubble`. Used in OptionCard, MenuCard, AddOnSection, MenuPlanner card, MealPlanSidebar. Mobile menu grids = 1 per row (FeaturedMenuCategory, BeverageGroup).
-- **Add-On/Sides**: rendered via `FeaturedThumbCategory` with `noImage` (MenuCard `noImage` prop hides the thumbnail).
-- **Receipt modal** (`ReceiptModal.tsx`): white card on warm `.receipt-export` wrapper (padding captured into saved PNG). Rows = name + `RM x · Qty N` / line total (no red x). **No inner scroll — all items show.** Primary CTA **"WhatsApp Us Now!"** sends the plan as a TEXT message (greeting by `plan.planType`; no image) — always visible, ungated. "Save Receipt Image" is now the secondary button (`.receipt-secondary-btn`).
-- **Checkout modals** (`CheckoutModal.tsx`) — WHATSAPP-ONLY (no online payment/QR, no delivery quote). White shell, beige close. Premium `OrderSummary`/`OrderItems` card (`.order-summary-*` in globals.css): green Grand Total, beige "N Items" badge, rows = name + `RM x · Qty N` (left, wider) / line total (right). **No inner scroll — all items show.** Single CTA `WhatsAppCTA` = `.btn .btn-whatsapp .cta-shine` (real WhatsApp green #25D366; disabled = beige #EADDD4 / #9B7B70). Each type builds a text WhatsApp message via `itemLines()`+`openWhatsApp()` (no image).
-  - **Going Now** (`GoingNowCheckout`): name/contact/**Pax 1–120**/notes → "Hi Warung Jakarta, i'm on the way to your branch" message. White `PaymentNotice` card.
-  - **RSVP** (`RsvpCheckout`): name/contact/date/time/Pax/notes → "…reservation (RSVP)" message.
-  - **Delivery** (`DeliveryCheckout`): no quote/Waze/QR. Required: name, contact, address (DeliveryAddressAutocomplete or manual), unit, landmark (notes optional); inline red errors on attempt. Summary shows "Delivery fee: Paid by customer" (muted) + grand label "Pay now". Message "Hi Warung Jakarta, I want to order food delivery" incl. `Location:` Google Maps lat,lng link when geocoded.
-  - REMOVED: `QrPayment`/`DeliveryRouteMap` usage, MethodButton (Pay Now / Pay at Restaurant), delivery quote API call, Waze button, confirm checkbox. `/api/delivery/quote` + DeliveryRouteMap component still exist but are no longer wired into checkout.
-- **Continue-plan modal** (`MealPlanWelcomeModal.tsx`): receipt style — title + "Saved Plan" pill, divider summary, **green Estimated total**, green "Continue Meal Plan" + ivory "Start Fresh".
-- **Meal-plan CTAs** = WhatsApp green `#16A34A` (`.cta-whatsapp`, hover `#128C3D`, bold + text-shadow). Desktop nav pill = single flat green pill (no inner badge). Mobile: top capsule removed; bottom `.mobile-mealplan-pill` is one centered green capsule in a blurred sticky wrapper (`.mobile-mealplan-sticky`) with `ctaPulse` + tap shine.
-- **Volume button** (`AmbientSoundToggle.tsx` / `.ambient-toggle`): fixed right:18/bottom:28 (mobile 16/24), z-index 80; lifts to bottom:96px above the capsule ONLY on `/menu` mobile with items.
-- **`.cta-shine`** continuous sweep added to all modal primary green CTAs.
-- Hero "Our Story" + OurStory link = `.read-story-link` (plain red text + arrow). Hero actions stacked vertically. Feature/Plan-Your-Meal icon circles = filled red `#F04438` with white icons. Welcome-overlay button text = "Click Me".
-- Shared modal tokens in `:root` (`--modal-*`) and a provided `.checkout-modal*` system block exists in globals.css.
+## Done recently (all built clean + verified, deployed)
+- **WhatsApp order message** (`components/planner/CheckoutModal.tsx`): `orderDetailsBlock()` builds full itemised message — greeting → Name/Contact/Outlet/Status/Pax/Notes → `Order Details:` → per line `{qty}× [CODE] Name — RM x` + dash customisation lines (only when present, via `describeLine`) → Subtotal / SST (6%) / Service Charge (10%) / (Voucher) / Grand Total. Used by all 3 flows (Going/Delivery/RSVP). `openWhatsApp` URL-encodes with `\n`. Empty notes → `-`. Verified live end-to-end.
+- **Mobile outlet card** (`PlannerControls.tsx` `OutletCard`): mobile shows one stacked row = bold name + coloured status; desktop keeps `StatusBadge` + full `todayHoursLabel` range. Status via `getOutletStatusLabel(loc)` in `lib/operating-status.ts` → `{text, open}`: open ⇒ `Open · Closes 10:00 PM` **green `#16A34A`**, closed ⇒ `Closed · Opens 10:00 AM` **red `#B42318`**.
+- **StatusBadge** (`components/StatusBadge.tsx`): mobile `Open`/`Closed` only (`md:hidden`), desktop detailed (`hidden md:inline`).
+- **Intro Problem cards** (`components/introduction/sections/phone-workload.tsx`): fixed invalid `bg-white/94` (rendered transparent → dark image bled through) → `bg-white/95` on all 3 capsules.
+- **Hero** (`components/hero/FloatingDish.tsx` + `HeroContent.tsx`): dish lift `-translate-y-[34%] sm:-42% lg:-52%` (raised, verified solid food clears title / desktop right column / subtitle text / Our Story eyebrow at 1440/1280/1024; mobile+tablet dish below copy). Subtitle rewritten in en/ms/zh to a 2-line string using `\n`, rendered with `whitespace-pre-line` → exactly 2 rows (EN: "Bold sambal and home-style" / "flavours in every bite.").
 
-## i18n (multilingual) — NEW
-- System: `lib/i18n/translations.ts` (flat dict, keys `nav.*`, `hero.*`, `footer.*`, `planner.*`, `checkout.*`, `err.*`, `receipt.*`, `saved.*`, `wa.*`; langs `ms`/`en`/`zh`), `lib/i18n/LanguageProvider.tsx` (`useLang()` → `{lang,setLang,t}`; **default `ms`**; persists to localStorage `wj-lang`; sets `<html lang>`), `components/LanguageSwitcher.tsx` (segmented `BM | EN | 中文`, active = red `#E24A34`).
-- Provider mounted in `app/layout.tsx` (outermost). Switcher in Navbar desktop (next to CTA) + mobile drawer.
-- TRANSLATED so far: Navbar, Hero (`HeroContent` now client), Footer (now client), PlannerControls, CheckoutModal (going/delivery/rsvp incl. validation errors + **WhatsApp message text via `waText(lang)`**), ReceiptModal, MealPlanWelcomeModal.
-- WhatsApp messages follow the **selected** language using `translations[lang]` directly (not the `t` fallback).
-- NOT yet translated (remaining): menu data (`data/menu` item names/descriptions — keep Indonesian food names; `sections.ts` labels/blurbs), Home page sections, Our Story page, Contact page intro + branch info card + BusinessHours/LiveStatus, PromotionMarquee, Review marquee/carousel, MealPlanSidebar, MenuPlanner, MobileMealBar, CategoryPills/menu filters, CustomisationModal, GeneratedListModal, EntranceOverlay, AppointmentPicker. To translate: convert the component to `"use client"` if needed, `const { t } = useLang()`, add keys to all 3 dicts.
+## Outstanding / next
+1. **Multi-outlet dropdown (CASE 2) NOT built** — with 1 outlet it'd be dead code. When outlets are added: animated framer-motion dropdown in the mobile outlet section (spec: "Choose location" collapsed → tap opens dropdown, soft-blue hover, blue check on selected, same rounded/blue-border style).
+2. **Outlet "image 2" reference never seen** by the agent — mobile outlet card matches the written spec only. If user has a specific layout image, re-request and match it.
+3. User keeps iterating on the **hero dish position** (this is the 5th pass) — any further "move up" is bounded by the near-opaque dish PNG (transparent top only ~5.7%) vs the subtitle/right-column/Our-Story. Measure clearance per-band before changing (see method below).
 
-## Next / outstanding
-1. **NOT DONE — full structural modal shell** (last user request): convert all 4 modals to the exact `.checkout-modal` shell from the user's spec — fixed **icon-capsule header**, **sticky bottom action bar**, and a true **mobile bottom-sheet** (slide-up, rounded top corners, internal scroll, CTA stays visible). The `.checkout-modal*` CSS is already in `app/globals.css`; the components still use the older centered-card structure. This is a sizable refactor of `CheckoutModal.tsx` (Going/Delivery/RSVP) + `ReceiptModal.tsx` — do it carefully WITHOUT touching payment/delivery/RSVP/calculation logic.
-2. User still needs to keep dropping updated images into `image/` then ask the agent to copy them into `public/`.
-
-## Warnings / gotchas
-- Don't reintroduce fixed `height` on `.outlet-card` (clips KLCW content).
-- Don't make Bash-started servers and expect the user's Chrome to reach them.
-- `noUnusedLocals` is on — remove unused imports/vars (e.g. when deleting elements) or `tsc` fails.
-- Google Maps/Supabase remain **env-gated** (no keys); delivery quote returns 503 → the UI now degrades gracefully (food payment still works).
-- Keep `fmtRM` output "RM 12.00" (with space).
+## Gotchas (bitten us)
+- **`green` Tailwind token is mapped to brand BLUE** (`tailwind.config.ts`: green.DEFAULT `#2258DA`, green-dark `#1D46B7`). For a REAL green use explicit `#16A34A` (the WhatsApp green). `text-green-dark` looks blue.
+- **Tailwind opacity steps:** `/94` is NOT a default step and JIT dropped it → transparent. Use `/90` or `/95`.
+- **Windows case-only git renames** don't register — do two-step `git mv Foo.png tmp.png && git mv tmp.png foo.png`, else 404 on Vercel.
+- `fmtRM` output is "RM 12.00" (with space) — keep it.
+- Hero dish is a **z-20 sibling layer between hero and Our Story** (paints above both). It's centred on the **viewport** (`left-1/2`) while hero copy sits in the `max-w-site` container — so overlap geometry is width-sensitive; a centred wide dish reaches into the left column. To check overlap, sample the dish PNG's alpha on a canvas and compare the dish's leftmost/rightmost solid pixel *within a target y-band* to the text/element edges (bounding boxes overstate because the plate is narrow at top).
+- i18n: `lib/i18n/translations.ts` flat dict `en`/`ms`/`zh`; `useLang()` → `{lang,setLang,t}`. WhatsApp message text uses `waText(lang)` (selected lang, not fallback).
 
 ## Key files
-`components/planner/`: CheckoutModal.tsx, ReceiptModal.tsx, MealPlanWelcomeModal.tsx, MealPlanSidebar.tsx, MealPlannerPage.tsx, PlannerControls.tsx, PromotionMarquee.tsx, QuantityControl.tsx, MenuCard.tsx, OptionCard.tsx, AddOnSection.tsx, FeaturedThumbCategory.tsx, FeaturedMenuCategory.tsx, BeverageGroup.tsx, MobileMealBar.tsx, sections.ts · `components/`: Navbar.tsx, Footer.tsx, OurStory.tsx, ContactClient.tsx, AmbientSoundToggle.tsx, EntranceOverlay.tsx, hero/HeroContent.tsx · `app/`: globals.css, layout.tsx, page.tsx · `start-warung.bat`, `mobile-view.html`
+- Hero: `components/hero/FloatingDish.tsx`, `components/hero/HeroContent.tsx`, `components/OurStory.tsx` (top padding clears the dish)
+- Planner/checkout: `components/planner/PlannerControls.tsx`, `components/planner/CheckoutModal.tsx`, `components/planner/MealPlannerPage.tsx`, `components/planner/menu-options.ts` (`describeLine`/`sortLines`)
+- Status: `lib/operating-status.ts` (`getLiveStatus`, `getOutletStatusLabel`, `todayHoursLabel`, `formatTime`), `components/StatusBadge.tsx`
+- Intro: `components/introduction/sections/phone-workload.tsx`, `components/introduction/providers/language-provider.tsx`
+- Data: `data/locations.ts`, `data/menu.ts` · Config: `tailwind.config.ts`, `lib/i18n/translations.ts`
