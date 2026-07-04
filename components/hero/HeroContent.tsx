@@ -71,7 +71,7 @@ export function HeroContent() {
             <br />
             {t("hero.titlePre")}<span className="text-primary">{t("hero.titleAccent")}</span>
           </h1>
-          <p className="mt-4 text-base text-body max-w-md leading-relaxed sm:mt-6 sm:text-lg">
+          <p className="relative z-20 mt-4 max-w-[420px] text-base leading-relaxed text-body sm:mt-6 sm:text-lg lg:max-w-[460px] xl:max-w-[500px]">
             {t("hero.subtitle")}
           </p>
 

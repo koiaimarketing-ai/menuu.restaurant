@@ -53,7 +53,7 @@ export function FloatingDish() {
       <div
         className="
           absolute left-1/2 top-0
-          -translate-x-1/2 -translate-y-[24%] sm:-translate-y-[30%] lg:-translate-y-[38%]
+          -translate-x-1/2 -translate-y-[30%] sm:-translate-y-[38%] lg:-translate-y-[40%]
           w-[min(100%_-_56px,380px)]
           md:w-[min(100%_-_48px,720px)]
           lg:w-[min(100%_-_48px,840px)]

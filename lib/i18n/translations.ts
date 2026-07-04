@@ -159,7 +159,7 @@ const en = {
 
   // ---- WhatsApp message lines ----
   "wa.rsvpGreeting": "Hi Menuu, I'd like to make a reservation (RSVP).",
-  "wa.goingGreeting": "Hi Menuu, i'm on the way to your branch",
+  "wa.goingGreeting": "Hi Menuu, I'm on the way to your branch.",
   "wa.deliveryGreeting": "Hi Menuu, I want to order food delivery",
   "wa.planGreeting": "Hi Menuu, here is my meal plan.",
   "wa.preSelected": "Pre-selected meal plan (not a preorder):",
@@ -177,6 +177,7 @@ const en = {
   "wa.deliveryNotes": "Delivery notes",
   "wa.location": "Location",
   "wa.estimatedTotal": "Estimated total",
+  "wa.orderDetails": "Order Details",
 } as const;
 
 export type TKey = keyof typeof en;
@@ -340,6 +341,7 @@ const ms: Dict = {
   "wa.deliveryNotes": "Catatan penghantaran",
   "wa.location": "Lokasi",
   "wa.estimatedTotal": "Anggaran jumlah",
+  "wa.orderDetails": "Butiran Pesanan",
 };
 
 const zh: Dict = {
@@ -498,6 +500,7 @@ const zh: Dict = {
   "wa.deliveryNotes": "外送备注",
   "wa.location": "位置",
   "wa.estimatedTotal": "预估总额",
+  "wa.orderDetails": "订单详情",
 };
 
 export const translations: Record<Lang, Dict> = { en, ms, zh };

@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { MapPin, Footprints, CalendarDays, Bike, Check } from "lucide-react";
 import { locations, getLocation, type Location } from "@/data/locations";
 import { useMealPlan, type BranchId, type PlanType } from "@/lib/meal-plan-store";
-import { getLiveStatus, todayHoursLabel } from "@/lib/operating-status";
+import { getLiveStatus, todayHoursLabel, getOutletTimeLabel } from "@/lib/operating-status";
 import { StatusBadge } from "../StatusBadge";
 import { AppointmentPicker } from "./AppointmentPicker";
 import { isClosed } from "./Calendar";
@@ -149,7 +149,15 @@ function OutletCard({ loc, selected, onSelect }: { loc: Location; selected: bool
       >
         <MapPin className="h-[18px] w-[18px]" />
       </span>
-      <span className="flex min-w-0 flex-1 items-center gap-2">
+      {/* Mobile: name + compact smart time on one stacked row (no full range). */}
+      <span className="flex min-w-0 flex-1 flex-col justify-center md:hidden">
+        <span className="truncate font-bold leading-tight text-ink-primary">{loc.shortName}</span>
+        <span className="truncate text-[12px] leading-tight text-ink-secondary">
+          {getOutletTimeLabel(loc)}
+        </span>
+      </span>
+      {/* Desktop: name + status badge + full range inline. */}
+      <span className="hidden min-w-0 flex-1 items-center gap-2 md:flex">
         <span className="truncate font-bold text-ink-primary">{loc.shortName}</span>
         <StatusBadge status={status} />
         <span className="ml-auto shrink-0 whitespace-nowrap text-[13px] text-ink-secondary">

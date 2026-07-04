@@ -184,4 +184,31 @@ export function todayHoursLabel(loc: Location): string {
   return `${formatTime(day.open)} – ${formatTime(day.close)}`;
 }
 
+/**
+ * Compact one-line status/time label (mobile outlet rows). Uses the branch's
+ * actual configured hours:
+ *   before opening -> "Opens 10:00 AM"
+ *   during hours   -> "Closes 10:00 PM"
+ *   after closing  -> "Closed · Opens tomorrow 10:00 AM"
+ */
+export function getOutletTimeLabel(loc: Location): string {
+  const { dayIndex, minutes } = nowInKL();
+  const today = loc.regularHours[DAY_KEYS[dayIndex]];
+  if (today && today.status === "open" && today.open && today.close) {
+    const openMin = toMinutes(today.open);
+    const closeMin = toMinutes(today.close);
+    if (minutes < openMin) return `Opens ${formatTime(today.open)}`;
+    if (minutes < closeMin) return `Closes ${formatTime(today.close)}`;
+  }
+  for (let i = 1; i <= 7; i++) {
+    const idx = (dayIndex + i) % 7;
+    const d = loc.regularHours[DAY_KEYS[idx]];
+    if (d?.status === "open" && d.open) {
+      const when = i === 1 ? "tomorrow" : DAY_LABELS[idx];
+      return `Closed · Opens ${when} ${formatTime(d.open)}`;
+    }
+  }
+  return "Closed";
+}
+
 export { DAY_KEYS, DAY_LABELS };

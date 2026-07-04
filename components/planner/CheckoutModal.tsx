@@ -193,13 +193,35 @@ function ChoosePlanPrompt() {
 
 /* ------------------------- message helpers ------------------------- */
 
-function itemLines(items: ReturnType<typeof useMealPlan>["items"]) {
-  return sortLines(items)
-    .map((l) => {
-      const code = menu.find((m) => m.id === l.itemId)?.code;
-      return `- ${l.qty}× ${code ? `[${code}] ` : ""}${l.name}`;
-    })
-    .join("\n");
+/**
+ * Full WhatsApp order block. "Order Details:" header, then every line as
+ *   {qty}× [CODE] Name — RM price
+ * followed by its selected customisations as dash lines (only when present),
+ * then Subtotal / SST (6%) / Service Charge (10%) / (Voucher) / Grand Total.
+ * Labels follow the selected language via `tr`.
+ */
+function orderDetailsBlock(
+  items: ReturnType<typeof useMealPlan>["items"],
+  tr: (k: string) => string,
+  payable: number,
+  voucherCode: string | null,
+  voucherDiscount: number
+): string {
+  const t = computeTotals(items);
+  const out: string[] = [`${tr("wa.orderDetails")}:`, ""];
+  for (const l of sortLines(items)) {
+    const code = menu.find((m) => m.id === l.itemId)?.code;
+    out.push(`${l.qty}× ${code ? `[${code}] ` : ""}${l.name} — ${fmtRM(l.unitPrice ?? 0)}`);
+    for (const d of describeLine(l.choices, l.note)) out.push(`- ${d.label}: ${d.value}`);
+    out.push("");
+  }
+  out.push(`${tr("checkout.subtotal")}: ${fmtRM(t.subtotal)}`);
+  out.push(`${tr("checkout.sst")}: ${fmtRM(t.sst)}`);
+  out.push(`${tr("checkout.service")}: ${fmtRM(t.service)}`);
+  if (voucherDiscount > 0) out.push(`Voucher (${voucherCode}): - ${fmtRM(voucherDiscount)}`);
+  out.push("");
+  out.push(`${tr("checkout.grandTotal")}: ${fmtRM(payable)}`);
+  return out.join("\n");
 }
 
 function openWhatsApp(branchWa: string | undefined, text: string) {
@@ -282,9 +304,7 @@ function RsvpCheckout({ branch, foodPayable, customer }: { branch: Branch; foodP
       `${w("wa.pax")}: ${pax}`,
       `${w("wa.notes")}: ${notes || "-"}`,
       "",
-      itemLines(plan.items),
-      "",
-      `${w("wa.estimatedTotal")}: ${fmtRM(foodPayable)}`,
+      orderDetailsBlock(plan.items, tr, foodPayable, plan.voucherCode, plan.voucherDiscount),
     ].join("\n");
     openWhatsApp(branch!.whatsapp, text);
   };
@@ -364,13 +384,11 @@ function GoingNowCheckout({ branch, foodPayable, customer }: { branch: Branch; f
       `${w("wa.name")}: ${customer.name}`,
       `${w("wa.contact")}: ${customer.contact}`,
       `${w("wa.outlet")}: ${branch!.shortName}`,
-      `${w("wa.status")} : ${tr("planner.goingNow")}`,
+      `${w("wa.status")}: ${tr("planner.goingNow")}`,
       `${w("wa.pax")}: ${pax}`,
       `${w("wa.notes")}: ${customer.notes || "-"}`,
       "",
-      itemLines(plan.items),
-      "",
-      `${w("wa.estimatedTotal")}: ${fmtRM(foodPayable)}`,
+      orderDetailsBlock(plan.items, tr, foodPayable, plan.voucherCode, plan.voucherDiscount),
     ].join("\n");
     openWhatsApp(branch!.whatsapp, text);
   };
@@ -448,16 +466,14 @@ function DeliveryCheckout({ branch, foodPayable, customer }: { branch: Branch; f
       `${w("wa.name")}: ${customer.name}`,
       `${w("wa.contact")}: ${customer.contact}`,
       `${w("wa.outlet")}: ${branch!.shortName}`,
-      `${w("wa.address")} : ${addressText}`,
-      `${w("wa.unit")} : ${unit}`,
-      `${w("wa.landmark")} : ${landmark}`,
-      `${w("wa.status")} : ${tr("planner.deliveryNow")}`,
+      `${w("wa.address")}: ${addressText}`,
+      `${w("wa.unit")}: ${unit}`,
+      `${w("wa.landmark")}: ${landmark}`,
+      `${w("wa.status")}: ${tr("planner.deliveryNow")}`,
       `${w("wa.deliveryNotes")}: ${deliveryNotes || "-"}`,
       mapsLink ? `${w("wa.location")}: ${mapsLink}` : null,
       "",
-      itemLines(plan.items),
-      "",
-      `${w("wa.estimatedTotal")}: ${fmtRM(foodPayable)}`,
+      orderDetailsBlock(plan.items, tr, foodPayable, plan.voucherCode, plan.voucherDiscount),
     ]
       .filter((l) => l !== null)
       .join("\n");

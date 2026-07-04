@@ -64,7 +64,7 @@ export function PhoneWorkload() {
             <div className="relative aspect-square w-full">
               <Image src="/images/introduction/overloaded-staff.webp" alt={w.cards.overloaded.label} fill sizes="(max-width:640px) 90vw, (max-width:1024px) 45vw, 380px" className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
             </div>
-            <figcaption className="absolute inset-x-3 bottom-3 flex items-center gap-3 rounded-2xl bg-white/94 px-4 py-3 shadow-[0_10px_30px_rgba(8,17,39,0.14)] backdrop-blur">
+            <figcaption className="absolute inset-x-3 bottom-3 flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-[0_10px_30px_rgba(8,17,39,0.14)] backdrop-blur">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-500"><Users className="h-4.5 w-4.5" /></span>
               <span>
                 <span className="block text-sm font-bold text-navy">{w.cards.overloaded.label}</span>
@@ -80,7 +80,7 @@ export function PhoneWorkload() {
               {/* single decorative question badge, top-left — clear of the face */}
               <span className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-red-500 shadow-[0_10px_24px_rgba(8,17,39,0.18)]"><HelpCircle className="h-5 w-5" /></span>
             </div>
-            <figcaption className="absolute inset-x-3 bottom-3 flex items-center gap-3 rounded-2xl bg-white/94 px-4 py-3 shadow-[0_10px_30px_rgba(8,17,39,0.14)] backdrop-blur">
+            <figcaption className="absolute inset-x-3 bottom-3 flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-[0_10px_30px_rgba(8,17,39,0.14)] backdrop-blur">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-500"><CircleX className="h-4.5 w-4.5" /></span>
               <span>
                 <span className="block text-sm font-bold text-navy">{w.cards.missed.label}</span>
@@ -96,7 +96,7 @@ export function PhoneWorkload() {
               {/* red angry badge — frustration / negative outcome */}
               <span className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-red-500 text-white shadow-[0_12px_28px_rgba(239,68,68,0.4)]"><Angry className="h-5 w-5" /></span>
             </div>
-            <figcaption className="absolute inset-x-3 bottom-3 flex items-center gap-3 rounded-2xl bg-white/94 px-4 py-3 shadow-[0_10px_30px_rgba(8,17,39,0.14)] backdrop-blur">
+            <figcaption className="absolute inset-x-3 bottom-3 flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-[0_10px_30px_rgba(8,17,39,0.14)] backdrop-blur">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-500"><CircleArrowDown className="h-4.5 w-4.5" /></span>
               <span className="text-sm font-bold text-navy">{w.cards.ready.label}</span>
             </figcaption>
