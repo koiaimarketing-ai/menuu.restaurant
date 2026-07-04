@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { MapPin, Footprints, CalendarDays, Bike, Check } from "lucide-react";
 import { locations, getLocation, type Location } from "@/data/locations";
 import { useMealPlan, type BranchId, type PlanType } from "@/lib/meal-plan-store";
-import { getLiveStatus, todayHoursLabel, getOutletTimeLabel } from "@/lib/operating-status";
+import { getLiveStatus, todayHoursLabel, getOutletStatusLabel } from "@/lib/operating-status";
 import { StatusBadge } from "../StatusBadge";
 import { AppointmentPicker } from "./AppointmentPicker";
 import { isClosed } from "./Calendar";
@@ -134,6 +134,7 @@ export function PlannerControls() {
 /* ---------------- outlet card ---------------- */
 function OutletCard({ loc, selected, onSelect }: { loc: Location; selected: boolean; onSelect: () => void }) {
   const status = getLiveStatus(loc);
+  const outletStatus = getOutletStatusLabel(loc);
   return (
     <button
       type="button"
@@ -149,11 +150,15 @@ function OutletCard({ loc, selected, onSelect }: { loc: Location; selected: bool
       >
         <MapPin className="h-[18px] w-[18px]" />
       </span>
-      {/* Mobile: name + compact smart time on one stacked row (no full range). */}
+      {/* Mobile: name + coloured status (green open / red closed) on one row. */}
       <span className="flex min-w-0 flex-1 flex-col justify-center md:hidden">
         <span className="truncate font-bold leading-tight text-ink-primary">{loc.shortName}</span>
-        <span className="truncate text-[12px] leading-tight text-ink-secondary">
-          {getOutletTimeLabel(loc)}
+        <span
+          className={`truncate text-[12px] font-semibold leading-tight ${
+            outletStatus.open ? "text-[#16A34A]" : "text-[#B42318]"
+          }`}
+        >
+          {outletStatus.text}
         </span>
       </span>
       {/* Desktop: name + status badge + full range inline. */}

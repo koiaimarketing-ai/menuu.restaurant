@@ -37,7 +37,7 @@ const en = {
   "hero.titlePre": "made the ",
   "hero.titleAccent": "home-style way.",
   "hero.subtitle":
-    "Bold sambal, familiar recipes and comforting flavours — made the home-style way. Taste the heritage in every bite.",
+    "Bold sambal and home-style\nflavours in every bite.",
   "hero.ourStory": "Our Story",
   "hero.loved": "Loved by locals & travellers",
   "hero.reviewsSuffix": "reviews",
@@ -207,7 +207,7 @@ const ms: Dict = {
   "hero.titlePre": "disaji cara ",
   "hero.titleAccent": "ala rumah.",
   "hero.subtitle":
-    "Sambal yang padu, resipi yang dekat di hati dan rasa yang menyelerakan — ala rumah. Rasai warisannya dalam setiap suapan.",
+    "Sambal padu, rasa ala rumah\ndalam setiap suapan.",
   "hero.ourStory": "Kisah Kami",
   "hero.loved": "Digemari penduduk tempatan & pelancong",
   "hero.reviewsSuffix": "ulasan",
@@ -368,7 +368,7 @@ const zh: Dict = {
   "hero.titlePre": "家常的",
   "hero.titleAccent": "味道",
   "hero.subtitle":
-    "够味的参巴、熟悉的食谱、暖心的味道——道地家常做法。每一口都尝得到传承。",
+    "够味参巴，家常风味，\n尽在每一口。",
   "hero.ourStory": "我们的故事",
   "hero.loved": "深受本地人与游客喜爱",
   "hero.reviewsSuffix": "则评价",

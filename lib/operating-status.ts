@@ -185,30 +185,32 @@ export function todayHoursLabel(loc: Location): string {
 }
 
 /**
- * Compact one-line status/time label (mobile outlet rows). Uses the branch's
- * actual configured hours:
- *   before opening -> "Opens 10:00 AM"
- *   during hours   -> "Closes 10:00 PM"
- *   after closing  -> "Closed · Opens tomorrow 10:00 AM"
+ * Compact status + time label for mobile outlet rows, with open flag for
+ * colouring (green when open, red when closed). Uses the branch's actual hours:
+ *   before opening -> { "Closed · Opens 10:00 AM", open:false }
+ *   during hours   -> { "Open · Closes 10:00 PM",  open:true  }
+ *   after closing  -> { "Closed · Opens 10:00 AM", open:false }  (next opening)
  */
-export function getOutletTimeLabel(loc: Location): string {
+export function getOutletStatusLabel(loc: Location): { text: string; open: boolean } {
   const { dayIndex, minutes } = nowInKL();
   const today = loc.regularHours[DAY_KEYS[dayIndex]];
   if (today && today.status === "open" && today.open && today.close) {
     const openMin = toMinutes(today.open);
     const closeMin = toMinutes(today.close);
-    if (minutes < openMin) return `Opens ${formatTime(today.open)}`;
-    if (minutes < closeMin) return `Closes ${formatTime(today.close)}`;
+    if (minutes >= openMin && minutes < closeMin)
+      return { text: `Open · Closes ${formatTime(today.close)}`, open: true };
+    if (minutes < openMin)
+      return { text: `Closed · Opens ${formatTime(today.open)}`, open: false };
   }
+  // Closed now (after close today, or a closed day) — find the next opening time.
   for (let i = 1; i <= 7; i++) {
     const idx = (dayIndex + i) % 7;
     const d = loc.regularHours[DAY_KEYS[idx]];
     if (d?.status === "open" && d.open) {
-      const when = i === 1 ? "tomorrow" : DAY_LABELS[idx];
-      return `Closed · Opens ${when} ${formatTime(d.open)}`;
+      return { text: `Closed · Opens ${formatTime(d.open)}`, open: false };
     }
   }
-  return "Closed";
+  return { text: "Closed", open: false };
 }
 
 export { DAY_KEYS, DAY_LABELS };
