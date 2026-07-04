@@ -50,17 +50,22 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-line pt-6 text-xs text-body sm:flex-row">
           <p>© 2026 MENUU. {t.footer.rights}</p>
-          <p className="text-center sm:text-right">
-            {t.footer.builtFor} {t.footer.devBy}{" "}
-            <a
-              href="http://www.koiaistudio.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whitespace-nowrap font-semibold text-brand-600 underline-offset-2 transition-colors hover:text-brand-700 hover:underline"
-            >
-              KOI AI Studio
-            </a>
-          </p>
+          <div className="text-center sm:text-right">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-body">
+              {t.footer.devLabel}
+            </p>
+            <p>
+              {t.footer.builtFor} {t.footer.devBy}{" "}
+              <a
+                href="https://www.koiaistudio.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whitespace-nowrap font-semibold text-brand-600 underline-offset-2 transition-colors hover:text-brand-700 hover:underline"
+              >
+                KOI AI Studio
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

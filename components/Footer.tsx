@@ -145,8 +145,23 @@ export function Footer() {
 
         {/* Bottom row */}
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-line-warm pt-6 text-center text-xs text-ink-secondary sm:flex-row sm:justify-between sm:text-left">
-          <span>© {year} Menuu. All rights reserved.</span>
-          <span>{t("footer.bottomTagline")}</span>
+          <span>© {year} MENUU. All rights reserved.</span>
+          <div className="sm:text-right">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-secondary">
+              Develop
+            </p>
+            <p>
+              Built for restaurants &amp; stalls in Malaysia. Development by{" "}
+              <a
+                href="https://www.koiaistudio.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#2258DA] underline-offset-2 transition-colors hover:text-[#1D46B7] hover:underline"
+              >
+                KOI AI Studio
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
