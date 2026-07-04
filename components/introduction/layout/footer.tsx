@@ -3,7 +3,7 @@
 import { useLang } from "@/components/introduction/providers/language-provider";
 import { Logo } from "@/components/introduction/ui/logo";
 import { WHATSAPP_URL } from "@/lib/introduction/content";
-import { Phone, MapPin } from "lucide-react";
+import { Phone, MapPin, Mail } from "lucide-react";
 
 export function Footer() {
   const { t } = useLang();
@@ -39,6 +39,9 @@ export function Footer() {
             <a href={`tel:+60167068931`} className="flex items-center gap-2 hover:text-brand-600">
               <Phone className="h-4 w-4 text-brand-600" /> {t.contact.phone}
             </a>
+            <a href="mailto:sales@menuu.asia" className="flex items-center gap-2 hover:text-brand-600">
+              <Mail className="h-4 w-4 text-brand-600" /> sales@menuu.asia
+            </a>
             <p className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" /> {t.contact.address}
             </p>
@@ -51,9 +54,6 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-line pt-6 text-xs text-body sm:flex-row">
           <p>© 2026 MENUU. {t.footer.rights}</p>
           <div className="text-center sm:text-right">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-body">
-              {t.footer.devLabel}
-            </p>
             <p>
               {t.footer.builtFor} {t.footer.devBy}{" "}
               <a

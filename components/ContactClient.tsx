@@ -5,7 +5,7 @@ import { locations, telHref, waHref, type Location } from "@/data/locations";
 import { BusinessHours } from "./BusinessHours";
 import { BranchMap } from "./BranchMap";
 import { LiveStatus } from "./LiveStatus";
-import { MapPin, Phone, ArrowRight, Images } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight, Images } from "lucide-react";
 import { ReviewMeta } from "@/components/ReviewStrip";
 
 // Official-style WhatsApp glyph (phone in a speech bubble) — recognisable as
@@ -101,6 +101,13 @@ export function ContactClient() {
               ))}
             </span>
           </address>
+
+          <a
+            href="mailto:sales@menuu.asia"
+            className="mt-3 flex items-center gap-2.5 text-body transition-colors hover:text-primary"
+          >
+            <Mail className="h-5 w-5 shrink-0 text-primary" /> sales@menuu.asia
+          </a>
 
           <div className="mt-5 flex items-center gap-3">
             {active.phone ? (

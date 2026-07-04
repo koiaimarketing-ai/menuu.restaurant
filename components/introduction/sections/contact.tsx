@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/introduction/ui/section";
 import { Reveal } from "@/components/introduction/ui/reveal";
 import { Button } from "@/components/introduction/ui/button";
 import { WHATSAPP_URL } from "@/lib/introduction/content";
-import { Phone, MapPin, MessageCircle, CalendarCheck } from "lucide-react";
+import { Phone, MapPin, Mail, MessageCircle, CalendarCheck } from "lucide-react";
 
 export function Contact() {
   const { t } = useLang();
@@ -58,6 +58,15 @@ export function Contact() {
                   <span>
                     <span className="block text-xs font-semibold uppercase tracking-wide text-body">{c.phoneLabel}</span>
                     <span className="block text-base font-bold text-ink-900">{c.phone}</span>
+                  </span>
+                </a>
+                <a href="mailto:sales@menuu.asia" className="flex items-center gap-3 rounded-2xl p-3 transition-colors hover:bg-mist-50">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                    <Mail className="h-5 w-5" />
+                  </span>
+                  <span>
+                    <span className="block text-xs font-semibold uppercase tracking-wide text-body">{c.emailLabel}</span>
+                    <span className="block text-base font-bold text-ink-900">{c.email}</span>
                   </span>
                 </a>
                 <div className="flex items-start gap-3 rounded-2xl p-3">

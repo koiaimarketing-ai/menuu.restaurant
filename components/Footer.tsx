@@ -81,6 +81,15 @@ export function Footer() {
                 </a>{" "}
                 to set up your own online restaurant
               </p>
+              <p>
+                Email:{" "}
+                <a
+                  href="mailto:sales@menuu.asia"
+                  className="font-semibold text-[#2258DA] hover:text-[#1D46B7]"
+                >
+                  sales@menuu.asia
+                </a>
+              </p>
             </div>
 
             {/* Introduction landing page — direct link only (not in the nav). */}
@@ -147,9 +156,6 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-line-warm pt-6 text-center text-xs text-ink-secondary sm:flex-row sm:justify-between sm:text-left">
           <span>© {year} MENUU. All rights reserved.</span>
           <div className="sm:text-right">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-secondary">
-              Develop
-            </p>
             <p>
               Built for restaurants &amp; stalls in Malaysia. Development by{" "}
               <a
