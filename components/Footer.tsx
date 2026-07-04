@@ -82,6 +82,17 @@ export function Footer() {
                 to set up your own online restaurant
               </p>
             </div>
+
+            {/* Introduction landing page — direct link only (not in the nav). */}
+            <p className="mt-3 text-[13px] leading-[1.6] text-[#6B7589]">
+              Introduction Page:{" "}
+              <Link
+                href="/introduction"
+                className="font-semibold text-[#2258DA] underline-offset-2 transition-colors hover:text-[#1D46B7] hover:underline"
+              >
+                Menuu Introduction
+              </Link>
+            </p>
           </div>
 
           {/* Explore */}

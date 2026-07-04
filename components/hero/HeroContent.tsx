@@ -58,7 +58,7 @@ export function HeroContent() {
   );
 
   return (
-    <div className="relative z-[3] mx-auto flex w-full max-w-site items-start min-h-[560px] px-[18px] pb-44 pt-28 sm:min-h-[640px] sm:px-8 sm:pb-56 sm:pt-28 md:min-h-[680px] md:pb-64 md:pt-32 lg:min-h-[720px] lg:px-12 lg:pb-72 lg:pt-28">
+    <div className="relative z-[3] mx-auto flex w-full max-w-site items-start min-h-[420px] px-[18px] pb-28 pt-24 sm:min-h-[520px] sm:px-8 sm:pb-40 sm:pt-28 md:min-h-[600px] md:pb-52 md:pt-32 lg:min-h-[660px] lg:px-12 lg:pb-64 lg:pt-28">
       <div className="w-full lg:grid lg:grid-cols-[minmax(0,1fr)_330px] lg:items-start lg:gap-10">
         {/* LEFT — badge + heading + paragraph (+ mobile-only CTA/review/location) */}
         <div className="max-w-[600px]">
@@ -66,12 +66,12 @@ export function HeroContent() {
             <Sparkles className="h-4 w-4" />
             {t("hero.badge")}
           </span>
-          <h1 className={`h-display mt-6 text-[clamp(2.75rem,7vw,5.25rem)] ${lang === "zh" ? "whitespace-nowrap" : ""}`}>
+          <h1 className={`h-display mt-5 text-[clamp(2.1rem,6vw,5.25rem)] sm:mt-6 ${lang === "zh" ? "whitespace-nowrap" : ""}`}>
             {t("hero.titleTop")}
             <br />
             {t("hero.titlePre")}<span className="text-primary">{t("hero.titleAccent")}</span>
           </h1>
-          <p className="mt-6 text-lg text-body max-w-md leading-relaxed">
+          <p className="mt-4 text-base text-body max-w-md leading-relaxed sm:mt-6 sm:text-lg">
             {t("hero.subtitle")}
           </p>
 

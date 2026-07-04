@@ -32,7 +32,7 @@ export function HeroSection() {
     <section
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative isolate min-h-[720px] overflow-visible bg-cream md:min-h-[760px] lg:min-h-[820px]"
+      className="relative isolate min-h-[600px] overflow-visible bg-cream md:min-h-[700px] lg:min-h-[780px]"
     >
       {/* clipped layer: background + leaves */}
       <div className="absolute inset-0 overflow-hidden">
