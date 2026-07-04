@@ -56,8 +56,8 @@ export const locations: Location[] = [
       "47300 Petaling Jaya",
       "Selangor",
     ],
-    phone: "016-921 4297",
-    whatsapp: "016-921 4297",
+    phone: "+60167068931",
+    whatsapp: "+60167068931",
     latitude: null,
     longitude: null,
     placeId: "",
@@ -92,13 +92,18 @@ export const locations: Location[] = [
 export const getLocation = (id: string) =>
   locations.find((l) => l.id === id);
 
-/** Malaysian E.164 tel: href, e.g. "010-829 9409" -> "tel:+60108299409". */
-export const telHref = (phone: string): string =>
-  `tel:+60${phone.replace(/[^0-9]/g, "").replace(/^0/, "")}`;
+/** Normalize a Malaysian phone ("016-706 8931", "0167068931", "+60167068931"
+ *  or "60167068931") to E.164 digits carrying the 60 country code. */
+const digits60 = (phone: string): string => {
+  const d = phone.replace(/[^0-9]/g, "");
+  return d.startsWith("60") ? d : "60" + d.replace(/^0/, "");
+};
 
-/** WhatsApp link, e.g. "010-829 9409" -> "https://wa.me/60108299409". */
-export const waHref = (phone: string): string =>
-  `https://wa.me/60${phone.replace(/[^0-9]/g, "").replace(/^0/, "")}`;
+/** E.164 tel: href, e.g. "+60167068931" -> "tel:+60167068931". */
+export const telHref = (phone: string): string => `tel:+${digits60(phone)}`;
+
+/** WhatsApp link, e.g. "+60167068931" -> "https://wa.me/60167068931". */
+export const waHref = (phone: string): string => `https://wa.me/${digits60(phone)}`;
 
 export const restaurant = {
   name: "Menuu",

@@ -107,7 +107,7 @@ export function OurStory() {
         relative z-[2] isolate overflow-hidden
         rounded-t-[30px] md:rounded-t-[56px]
         bg-white
-        pt-[clamp(150px,24vw,400px)]
+        pt-[160px] sm:pt-[176px] md:pt-[288px] lg:pt-[300px] xl:pt-[322px]
         pb-14 md:pb-20
         shadow-[0_-22px_60px_-24px_rgba(34,88,218,0.16),0_-10px_34px_-18px_rgba(8,17,39,0.18),inset_0_2px_30px_rgba(8,17,39,0.04)]
       "

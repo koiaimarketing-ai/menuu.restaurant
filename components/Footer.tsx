@@ -7,7 +7,7 @@ import { locations, telHref } from "@/data/locations";
 import { Instagram, Facebook, MapPin, MessageCircle } from "lucide-react";
 
 const WHATSAPP_COMMUNITY_URL =
-  "https://wa.me/60169214297?text=Hi%20Menuu%2C%20I%20want%20to%20join%20the%20WhatsApp%20community";
+  "https://wa.me/60167068931?text=Hi%20Menuu%2C%20I%20want%20to%20join%20the%20WhatsApp%20community";
 
 // TikTok has no lucide icon — small inline brand glyph.
 function TikTokIcon({ className }: { className?: string }) {
@@ -72,12 +72,12 @@ export function Footer() {
               <p>
                 WhatsApp us at:{" "}
                 <a
-                  href="https://wa.me/60169214297"
+                  href="https://wa.me/60167068931"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold text-[#2258DA] hover:text-[#1D46B7]"
                 >
-                  0169214297
+                  +60167068931
                 </a>{" "}
                 to set up your own online restaurant
               </p>

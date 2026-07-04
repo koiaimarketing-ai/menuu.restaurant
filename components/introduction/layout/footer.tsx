@@ -17,7 +17,7 @@ export function Footer() {
             <p className="mt-3 text-sm text-body">
               {t.footer.website}{" "}
               <a
-                href="http://www.menuu.asia/"
+                href="https://menuu.asia/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="whitespace-nowrap font-semibold text-brand-600 underline-offset-2 transition-colors hover:text-brand-700 hover:underline"
