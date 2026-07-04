@@ -38,11 +38,11 @@ export type Location = {
   menuStatus: "pending" | "confirmed-from-supplied-pdf";
 };
 
-// Single Menuu outlet (Taman Sea, Petaling Jaya). The internal id stays "ss4"
-// because it is the default branch id used across the planner/menu pricing —
-// reusing it keeps the per-item price data and branch logic working without a
-// type-wide rename. There is only one location now, so branch-switching UI is
-// hidden whenever `locations.length < 2`.
+// Menuu outlets. Taman Sea keeps the internal id "ss4" (default branch id used
+// across the planner/menu pricing). KLCC reuses the pre-existing
+// "kl-central-walk" id — its menu prices already exist (same as ss4 via P()).
+// KLCC is a TEST outlet added so the menu-page location dropdown can be
+// exercised with 2 options; delete its entry to go back to a single outlet.
 export const locations: Location[] = [
   {
     id: "ss4",
@@ -85,6 +85,41 @@ export const locations: Location[] = [
       "Lunch",
       "Dinner",
     ],
+    menuStatus: "confirmed-from-supplied-pdf",
+  },
+  {
+    id: "kl-central-walk",
+    name: "Menuu",
+    shortName: "KLCC",
+    timezone: "Asia/Kuala_Lumpur",
+    closingSoonMinutes: 60,
+    addressLines: [
+      "Lot 241, Level 2",
+      "Suria KLCC",
+      "50088 Kuala Lumpur",
+    ],
+    phone: "+60167068931",
+    whatsapp: "+60167068931",
+    latitude: null,
+    longitude: null,
+    placeId: "",
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Menuu%2C%20Suria%20KLCC%2C%2050088%20Kuala%20Lumpur",
+    mapEmbedUrl: "",
+    mapQuery: "Menuu, Suria KLCC, 50088 Kuala Lumpur",
+    wazeUrl:
+      "https://www.waze.com/ul?q=Suria%20KLCC%20Kuala%20Lumpur&navigate=yes",
+    regularHours: {
+      monday: { status: "open", open: "10:00", close: "22:00" },
+      tuesday: { status: "open", open: "10:00", close: "22:00" },
+      wednesday: { status: "open", open: "10:00", close: "22:00" },
+      thursday: { status: "open", open: "10:00", close: "22:00" },
+      friday: { status: "open", open: "10:00", close: "22:00" },
+      saturday: { status: "open", open: "10:00", close: "22:00" },
+      sunday: { status: "open", open: "10:00", close: "22:00" },
+    },
+    specialHours: [],
+    facilities: ["Dine-in", "Lunch", "Dinner"],
     menuStatus: "confirmed-from-supplied-pdf",
   },
 ];

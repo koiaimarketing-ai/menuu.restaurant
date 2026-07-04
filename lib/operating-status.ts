@@ -184,33 +184,63 @@ export function todayHoursLabel(loc: Location): string {
   return `${formatTime(day.open)} – ${formatTime(day.close)}`;
 }
 
-/**
- * Compact status + time label for mobile outlet rows, with open flag for
- * colouring (green when open, red when closed). Uses the branch's actual hours:
- *   before opening -> { "Closed · Opens 10:00 AM", open:false }
- *   during hours   -> { "Open · Closes 10:00 PM",  open:true  }
- *   after closing  -> { "Closed · Opens 10:00 AM", open:false }  (next opening)
- */
-export function getOutletStatusLabel(loc: Location): { text: string; open: boolean } {
-  const { dayIndex, minutes } = nowInKL();
+export type OutletStatusState = "open" | "closed" | "opening-soon" | "closing-soon";
+
+export type OutletStatusInfo = {
+  state: OutletStatusState;
+  /** Single status word(s), e.g. "Open" / "Closing Soon". */
+  statusText: string;
+  /** Plain time shown beside the status: closing time while open, opening
+   * time otherwise (next opening after close / on closed days). */
+  timeText?: string;
+};
+
+/** Window (minutes) before open/close that flips to Opening/Closing Soon on
+ * the mobile outlet card. Independent of `loc.closingSoonMinutes`, which the
+ * desktop StatusBadge keeps using. */
+const OUTLET_SOON_WINDOW_MIN = 30;
+
+/** Status for mobile outlet rows — one status word plus a bare time. */
+export function computeOutletStatus(
+  loc: Location,
+  dayIndex: number,
+  minutes: number
+): OutletStatusInfo {
   const today = loc.regularHours[DAY_KEYS[dayIndex]];
   if (today && today.status === "open" && today.open && today.close) {
     const openMin = toMinutes(today.open);
     const closeMin = toMinutes(today.close);
-    if (minutes >= openMin && minutes < closeMin)
-      return { text: `Open · Closes ${formatTime(today.close)}`, open: true };
-    if (minutes < openMin)
-      return { text: `Closed · Opens ${formatTime(today.open)}`, open: false };
-  }
-  // Closed now (after close today, or a closed day) — find the next opening time.
-  for (let i = 1; i <= 7; i++) {
-    const idx = (dayIndex + i) % 7;
-    const d = loc.regularHours[DAY_KEYS[idx]];
-    if (d?.status === "open" && d.open) {
-      return { text: `Closed · Opens ${formatTime(d.open)}`, open: false };
+    if (minutes >= openMin && minutes < closeMin) {
+      if (closeMin - minutes <= OUTLET_SOON_WINDOW_MIN)
+        return {
+          state: "closing-soon",
+          statusText: "Closing Soon",
+          timeText: formatTime(today.close),
+        };
+      return { state: "open", statusText: "Open", timeText: formatTime(today.close) };
+    }
+    if (minutes < openMin) {
+      if (openMin - minutes <= OUTLET_SOON_WINDOW_MIN)
+        return {
+          state: "opening-soon",
+          statusText: "Opening Soon",
+          timeText: formatTime(today.open),
+        };
+      return { state: "closed", statusText: "Closed", timeText: formatTime(today.open) };
     }
   }
-  return { text: "Closed", open: false };
+  // After closing today, or a closed day — show the next opening time.
+  for (let i = 1; i <= 7; i++) {
+    const d = loc.regularHours[DAY_KEYS[(dayIndex + i) % 7]];
+    if (d?.status === "open" && d.open)
+      return { state: "closed", statusText: "Closed", timeText: formatTime(d.open) };
+  }
+  return { state: "closed", statusText: "Closed" };
+}
+
+export function getOutletStatusInfo(loc: Location): OutletStatusInfo {
+  const { dayIndex, minutes } = nowInKL();
+  return computeOutletStatus(loc, dayIndex, minutes);
 }
 
 export { DAY_KEYS, DAY_LABELS };

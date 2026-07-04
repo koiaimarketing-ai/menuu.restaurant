@@ -5,7 +5,12 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { MapPin, Footprints, CalendarDays, Bike, Check } from "lucide-react";
 import { locations, getLocation, type Location } from "@/data/locations";
 import { useMealPlan, type BranchId, type PlanType } from "@/lib/meal-plan-store";
-import { getLiveStatus, todayHoursLabel, getOutletStatusLabel } from "@/lib/operating-status";
+import {
+  getLiveStatus,
+  todayHoursLabel,
+  getOutletStatusInfo,
+  type OutletStatusState,
+} from "@/lib/operating-status";
 import { StatusBadge } from "../StatusBadge";
 import { AppointmentPicker } from "./AppointmentPicker";
 import { isClosed } from "./Calendar";
@@ -28,7 +33,9 @@ export function PlannerControls() {
   // Bubble-absorb UI state. The actual selection still lives in the store
   // (branchId / planType) — these only control the collapse/expand visuals so
   // no business logic changes.
-  const [outletCollapsed, setOutletCollapsed] = useState(false);
+  // With 2+ outlets start collapsed so the card reads as a "select location"
+  // dropdown trigger; tapping it expands the options with the existing motion.
+  const [outletCollapsed, setOutletCollapsed] = useState(locations.length > 1);
 
   const chooseBranch = (id: BranchId) => {
     if (id !== plan.branchId) {
@@ -132,9 +139,19 @@ export function PlannerControls() {
 }
 
 /* ---------------- outlet card ---------------- */
+
+// Real green for open (the `green` Tailwind token maps to brand blue), brand
+// blue for the friendly Opening Soon, amber warning for Closing Soon.
+const OUTLET_STATUS_COLOR: Record<OutletStatusState, string> = {
+  open: "text-[#16A34A]",
+  closed: "text-[#B42318]",
+  "opening-soon": "text-[#2258DA]",
+  "closing-soon": "text-[#D97706]",
+};
+
 function OutletCard({ loc, selected, onSelect }: { loc: Location; selected: boolean; onSelect: () => void }) {
   const status = getLiveStatus(loc);
-  const outletStatus = getOutletStatusLabel(loc);
+  const outletStatus = getOutletStatusInfo(loc);
   return (
     <button
       type="button"
@@ -150,16 +167,23 @@ function OutletCard({ loc, selected, onSelect }: { loc: Location; selected: bool
       >
         <MapPin className="h-[18px] w-[18px]" />
       </span>
-      {/* Mobile: name + coloured status (green open / red closed) on one row. */}
-      <span className="flex min-w-0 flex-1 flex-col justify-center md:hidden">
-        <span className="truncate font-bold leading-tight text-ink-primary">{loc.shortName}</span>
+      {/* Mobile: name alone, vertically centred. */}
+      <span className="min-w-0 flex-1 truncate font-bold leading-tight text-ink-primary md:hidden">
+        {loc.shortName}
+      </span>
+      {/* Mobile: one row — coloured status, then neutral time — before the
+          check circle. */}
+      <span className="flex shrink-0 items-center gap-1.5 md:hidden">
         <span
-          className={`truncate text-[12px] font-semibold leading-tight ${
-            outletStatus.open ? "text-[#16A34A]" : "text-[#B42318]"
-          }`}
+          className={`text-[12px] font-semibold leading-tight ${OUTLET_STATUS_COLOR[outletStatus.state]}`}
         >
-          {outletStatus.text}
+          {outletStatus.statusText}
         </span>
+        {outletStatus.timeText && (
+          <span className="text-[11px] font-medium leading-tight text-ink-secondary">
+            {outletStatus.timeText}
+          </span>
+        )}
       </span>
       {/* Desktop: name + status badge + full range inline. */}
       <span className="hidden min-w-0 flex-1 items-center gap-2 md:flex">

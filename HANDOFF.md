@@ -2,11 +2,10 @@
 
 **Updated:** 2026-07-04
 **Project:** `C:\Users\User\Desktop\Project\Restaurant Website Sample` — Next.js 14.2.18 App Router, React 18.3.1, TypeScript, Tailwind 3.4.17, framer-motion ^11.11.17, lucide-react. Git repo on `main`.
-**Latest commit:** `a0dbf3c` (hero dish raise + 2-row subtitle + coloured mobile outlet status).
 
 ## Brand / product state
 - **MENUU** — blue-and-white. Primary blue `#2258DA` / deep `#1D46B7`. Logo = rounded blue "menuu".
-- **Single outlet:** `data/locations.ts` → id `ss4`, shortName **Taman Sea** (Petaling Jaya). phone + whatsapp both **+60167068931** (normalised via `digits60()` / `telHref` / `waHref`). Regular hours **10:00–22:00 every day**.
+- **Outlets:** `data/locations.ts` → id `ss4`, shortName **Taman Sea** (Petaling Jaya) + **KLCC** (id `kl-central-walk`, TEST outlet added to exercise the menu-page location dropdown — delete its array entry to go back to 1 outlet; it also shows on contact/footer/home since `locations` is shared). phone + whatsapp both **+60167068931** (normalised via `digits60()` / `telHref` / `waHref`). Regular hours **10:00–22:00 every day** (both).
 - Pages: `/` (home), `/menu` (planner + checkout), `/introduction` (MENUU pitch landing), `/our-story`, `/contact`.
 - Default language **EN** (was `ms`). Menu food names are Malaysian (nasi lemak, teh tarik, etc.).
 
@@ -23,13 +22,14 @@
 
 ## Done recently (all built clean + verified, deployed)
 - **WhatsApp order message** (`components/planner/CheckoutModal.tsx`): `orderDetailsBlock()` builds full itemised message — greeting → Name/Contact/Outlet/Status/Pax/Notes → `Order Details:` → per line `{qty}× [CODE] Name — RM x` + dash customisation lines (only when present, via `describeLine`) → Subtotal / SST (6%) / Service Charge (10%) / (Voucher) / Grand Total. Used by all 3 flows (Going/Delivery/RSVP). `openWhatsApp` URL-encodes with `\n`. Empty notes → `-`. Verified live end-to-end.
-- **Mobile outlet card** (`PlannerControls.tsx` `OutletCard`): mobile shows one stacked row = bold name + coloured status; desktop keeps `StatusBadge` + full `todayHoursLabel` range. Status via `getOutletStatusLabel(loc)` in `lib/operating-status.ts` → `{text, open}`: open ⇒ `Open · Closes 10:00 PM` **green `#16A34A`**, closed ⇒ `Closed · Opens 10:00 AM` **red `#B42318`**.
+- **Mobile outlet card** (`PlannerControls.tsx` `OutletCard`): one row `[pin icon] [name centred] … [coloured status] [neutral time] [check circle]`. Status via `getOutletStatusInfo(loc)` / pure `computeOutletStatus` in `lib/operating-status.ts` (old `getOutletStatusLabel` deleted): Open **green `#16A34A`** + closing time · Closed **red `#B42318`** + (next) opening time · Opening Soon **blue `#2258DA`** / Closing Soon **amber `#D97706`** within 30-min window (`OUTLET_SOON_WINDOW_MIN`, independent of `closingSoonMinutes` used by desktop). Time text 11px `text-ink-secondary`, bare time no prefix. Desktop unchanged: `StatusBadge` + `todayHoursLabel` range.
+- **Outlet dropdown (CASE 2) BUILT**: `outletCollapsed` starts `true` when `locations.length > 1` → collapsed selected card = dropdown trigger; tap expands (existing 420ms bubble CSS), tap option selects + collapses, blue check on selected. Verified 360/390/430px + desktop.
 - **StatusBadge** (`components/StatusBadge.tsx`): mobile `Open`/`Closed` only (`md:hidden`), desktop detailed (`hidden md:inline`).
 - **Intro Problem cards** (`components/introduction/sections/phone-workload.tsx`): fixed invalid `bg-white/94` (rendered transparent → dark image bled through) → `bg-white/95` on all 3 capsules.
 - **Hero** (`components/hero/FloatingDish.tsx` + `HeroContent.tsx`): dish lift `-translate-y-[34%] sm:-42% lg:-52%` (raised, verified solid food clears title / desktop right column / subtitle text / Our Story eyebrow at 1440/1280/1024; mobile+tablet dish below copy). Subtitle rewritten in en/ms/zh to a 2-line string using `\n`, rendered with `whitespace-pre-line` → exactly 2 rows (EN: "Bold sambal and home-style" / "flavours in every bite.").
 
 ## Outstanding / next
-1. **Multi-outlet dropdown (CASE 2) NOT built** — with 1 outlet it'd be dead code. When outlets are added: animated framer-motion dropdown in the mobile outlet section (spec: "Choose location" collapsed → tap opens dropdown, soft-blue hover, blue check on selected, same rounded/blue-border style).
+1. **KLCC is a TEST outlet** — real address/details TBD (placeholder Suria KLCC address). Replace details or delete the entry when user decides.
 2. **Outlet "image 2" reference never seen** by the agent — mobile outlet card matches the written spec only. If user has a specific layout image, re-request and match it.
 3. User keeps iterating on the **hero dish position** (this is the 5th pass) — any further "move up" is bounded by the near-opaque dish PNG (transparent top only ~5.7%) vs the subtitle/right-column/Our-Story. Measure clearance per-band before changing (see method below).
 
