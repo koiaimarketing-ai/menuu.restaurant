@@ -70,20 +70,24 @@ export function Navbar() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Mobile menu taps: close the panel and scroll to the section explicitly.
-  // The panel lives inside the fixed header, so closing it never reflows the
-  // document — the target position can be measured synchronously. 88px matches
-  // the sections' scroll-margin-top so titles clear the fixed navbar.
+  // Mobile menu taps: close the panel, wait for its 280ms exit animation to
+  // finish, then scroll. Chrome cancels a smooth window scroll that is still
+  // in flight while the panel's height/exit animation runs (verified on the
+  // live site: scroll started, froze at ~250ms, resumed cleanly when started
+  // after the animation). 88px matches the sections' scroll-margin-top so
+  // titles clear the fixed navbar.
   const handleMobileNav = (href: string) => {
     const id = href.replace("#", "");
     setOpen(false);
-    const target = document.getElementById(id);
-    if (!target) return;
-    const headerOffset = 88;
-    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-    window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
-    window.history.replaceState(null, "", `#${id}`);
-    setActive(id);
+    window.setTimeout(() => {
+      const target = document.getElementById(id);
+      if (!target) return;
+      const headerOffset = 88;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
+      window.history.replaceState(null, "", `#${id}`);
+      setActive(id);
+    }, 320);
   };
 
   return (
