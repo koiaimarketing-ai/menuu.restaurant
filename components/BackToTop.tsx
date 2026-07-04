@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
 /**
@@ -15,6 +16,7 @@ import { useLang } from "@/lib/i18n/LanguageProvider";
  */
 export function BackToTop() {
   const { t } = useLang();
+  const pathname = usePathname();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -23,6 +25,8 @@ export function BackToTop() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  if (pathname?.startsWith("/introduction")) return null;
 
   return (
     <button

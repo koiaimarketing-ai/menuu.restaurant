@@ -16,6 +16,8 @@ const config: Config = {
           hover: "#1D46B7", // Primary Blue Dark / hover
           active: "#1D46B7",
           soft: "#EEF3FF", // soft blue tint
+          dark: "#1D46B7", // /introduction alias (primary-dark)
+          accent: "#6A93F1", // /introduction alias (primary-accent)
         },
         heading: "#081127", // Deep Navy — titles & main headings
         body: "#202F4F", // Ink Blue — paragraph & secondary text
@@ -42,20 +44,39 @@ const config: Config = {
           bd: "#DDE4F7",
         },
         ink: {
+          DEFAULT: "#202F4F", // /introduction: text-ink
           primary: "#081127", // Deep Navy
           secondary: "#202F4F", // Ink Blue
           supporting: "#6B7589", // Muted Slate
           muted: "#6B7589", // Muted Slate
+          700: "#2b3c5e", // /introduction ramp
+          800: "#202F4F",
+          900: "#081127",
+          950: "#081127",
         },
         line: {
+          DEFAULT: "#DDE4F7", // /introduction: border-line
           light: "#DDE4F7", // light border blue
           medium: "#DDE4F7",
           warm: "rgba(8,17,39,0.12)",
         },
+        // ---- /introduction landing tokens (additive; only that route uses them) ----
+        brand: {
+          50: "#eef3ff", 100: "#dde4f7", 200: "#c2d2f6", 300: "#9db8f4",
+          400: "#6a93f1", 500: "#3d6fe6", 600: "#2258da", 700: "#1d46b7",
+          800: "#173a99", 900: "#102c73",
+        },
+        mist: { 50: "#f8f9fc", 100: "#eef3ff" },
+        navy: "#081127",
+        page: "#f8f9fc",
+        slate: "#6b7589",
+        "soft-blue": "#eef3ff",
+        "border-blue": "#dde4f7",
       },
       fontFamily: {
         serif: ["var(--font-fraunces)", "Georgia", "serif"],
         sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
+        display: ["var(--font-bricolage)", "Plus Jakarta Sans", "ui-sans-serif", "system-ui", "sans-serif"], // /introduction headings
       },
       boxShadow: {
         soft: "0 8px 30px rgba(8,17,39,0.08)",

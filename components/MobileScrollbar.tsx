@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * Modern thin auto-hiding scroll indicator for mobile. The default browser
@@ -9,6 +10,7 @@ import { useEffect } from "react";
  * stops. Pure visual — never changes layout, width or scroll behaviour.
  */
 export function MobileScrollbar() {
+  const pathname = usePathname();
   useEffect(() => {
     const bar = document.querySelector<HTMLElement>(".custom-scrollbar");
     if (!bar) return;
@@ -42,5 +44,6 @@ export function MobileScrollbar() {
     };
   }, []);
 
+  if (pathname?.startsWith("/introduction")) return null;
   return <div className="custom-scrollbar" aria-hidden="true" />;
 }

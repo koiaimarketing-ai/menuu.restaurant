@@ -36,7 +36,7 @@ export function MobileMenuCta() {
     return () => io.disconnect();
   }, [onMenu, pathname]);
 
-  if (onMenu) return null;
+  if (onMenu || pathname.startsWith("/introduction")) return null;
 
   const totals = computeTotals(plan.items);
   const finalTotal = Math.max(0, totals.grandTotal - plan.voucherDiscount);

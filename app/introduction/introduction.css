@@ -1,0 +1,99 @@
+/* ============================================================
+   /introduction landing page styles.
+   Ported from the standalone MENUU landing (Tailwind v4 @theme) into this
+   Tailwind v3 project. Base + radii + default-border rules are SCOPED under
+   `.intro-scope` so they never affect the restaurant site. Keyframes + helper
+   classes are global but use names unique to this page (the only collision,
+   `.cta-shine`, was renamed to `.intro-cta-shine`).
+   ============================================================ */
+
+/* ---- keyframes (unique names) ---- */
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes wj-shine { 0% { left: -75%; } 50% { left: 130%; } 100% { left: 130%; } }
+@keyframes wa-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes wa-ripple { 0% { transform: scale(0.35); opacity: 0.55; } 80% { opacity: 0; } 100% { transform: scale(1.6); opacity: 0; } }
+@keyframes wa-dot { 0%, 100% { opacity: 0.75; transform: scale(1); } 50% { opacity: 0; transform: scale(0.4); } }
+@keyframes testimonial-rtl { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes hero-badge-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes dash-flow { to { stroke-dashoffset: -16; } }
+@keyframes capsule-glow-pulse { 0%, 100% { opacity: 0.55; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.06); } }
+@keyframes journey-image-fade { from { opacity: 0; transform: translateY(8px) scale(0.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.45); } 70% { box-shadow: 0 0 0 16px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+@keyframes intro-twinkle { 0%, 100% { opacity: 0.15; transform: scale(0.7); } 50% { opacity: 0.95; transform: scale(1.1); } }
+
+/* ---- helper classes (unique to this page) ---- */
+.text-gradient {
+  background: linear-gradient(100deg, #2258da, #6a93f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.bg-radial-brand { background: radial-gradient(60% 55% at 50% 0%, rgba(37, 99, 235, 0.14), transparent 70%); }
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.intro-cta-shine { position: relative; overflow: hidden; }
+.intro-cta-shine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  transform: skewX(-20deg);
+  animation: wj-shine 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+.marquee-track { animation: testimonial-rtl 60s linear infinite; width: max-content; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@media (max-width: 768px) { .marquee-track { animation-duration: 75s; } }
+.hero-badge-float { animation: hero-badge-float 3.8s ease-in-out infinite; will-change: transform; }
+.hero-badge-float-delayed { animation-delay: 1.2s; }
+.wa-float { animation: wa-float 4.2s ease-in-out infinite; will-change: transform; }
+.wa-float-delayed { animation-delay: 1.4s; }
+.dash-flow { animation: dash-flow 1.6s linear infinite; }
+.journey-fade { animation: journey-image-fade 0.45s ease both; }
+.intro-sparkle { animation: intro-twinkle 3s ease-in-out infinite; will-change: opacity, transform; }
+
+/* ---- scoped base — only applies inside the /introduction wrapper ---- */
+.intro-scope {
+  --font-display: var(--font-bricolage), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, "Noto Sans SC", sans-serif;
+  --shadow-soft: 0 2px 8px -2px rgba(16, 51, 122, 0.08), 0 12px 28px -8px rgba(16, 51, 122, 0.1);
+  --shadow-card: 0 1px 2px rgba(16, 51, 122, 0.06), 0 18px 40px -16px rgba(16, 51, 122, 0.18);
+  --shadow-float: 0 30px 70px -24px rgba(20, 60, 150, 0.4);
+  --shadow-cta: 0 12px 28px -8px rgba(37, 99, 235, 0.45);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  font-family: var(--font-sans);
+  color: #202f4f;
+  background-color: #f8f9fc;
+  min-height: 100vh;
+}
+.intro-scope h1, .intro-scope h2, .intro-scope h3, .intro-scope h4 {
+  font-family: var(--font-display);
+  color: #081127;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.intro-scope ::selection { background: #2258da; color: #fff; }
+/* anchor jumps clear the fixed intro navbar */
+.intro-scope [id] { scroll-margin-top: 5.5rem; }
+/* the intro was designed with larger radii than the Tailwind v3 defaults */
+.intro-scope .rounded-xl { border-radius: 1.25rem; }
+.intro-scope .rounded-2xl { border-radius: 1.75rem; }
+.intro-scope .rounded-3xl { border-radius: 2.25rem; }
+/* default border colour (blue line) for bare `border` utilities — zero
+   specificity via :where so explicit border-<color> utilities still win. */
+:where(.intro-scope) *,
+:where(.intro-scope) *::before,
+:where(.intro-scope) *::after { border-color: #dde4f7; }

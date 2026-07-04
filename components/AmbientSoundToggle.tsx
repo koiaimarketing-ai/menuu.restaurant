@@ -35,6 +35,9 @@ export function AmbientSoundToggle() {
   const raised =
     compact && plan.hydrated && plan.count > 0 && pathname.startsWith("/menu");
 
+  // /introduction is a standalone landing page — hide the restaurant chrome.
+  if (pathname.startsWith("/introduction")) return null;
+
   return (
     <button
       type="button"

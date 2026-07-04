@@ -78,6 +78,9 @@ export function Navbar() {
     };
   }, []);
 
+  // /introduction is a standalone landing page with its own navbar.
+  if (pathname.startsWith("/introduction")) return null;
+
   return (
     <header className="fixed inset-x-0 top-0 z-[80] pt-4 sm:pt-3">
       <div className="container-site">

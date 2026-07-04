@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useAmbient } from "@/lib/ambient-audio";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
@@ -37,6 +38,7 @@ const PARTICLES = [
 export function EntranceOverlay() {
   const { enable } = useAmbient();
   const { t } = useLang();
+  const pathname = usePathname();
   const [gone, setGone] = useState(false);
   const [exiting, setExiting] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -89,7 +91,7 @@ export function EntranceOverlay() {
     );
   };
 
-  if (gone) return null;
+  if (gone || pathname?.startsWith("/introduction")) return null;
 
   return (
     <div

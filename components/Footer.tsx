@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { locations, telHref } from "@/data/locations";
 import { Instagram, Facebook, MapPin, MessageCircle } from "lucide-react";
 
@@ -26,7 +27,11 @@ import { useLang } from "@/lib/i18n/LanguageProvider";
 
 export function Footer() {
   const { t } = useLang();
+  const pathname = usePathname();
   const year = new Date().getFullYear();
+
+  // /introduction is a standalone landing page with its own footer.
+  if (pathname?.startsWith("/introduction")) return null;
 
   return (
     <footer className="border-t border-line-warm bg-[#eef3ff] text-body">
