@@ -18,7 +18,11 @@ import { MobileMenuCta } from "@/components/MobileMenuCta";
 // 09:00 local (Malaysia) time. We only set data-entrance="show" when the stored
 // next-show timestamp has passed. If localStorage is unavailable, show normally.
 // Runs before paint so there is never a flash of Home first.
+// Never on /introduction — the overlay doesn't render there, and the attribute's
+// body scroll lock (html[data-entrance="show"]) would otherwise stick forever
+// and kill all anchor/section scrolling on that page.
 const ENTRANCE_GATE = `(function(){try{
+  if(location.pathname.indexOf("/introduction")===0)return;
   var KEY="warung_welcome_next_show_at";
   var next=Number(localStorage.getItem(KEY)||0);
   if(!next||Date.now()>=next){document.documentElement.setAttribute('data-entrance','show');}

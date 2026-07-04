@@ -70,6 +70,22 @@ export function Navbar() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // Mobile menu taps: close the panel and scroll to the section explicitly.
+  // The panel lives inside the fixed header, so closing it never reflows the
+  // document — the target position can be measured synchronously. 88px matches
+  // the sections' scroll-margin-top so titles clear the fixed navbar.
+  const handleMobileNav = (href: string) => {
+    const id = href.replace("#", "");
+    setOpen(false);
+    const target = document.getElementById(id);
+    if (!target) return;
+    const headerOffset = 88;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
+    window.history.replaceState(null, "", `#${id}`);
+    setActive(id);
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -147,14 +163,17 @@ export function Navbar() {
                   <a
                     key={l.href}
                     href={l.href}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleMobileNav(l.href);
+                    }}
                     className="rounded-2xl px-4 py-3 text-sm font-semibold text-ink-900 transition-colors hover:bg-mist-50 hover:text-brand-600"
                   >
                     {l.label}
                   </a>
                 ))}
                 <span className="mt-1 px-1 pb-1">
-                  <Button href="#contact" size="md" className="w-full" onClick={() => setOpen(false)}>
+                  <Button size="md" className="w-full" onClick={() => handleMobileNav("#contact")}>
                     {t.nav.demo}
                   </Button>
                 </span>

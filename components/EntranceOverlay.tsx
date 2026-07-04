@@ -54,6 +54,15 @@ export function EntranceOverlay() {
     return () => t.forEach(clearTimeout);
   }, []);
 
+  // The overlay never renders on /introduction, so make sure the pre-paint
+  // gate attribute (and its body scroll lock) is cleared there — both on a
+  // direct load and when client-navigating over while the overlay is up.
+  useEffect(() => {
+    if (pathname?.startsWith("/introduction")) {
+      document.documentElement.removeAttribute("data-entrance");
+    }
+  }, [pathname]);
+
   const handleEnter = () => {
     if (exiting) return;
 
