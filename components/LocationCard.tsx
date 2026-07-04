@@ -9,7 +9,7 @@ import { useLang } from "@/lib/i18n/LanguageProvider";
 
 const BRANCH_IMAGE: Record<string, string> = {
   ss4: "/images/photo-exterior.png",
-  "kl-central-walk": "/images/klcw-branch.png",
+  "kl-central-walk": "/images/klcc-branch-night.png",
 };
 
 const directionsHref = (loc: Location) =>

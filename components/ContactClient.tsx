@@ -23,10 +23,14 @@ import { AboutPromotionMarquee } from "./planner/PromotionMarquee";
 import { GUEST_AVATARS } from "@/lib/avatars";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 
-// Outlet photo card auto-rotates between the interior and exterior shots.
+// Outlet photo card auto-rotates between the interior and exterior shots
+// (Taman Sea). KLCC shows its own branch photo.
 const LOCATION_IMAGES = [
   { src: "/images/loc-interior.png", alt: "Restaurant interior" },
   { src: "/images/loc-exterior.png", alt: "Restaurant exterior" },
+];
+const KLCC_IMAGES = [
+  { src: "/images/klcc-branch-night.png", alt: "KLCC branch at night" },
 ];
 
 const REVIEW_PLATFORMS = ["Google", "Facebook", "Instagram", "TripAdvisor"];
@@ -190,17 +194,18 @@ export function ContactClient() {
     below the tabs and the desktop media column). */
 function BranchPhoto({ active, className = "" }: { active: Location; className?: string }) {
   const { t } = useLang();
+  const imgs = active.id === "kl-central-walk" ? KLCC_IMAGES : LOCATION_IMAGES;
   const [idx, setIdx] = useState(0);
-  // Cross-fade between interior/exterior every 5s.
+  // Cross-fade between the branch photos every 5s (no-op when there is one).
   useEffect(() => {
-    const id = setInterval(() => setIdx((i) => (i + 1) % LOCATION_IMAGES.length), 5000);
+    const id = setInterval(() => setIdx((i) => i + 1), 5000);
     return () => clearInterval(id);
   }, []);
-  void active; // single outlet — both photos apply
+  const current = idx % imgs.length;
   return (
     <div className={`relative overflow-hidden rounded-[24px] shadow-soft ${className}`}>
       <div className="relative aspect-[16/10] w-full lg:aspect-auto lg:h-full">
-        {LOCATION_IMAGES.map((img, i) => (
+        {imgs.map((img, i) => (
           <Image
             key={img.src}
             src={img.src}
@@ -209,13 +214,13 @@ function BranchPhoto({ active, className = "" }: { active: Location; className?:
             sizes="(max-width: 1024px) 100vw, 620px"
             priority={i === 0}
             className={`object-cover transition-opacity duration-700 ease-in-out ${
-              i === idx ? "opacity-100" : "opacity-0"
+              i === current ? "opacity-100" : "opacity-0"
             }`}
           />
         ))}
       </div>
       <a
-        href={LOCATION_IMAGES[idx].src}
+        href={imgs[current].src}
         target="_blank"
         rel="noopener noreferrer"
         className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-heading shadow-sm backdrop-blur transition-colors hover:bg-white"
