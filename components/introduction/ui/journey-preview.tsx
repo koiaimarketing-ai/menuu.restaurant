@@ -114,11 +114,11 @@ export function JourneyPreview({ title, steps }: { title: string; steps: readonl
         </div>
       </div>
 
-      {/* image preview — mobile 2:3 (/Image), desktop 3:2 (/images/introduction/Old); fades in place */}
+      {/* image preview — mobile 2:3 (/Image), desktop 3:2 (journey-desktop-N.png); fades in place */}
       <div className="relative mx-auto mt-6 aspect-[2/3] w-full max-w-[380px] overflow-hidden rounded-[24px] border border-primary/15 bg-white shadow-[0_22px_60px_rgba(34,88,218,0.14)] md:aspect-[3/2] md:max-w-none">
         <Image
           key={`${mobile ? "m" : "d"}-${active}`}
-          src={`/images/introduction/${mobile ? "" : "Old/"}${active + 1}.png`}
+          src={`/images/introduction/${mobile ? "" : "journey-desktop-"}${active + 1}.png`}
           alt={STEP_ALT[active] ?? steps[active]}
           fill
           sizes="(max-width: 767px) 92vw, 1100px"

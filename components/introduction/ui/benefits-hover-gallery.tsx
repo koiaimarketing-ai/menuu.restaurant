@@ -5,11 +5,11 @@ import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 const IMAGES = [
-  "/images/introduction/Benefit 01.png",
-  "/images/introduction/Benefit 02.png",
-  "/images/introduction/Benefit 03.png",
-  "/images/introduction/Benefit 04.png",
-  "/images/introduction/Benefit 05.png",
+  "/images/introduction/benefit-01.png",
+  "/images/introduction/benefit-02.png",
+  "/images/introduction/benefit-03.png",
+  "/images/introduction/benefit-04.png",
+  "/images/introduction/benefit-05.png",
 ];
 
 type Item = { title: string; desc: string };

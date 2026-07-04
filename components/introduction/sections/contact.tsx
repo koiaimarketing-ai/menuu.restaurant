@@ -35,7 +35,7 @@ export function Contact() {
               {/* Founder visual — clean portrait only, no text overlay */}
               <div className="relative mx-auto aspect-[1277/1874] w-full max-w-[300px] overflow-hidden bg-soft-blue md:max-w-none">
                 <Image
-                  src="/images/introduction/Vincent.png"
+                  src="/images/introduction/vincent.png"
                   alt={c.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 360px"

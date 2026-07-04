@@ -25,13 +25,13 @@ export function MarketProblem() {
           <Reveal>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/introduction/Problem Solution.png"
+              src="/images/introduction/problem-solution.png"
               alt="How customers search on Google and choose the restaurant with a menu"
               className="mx-auto hidden w-full rounded-3xl md:block"
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/introduction/Problem Solution 2.png"
+              src="/images/introduction/problem-solution-2.png"
               alt="How customers search on Google and choose the restaurant with a menu"
               className="mx-auto block w-full rounded-3xl md:hidden"
             />

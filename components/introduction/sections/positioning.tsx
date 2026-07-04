@@ -30,7 +30,7 @@ const ROW_ICONS: LucideIcon[] = [Target, CreditCard, Wrench, Percent, Calculator
 const KEY_ROWS = [3, 4, 6, 7, 9, 10]; // txn fee, monthly eg, range, timing, weakness, best-choice
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const STAGE_IMAGES = ["/images/introduction/Delivery.webp", "/images/introduction/Dine In QR.webp", "/images/introduction/Menuu.webp"];
+const STAGE_IMAGES = ["/images/introduction/delivery.webp", "/images/introduction/dine-in-qr.webp", "/images/introduction/menuu.webp"];
 const STAGE_ALT = [
   "Delivery platform food ordering",
   "Dine-in QR ordering system",
