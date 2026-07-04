@@ -2,7 +2,7 @@
 
 import { useLang } from "@/components/introduction/providers/language-provider";
 import { Logo } from "@/components/introduction/ui/logo";
-import { WHATSAPP_URL } from "@/lib/introduction/content";
+import { waUrl } from "@/lib/introduction/content";
 import { Phone, MapPin, Mail } from "lucide-react";
 
 export function Footer() {
@@ -45,7 +45,7 @@ export function Footer() {
             <p className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" /> {t.contact.address}
             </p>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-brand-600 hover:text-brand-700">
+            <a href={waUrl(t.waMessage)} target="_blank" rel="noopener noreferrer" className="inline-block font-semibold text-brand-600 hover:text-brand-700">
               {t.contact.whatsapp} →
             </a>
           </div>

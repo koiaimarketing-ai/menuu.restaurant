@@ -5,11 +5,13 @@ import { useLang } from "@/components/introduction/providers/language-provider";
 import { SectionHeading } from "@/components/introduction/ui/section";
 import { Reveal } from "@/components/introduction/ui/reveal";
 import { Button } from "@/components/introduction/ui/button";
-import { WHATSAPP_URL } from "@/lib/introduction/content";
+import { waUrl } from "@/lib/introduction/content";
+import { useBookDemo } from "@/components/introduction/ui/book-demo-modal";
 import { Phone, MapPin, Mail, MessageCircle, CalendarCheck } from "lucide-react";
 
 export function Contact() {
   const { t } = useLang();
+  const { openBookDemo } = useBookDemo();
   const c = t.contact;
 
   return (
@@ -80,10 +82,10 @@ export function Contact() {
                 </div>
 
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                  <Button href={WHATSAPP_URL} external size="lg" className="w-full sm:flex-1">
+                  <Button href={waUrl(t.waMessage)} external size="lg" className="w-full sm:flex-1">
                     <MessageCircle className="h-5 w-5" /> WhatsApp
                   </Button>
-                  <Button href="tel:+60167068931" size="lg" variant="secondary" className="w-full sm:flex-1">
+                  <Button size="lg" variant="secondary" className="w-full sm:flex-1" onClick={openBookDemo}>
                     <CalendarCheck className="h-5 w-5 text-brand-600" /> {c.book}
                   </Button>
                 </div>

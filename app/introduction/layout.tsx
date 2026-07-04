@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
 import "./introduction.css";
 import { LanguageProvider } from "@/components/introduction/providers/language-provider";
+import { BookDemoProvider } from "@/components/introduction/ui/book-demo-modal";
 import { Navbar } from "@/components/introduction/layout/navbar";
 import { StickyCta } from "@/components/introduction/layout/sticky-cta";
 import { Footer } from "@/components/introduction/layout/footer";
@@ -33,11 +34,13 @@ export default function IntroductionLayout({ children }: { children: React.React
   return (
     <div id="top" className={`intro-scope ${display.variable} ${sans.variable}`}>
       <LanguageProvider>
-        <Navbar />
-        {children}
-        <StickyCta />
-        <Footer />
-        <ModernScrollbar />
+        <BookDemoProvider>
+          <Navbar />
+          {children}
+          <StickyCta />
+          <Footer />
+          <ModernScrollbar />
+        </BookDemoProvider>
       </LanguageProvider>
     </div>
   );

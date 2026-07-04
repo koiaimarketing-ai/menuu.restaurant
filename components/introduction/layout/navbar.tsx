@@ -6,10 +6,12 @@ import { useLang } from "@/components/introduction/providers/language-provider";
 import { LanguageToggle } from "@/components/introduction/ui/language-toggle";
 import { Button } from "@/components/introduction/ui/button";
 import { Logo } from "@/components/introduction/ui/logo";
+import { useBookDemo } from "@/components/introduction/ui/book-demo-modal";
 import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const { t } = useLang();
+  const { openBookDemo } = useBookDemo();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
@@ -132,7 +134,7 @@ export function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           <LanguageToggle />
           <span className="hidden lg:inline-flex">
-            <Button href="#contact" size="md">
+            <Button size="md" onClick={openBookDemo}>
               {t.nav.demo}
             </Button>
           </span>
@@ -177,7 +179,14 @@ export function Navbar() {
                   </a>
                 ))}
                 <span className="mt-1 px-1 pb-1">
-                  <Button size="md" className="w-full" onClick={() => handleMobileNav("#contact")}>
+                  <Button
+                    size="md"
+                    className="w-full"
+                    onClick={() => {
+                      setOpen(false);
+                      openBookDemo();
+                    }}
+                  >
                     {t.nav.demo}
                   </Button>
                 </span>

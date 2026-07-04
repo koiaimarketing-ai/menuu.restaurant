@@ -9,8 +9,12 @@ export const LANGS: { id: Lang; label: string; short: string }[] = [
   { id: "zh", label: "中文", short: "中文" },
 ];
 
-export const WHATSAPP_URL =
-  "https://wa.me/60167068931?text=Hi%20Vincent%2C%20saya%20berminat%20dengan%20MENUU";
+export const WHATSAPP_PHONE = "60167068931";
+
+/** wa.me link with a prefilled, URL-encoded message. Pass the message in the
+ *  visitor's selected language (e.g. `waUrl(t.waMessage)`) — never hardcode. */
+export const waUrl = (message: string) =>
+  `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
 
 export const content = {
   en: {
@@ -283,6 +287,18 @@ export const content = {
       devBy: "Development by",
     },
     stickyCta: "Book Demo",
+    waMessage: "Hi Vincent, can you assist me to set up the website?",
+    bookDemo: {
+      title: "Book a Demo",
+      dateLabel: "Pick a date",
+      timeLabel: "Pick a time",
+      today: "Today",
+      tomorrow: "Tomorrow",
+      submit: "Continue to WhatsApp",
+      cancel: "Cancel",
+      validation: "Please select a date and time.",
+      waTemplate: "Hi Vincent, I want to book a demo on {date} at {time}.",
+    },
   },
 
   ms: {
@@ -555,6 +571,18 @@ export const content = {
       devBy: "Dibangunkan oleh",
     },
     stickyCta: "Book Demo",
+    waMessage: "Hi Vincent, boleh bantu saya setup website?",
+    bookDemo: {
+      title: "Tempah Demo",
+      dateLabel: "Pilih tarikh",
+      timeLabel: "Pilih masa",
+      today: "Hari Ini",
+      tomorrow: "Esok",
+      submit: "Terus ke WhatsApp",
+      cancel: "Batal",
+      validation: "Sila pilih tarikh dan masa.",
+      waTemplate: "Hi Vincent, saya ingin tempah demo pada {date} pukul {time}.",
+    },
   },
 
   zh: {
@@ -827,6 +855,18 @@ export const content = {
       devBy: "开发：",
     },
     stickyCta: "预约演示",
+    waMessage: "Vincent 你好，可以帮我设置网站吗？",
+    bookDemo: {
+      title: "预约 Demo",
+      dateLabel: "选择日期",
+      timeLabel: "选择时间",
+      today: "今天",
+      tomorrow: "明天",
+      submit: "前往 WhatsApp",
+      cancel: "取消",
+      validation: "请选择日期和时间。",
+      waTemplate: "Vincent 你好，我想预约 Demo，日期是 {date}，时间是 {time}。",
+    },
   },
 } as const;
 

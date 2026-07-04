@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { useLang } from "@/components/introduction/providers/language-provider";
-import { WHATSAPP_URL } from "@/lib/introduction/content";
+import { waUrl } from "@/lib/introduction/content";
+import { useBookDemo } from "@/components/introduction/ui/book-demo-modal";
 import { MessageCircle, CalendarCheck } from "lucide-react";
 
 /** Mobile-only sticky CTA bar. Appears after the user scrolls past the hero. */
 export function StickyCta() {
   const { t } = useLang();
+  const { openBookDemo } = useBookDemo();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export function StickyCta() {
     >
       <div className="glass mx-3 mb-3 flex items-center gap-2 rounded-2xl border border-line p-2 shadow-[var(--shadow-card)]">
         <a
-          href={WHATSAPP_URL}
+          href={waUrl(t.waMessage)}
           target="_blank"
           rel="noopener noreferrer"
           className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-white text-sm font-semibold text-ink-900 ring-1 ring-line active:scale-[0.97]"
@@ -33,13 +35,14 @@ export function StickyCta() {
           <MessageCircle className="h-4 w-4 text-brand-600" />
           WhatsApp
         </a>
-        <a
-          href="#contact"
+        <button
+          type="button"
+          onClick={openBookDemo}
           className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-brand-600 text-sm font-bold text-white shadow-[var(--shadow-cta)] active:scale-[0.97]"
         >
           <CalendarCheck className="h-4 w-4" />
           {t.stickyCta}
-        </a>
+        </button>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   // Hydrate from storage / browser on mount
   useEffect(() => {
     const stored = (typeof window !== "undefined" && localStorage.getItem("menuu-lang")) as Lang | null;
-    if (stored && stored in content) {
+    if (stored && Object.prototype.hasOwnProperty.call(content, stored)) {
       setLangState(stored);
       return;
     }

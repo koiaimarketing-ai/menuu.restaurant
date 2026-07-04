@@ -171,21 +171,21 @@ export function Positioning() {
                     }`}
                   >
                     {hero && (
-                      <>
-                        {/* soft glow behind the card */}
-                        <div
-                          aria-hidden="true"
-                          className="absolute -inset-4 -z-10 rounded-[2.4rem] bg-primary/25 blur-3xl"
-                        />
-                        {/* centered Recommended badge */}
-                        <span className="intro-cta-shine absolute left-1/2 top-0 z-20 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-4 py-1.5 text-[11px] font-bold text-white shadow-md">
-                          <Star className="h-3 w-3 fill-white" /> {p.recommended}
-                        </span>
-                      </>
+                      /* soft glow behind the card */
+                      <div
+                        aria-hidden="true"
+                        className="absolute -inset-4 -z-10 rounded-[2.4rem] bg-primary/25 blur-3xl"
+                      />
                     )}
 
                     {/* image only — full image, no crop, no text overlay */}
                     <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[1.2rem] bg-white">
+                      {/* Recommended badge — top-left inside the image box */}
+                      {hero && (
+                        <span className="intro-cta-shine absolute left-5 top-5 z-20 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-4 py-1.5 text-[11px] font-bold text-white shadow-md">
+                          <Star className="h-3 w-3 fill-white" /> {p.recommended}
+                        </span>
+                      )}
                       <Image
                         src={STAGE_IMAGES[i]}
                         alt={STAGE_ALT[i]}
@@ -241,8 +241,9 @@ export function Positioning() {
 
           {/* reserved-height card stage — active card only, absolute layer, swaps in place */}
           <div className="relative mt-3 aspect-[3/2] overflow-visible">
+            {/* Recommended badge — top-left inside the image card */}
             {activeStage === 2 && (
-              <span className="absolute left-1/2 top-0 z-20 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-1 rounded-full bg-primary px-3 py-1 text-[10px] font-bold text-white shadow-md">
+              <span className="absolute left-4 top-4 z-20 inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-[10px] font-bold text-white shadow-md">
                 <Star className="h-2.5 w-2.5 fill-white" /> {p.recommended}
               </span>
             )}

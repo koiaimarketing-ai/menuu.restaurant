@@ -4,11 +4,13 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useLang } from "@/components/introduction/providers/language-provider";
 import { Button } from "@/components/introduction/ui/button";
 import { PhonePreview } from "@/components/introduction/phone/phone-preview";
-import { WHATSAPP_URL } from "@/lib/introduction/content";
+import { waUrl } from "@/lib/introduction/content";
+import { useBookDemo } from "@/components/introduction/ui/book-demo-modal";
 import { Check, CalendarCheck, MessageCircle, Sparkles, BadgeCheck } from "lucide-react";
 
 export function Hero() {
   const { t } = useLang();
+  const { openBookDemo } = useBookDemo();
   const reduce = useReducedMotion();
   const h = t.hero;
 
@@ -59,11 +61,11 @@ export function Hero() {
           </motion.ul>
 
           <motion.div variants={item} className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
-            <Button href="#contact" size="lg" className="w-full sm:w-auto">
+            <Button size="lg" className="w-full sm:w-auto" onClick={openBookDemo}>
               <CalendarCheck className="h-5 w-5" />
               {h.primary}
             </Button>
-            <Button href={WHATSAPP_URL} external size="lg" variant="secondary" className="w-full sm:w-auto">
+            <Button href={waUrl(t.waMessage)} external size="lg" variant="secondary" className="w-full sm:w-auto">
               <MessageCircle className="h-5 w-5 text-brand-600" />
               {h.secondary}
             </Button>
